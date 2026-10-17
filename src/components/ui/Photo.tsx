@@ -4,6 +4,7 @@
 // photo itself) brings the colour back over 1.4s easeOutExpo with a slow zoom.
 // Optional scan line (the orange band from the hero render) and HUD corners.
 
+import { asset } from "@/brand/brand";
 import { cn } from "@/lib/utils";
 import styles from "./Photo.module.css";
 
@@ -35,7 +36,7 @@ export function Photo({
   return (
     <div className={cn(styles.photo, styles[tone], className)}>
       <img
-        src={src}
+        src={asset(src)}
         alt={alt}
         sizes={sizes}
         loading={priority ? "eager" : "lazy"}

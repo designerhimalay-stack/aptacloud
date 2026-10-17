@@ -9,7 +9,7 @@
 // (y 30, 1s). The sixth grid slot carries the second photo so the board stays
 // a clean 2 × 3.
 
-import { BRAND } from "@/brand/brand";
+import { BRAND, asset } from "@/brand/brand";
 import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
 import { SpreadGrid } from "@/components/ui/SpreadGrid";
@@ -20,7 +20,7 @@ import { StepCard } from "./dynamics/StepCard";
 const HEADING = `Get the most out of ${BRAND.name} Dynamics 365 consulting services.`;
 const LEAD = `Are you finding it difficult to organize data, connect HR, ERP and CRM, and streamline operations with Dynamics 365? ${BRAND.name}, a certified Microsoft Dynamics 365 consulting partner, brings you a customized solution to improve operational efficiency, data-driven decision-making and business growth.`;
 /** Official Microsoft Dynamics 365 lockup (PDF: on the photo badge and the first card). */
-const D365_LOGO = { src: "/images/microsoft/dynamics-365.svg", alt: "Microsoft Dynamics 365" } as const;
+const D365_LOGO = { src: asset("/images/microsoft/dynamics-365.svg"), alt: "Microsoft Dynamics 365" };
 
 const SUBHEADING = "Our comprehensive Microsoft Dynamics 365 consulting solutions";
 
@@ -96,7 +96,7 @@ export function Dynamics() {
               <div className={s.photoCard}>
                 <img
                   className={s.photo}
-                  src="/images/photos/d365-implementation.jpg"
+                  src={asset("/images/photos/d365-implementation.jpg")}
                   alt="A delivery team working together on laptops around a shared table"
                   loading="lazy"
                   decoding="async"
@@ -124,7 +124,7 @@ export function Dynamics() {
                 <div key="photo" className={s.photoCard} aria-hidden="true">
                   <img
                     className={s.photo}
-                    src="/images/photos/d365-optimization.jpg"
+                    src={asset("/images/photos/d365-optimization.jpg")}
                     alt=""
                     loading="lazy"
                     decoding="async"

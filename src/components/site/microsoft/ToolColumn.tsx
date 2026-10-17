@@ -5,6 +5,7 @@
 // the bottom so the four columns line up. Rows lift one surface step on
 // hover (0.4s ease-out).
 
+import { asset } from "@/brand/brand";
 import { cn } from "@/lib/utils";
 import s from "./ToolColumn.module.css";
 
@@ -31,7 +32,7 @@ export function ToolColumn({ name, caption, body, tags, icon, className }: ToolC
   return (
     <article className={cn(s.column, className)}>
       <header className={s.head}>
-        <img className={s.logo} src={LOGOS[icon]} alt="" width={28} height={28} loading="lazy" decoding="async" />
+        <img className={s.logo} src={asset(LOGOS[icon])} alt="" width={28} height={28} loading="lazy" decoding="async" />
         <h3 className={s.name}>{name}</h3>
       </header>
       <div className={s.body}>

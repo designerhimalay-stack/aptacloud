@@ -7,7 +7,7 @@
 
 import { motion, useScroll, useTransform, type MotionValue } from "@/lib/motion";
 import { useRef } from "react";
-import { BRAND } from "@/brand/brand";
+import { BRAND, asset } from "@/brand/brand";
 import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
 import { SpreadGrid } from "@/components/ui/SpreadGrid";
@@ -101,7 +101,7 @@ export function Azure() {
             </p>
             {/* Official Microsoft Azure mark + wordmark (PDF: beside the heading). */}
             <p className={s.azureLogo}>
-              <img src="/images/microsoft/azure.svg" alt="" width={96} height={96} />
+              <img src={asset("/images/microsoft/azure.svg")} alt="" width={96} height={96} />
               <span>Microsoft Azure</span>
             </p>
           </Reveal>

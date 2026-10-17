@@ -10,7 +10,7 @@
 
 import { useEffect, useId, useLayoutEffect, useRef, useState, type MouseEvent, type ReactNode } from "react";
 import { flushSync } from "react-dom";
-import { BRAND } from "@/brand/brand";
+import { BRAND, asset } from "@/brand/brand";
 import { Logo } from "@/brand/Logo";
 import { RollingText } from "@/components/ui/RollingText";
 import { cn } from "@/lib/utils";
@@ -101,7 +101,7 @@ function Globe({ className }: { className?: string }) {
 
 /** Country flag (flag-icons, MIT): /images/flags/{code}.svg, 4:3. */
 function Flag({ code, className }: { code: string; className?: string }) {
-  return <img className={cn(styles.flag, className)} src={`/images/flags/${code}.svg`} alt="" width={20} height={15} />;
+  return <img className={cn(styles.flag, className)} src={asset(`/images/flags/${code}.svg`)} alt="" width={20} height={15} />;
 }
 
 function Check({ className }: { className?: string }) {

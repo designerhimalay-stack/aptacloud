@@ -2,7 +2,7 @@
 // + lead header, a panel of link rows with round arrow buttons, and a row of dark logo cards — here the client's three official
 // partner logos (white), with the orange glow fading in on hover.
 
-import { BRAND } from "@/brand/brand";
+import { BRAND, asset } from "@/brand/brand";
 import { LineReveal, Reveal } from "@/components/ui/Reveal";
 import { PillTag } from "@/components/ui/PillTag";
 import { cn } from "@/lib/utils";
@@ -12,22 +12,22 @@ import s from "./Partners.module.css";
 const PARTNERS = [
   {
     name: "Microsoft",
-    node: <img className={cn(s.logo, s.microsoft)} src="/images/partners/microsoft.svg" alt="Microsoft" />,
+    node: <img className={cn(s.logo, s.microsoft)} src={asset("/images/partners/microsoft.svg")} alt="Microsoft" />,
   },
   {
     name: "Oracle NetSuite",
     node: (
       <span className={s.oracleNetsuite} role="img" aria-label="Oracle NetSuite">
-        <img className={cn(s.logo, s.oracle)} src="/images/partners/oracle.svg" alt="" />
+        <img className={cn(s.logo, s.oracle)} src={asset("/images/partners/oracle.svg")} alt="" />
         <span className={s.netsuiteCrop}>
-          <img className={cn(s.logo, s.netsuite)} src="/images/partners/netsuite.png" alt="" />
+          <img className={cn(s.logo, s.netsuite)} src={asset("/images/partners/netsuite.png")} alt="" />
         </span>
       </span>
     ),
   },
   {
     name: "AWS",
-    node: <img className={cn(s.logo, s.aws)} src="/images/partners/aws.svg" alt="AWS" />,
+    node: <img className={cn(s.logo, s.aws)} src={asset("/images/partners/aws.svg")} alt="AWS" />,
   },
 ];
 

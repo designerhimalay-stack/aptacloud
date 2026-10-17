@@ -4,6 +4,7 @@
 // and About share every size, type style and hover.
 
 import { useId, useRef, useState, type KeyboardEvent, type MouseEvent } from "react";
+import { BRAND, asset } from "@/brand/brand";
 import { Logo } from "@/brand/Logo";
 import { cn } from "@/lib/utils";
 import type { NavColumn, NavMenu, NavPromo } from "./menus";
@@ -47,7 +48,7 @@ function Promo({ promo, onLink }: { promo: NavPromo; onLink: OnLink }) {
           <Logo height={26} theme="dark" />
         ) : (
           <img
-            src={promo.logo}
+            src={asset(promo.logo)}
             alt={promo.logoAlt}
             height={26}
             style={{ height: "26px", width: "auto", display: "block", objectFit: "contain" }}

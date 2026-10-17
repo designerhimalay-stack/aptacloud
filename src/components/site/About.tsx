@@ -7,7 +7,7 @@
 
 import { animate, motion, useInView, useScroll, useTransform, type MotionValue } from "@/lib/motion";
 import { useEffect, useRef, useState } from "react";
-import { BRAND } from "@/brand/brand";
+import { BRAND, asset } from "@/brand/brand";
 import { Reveal } from "@/components/ui/Reveal";
 import { SpreadGrid } from "@/components/ui/SpreadGrid";
 import { RollingText } from "@/components/ui/RollingText";
@@ -152,7 +152,7 @@ export function About() {
             <div className={s.photoInner}>
               <img
                 className={s.photo}
-                src="/images/photos/hero-developer-2.jpg"
+                src={asset("/images/photos/hero-developer-2.jpg")}
                 alt={`A ${BRAND.name} engineer reviewing code across two monitors`}
                 loading="lazy"
                 decoding="async"

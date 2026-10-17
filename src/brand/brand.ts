@@ -62,6 +62,17 @@ export const BRAND = {
   year: 2026,
 } as const;
 
+/** Resolves asset paths relative to the configured base URL (for GitHub Pages subpaths). */
+export function asset(path: string): string {
+  if (!path) return path;
+  if (/^(?:[a-z]+:)?\/\//i.test(path) || path.startsWith("mailto:") || path.startsWith("tel:") || path.startsWith("#") || path.startsWith("data:")) {
+    return path;
+  }
+  const base = (import.meta.env.BASE_URL || "/").replace(/\/$/, "");
+  const clean = path.startsWith("/") ? path : `/${path}`;
+  return `${base}${clean}`;
+}
+
 export type Brand = typeof BRAND;
 
 /** `+1 (202) 555-0147` → `+12025550147` for tel: links; digits only for wa.me. */

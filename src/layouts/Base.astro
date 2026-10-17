@@ -1,7 +1,7 @@
 ---
 // Base document: fonts, tokens and text presets come from globals.css.
 import "../styles/globals.css";
-import { BRAND, brandCssVars } from "../brand/brand";
+import { BRAND, asset, brandCssVars } from "../brand/brand";
 
 interface Props {
   title: string;
@@ -18,7 +18,7 @@ const { title, description } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href={asset("/favicon.svg")} type="image/svg+xml" />
     <meta name="application-name" content={BRAND.name} />
     <style set:html={brandCssVars()} />
     <meta property="og:type" content="website" />

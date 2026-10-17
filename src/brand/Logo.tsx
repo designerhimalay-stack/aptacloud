@@ -2,7 +2,7 @@
 // Renders the official Aptacloud logo asset with proper responsive sizing.
 
 import type { CSSProperties } from "react";
-import { BRAND } from "./brand";
+import { BRAND, asset } from "./brand";
 
 export function Mark({
   height = 28,
@@ -28,7 +28,7 @@ export function Mark({
       aria-hidden="true"
     >
       <img
-        src="/images/aptacloud-logo-header.webp"
+        src={asset("/images/aptacloud-logo-header.webp")}
         alt={`${BRAND.name} mark`}
         style={{
           height: "100%",
@@ -99,7 +99,7 @@ export function Logo({
       }}
     >
       <img
-        src={src}
+        src={asset(src)}
         alt={BRAND.name}
         height={height}
         style={{

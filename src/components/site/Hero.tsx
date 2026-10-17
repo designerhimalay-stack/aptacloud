@@ -4,6 +4,7 @@
 // behind the whole hero, fading to the brand dark on the left and bottom, with two
 // HUD chips floating over it (site/hero/AgentConsole.tsx).
 
+import { asset } from "@/brand/brand";
 import { Button } from "@/components/ui/Button";
 import { LineReveal, Reveal } from "@/components/ui/Reveal";
 import { Ticker } from "@/components/ui/Ticker";
@@ -34,7 +35,7 @@ export function Hero() {
       <div className={styles.glow} />
 
       <div className={styles.grid}>
-        <img src="/images/hero/grid.svg" alt="" width={1920} height={1080} className={styles.gridImg} />
+        <img src={asset("/images/hero/grid.svg")} alt="" width={1920} height={1080} className={styles.gridImg} />
       </div>
 
       <Reveal trigger="mount" delay={0.2} duration={1.4} y={0} className={styles.backdrop}>

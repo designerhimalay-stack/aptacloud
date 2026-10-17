@@ -4,7 +4,7 @@
 // the giant wordmark and the copyright / privacy line. No newsletter signup:
 // there is no backend to subscribe anyone to.
 import styles from "./Footer.module.css";
-import { BRAND, telHref, whatsappHref } from "../../brand/brand";
+import { BRAND, asset, telHref, whatsappHref } from "../../brand/brand";
 import { SOCIAL_PATHS } from "../../brand/social";
 import { Logo, Wordmark } from "../../brand/Logo";
 import { Button } from "../ui/Button";
@@ -77,7 +77,7 @@ const COLUMNS: { title: string; links: FooterLink[]; wide?: boolean }[] = [
         </ul>
         {
           BRAND.badges.map((b) => (
-            <img class={styles.badge} src={b.src} alt={b.alt} width="80" height="80" loading="lazy" decoding="async" />
+            <img class={styles.badge} src={asset(b.src)} alt={b.alt} width="80" height="80" loading="lazy" decoding="async" />
           ))
         }
         </div>
@@ -93,7 +93,7 @@ const COLUMNS: { title: string; links: FooterLink[]; wide?: boolean }[] = [
                   {col.links.map((link) => (
                     <li class:list={[link.flag && styles.phoneRow]}>
                       {link.flag && (
-                        <img class={styles.flag} src={`/images/flags/${link.flag}.svg`} alt={link.country} width="20" height="15" />
+                        <img class={styles.flag} src={asset(`/images/flags/${link.flag}.svg`)} alt={link.country} width="20" height="15" />
                       )}
                       {link.href ? (
                         <a href={link.href} class:list={[styles.link, link.kind === "email" && styles.email]}>
