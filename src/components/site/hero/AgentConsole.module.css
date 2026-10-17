@@ -1,0 +1,79 @@
+/* Agent Console — two HUD chips floating over the hero's full-bleed photo.
+   Chip chrome matches the site's cards (2px radius, 1px border, mono
+   labels), aligned to the right edge of the visual column. */
+
+.root {
+  --px: 0;
+  --py: 0;
+  height: 100%;
+  position: relative;
+  width: 100%;
+}
+
+.nowrap {
+  flex: none;
+  margin: 0;
+  white-space: pre;
+}
+
+.slot {
+  position: absolute;
+  z-index: 2;
+}
+
+.chip {
+  -webkit-backdrop-filter: blur(14px) saturate(1.1);
+  backdrop-filter: blur(14px) saturate(1.1);
+  background-color: var(--bg-glass);
+  border: 1px solid var(--line-strong);
+  border-radius: 2px;
+  box-shadow: 0 24px 60px -12px rgba(0, 0, 0, 0.75);
+  position: relative;
+  translate: calc(var(--px) * var(--depth, 8px)) calc(var(--py) * var(--depth, 8px));
+}
+
+.chipTitle {
+  color: var(--fg);
+}
+
+/* (b) Microsoft-centric solutions — bottom-right */
+.slotStack {
+  bottom: 0;
+  right: 0;
+}
+
+.chipStack {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 12px 14px;
+}
+
+.stackHead {
+  align-items: center;
+  display: flex;
+  gap: 10px;
+}
+
+.tags {
+  display: flex;
+  gap: 4px;
+}
+
+.tag {
+  background-color: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  line-height: 1;
+  padding: 5px 7px 4px;
+}
+
+
+/* Below 1200 the column sits under the centred copy. */
+@media (max-width: 1199.98px) {
+  .chip { translate: none; }
+}
+
+@media (max-width: 389.98px) {
+  .tags { flex-wrap: wrap; }
+}

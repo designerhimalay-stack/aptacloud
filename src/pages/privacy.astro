@@ -1,0 +1,16 @@
+---
+import Base from "../layouts/Base.astro";
+import { BRAND } from "../brand/brand";
+---
+
+<Base title={`Privacy policy — ${BRAND.name}`} description={`${BRAND.name} privacy policy.`}>
+  <main class="relative mx-auto flex min-h-screen w-full max-w-[1176px] flex-col gap-5 px-5 py-[140px]">
+    <p class="t-label-sm">[ Legal ]</p>
+    <h1 class="t-h2">Privacy policy</h1>
+    <p class="t-body max-w-[487px]">
+      {BRAND.name}’s privacy policy will be published here. For questions about your data, contact
+      <a href={`mailto:${BRAND.contact.email}`} class="text-fg underline underline-offset-4">{BRAND.contact.email}</a>.
+    </p>
+    <p class="t-label-lg"><a href="/" class="hover:text-accent">← Back to {BRAND.name}</a></p>
+  </main>
+</Base>

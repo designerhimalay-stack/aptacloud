@@ -1,0 +1,136 @@
+---
+// Footer — static Astro, ships no JavaScript. Dark:
+// a brand card (logo + tagline) | link columns over a call-to-action row, then
+// the giant wordmark and the copyright / privacy line. No newsletter signup:
+// there is no backend to subscribe anyone to.
+import styles from "./Footer.module.css";
+import { BRAND, telHref, whatsappHref } from "../../brand/brand";
+import { SOCIAL_PATHS } from "../../brand/social";
+import { Logo, Wordmark } from "../../brand/Logo";
+import { Button } from "../ui/Button";
+
+type FooterLink = { label: string; href?: string; kind?: "email"; flag?: string; country?: string; whatsapp?: string };
+
+/* Contact details are the PDF's sample placeholders (BRAND.contact) — swap for real ones before launch. */
+const COLUMNS: { title: string; links: FooterLink[]; wide?: boolean }[] = [
+  {
+    title: "Useful links",
+    links: [
+      { label: "Home", href: "#top" },
+      { label: "Services", href: "#dynamics" },
+      { label: "Capabilities", href: "#microsoft" },
+      { label: "About us", href: "#about" },
+    ],
+  },
+  {
+    title: "Services",
+    links: [
+      { label: "AI Assessment Workshop", href: "#workshop" },
+      { label: "Application Modernisation", href: "#dynamics" },
+      { label: "Microsoft 365 & Copilot", href: "#microsoft" },
+      { label: "Azure & AWS Cloud", href: "#azure" },
+    ],
+  },
+  {
+    title: "Contact us",
+    wide: true,
+    links: [
+      ...BRAND.contact.phones.map((p) => ({
+        label: p.number,
+        href: telHref(p.number),
+        flag: p.flag,
+        country: p.country,
+        whatsapp: "whatsapp" in p && p.whatsapp ? whatsappHref(p.number) : undefined,
+      })),
+      { label: BRAND.contact.email.toLowerCase(), href: `mailto:${BRAND.contact.email.toLowerCase()}`, kind: "email" as const },
+      ...BRAND.contact.address.map((line) => ({ label: line })),
+      { label: `Website: ${BRAND.contact.website}` },
+    ],
+  },
+];
+---
+
+<footer class={styles.root}>
+  <div class={styles.container}>
+    <div class={styles.top}>
+      <div class={styles.brandCard}>
+        <a href="#top" class={styles.logo} aria-label={`${BRAND.name} — back to top`}>
+          <Logo height={36} />
+        </a>
+        <p class={styles.tagline}>
+          Experience the power of cloud services with <span class={styles.taglineBrand}>{BRAND.name}</span>. Your
+          journey to cloud excellence starts here.
+        </p>
+        <div class={styles.meta}>
+        <ul class={styles.social} aria-label="Social media">
+          {
+            BRAND.social.map((sn) => (
+              <li>
+                <a href={sn.href} class={styles.socialLink} aria-label={sn.label}>
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d={SOCIAL_PATHS[sn.id]} fill="currentColor" />
+                  </svg>
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+        {
+          BRAND.badges.map((b) => (
+            <img class={styles.badge} src={b.src} alt={b.alt} width="80" height="80" loading="lazy" decoding="async" />
+          ))
+        }
+        </div>
+      </div>
+
+      <div class={styles.right}>
+        <nav class={styles.columns} aria-label="Footer">
+          {
+            COLUMNS.map((col) => (
+              <div class:list={[styles.column, col.wide && styles.columnWide]}>
+                <p class={styles.columnTitle}>{col.title}</p>
+                <ul class={styles.links}>
+                  {col.links.map((link) => (
+                    <li class:list={[link.flag && styles.phoneRow]}>
+                      {link.flag && (
+                        <img class={styles.flag} src={`/images/flags/${link.flag}.svg`} alt={link.country} width="20" height="15" />
+                      )}
+                      {link.href ? (
+                        <a href={link.href} class:list={[styles.link, link.kind === "email" && styles.email]}>
+                          {link.label}
+                        </a>
+                      ) : (
+                        <span class={styles.plain}>{link.label}</span>
+                      )}
+                      {link.whatsapp && (
+                        <a href={link.whatsapp} class={styles.whatsapp} aria-label={`WhatsApp ${link.label}`} target="_blank" rel="noopener">
+                          <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d={SOCIAL_PATHS.whatsapp} fill="currentColor" />
+                          </svg>
+                        </a>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))
+          }
+        </nav>
+
+        <div class={styles.cta}>
+          <p class={styles.ctaText}>Ready to transform your business with AI? Let’s talk.</p>
+          <Button label="Book a free consultation" href="#contact" variant="outline" className={styles.ctaButton} />
+        </div>
+      </div>
+    </div>
+
+    <div class={styles.giant} aria-hidden="true">
+      <Wordmark className={styles.giantWord} />
+    </div>
+
+    <div class={styles.bottom}>
+      <p class={styles.legal}>© {BRAND.name} {BRAND.year}. All rights reserved.</p>
+      <a href="/privacy" class:list={[styles.legal, styles.legalLink]}>Privacy policy</a>
+    </div>
+  </div>
+</footer>

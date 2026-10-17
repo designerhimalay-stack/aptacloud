@@ -1,0 +1,106 @@
+.photo {
+  position: relative;
+  overflow: hidden;
+  background: var(--surface-1);
+  isolation: isolate;
+}
+
+.img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1);
+  transition:
+    filter 1.4s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.duotone .img,
+.mono .img {
+  filter: grayscale(1) contrast(1.08) brightness(0.62);
+}
+
+.wash {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  transition: opacity 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.duotone .wash {
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--brand-dark) 0%, transparent) 45%, color-mix(in srgb, var(--brand-dark) 55%, transparent) 100%),
+    linear-gradient(135deg, rgba(var(--accent-rgb), 0.55) 0%, rgba(var(--accent-rgb), 0.18) 60%, rgba(var(--accent-rgb), 0.35) 100%);
+  mix-blend-mode: multiply;
+}
+
+.mono .wash {
+  background: linear-gradient(180deg, color-mix(in srgb, var(--brand-dark) 0%, transparent) 45%, color-mix(in srgb, var(--brand-dark) 55%, transparent) 100%);
+}
+
+:global(.photo-host):hover .img,
+:global(.photo-host):focus-visible .img,
+.photo:hover .img {
+  filter: grayscale(0) contrast(1.02) brightness(0.9);
+  transform: scale(1.05);
+}
+
+:global(.photo-host):hover .wash,
+:global(.photo-host):focus-visible .wash,
+.photo:hover .wash {
+  opacity: 0.35;
+}
+
+/* Orange scan band (same idea as the hero render shader band). */
+.scan {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 22%;
+  top: -22%;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgba(var(--accent-rgb), 0) 0%,
+    rgba(var(--accent-rgb), 0.22) 48%,
+    color-mix(in srgb, var(--accent-soft) 45%, transparent) 50%,
+    rgba(var(--accent-rgb), 0.22) 52%,
+    rgba(var(--accent-rgb), 0) 100%
+  );
+  mix-blend-mode: screen;
+  animation: photo-scan 11s linear infinite;
+}
+
+@keyframes photo-scan {
+  from { top: -22%; }
+  to { top: 100%; }
+}
+
+.corners i {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-color: var(--accent);
+  border-style: solid;
+  border-width: 0;
+  pointer-events: none;
+}
+.corners i:nth-child(1) { top: 10px; left: 10px; border-top-width: 1px; border-left-width: 1px; }
+.corners i:nth-child(2) { top: 10px; right: 10px; border-top-width: 1px; border-right-width: 1px; }
+.corners i:nth-child(3) { bottom: 10px; left: 10px; border-bottom-width: 1px; border-left-width: 1px; }
+.corners i:nth-child(4) { bottom: 10px; right: 10px; border-bottom-width: 1px; border-right-width: 1px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .scan { animation: none; display: none; }
+  .img, .wash { transition: none; }
+}
+
+/* Light sections: mono reads as clean greyscale, not a near-black slab. */
+:global([data-theme="light"]) .mono .img {
+  filter: grayscale(1) contrast(1.04) brightness(0.96);
+}
+:global([data-theme="light"]) .mono .wash {
+  background: none;
+}

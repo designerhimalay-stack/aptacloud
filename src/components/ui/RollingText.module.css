@@ -1,0 +1,28 @@
+.roll {
+  --roll-line: 1.2em;
+  display: inline-flex;
+  height: var(--roll-line);
+  line-height: var(--roll-line);
+  overflow: hidden;
+  text-shadow: 0 var(--roll-line) 0 var(--roll-to, currentColor);
+  white-space: pre;
+}
+
+.ch {
+  color: var(--roll-from, currentColor);
+  display: block;
+  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+
+:global(.roll-host):hover .ch,
+:global(.roll-host):focus-visible .ch {
+  transform: translateY(calc(-1 * var(--roll-line)));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ch { transition: none; }
+  :global(.roll-host):hover .ch,
+  :global(.roll-host):focus-visible .ch { transform: none; }
+  .roll { text-shadow: none; }
+}

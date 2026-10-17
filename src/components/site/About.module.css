@@ -1,0 +1,303 @@
+/* About — padding 150 / gap 64; header = 3-col grid (pill | heading + lead over two
+   columns); cards = 3 × 550px, gap 8, radius 24, padding 24. Type is Inter
+   600 with tight tracking. */
+
+.section {
+  --fill-from: rgb(208, 208, 202);
+  --fill-to: var(--fg);
+  background: var(--surface-1);
+  padding: 150px 60px;
+  position: relative;
+  width: 100%;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+  margin: 0 auto;
+  max-width: 1176px;
+  width: 100%;
+}
+
+/* ── Header ─────────────────────────────────────────────────────────── */
+.content {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  width: 100%;
+}
+
+.tagCol {
+  grid-column: 1;
+}
+
+.tag {
+  align-items: center;
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: 32px;
+  color: var(--fg);
+  display: inline-flex;
+  font-family: var(--ff-inter);
+  font-size: 14.08px;
+  font-weight: 500;
+  gap: 8px;
+  letter-spacing: -0.04em;
+  line-height: 18px;
+  margin: 0;
+  padding: 8px 12px;
+}
+
+.tagIcon {
+  color: var(--fg-muted);
+  flex: none;
+  height: 20px;
+  width: 20px;
+}
+
+.copy {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  grid-column: 2 / span 2;
+}
+
+.heading {
+  position: relative;
+  font-family: var(--ff-inter);
+  font-size: 48px;
+  font-weight: 600;
+  letter-spacing: -0.06em;
+  line-height: 1.2;
+  margin: 0;
+  max-width: 800px;
+}
+
+.word {
+  display: inline-block;
+  margin-right: 0.25em;
+}
+
+.lead {
+  color: var(--fg-muted);
+  font-family: var(--ff-inter);
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  line-height: 1.3;
+  margin: 0;
+  max-width: 500px;
+}
+
+/* ── Cards ──────────────────────────────────────────────────────────── */
+.cards {
+  display: grid;
+  gap: 8px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  width: 100%;
+}
+
+.stat {
+  background: #ffffff;
+  border-radius: 24px;
+  display: flex;
+  flex-direction: column;
+  height: 550px;
+  justify-content: space-between;
+  padding: 24px;
+}
+
+.statTop {
+  align-items: flex-start;
+  display: flex;
+  justify-content: space-between;
+}
+
+.number {
+  color: var(--fg);
+  font-family: var(--ff-inter);
+  font-size: 72px;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+}
+
+.icon {
+  color: var(--accent);
+  flex: none;
+  height: 32px;
+  width: 32px;
+}
+
+.statBottom {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.statTitle {
+  color: var(--fg);
+  font-family: var(--ff-inter);
+  font-size: 22.08px;
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.statText {
+  color: var(--fg-muted);
+  font-family: var(--ff-inter);
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  line-height: 1.3;
+  margin: 0;
+}
+
+/* Photo CTA card: white 8px frame, 16px-radius photo with overlaid copy. */
+.photoCard {
+  background: #ffffff;
+  border-radius: 24px;
+  height: 550px;
+  padding: 8px;
+}
+
+.photoInner {
+  border-radius: 16px;
+  display: flex;
+  height: 100%;
+  isolation: isolate;
+  overflow: hidden;
+  position: relative;
+}
+
+.photo {
+  height: 100%;
+  inset: 0;
+  object-fit: cover;
+  object-position: 72% 40%;
+  position: absolute;
+  transform: scale(1.02);
+  transition:
+    filter 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+  width: 100%;
+  z-index: 0;
+}
+
+.photoCard:hover .photo {
+  filter: blur(3px);
+  transform: scale(1.06);
+}
+
+.photoShade {
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--brand-ink) 72%, transparent) 0%, color-mix(in srgb, var(--brand-ink) 25%, transparent) 38%, color-mix(in srgb, var(--brand-ink) 0%, transparent) 58%),
+    linear-gradient(0deg, color-mix(in srgb, var(--brand-ink) 55%, transparent) 0%, color-mix(in srgb, var(--brand-ink) 0%, transparent) 30%);
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+  z-index: 1;
+}
+
+.photoContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 16px;
+  position: relative;
+  width: 100%;
+  z-index: 2;
+}
+
+.photoText {
+  color: #ffffff;
+  font-family: var(--ff-inter);
+  font-size: 32px;
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 1.4;
+  margin: 0;
+  max-width: 373px;
+}
+
+.photoButton {
+  align-items: center;
+  background: #ffffff;
+  border-radius: 32px;
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.24);
+  color: var(--brand-ink);
+  display: flex;
+  font-family: var(--ff-inter);
+  font-size: 16px;
+  font-weight: 500;
+  height: 49px;
+  justify-content: center;
+  letter-spacing: -0.02em;
+  text-decoration: none;
+  width: 100%;
+  --roll-from: var(--brand-ink);
+  --roll-to: var(--ink);
+  outline: 2px solid transparent;
+  outline-offset: 3px;
+  transition:
+    background-color 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    outline-color 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.photoButton:hover {
+  background: var(--accent);
+  outline-color: var(--accent);
+}
+
+.photoButton:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+
+/* ── Breakpoints ────────────────────────────────────────────────────── */
+@media (min-width: 1600px) {
+  .section { padding: 150px 72px; }
+}
+
+@media (min-width: 810px) and (max-width: 1199.98px) {
+  .section { padding: 110px 40.5px; }
+  .container { gap: 48px; }
+  .content { display: flex; flex-direction: column; gap: 24px; }
+  .heading { font-size: 40px; }
+  .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .stat { height: 360px; }
+  .cell:last-child { grid-column: 1 / span 2; }
+  .photoCard { height: 420px; }
+  .photo { object-position: 70% 35%; }
+}
+
+@media (max-width: 809.98px) {
+  .section { padding: 90px 19.5px; }
+  .container { gap: 40px; }
+  .content { display: flex; flex-direction: column; gap: 20px; }
+  .heading { font-size: 32px; letter-spacing: -0.05em; }
+  .cards { grid-template-columns: minmax(0, 1fr); }
+  .stat { height: 300px; }
+  .number { font-size: 64px; }
+  .photoCard { height: 440px; }
+  .photoText { font-size: 28px; }
+}
+
+@media (max-width: 389.98px) {
+  .section { padding: 80px 18px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .photo { transition: none; }
+}
+
+/* SpreadGrid cell: the card fills its grid cell. */
+.cell {
+  display: flex;
+}
+.cell > * {
+  width: 100%;
+}

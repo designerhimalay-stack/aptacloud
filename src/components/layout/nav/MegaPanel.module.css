@@ -1,0 +1,384 @@
+/* Mega panel — one shell for Services, Industries and About.
+   Card: black, 24px radius, hairline, 8px padding, 980px wide, centred under the pill,
+   12px below it. Grid: 3 equal cells (20px padding, 16px radius, 8px gaps), then a
+   footer strip. Cells: tabs · column (title 17/600, intro 14/500 muted, links 15/500)
+   · promo (surface-1 card with accent glow, logo, eyebrow, title, text, CTA row).
+   Sits on the root (dark) tokens like the pill. */
+
+.panel {
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --soft: cubic-bezier(0.22, 1, 0.36, 1);
+  background-color: var(--brand-dark);
+  border-radius: 24px;
+  box-shadow:
+    inset 0 0 0 1px var(--line),
+    0 30px 80px -24px rgba(0, 0, 0, 0.6);
+  color: var(--fg);
+  display: flex;
+  flex-direction: column;
+  font-family: var(--ff-inter);
+  gap: 8px;
+  left: 50%;
+  opacity: 0;
+  padding: 8px;
+  pointer-events: none;
+  position: absolute;
+  top: calc(100% + 12px);
+  transform: translate(-50%, 8px) scale(0.985);
+  transform-origin: 50% 0;
+  transition:
+    opacity 0.3s var(--soft),
+    transform 0.45s var(--ease),
+    visibility 0s linear 0.45s;
+  visibility: hidden;
+  width: min(980px, calc(100vw - 48px));
+  z-index: 1;
+}
+
+/* Invisible bridge across the gap, so the cursor can travel from trigger to panel. */
+.panel::before {
+  content: "";
+  height: 14px;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: -14px;
+}
+
+.open {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%, 0) scale(1);
+  transition:
+    opacity 0.3s var(--soft),
+    transform 0.45s var(--ease),
+    visibility 0s linear 0s;
+  visibility: visible;
+}
+
+.grid {
+  display: grid;
+  gap: 8px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+/* ── Cell (shared) ───────────────────────────────────────────────────── */
+.cell {
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-height: 300px;
+  padding: 20px;
+  position: relative;
+}
+
+.cell + .cell::before {
+  background: var(--line);
+  bottom: 20px;
+  content: "";
+  left: -4.5px;
+  position: absolute;
+  top: 20px;
+  width: 1px;
+}
+
+/* No divider next to the promo card (it carries its own surface). */
+.promo::before,
+.promo + .cell::before {
+  display: none;
+}
+
+.label,
+.eyebrow {
+  color: var(--fg-muted);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+  margin: 0;
+}
+
+.title {
+  color: var(--fg);
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 1.3;
+  margin: 0;
+}
+
+.text {
+  color: var(--fg-muted);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1.4;
+  margin: 0;
+  max-width: 280px;
+}
+
+/* ── Column ──────────────────────────────────────────────────────────── */
+.column {
+  animation: cellIn 0.45s var(--ease) both;
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  margin: 8px 0 0 -10px;
+  padding: 0;
+}
+
+.link {
+  align-items: center;
+  border-radius: 10px;
+  color: rgba(255, 255, 255, 0.82);
+  display: flex;
+  font-size: 15px;
+  font-weight: 500;
+  gap: 12px;
+  justify-content: space-between;
+  letter-spacing: -0.03em;
+  line-height: 1.3;
+  padding: 8px 10px;
+  text-decoration: none;
+  transition:
+    background-color 0.35s var(--soft),
+    color 0.35s var(--soft);
+}
+
+.linkArrow {
+  color: var(--accent);
+  flex: none;
+  height: 14px;
+  opacity: 0;
+  transform: translate(-4px, 4px);
+  transition:
+    opacity 0.35s var(--soft),
+    transform 0.45s var(--ease);
+  width: 14px;
+}
+
+.link:hover,
+.link:focus-visible {
+  background-color: var(--surface-2);
+  color: var(--fg);
+}
+
+.link:hover .linkArrow,
+.link:focus-visible .linkArrow {
+  opacity: 1;
+  transform: none;
+}
+
+/* ── Tabs (Services) ─────────────────────────────────────────────────── */
+.tabs {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin: 8px -10px 0;
+}
+
+.tab {
+  align-items: center;
+  appearance: none;
+  background: none;
+  border: 0;
+  border-radius: 12px;
+  color: var(--fg-muted);
+  cursor: pointer;
+  display: flex;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 500;
+  justify-content: space-between;
+  letter-spacing: -0.03em;
+  line-height: 1.3;
+  padding: 11px 10px 11px 12px;
+  text-align: left;
+  transition:
+    background-color 0.35s var(--soft),
+    color 0.35s var(--soft);
+}
+
+.tab:hover {
+  color: var(--fg);
+}
+
+.tabOn {
+  background-color: var(--surface-2);
+  color: var(--fg);
+}
+
+.tabCount {
+  border-radius: 20px;
+  box-shadow: inset 0 0 0 1px var(--line);
+  color: var(--fg-muted);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  padding: 2px 8px;
+  transition:
+    background-color 0.35s var(--soft),
+    color 0.35s var(--soft),
+    box-shadow 0.35s var(--soft);
+}
+
+.tabOn .tabCount {
+  background-color: var(--accent);
+  box-shadow: none;
+  color: var(--ink);
+}
+
+/* ── Promo ───────────────────────────────────────────────────────────── */
+.promo {
+  animation: cellIn 0.45s var(--ease) both;
+  background-color: var(--surface-1);
+  box-shadow: inset 0 0 0 1px var(--line);
+  gap: 16px;
+  isolation: isolate;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.glow {
+  background: radial-gradient(60% 60% at 100% 0%, rgba(var(--accent-rgb), 0.28) 0%, transparent 70%);
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+  z-index: -1;
+}
+
+.promoLogo {
+  align-items: center;
+  background: #ffffff;
+  border-radius: 12px;
+  color: var(--brand-dark);
+  display: inline-flex;
+  height: 48px;
+  padding: 0 16px;
+  width: max-content;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.promoLogo img {
+  display: block;
+  height: 26px;
+  width: auto;
+  max-width: 140px;
+  object-fit: contain;
+}
+
+.promoBody {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.promoCta {
+  align-items: center;
+  background-color: var(--fg);
+  border-radius: 32px;
+  color: var(--brand-dark);
+  display: flex;
+  font-size: 14px;
+  font-weight: 600;
+  justify-content: space-between;
+  letter-spacing: -0.03em;
+  padding: 6px 6px 6px 16px;
+  text-decoration: none;
+  transition: background-color 0.4s var(--soft);
+}
+
+.promoArrow {
+  align-items: center;
+  background-color: var(--brand-dark);
+  border-radius: 50%;
+  color: var(--fg);
+  display: inline-flex;
+  height: 32px;
+  justify-content: center;
+  transition:
+    background-color 0.4s var(--soft),
+    color 0.4s var(--soft),
+    transform 0.5s var(--ease);
+  width: 32px;
+}
+
+.promoArrow svg {
+  height: 14px;
+  width: 14px;
+}
+
+.promoCta:hover {
+  background-color: var(--accent);
+}
+
+.promoCta:hover .promoArrow {
+  transform: rotate(45deg);
+}
+
+/* ── Footer strip ────────────────────────────────────────────────────── */
+.footer {
+  align-items: center;
+  background-color: var(--surface-1);
+  border-radius: 16px;
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+  padding: 14px 20px;
+}
+
+.footerText {
+  color: var(--fg-muted);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  margin: 0;
+}
+
+.footerLink {
+  align-items: center;
+  color: var(--accent);
+  display: inline-flex;
+  flex: none;
+  font-size: 14px;
+  font-weight: 600;
+  gap: 6px;
+  letter-spacing: -0.03em;
+  text-decoration: none;
+}
+
+.footerArrow {
+  height: 14px;
+  transition: transform 0.45s var(--ease);
+  width: 14px;
+}
+
+.footerLink:hover .footerArrow {
+  transform: rotate(45deg);
+}
+
+.link:focus-visible,
+.tab:focus-visible,
+.promoCta:focus-visible,
+.footerLink:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+@keyframes cellIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .panel,
+  .panel * {
+    animation: none !important;
+    transition-duration: 0s !important;
+  }
+}

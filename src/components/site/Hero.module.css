@@ -1,0 +1,386 @@
+/* Agentcraft Hero — full-height section: glow + masked grid, full-bleed photo,
+   copy column beside the Agent Console visual, ticker along the bottom.
+   Base = desktop 1200–1599; then ≥1600, 810–1199.98, 390–809.98, ≤389.98. */
+
+/* Section shell: full viewport height, column flex */
+.hero {
+  align-content: center;
+  align-items: center;
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  gap: 0px;
+  height: min-content;
+  justify-content: center;
+  min-height: 100vh;
+  overflow: clip;
+  padding: 120px 0px 0px 0px;
+  position: relative;
+  width: 100%;
+}
+
+/* Border overlay driven by the --border-* custom properties */
+.bordered::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  box-sizing: border-box;
+  border-color: var(--border-color);
+  border-style: var(--border-style);
+  border-width: var(--border-top-width) var(--border-right-width) var(--border-bottom-width) var(--border-left-width);
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+/* Accent glow, top-left */
+.glow {
+  -webkit-filter: blur(90px);
+  background: radial-gradient(54.6% 43.2% at 11.2% 26.8%, rgba(var(--accent-rgb), 0.2) 0%, rgba(var(--accent-rgb), 0) 70%);
+  filter: blur(90px);
+  flex: none;
+  height: 80%;
+  left: 0px;
+  pointer-events: none;
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  z-index: 0;
+}
+
+/* Masked line grid backdrop */
+.grid {
+  -webkit-mask: radial-gradient(43.75% 50% at 50% 33.3%, #000000 0%, rgba(0, 0, 0, 0) 78%) add;
+  flex: none;
+  height: 1080px;
+  left: -360px;
+  mask: radial-gradient(43.75% 50% at 50% 33.3%, rgb(0, 0, 0) 0%, rgba(0, 0, 0, 0) 78%) add;
+  opacity: 0.28;
+  pointer-events: none;
+  position: absolute;
+  top: 0px;
+  width: 1920px;
+  z-index: 0;
+}
+
+.gridImg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Full-bleed photo layer (z 1). */
+.backdrop {
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+  z-index: 1;
+}
+
+.bgPhoto {
+  height: 100%;
+  inset: 0;
+  position: absolute;
+  width: 100%;
+}
+
+/* Keys the photo into the page: black on the left under the copy, black at the
+   bottom under the ticker, a soft top fade under the nav. */
+.fade {
+  background:
+    linear-gradient(90deg, var(--brand-dark) 0%, color-mix(in srgb, var(--brand-dark) 94%, transparent) 26%, color-mix(in srgb, var(--brand-dark) 45%, transparent) 52%, color-mix(in srgb, var(--brand-dark) 0%, transparent) 74%),
+    linear-gradient(180deg, color-mix(in srgb, var(--brand-dark) 65%, transparent) 0%, color-mix(in srgb, var(--brand-dark) 0%, transparent) 28%, color-mix(in srgb, var(--brand-dark) 0%, transparent) 68%, var(--brand-dark) 100%);
+  inset: 0;
+  position: absolute;
+}
+
+/* Content row: copy | visual */
+.inner {
+  align-content: center;
+  align-items: center;
+  display: flex;
+  flex: none;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 60px;
+  height: min-content;
+  justify-content: flex-start;
+  max-width: 1296px;
+  padding: 0px 60px 45px 60px;
+  position: relative;
+  width: 100%;
+  z-index: 2;
+}
+
+/* Copy column */
+.copy {
+  align-content: flex-start;
+  align-items: flex-start;
+  display: flex;
+  flex: 7 0 0px;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  gap: 0px;
+  height: min-content;
+  justify-content: flex-start;
+  padding: 0px;
+  position: relative;
+  width: 1px;
+}
+
+.eyebrow {
+  flex: none;
+  position: relative;
+  width: 100%;
+}
+
+.eyebrow p {
+  margin: 0;
+  text-wrap: balance;
+}
+
+.space18 {
+  flex: none;
+  height: 18px;
+  position: relative;
+  width: 1px;
+}
+
+/* Title */
+.title {
+  flex: none;
+  height: auto;
+  position: relative;
+  white-space: pre-wrap;
+  width: 100%;
+  word-break: break-word;
+  word-wrap: break-word;
+  margin: 0;
+}
+
+/* 22px spacer */
+.space22 {
+  flex: none;
+  height: 22px;
+  position: relative;
+  width: 1px;
+}
+
+/* Lead */
+.lead {
+  flex: none;
+  height: auto;
+  max-width: 640px;
+  position: relative;
+  white-space: pre-wrap;
+  width: 100%;
+  word-break: break-word;
+  word-wrap: break-word;
+}
+
+.lead p {
+  margin: 0;
+}
+
+/* 28px spacer */
+.space28 {
+  flex: none;
+  height: 28px;
+  position: relative;
+  width: 1px;
+}
+
+/* Button row */
+.buttons {
+  align-content: flex-start;
+  align-items: flex-start;
+  display: flex;
+  flex: none;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 12px;
+  height: min-content;
+  justify-content: flex-start;
+  padding: 0px;
+  position: relative;
+  width: min-content;
+}
+
+/* Button and counter wrappers */
+.btnWrap,
+.counterWrap {
+  flex: none;
+  height: auto;
+  position: relative;
+  width: auto;
+}
+
+/* Stats row */
+.values {
+  --border-bottom-width: 0px;
+  --border-color: var(--line);
+  --border-left-width: 0px;
+  --border-right-width: 0px;
+  --border-style: solid;
+  --border-top-width: 1px;
+  align-content: flex-start;
+  align-items: flex-start;
+  display: flex;
+  flex: none;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 60px;
+  height: min-content;
+  justify-content: flex-start;
+  padding: 22px 0px 0px 0px;
+  position: relative;
+  width: 100%;
+}
+
+/* Single stat */
+.stat {
+  align-content: flex-start;
+  align-items: flex-start;
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  gap: 8px;
+  height: min-content;
+  justify-content: flex-start;
+  padding: 0px;
+  position: relative;
+  width: min-content;
+}
+
+/* Labels + ticker items */
+.label {
+  flex: none;
+  height: auto;
+  position: relative;
+  white-space: pre;
+  width: auto;
+  margin: 0;
+}
+
+/* 36px spacer */
+.space36 {
+  flex: none;
+  height: 36px;
+  position: relative;
+  width: 1px;
+}
+
+/* Visual column: the HUD chips float in it */
+.visual {
+  align-content: flex-start;
+  align-items: flex-start;
+  display: flex;
+  flex: 6 0 0px;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 0px;
+  height: 540px;
+  justify-content: flex-start;
+  min-height: 300px;
+  padding: 0px;
+  position: relative;
+  width: 1px;
+}
+
+/* Ticker band */
+.ticker {
+  --border-bottom-width: 1px;
+  --border-color: var(--line);
+  --border-left-width: 0px;
+  --border-right-width: 0px;
+  --border-style: solid;
+  --border-top-width: 1px;
+  -webkit-mask: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgb(0, 0, 0) 6%, rgb(0, 0, 0) 94%, rgba(0, 0, 0, 0) 100%) add;
+  mask: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgb(0, 0, 0) 6%, rgb(0, 0, 0) 94%, rgba(0, 0, 0, 0) 100%) add;
+  flex: none;
+  height: min-content;
+  overflow: clip;
+  padding: 14px 0px 14px 0px;
+  position: relative;
+  width: 100%;
+  z-index: 2;
+}
+
+.tickerTrack {
+  align-items: flex-start;
+}
+
+/* ≥1600 — Desktop XL (larger title preset) */
+@media (min-width: 1600px) {
+  .grid { left: -160px; }
+  .inner { gap: 80px; max-width: 1320px; padding: 0px 72px 45px 72px; }
+  .values { gap: 64px; }
+  .visual { height: 600px; }
+
+  .copy .title { font-size: 83.2px; text-align: start; }
+}
+
+/* Below 1200 the copy is centred over the photo: darken evenly, keep the bottom key. */
+@media (max-width: 1199.98px) {
+  .fade {
+    background:
+      linear-gradient(180deg, color-mix(in srgb, var(--brand-dark) 88%, transparent) 0%, color-mix(in srgb, var(--brand-dark) 78%, transparent) 40%, color-mix(in srgb, var(--brand-dark) 30%, transparent) 62%, color-mix(in srgb, var(--brand-dark) 10%, transparent) 80%, var(--brand-dark) 100%);
+  }
+}
+
+/* 810–1199.98 — Tablet */
+@media (min-width: 810px) and (max-width: 1199.98px) {
+  .grid { left: -555px; }
+  .inner { flex-direction: column; gap: 40px; padding: 0px 40.5px 45px 40.5px; }
+  .copy { align-content: center; align-items: center; flex: none; width: 100%; }
+  .values { justify-content: center; }
+  .stat { align-content: center; align-items: center; }
+  .visual { flex: none; height: 360px; width: 100%; }
+
+  .copy .eyebrow p,
+  .copy .title,
+  .copy .lead p { text-align: center; }
+}
+
+/* 390–809.98 — Phone */
+@media (min-width: 390px) and (max-width: 809.98px) {
+  .hero { padding: 110px 0px 0px 0px; }
+  .grid { left: -765px; }
+  .inner { flex-direction: column; gap: 40px; padding: 0px 19.5px 45px 19.5px; }
+  .copy { align-content: center; align-items: center; flex: none; width: 100%; }
+  .buttons { flex-direction: column; gap: 10px; width: 100%; }
+  .btnWrap { flex: none; width: 100%; }
+  .btnWrap > a { width: 100%; }
+  .values { align-content: unset; align-items: unset; display: grid; gap: 22px; grid-auto-rows: minmax(0, 1fr); grid-template-columns: repeat(3, minmax(0, 1fr)); grid-template-rows: repeat(1, minmax(0, 1fr)); justify-content: center; }
+  .stat { align-content: center; align-items: center; align-self: start; justify-self: start; width: 100%; }
+  .counterWrap > span { text-align: center !important; }
+  .visual { flex: none; height: 300px; width: 100%; }
+
+  .copy .eyebrow p,
+  .copy .title,
+  .copy .lead p { text-align: center; }
+}
+
+/* ≤389.98 — Phone Small */
+@media (max-width: 389.98px) {
+  .hero { padding: 110px 0px 0px 0px; }
+  .grid { left: -780px; }
+  .inner { flex-direction: column; gap: 40px; padding: 0px 18px 45px 18px; }
+  .copy { align-content: center; align-items: center; flex: none; width: 100%; }
+  .buttons { flex-direction: column; gap: 10px; width: 100%; }
+  .btnWrap { flex: none; width: 100%; }
+  .btnWrap > a { width: 100%; }
+  .values { align-content: unset; align-items: unset; display: grid; gap: 22px; grid-auto-rows: minmax(0, 1fr); grid-template-columns: repeat(3, minmax(0, 1fr)); grid-template-rows: repeat(1, minmax(0, 1fr)); justify-content: center; }
+  .stat { align-content: center; align-items: center; align-self: start; justify-self: start; width: 100%; }
+  .counterWrap > span { text-align: center !important; }
+  .visual { flex: none; height: 280px; width: 100%; }
+
+  .copy .eyebrow p,
+  .copy .title,
+  .copy .lead p { text-align: center; }
+}

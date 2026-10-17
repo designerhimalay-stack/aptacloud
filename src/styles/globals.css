@@ -1,0 +1,162 @@
+@import "tailwindcss";
+
+/* Self-hosted fonts: Geist Mono and Inter (both SIL Open Font License). */
+@font-face { font-family: "Geist Mono"; src: url("/fonts/GeistMono-400.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "Geist Mono"; src: url("/fonts/GeistMono-500.woff2") format("woff2"); font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: "Geist Mono"; src: url("/fonts/GeistMono-700.woff2") format("woff2"); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: "Inter"; src: url("/fonts/Inter-400.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "Inter"; src: url("/fonts/Inter-500.woff2") format("woff2"); font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: "Inter"; src: url("/fonts/Inter-600.woff2") format("woff2"); font-weight: 600; font-style: normal; font-display: swap; }
+@font-face { font-family: "Inter"; src: url("/fonts/Inter-700.woff2") format("woff2"); font-weight: 700; font-style: normal; font-display: swap; }
+
+/* ───────────────────────── Design tokens ─────────────────────────
+   Dark theme by default; [data-theme="light"] sections flip them (below). */
+:root {
+  --bg: var(--brand-dark);
+  --surface-0: #0d0d0d;
+  --surface-1: #141414;
+  --surface-2: #1a1a1a;
+  --surface-3: #1f1f1f;
+  --cell-off: #1c1c1c;
+  --bg-glass: color-mix(in srgb, var(--brand-dark) 78%, transparent);
+  --line: #2a2a2a;
+  --line-strong: #3a3a3a;
+  --fg: #ffffff;
+  --fg-soft: #ffffffd1;
+  --fg-muted: #ffffff94;
+  --fg-subtle: #ffffff85;
+  /* --accent, --accent-soft, --ink, --accent-rgb, --accent-08/32/50 come from
+     src/brand/brand.ts (injected in <head> by layouts/Base.astro). */
+  --ff-mono: "Geist Mono", ui-monospace, monospace;
+  --ff-inter: "Inter", system-ui, sans-serif;
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface-0: var(--surface-0);
+  --color-surface-1: var(--surface-1);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
+  --color-cell-off: var(--cell-off);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-fg: var(--fg);
+  --color-fg-soft: var(--fg-soft);
+  --color-fg-muted: var(--fg-muted);
+  --color-fg-subtle: var(--fg-subtle);
+  --color-ink: var(--ink);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --font-mono: var(--ff-mono);
+  --font-sans: var(--ff-inter);
+}
+
+/* Breakpoints: phone-sm <390, phone 390–809 (sm), tablet 810–1199 (md), desktop 1200–1599 (lg), xl ≥1600 */
+@theme {
+  --breakpoint-sm: 390px;
+  --breakpoint-md: 810px;
+  --breakpoint-lg: 1200px;
+  --breakpoint-xl: 1600px;
+  --breakpoint-2xl: 1600px;
+}
+
+
+/* ───────────────────────── Light theme scope ─────────────────────────
+   Put data-theme="light" on a section root: every token-based colour
+   (tokens, .t-* text styles, Tailwind colour utilities) flips.
+   Orange stays the single signal; --ink stays for text on orange. */
+[data-theme="light"] {
+  --bg: #ffffff;
+  --surface-0: #f7f7f4;
+  --surface-1: #f3f3ef;
+  --surface-2: #ecece7;
+  --surface-3: #e7e7e2;
+  --cell-off: #e6e6e1;
+  --bg-glass: #ffffffd9;
+  --line: #e3e3dd;
+  --line-strong: #cdcdc6;
+  --fg: var(--brand-ink);
+  --fg-soft: color-mix(in srgb, var(--brand-ink) 82%, transparent);
+  --fg-muted: color-mix(in srgb, var(--brand-ink) 60%, transparent);
+  --fg-subtle: color-mix(in srgb, var(--brand-ink) 52%, transparent);
+  background: var(--bg);
+  color: var(--fg);
+  color-scheme: light;
+
+  /* aliases re-declared so they resolve against the light values */
+}
+[data-theme="light"] ::selection { background: var(--accent); color: #ffffff; }
+
+* { box-sizing: border-box; }
+html { position: relative; background: var(--bg); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--ff-inter);
+  overflow-x: clip;
+}
+h1, h2, h3, h4, p { margin: 0; }
+/* in the base layer so Tailwind utilities (e.g. Button text colours) win */
+@layer base {
+  a { color: inherit; text-decoration: none; }
+}
+img { display: block; max-width: none; }
+::selection { background: var(--accent); color: var(--ink); }
+
+/* Ticker – content is duplicated, track moves by -50% */
+@keyframes ticker-x { from { transform: translate3d(0, 0, 0); } to { transform: translate3d(-50%, 0, 0); } }
+
+/* Status dot (ui/Pulse) */
+@keyframes pulse-dot { 0%, 100% { opacity: 1; } 50% { opacity: 0.25; } }
+.pulse { animation: pulse-dot 2.4s cubic-bezier(0.22, 1, 0.36, 1) infinite; }
+@media (prefers-reduced-motion: reduce) {
+  .pulse { animation: none; }
+}
+
+/* ───────────────────────── Text styles ─────────────────────────
+   Display + headings (Inter 600, sentence case, tight tracking), body copy
+   (Inter, muted) and small mono labels. */
+.t-display { font-family: var(--ff-mono); font-size: 72px; font-weight: 400; letter-spacing: -.02em; line-height: 1.02em; color: var(--fg); text-transform: uppercase; }
+.t-h2 { font-family: var(--ff-mono); font-size: 50.4px; font-weight: 400; letter-spacing: -.02em; line-height: 1.06em; color: var(--fg); text-transform: uppercase; }
+.t-h4 { font-family: var(--ff-mono); font-size: 21.33px; font-weight: 400; letter-spacing: .01em; line-height: 1.62em; color: var(--fg); text-transform: uppercase; }
+.t-lead { font-family: var(--ff-inter); font-size: 18.56px; font-weight: 400; letter-spacing: 0px; line-height: 1.62em; color: var(--fg-muted); text-transform: none; }
+.t-body { font-family: var(--ff-inter); font-size: 16.8px; font-weight: 400; letter-spacing: 0em; line-height: 1.62em; color: var(--fg-muted); text-transform: none; }
+.t-body-sm { font-family: var(--ff-inter); font-size: 15.2px; font-weight: 400; letter-spacing: 0em; line-height: 1.62em; color: var(--fg-muted); text-transform: none; }
+.t-label-lg { font-family: var(--ff-mono); font-size: 12.16px; font-weight: 400; letter-spacing: .08em; line-height: 1.62em; color: var(--fg-muted); text-transform: uppercase; }
+.t-label { font-family: var(--ff-mono); font-size: 11.52px; font-weight: 400; letter-spacing: .22em; line-height: 1.62em; color: var(--fg-muted); text-transform: uppercase; }
+.t-label-accent { font-family: var(--ff-mono); font-size: 11.52px; font-weight: 400; letter-spacing: .16em; line-height: 1.62em; color: var(--accent); text-transform: none; }
+.t-label-sm { font-family: var(--ff-mono); font-size: 11.04px; font-weight: 400; letter-spacing: .22em; line-height: 1.62em; color: var(--fg-muted); text-transform: uppercase; }
+.t-micro { font-family: var(--ff-mono); font-size: 9.92px; font-weight: 400; letter-spacing: .14em; line-height: 1.62em; color: var(--fg-muted); text-transform: uppercase; }
+.t-micro-xs { font-family: var(--ff-mono); font-size: 9.28px; font-weight: 400; letter-spacing: .14em; line-height: 1.62em; color: var(--fg-muted); text-transform: uppercase; }
+@media (max-width: 999px) and (min-width: 810px) {
+  .t-h2 { font-size: 42px; letter-spacing: -.02em; line-height: 1.06em; }
+  .t-display { font-size: 60px; letter-spacing: -.02em; line-height: 1.02em; }
+}
+@media (max-width: 809px) and (min-width: 0) {
+  .t-h2 { font-size: 34px; letter-spacing: -.02em; line-height: 1.06em; }
+  .t-body { font-size: 16px; letter-spacing: 0px; line-height: 1.62em; }
+  .t-display { font-size: 48.6px; letter-spacing: -.02em; line-height: 1.02em; }
+}
+
+/* Headings: Inter 600, sentence case, tight negative tracking. */
+.t-display, .t-h2 {
+  font-family: var(--ff-inter);
+  font-weight: 600;
+  letter-spacing: -0.055em;
+  line-height: 1.08em;
+  text-transform: none;
+}
+.t-h4 {
+  font-family: var(--ff-inter);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 1.3em;
+  text-transform: none;
+}
+
+/* Scroll-linked word fill: words go from --fill-from to their colour. */
+:root { --fill-from: rgba(255, 255, 255, 0.2); }
+[data-theme="light"] { --fill-from: rgb(208, 208, 202); }

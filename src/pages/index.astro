@@ -1,0 +1,40 @@
+---
+// Agentcraft site — home page.
+// Sections are React islands: above-the-fold and the fixed nav hydrate on load,
+// everything else when it scrolls near the viewport. The footer is static HTML.
+import Base from "../layouts/Base.astro";
+import { BRAND } from "../brand/brand";
+import { ConstructionLines } from "../components/layout/ConstructionLines";
+import Footer from "../components/layout/Footer.astro";
+import { Nav } from "../components/layout/Nav";
+import { About } from "../components/site/About";
+import { Azure } from "../components/site/Azure";
+import { CTA } from "../components/site/CTA";
+import { Dynamics } from "../components/site/Dynamics";
+import { Hero } from "../components/site/Hero";
+import { Microsoft } from "../components/site/Microsoft";
+import { Partners } from "../components/site/Partners";
+import { WhyWorkshop } from "../components/site/WhyWorkshop";
+import { Workshop } from "../components/site/Workshop";
+
+const title = `${BRAND.name} — ${BRAND.tagline}`;
+const description =
+  `${BRAND.name} is a premier Microsoft-centric consulting firm specialising in modern cloud systems and AI integration — Dynamics 365, Microsoft 365, Copilot, Power Platform and Azure. Your path to measurable AI ROI.`;
+---
+
+<Base title={title} description={description}>
+  <Nav client:load />
+  <ConstructionLines />
+  <main class="relative">
+    <Hero client:load />
+    <About client:visible />
+    <Workshop client:visible />
+    <Partners client:visible />
+    <WhyWorkshop client:visible />
+    <Dynamics client:visible />
+    <Microsoft client:visible />
+    <Azure client:visible />
+    <CTA client:visible />
+  </main>
+  <Footer />
+</Base>

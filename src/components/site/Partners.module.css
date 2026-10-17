@@ -1,0 +1,276 @@
+/* Partners — dark; padding 150 / gap 64; header = 3-col grid (pill | heading + lead);
+   body sits in columns 2–3: link panel (24px radius, 16px padding, 72px rows
+   with 40px round arrow buttons) and a row of 16px-radius logo cards. */
+
+.section {
+  background: var(--bg);
+  padding: 150px 60px;
+  position: relative;
+  width: 100%;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+  margin: 0 auto;
+  max-width: 1176px;
+  width: 100%;
+}
+
+/* ── Header ─────────────────────────────────────────────────────────── */
+.content {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  width: 100%;
+}
+
+.tagCol { grid-column: 1; }
+
+.copy {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  grid-column: 2 / span 2;
+}
+
+.heading {
+  color: var(--fg);
+  font-family: var(--ff-inter);
+  font-size: 48px;
+  font-weight: 600;
+  letter-spacing: -0.06em;
+  line-height: 1.2;
+  margin: 0;
+  max-width: 800px;
+}
+
+.lead {
+  color: var(--fg-muted);
+  font-family: var(--ff-inter);
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  line-height: 1.3;
+  margin: 0;
+  max-width: 500px;
+}
+
+/* ── Body (columns 2–3) ─────────────────────────────────────────────── */
+.body {
+  display: grid;
+  gap: 8px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  width: 100%;
+}
+
+.panel,
+.logosWrap {
+  grid-column: 2 / span 2;
+}
+
+.panel {
+  background: var(--surface-0);
+  border-radius: 24px;
+  padding: 16px;
+}
+
+.rows {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.row {
+  align-items: center;
+  background: var(--surface-2);
+  border-radius: 16px;
+  color: var(--fg);
+  display: flex;
+  font-family: var(--ff-inter);
+  font-size: 16px;
+  font-weight: 500;
+  justify-content: space-between;
+  letter-spacing: -0.04em;
+  min-height: 72px;
+  padding: 16px;
+  text-decoration: none;
+  transition: background-color 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.arrow {
+  align-items: center;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  color: var(--fg);
+  display: inline-flex;
+  flex: none;
+  height: 40px;
+  justify-content: center;
+  transition:
+    background-color 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    color 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  width: 40px;
+}
+
+.arrow svg { height: 18px; width: 18px; }
+
+.row:hover { background: var(--surface-3); }
+.row:hover .arrow {
+  background: var(--accent);
+  color: var(--ink);
+  transform: rotate(45deg);
+}
+
+.row:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* ── Logo cards ─────────────────────────────────────────────────────── */
+.logos {
+  display: grid;
+  gap: 8px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.card {
+  align-items: center;
+  background: var(--surface-0);
+  border-radius: 16px;
+  display: flex;
+  height: 180px;
+  isolation: isolate;
+  justify-content: center;
+  overflow: hidden;
+  padding: 40px;
+  position: relative;
+}
+
+/* Hover layer: blurred orange field derived from the brand accent. */
+.glow {
+  background:
+    radial-gradient(55% 75% at 18% 18%, color-mix(in srgb, var(--accent) 45%, #ffffff) 0%, transparent 62%),
+    radial-gradient(60% 70% at 78% 32%, color-mix(in srgb, var(--accent) 40%, #ffe066) 0%, transparent 58%),
+    radial-gradient(75% 80% at 72% 108%, color-mix(in srgb, var(--accent) 35%, #1a0000) 0%, transparent 66%),
+    radial-gradient(60% 70% at 4% 96%, color-mix(in srgb, var(--accent) 60%, #4a0000) 0%, transparent 64%),
+    linear-gradient(135deg, color-mix(in srgb, var(--accent) 85%, #ffffff) 0%, var(--accent) 45%, color-mix(in srgb, var(--accent) 75%, #8a0000) 100%);
+  filter: blur(10px);
+  inset: -24px;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  z-index: 0;
+}
+
+.card:hover .glow { opacity: 1; }
+
+.mark {
+  --cap: 24px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+
+/* White logos on the dark cards (they stay white over the glow). */
+.logo {
+  display: block;
+  filter: brightness(0) invert(1);
+}
+
+/* microsoft.svg 337.6×72: cap height of "Microsoft" = 43.2/72 of the box.
+   Its wordmark is mid-grey (#737373) where the others are near-black, so it
+   rests a step more opaque to land on the same grey. */
+.microsoft {
+  /* the four-square symbol adds mass: sit a step smaller than the others */
+  height: calc(var(--cap) / 0.6 * 0.84);
+  width: auto;
+}
+
+/* Oracle NetSuite lockup: ORACLE wordmark at 0.44 of the NetSuite cap, like
+   the official stacked lockup; both share one baseline. */
+.oracleNetsuite {
+  align-items: baseline;
+  display: inline-flex;
+  gap: calc(var(--cap) * 0.42);
+}
+
+/* oracle.svg 231×30: the box is the cap height. */
+.oracle {
+  height: calc(var(--cap) * 0.44);
+  width: auto;
+}
+
+/* netsuite.png 417×152 is the stacked lockup (ORACLE rows 0–37, NetSuite rows
+   66–151). Show only the NetSuite wordmark: a window of 417×86 at y = 66. */
+.netsuiteCrop {
+  display: block;
+  height: var(--cap);
+  overflow: hidden;
+  position: relative;
+  width: calc(var(--cap) * 417 / 86);
+}
+
+.netsuite {
+  height: calc(var(--cap) * 152 / 86);
+  left: 0;
+  position: absolute;
+  top: calc(var(--cap) * -66 / 86);
+  width: 100%;
+}
+
+/* aws.svg 304×182: the lowercase "aws" is 94/182 of the box; size its
+   x-height to 0.8 of the cap so the mark carries the same weight. The smile
+   hangs below the letters, so the box is nudged down to centre the letters
+   optically with the neighbouring wordmarks. */
+.aws {
+  height: calc(var(--cap) * 1.02 * 182 / 94);
+  position: relative;
+  top: calc(var(--cap) * 0.12);
+  width: auto;
+}
+
+/* ── Breakpoints ────────────────────────────────────────────────────── */
+@media (min-width: 1600px) {
+  .section { padding: 150px 72px; }
+}
+
+@media (min-width: 810px) and (max-width: 1199.98px) {
+  .section { padding: 110px 40.5px; }
+  .container { gap: 48px; }
+  .content { display: flex; flex-direction: column; gap: 24px; }
+  .heading { font-size: 40px; }
+  .body { grid-template-columns: minmax(0, 1fr); }
+  .panel, .logosWrap { grid-column: 1; }
+  .card { height: 160px; }
+}
+
+@media (max-width: 809.98px) {
+  .section { padding: 90px 19.5px; }
+  .container { gap: 40px; }
+  .content { display: flex; flex-direction: column; gap: 20px; }
+  .heading { font-size: 32px; letter-spacing: -0.05em; }
+  .body { grid-template-columns: minmax(0, 1fr); }
+  .panel, .logosWrap { grid-column: 1; }
+  .logos { grid-template-columns: minmax(0, 1fr); }
+  .card { height: 124px; padding: 28px; }
+  .mark { --cap: 22px; }
+}
+
+@media (max-width: 389.98px) {
+  .section { padding: 80px 18px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glow, .row, .arrow { transition: none; }
+}
