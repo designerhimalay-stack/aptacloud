@@ -4,7 +4,7 @@
 // behind the whole hero, fading to the brand dark on the left and bottom, with two
 // HUD chips floating over it (site/hero/AgentConsole.tsx).
 
-import { asset } from "@/brand/brand";
+import { BRAND, PRIMARY_CTA, asset } from "@/brand/brand";
 import { Button } from "@/components/ui/Button";
 import { LineReveal, Reveal } from "@/components/ui/Reveal";
 import { Ticker } from "@/components/ui/Ticker";
@@ -53,7 +53,7 @@ export function Hero() {
       <div className={styles.inner}>
         <div className={styles.copy}>
           <Reveal trigger="mount" delay={0.1} className={styles.eyebrow}>
-            <PillTag icon={<svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M8.75 3.25c.45 3.05 1.85 4.75 4.75 5.5-2.9.75-4.3 2.45-4.75 5.5-.45-3.05-1.85-4.75-4.75-5.5 2.9-.75 4.3-2.45 4.75-5.5Z" stroke="currentColor" strokeWidth="1.25" strokeLinejoin="round" /><path d="M15 12.25c.2 1.2.65 1.65 1.75 1.85-1.1.2-1.55.65-1.75 1.85-.2-1.2-.65-1.65-1.75-1.85 1.1-.2 1.55-.65 1.75-1.85Z" stroke="currentColor" strokeWidth="1.1" strokeLinejoin="round" /></svg>}>Revolutionise with artificial intelligence</PillTag>
+            <PillTag icon={<svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M8.75 3.25c.45 3.05 1.85 4.75 4.75 5.5-2.9.75-4.3 2.45-4.75 5.5-.45-3.05-1.85-4.75-4.75-5.5 2.9-.75 4.3-2.45 4.75-5.5Z" stroke="currentColor" strokeWidth="1.25" strokeLinejoin="round" /><path d="M15 12.25c.2 1.2.65 1.65 1.75 1.85-1.1.2-1.55.65-1.75 1.85-.2-1.2-.65-1.65-1.75-1.85 1.1-.2 1.55-.65 1.75-1.85Z" stroke="currentColor" strokeWidth="1.1" strokeLinejoin="round" /></svg>}>Microsoft-certified cloud, data &amp; AI</PillTag>
           </Reveal>
 
           <div className={styles.space18} />
@@ -67,20 +67,22 @@ export function Hero() {
           <div className={styles.space22} />
 
           <Reveal trigger="mount" delay={0.7} className={styles.lead}>
-            <p className="t-lead">
-              Harness the power of AI to transform your business and drive efficiency.
-            </p>
+            <p className="t-lead">{BRAND.valueProp}</p>
           </Reveal>
 
           <div className={styles.space28} />
 
+          {/* One primary action; the secondary is a quiet text link so it never competes. */}
           <Reveal trigger="mount" delay={0.83} className={styles.buttons}>
             <div className={styles.btnWrap}>
-              <Button label="Book AI workshop" href="#workshop" variant="primary" />
+              <Button label={PRIMARY_CTA.label} href={PRIMARY_CTA.href} variant="primary" />
             </div>
-            <div className={styles.btnWrap}>
-              <Button label="Explore services" href="#dynamics" variant="outline" />
-            </div>
+            <a href="#workshop" className={styles.textLink}>
+              See what the workshop covers
+              <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M4.5 11.5 11.5 4.5M5.5 4.5h6v6" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </a>
           </Reveal>
 
           <div className={styles.space36} />

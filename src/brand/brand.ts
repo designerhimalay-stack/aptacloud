@@ -6,13 +6,16 @@
 
 export const BRAND = {
   /** Company name — used in copy, the logo wordmark, meta tags and the footer. */
-  name: "Aptacloud",
+  name: "AptaCloud",
   /** Short promise used in titles and the hero. */
   tagline: "Your Path to Measurable AI ROI",
+  /** One-line value proposition (Brand Guidelines v2.0, 3.2), Australian spelling. */
+  valueProp:
+    "AptaCloud modernises the systems mid-sized insurance, oil & gas, and construction firms run on, and puts AI to work on top of them. We prove it on your data first.",
   location: "Richardson, Texas",
 
   colors: {
-    /** The signature Aptacloud signal colour (buttons, highlights, icons). */
+    /** The signature AptaCloud signal colour (buttons, highlights, icons). */
     accent: "#ef1524",
     /** Lighter accent for hovers. */
     accentSoft: "#f04c35",
@@ -36,7 +39,7 @@ export const BRAND = {
     "1...1",
   ],
 
-  /** US contact details as per Aptacloud headquarters. */
+  /** US contact details as per AptaCloud headquarters. */
   contact: {
     phones: [
       { number: "+1 (972) 928-2341", flag: "us", country: "United States" },
@@ -57,7 +60,7 @@ export const BRAND = {
   ],
 
   /** Memberships shown in the footer */
-  badges: [{ src: "/images/badges/allen-chamber.png", alt: "Proud member — Allen Chamber of Commerce 2026" }],
+  badges: [{ src: "/images/badges/allen-chamber.png", alt: "Proud member: Allen Chamber of Commerce 2026" }],
 
   year: 2026,
 } as const;
@@ -74,6 +77,23 @@ export function asset(path: string): string {
 }
 
 export type Brand = typeof BRAND;
+
+/** The page's single primary call to action (one per page, Brand Guidelines v2.0, 7.2).
+ *  Every primary button on the home page reads from here; `short` is for the nav pill. */
+export const PRIMARY_CTA = {
+  label: "Book your AI assessment",
+  short: "Book your AI assessment",
+  href: "#contact",
+} as const;
+
+/** A section of the home page from any page, e.g. home("#workshop"). */
+export const home = (hash = "") => `${asset("/")}${hash}`;
+
+/** Trust line shown where a second CTA used to sit (nav panels). */
+export const TRUST = {
+  industries: ["Insurance", "Oil & Gas", "Engineering & Construction"],
+  credential: "Microsoft-certified specialists",
+} as const;
 
 /** `+1 (202) 555-0147` → `+12025550147` for tel: links; digits only for wa.me. */
 export const telHref = (n: string) => `tel:${n.replace(/[^+\d]/g, "")}`;

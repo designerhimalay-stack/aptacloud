@@ -1,0 +1,124 @@
+/* Benefit / use-case cards: var(--card), radius 24, padding 24, gap 8. */
+
+.grid {
+  display: grid;
+  gap: 8px;
+}
+
+.c2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.c3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.c4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+/* five: 3 + 2, the last two widen */
+.c5 { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+.c5 > * { grid-column: span 2; }
+.c5 > :nth-child(4),
+.c5 > :nth-child(5) { grid-column: span 3; }
+
+.cell {
+  display: flex;
+}
+
+.cell > * {
+  width: 100%;
+}
+
+.card {
+  background: var(--card);
+  border-radius: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  min-height: 200px;
+  padding: 24px;
+  transition: box-shadow 0.5s var(--ease-out-quint);
+}
+
+.card:hover {
+  box-shadow: 0 24px 48px -30px rgba(10, 10, 10, 0.35);
+}
+
+.icon {
+  align-items: center;
+  background: rgba(var(--accent-rgb), 0.1);
+  border-radius: 14px;
+  color: var(--accent);
+  display: inline-flex;
+  flex: none;
+  height: 48px;
+  justify-content: center;
+  transition: background-color 0.45s var(--ease-out-quint), color 0.45s var(--ease-out-quint);
+  width: 48px;
+}
+
+.icon svg {
+  height: 22px;
+  width: 22px;
+}
+
+.card:hover .icon {
+  background: var(--accent);
+  color: #ffffff;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.label {
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+.title {
+  color: var(--fg);
+  font-family: var(--ff-inter);
+  font-size: 19px;
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 1.25;
+  margin: 0;
+}
+
+.text {
+  color: var(--fg-muted);
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  line-height: 1.42;
+  margin: 0;
+}
+
+/* Use cases: icon beside the copy. */
+.wide {
+  flex-direction: row;
+  gap: 20px;
+  min-height: 0;
+  padding: 26px;
+}
+
+.wide .title {
+  font-size: 21px;
+}
+
+@media (min-width: 810px) and (max-width: 1199.98px) {
+  .c3, .c4, .c5 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .c5 > *, .c5 > :nth-child(4), .c5 > :nth-child(5) { grid-column: auto; }
+  .c5 > :last-child, .c3 > :last-child:nth-child(odd) { grid-column: 1 / -1; }
+}
+
+@media (max-width: 809.98px) {
+  .c5 > *, .c5 > :nth-child(4), .c5 > :nth-child(5) { grid-column: auto; }
+  .card { gap: 20px; padding: 20px; }
+  .wide { flex-direction: column; gap: 18px; }
+  .title, .wide .title { font-size: 18px; }
+  .text { font-size: 14.5px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card, .icon { transition: none; }
+}

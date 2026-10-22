@@ -1,10 +1,12 @@
 // Desktop mega panel — one shell for every nav menu: a black 24px-radius card under the
-// pill, a 3-column grid of 20px-padded cells and a footer strip. Cells are built from
+// pill, a 3-column grid of 20px-padded cells and a trust strip (the industries we serve
+// + the Microsoft credential; deliberately no CTA, the promo card carries the panel's
+// one action). Cells are built from
 // three blocks only (see ./menus.ts): Tabs, Column and Promo, so Services, Industries
 // and About share every size, type style and hover.
 
-import { useId, useRef, useState, type KeyboardEvent, type MouseEvent } from "react";
-import { BRAND, asset } from "@/brand/brand";
+import { useEffect, useId, useRef, useState, type KeyboardEvent, type MouseEvent } from "react";
+import { TRUST, asset } from "@/brand/brand";
 import { Logo } from "@/brand/Logo";
 import { cn } from "@/lib/utils";
 import type { NavColumn, NavMenu, NavPromo } from "./menus";
@@ -20,7 +22,20 @@ export function Arrow({ className }: { className?: string }) {
   );
 }
 
-function Column({ column, onLink, panelProps }: { column: NavColumn; onLink: OnLink; panelProps?: object }) {
+/** Path of a nav href without trailing slash (for "you are here" matching). */
+const pathOf = (href: string) => href.split("#")[0].replace(/\/$/, "");
+
+function Column({
+  column,
+  onLink,
+  current,
+  panelProps,
+}: {
+  column: NavColumn;
+  onLink: OnLink;
+  current: string;
+  panelProps?: object;
+}) {
   return (
     <div className={cn(s.cell, s.column)} {...panelProps}>
       <p className={s.title}>{column.title}</p>
@@ -28,7 +43,12 @@ function Column({ column, onLink, panelProps }: { column: NavColumn; onLink: OnL
       <ul className={s.links}>
         {column.links.map((l) => (
           <li key={l.label}>
-            <a href={l.href} className={s.link} onClick={(e) => onLink(e, l.href)}>
+            <a
+              href={l.href}
+              className={cn(s.link, current && pathOf(l.href) === current && s.linkCurrent)}
+              aria-current={current && pathOf(l.href) === current ? "page" : undefined}
+              onClick={(e) => onLink(e, l.href)}
+            >
               <span>{l.label}</span>
               <Arrow className={s.linkArrow} />
             </a>
@@ -73,7 +93,17 @@ function Promo({ promo, onLink }: { promo: NavPromo; onLink: OnLink }) {
 export function MegaPanel({ menu, id, open, onLink }: { menu: NavMenu; id: string; open: boolean; onLink: OnLink }) {
   const uid = useId();
   const [tab, setTab] = useState(menu.kind === "tabs" ? menu.tabs[0].id : "");
+  const [current, setCurrent] = useState("");
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
+
+  // After hydration: mark the page we are on, and open its category's tab.
+  useEffect(() => {
+    const here = window.location.pathname.replace(/\/index\.html$/, "").replace(/\/$/, "");
+    setCurrent(here);
+    if (menu.kind !== "tabs") return;
+    const owner = menu.tabs.find((t) => t.column.links.some((l) => pathOf(l.href) === here));
+    if (owner) setTab(owner.id);
+  }, [menu]);
 
   const onTabKey = (e: KeyboardEvent<HTMLButtonElement>, i: number) => {
     if (menu.kind !== "tabs") return;
@@ -114,7 +144,6 @@ export function MegaPanel({ menu, id, open, onLink }: { menu: NavMenu; id: strin
                   onKeyDown={(e) => onTabKey(e, i)}
                 >
                   <span>{t.label}</span>
-                  <span className={s.tabCount}>{String(t.column.links.length).padStart(2, "0")}</span>
                 </button>
               );
             })}
@@ -124,6 +153,7 @@ export function MegaPanel({ menu, id, open, onLink }: { menu: NavMenu; id: strin
           key={active.id}
           column={active.column}
           onLink={onLink}
+          current={current}
           panelProps={{ id: `${uid}-tabpanel`, role: "tabpanel", "aria-labelledby": `${uid}-tab-${active.id}` }}
         />
         <Promo key={`${active.id}-promo`} promo={active.promo} onLink={onLink} />
@@ -134,7 +164,7 @@ export function MegaPanel({ menu, id, open, onLink }: { menu: NavMenu; id: strin
       <>
         {menu.lead && <Promo promo={menu.lead} onLink={onLink} />}
         {menu.columns.map((c) => (
-          <Column key={c.title} column={c} onLink={onLink} />
+          <Column key={c.title} column={c} onLink={onLink} current={current} />
         ))}
       </>
     );
@@ -144,11 +174,19 @@ export function MegaPanel({ menu, id, open, onLink }: { menu: NavMenu; id: strin
     <div id={id} className={cn(s.panel, open && s.open)}>
       <div className={s.grid}>{cells}</div>
       <div className={s.footer}>
-        <p className={s.footerText}>{menu.footer.text}</p>
-        <a href={menu.footer.link.href} className={s.footerLink} onClick={(e) => onLink(e, menu.footer.link.href)}>
-          <span>{menu.footer.link.label}</span>
-          <Arrow className={s.footerArrow} />
-        </a>
+        <p className={s.footerText}>
+          <span className={s.footerLead}>Built for</span>
+          {TRUST.industries.map((name, i) => (
+            <span key={name}>
+              {i > 0 && <span className={s.footerDot} aria-hidden="true">·</span>}
+              {name}
+            </span>
+          ))}
+        </p>
+        <p className={s.footerBadge}>
+          <span className={s.footerPulse} aria-hidden="true" />
+          {TRUST.credential}
+        </p>
       </div>
     </div>
   );

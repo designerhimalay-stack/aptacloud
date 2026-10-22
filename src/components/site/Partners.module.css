@@ -197,36 +197,15 @@
   width: auto;
 }
 
-/* Oracle NetSuite lockup: ORACLE wordmark at 0.44 of the NetSuite cap, like
-   the official stacked lockup; both share one baseline. */
-.oracleNetsuite {
-  align-items: baseline;
-  display: inline-flex;
-  gap: calc(var(--cap) * 0.42);
-}
-
-/* oracle.svg 231×30: the box is the cap height. */
-.oracle {
-  height: calc(var(--cap) * 0.44);
-  width: auto;
-}
-
-/* netsuite.png 417×152 is the stacked lockup (ORACLE rows 0–37, NetSuite rows
-   66–151). Show only the NetSuite wordmark: a window of 417×86 at y = 66. */
-.netsuiteCrop {
-  display: block;
-  height: var(--cap);
-  overflow: hidden;
-  position: relative;
-  width: calc(var(--cap) * 417 / 86);
-}
-
-.netsuite {
-  height: calc(var(--cap) * 152 / 86);
-  left: 0;
-  position: absolute;
-  top: calc(var(--cap) * -66 / 86);
-  width: 100%;
+/* Anthropic: text wordmark (white, cap-matched) until the official logo file
+   is supplied; swap for an <img> with the same .logo treatment then. */
+.anthropic {
+  color: #ffffff;
+  font-family: var(--ff-inter);
+  font-size: calc(var(--cap) * 1.3);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1;
 }
 
 /* aws.svg 304×182: the lowercase "aws" is 94/182 of the box; size its

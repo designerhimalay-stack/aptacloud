@@ -1,0 +1,191 @@
+/* Service cards (home Azure card language): var(--card), radius 24, hairline
+   ring, padding 28; lift + soft shadow on hover; icon tile fills with accent. */
+
+.grid {
+  display: grid;
+  gap: 8px;
+}
+
+.c2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.c3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.c5 { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+.c5 > * { grid-column: span 2; }
+.c5 > :nth-child(4),
+.c5 > :nth-child(5) { grid-column: span 3; }
+
+.cell {
+  display: flex;
+}
+
+.cell > * {
+  width: 100%;
+}
+
+.card {
+  background: var(--card);
+  border-radius: 24px;
+  box-shadow: inset 0 0 0 1px var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  height: 100%;
+  padding: 28px;
+  transition:
+    box-shadow 0.4s var(--ease-out-quint),
+    transform 0.4s var(--ease-out-quint);
+}
+
+.card:hover {
+  box-shadow:
+    inset 0 0 0 1px var(--line-strong),
+    0 24px 48px -28px color-mix(in srgb, var(--brand-ink) 28%, transparent);
+  transform: translateY(-4px);
+}
+
+.top {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.iconTile {
+  align-items: center;
+  background: var(--accent-08);
+  border-radius: 16px;
+  color: var(--accent);
+  display: inline-flex;
+  height: 52px;
+  justify-content: center;
+  transition: background-color 0.4s var(--ease-out-quint), color 0.4s var(--ease-out-quint);
+  width: 52px;
+}
+
+.iconTile svg {
+  height: 26px;
+  width: 26px;
+}
+
+.card:hover .iconTile {
+  background: var(--accent);
+  color: #ffffff;
+}
+
+/* the service's main tools, as small overlapping white tiles */
+.marks {
+  display: flex;
+}
+
+.markTile {
+  align-items: center;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 0 0 2px var(--card), inset 0 0 0 1px rgba(10, 10, 10, 0.06);
+  color: #0a0a0a;
+  display: inline-flex;
+  height: 34px;
+  justify-content: center;
+  margin-left: -6px;
+  transition: transform 0.45s var(--ease-out-expo);
+  width: 34px;
+}
+
+.card:hover .markTile {
+  transform: translateY(-2px);
+}
+
+.card:hover .markTile:nth-child(2) { transition-delay: 0.04s; }
+.card:hover .markTile:nth-child(3) { transition-delay: 0.08s; }
+
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.title {
+  color: var(--fg);
+  font-family: var(--ff-inter);
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.045em;
+  line-height: 1.2;
+  margin: 0;
+  text-wrap: balance;
+}
+
+.text {
+  color: var(--fg-muted);
+  font-size: 15.5px;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1.45;
+  margin: 0;
+  text-wrap: pretty;
+}
+
+.outcome {
+  align-items: flex-start;
+  border-top: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 16px;
+}
+
+.outcomeLabel {
+  background: var(--accent-08);
+  border-radius: 20px;
+  color: var(--accent);
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  padding: 3px 9px;
+}
+
+.outcome p {
+  color: var(--fg);
+  font-size: 15.5px;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.35;
+  margin: 0;
+}
+
+.tools {
+  border-top: 1px solid var(--line);
+  color: var(--fg-muted);
+  font-size: 13.5px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.4;
+  margin: 0;
+  /* two lines reserved, so outcome rows line up across a row of cards */
+  min-height: calc(14px + 2 * 1.4em);
+  padding-top: 14px;
+}
+
+.toolsLabel {
+  color: var(--fg);
+  font-weight: 600;
+  margin-right: 6px;
+}
+
+@media (min-width: 810px) and (max-width: 1199.98px) {
+  .c3, .c5 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .c5 > *, .c5 > :nth-child(4), .c5 > :nth-child(5) { grid-column: auto; }
+  .c5 > :last-child { grid-column: 1 / -1; }
+}
+
+@media (max-width: 809.98px) {
+  .c5 > *, .c5 > :nth-child(4), .c5 > :nth-child(5) { grid-column: auto; }
+  .card { gap: 20px; padding: 22px; }
+  .card:hover { transform: none; }
+  .title { font-size: 20px; }
+  .text { font-size: 14.5px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card, .iconTile, .markTile { transition: none; }
+  .card:hover { transform: none; }
+}

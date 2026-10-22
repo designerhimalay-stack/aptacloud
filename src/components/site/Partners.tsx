@@ -1,27 +1,26 @@
 // Partners — a dark section with the pill tag | heading (scroll word fill)
-// + lead header, a panel of link rows with round arrow buttons, and a row of dark logo cards — here the client's three official
-// partner logos (white), with the orange glow fading in on hover.
+// + lead header, a panel of link rows with round arrow buttons, and a row of dark logo cards — here the client's three
+// partners (white), with the orange glow fading in on hover.
 
-import { BRAND, asset } from "@/brand/brand";
+import { BRAND, PRIMARY_CTA, asset } from "@/brand/brand";
 import { LineReveal, Reveal } from "@/components/ui/Reveal";
 import { PillTag } from "@/components/ui/PillTag";
 import { cn } from "@/lib/utils";
 import s from "./Partners.module.css";
 
-// The PDF's "Our Partners": Microsoft, Oracle NetSuite, AWS — nothing else.
+// Client brief (Oct 2026): Microsoft, Anthropic, AWS. No NetSuite (not offered).
+// Microsoft leads, AWS is supporting (Brand Guidelines v2.0, 1).
 const PARTNERS = [
   {
     name: "Microsoft",
     node: <img className={cn(s.logo, s.microsoft)} src={asset("/images/partners/microsoft.svg")} alt="Microsoft" />,
   },
   {
-    name: "Oracle NetSuite",
+    name: "Anthropic",
+    // Text wordmark until the official Anthropic logo file is supplied.
     node: (
-      <span className={s.oracleNetsuite} role="img" aria-label="Oracle NetSuite">
-        <img className={cn(s.logo, s.oracle)} src={asset("/images/partners/oracle.svg")} alt="" />
-        <span className={s.netsuiteCrop}>
-          <img className={cn(s.logo, s.netsuite)} src={asset("/images/partners/netsuite.png")} alt="" />
-        </span>
+      <span className={s.anthropic} role="img" aria-label="Anthropic">
+        Anthropic
       </span>
     ),
   },
@@ -32,9 +31,9 @@ const PARTNERS = [
 ];
 
 const LINKS = [
-  { label: "Book a free consultation", href: "#contact" },
-  { label: "Explore our services", href: "#dynamics" },
-  { label: `Learn more about ${BRAND.name}`, href: "#about" },
+  { label: PRIMARY_CTA.label, href: PRIMARY_CTA.href },
+  { label: "Dynamics 365 services", href: "#dynamics" },
+  { label: "Microsoft Azure services", href: "#azure" },
 ];
 
 function PartnersIcon() {
@@ -65,12 +64,13 @@ export function Partners() {
           <div className={s.copy}>
             <LineReveal as="h2" className={s.heading}>
               <span>We partner with Microsoft,</span>
-              <span>Oracle NetSuite and AWS.</span>
+              <span>Anthropic, and AWS.</span>
             </LineReveal>
             <Reveal y={30} duration={1} delay={0.1} amount={0.3}>
               <p className={s.lead}>
-                As a certified Microsoft Dynamics 365 consulting partner, {BRAND.name} brings Microsoft-centric
-                solutions and enterprise cloud services to your business — tailored Cloud, Data, IT and AI offerings.
+                Microsoft first: Azure, Dynamics 365, Power BI, and Microsoft Fabric are where {BRAND.name}’s senior
+                specialists spend most of their time. We add Anthropic’s AI models and AWS where they fit the systems
+                you already run.
               </p>
             </Reveal>
           </div>

@@ -102,7 +102,7 @@
 .cards {
   display: grid;
   gap: 8px;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   list-style: none;
   margin: 0;
   padding: 0;
@@ -183,7 +183,7 @@
   .section { padding: 150px 72px; }
 }
 
-/* Tablet: stacked header, 2-up cards, the third spans both columns. */
+/* Tablet: stacked header, 2 × 2 cards. */
 @media (min-width: 810px) and (max-width: 1199.98px) {
   .section { padding: 110px 40.5px; }
   .container { gap: 48px; }
@@ -191,7 +191,6 @@
   .copy { gap: 28px; }
   .heading { font-size: 40px; }
   .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .cell:last-child { grid-column: 1 / span 2; }
   .card { min-height: 292px; }
 }
 

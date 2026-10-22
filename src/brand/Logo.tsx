@@ -1,5 +1,5 @@
-// <Logo> — Official Aptacloud logo and brand mark.
-// Renders the official Aptacloud logo asset with proper responsive sizing.
+// <Logo> — Official AptaCloud logo and brand mark.
+// Renders the official AptaCloud logo asset with proper responsive sizing.
 
 import type { CSSProperties } from "react";
 import { BRAND, asset } from "./brand";
@@ -45,7 +45,7 @@ export function Mark({
   );
 }
 
-/** The company name set as the wordmark with the signature Aptacloud red 'C'. */
+/** The company name set as the wordmark with the signature AptaCloud red 'C'. */
 export function Wordmark({
   className,
   style,
@@ -70,7 +70,7 @@ export function Wordmark({
   );
 }
 
-/** Official Aptacloud Logo lockup */
+/** Official AptaCloud Logo lockup */
 export function Logo({
   height = 30,
   className,

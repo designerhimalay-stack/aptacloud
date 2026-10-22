@@ -14,8 +14,8 @@ import { SpreadGrid } from "@/components/ui/SpreadGrid";
 import { ServiceCard, type AzureService } from "./azure/ServiceCard";
 import s from "./Azure.module.css";
 
-const HEADING = `Modernise your infrastructure with Azure & ${BRAND.name}.`;
-const LEAD = `${BRAND.name} delivers end-to-end Azure solutions to empower your IT landscape — enabling smarter operations, enhanced data security and seamless digital transformation for enterprises of any size.`;
+const HEADING = "Run more on Microsoft Azure, with costs you can explain.";
+const LEAD = `${BRAND.name} reviews, right-sizes, and governs your Azure estate, from first migration to managed operations, so the savings fund your next initiative.`;
 
 // Copy from the client PDF; `points` are the PDF's own phrases, split out.
 const SERVICES: AzureService[] = [
@@ -23,7 +23,7 @@ const SERVICES: AzureService[] = [
     index: "01",
     icon: "hosting",
     title: "Azure Hosting",
-    body: `Dive into the world of cloud to grow your business with Azure hosting services from ${BRAND.name} — cloud computing, networking, securing your workloads and enhancing the scalability of your applications.`,
+    body: "We design and run the compute, networking, and security your workloads need on Azure, sized for how your applications actually scale.",
     points: ["Cloud computing", "Networking", "Secured workloads", "Scalable applications"],
     href: "#contact",
   },
@@ -31,7 +31,7 @@ const SERVICES: AzureService[] = [
     index: "02",
     icon: "migration",
     title: "Azure Migration",
-    body: "Migrate your servers, applications, databases and more with ease. Our expert team assesses your on-premises, AWS and other cloud workloads and, based on your requirements, suggests the right Azure resources for your business.",
+    body: "We assess your on-premises, AWS, and other cloud workloads, then move servers, applications, and databases to the right Azure resources in phases.",
     points: ["Servers, apps & databases", "On-premises & AWS workloads", "Right-sized Azure resources"],
     href: "#contact",
   },
@@ -39,16 +39,16 @@ const SERVICES: AzureService[] = [
     index: "03",
     icon: "optimization",
     title: "Azure Optimisation",
-    body: "Maximise the value of your Azure investment. We fine-tune your cloud infrastructure for peak performance, cost efficiency and scalability.",
-    points: ["Peak performance", "Cost efficiency", "Scalability"],
+    body: "A cost review, right-sizing, reserved capacity, and governance, so your Azure bill reflects what the business actually uses.",
+    points: ["Cost review", "Right-sizing", "Governance"],
     href: "#contact",
   },
   {
     index: "04",
     icon: "managed",
     title: "Azure Managed Services",
-    body: `Let ${BRAND.name} manage your Azure ecosystem — 24/7 monitoring, proactive support and seamless performance, so you can focus on growing your business.`,
-    points: ["24/7 monitoring", "Proactive support", "Seamless performance"],
+    body: `${BRAND.name} runs your Azure environment with 24/7 monitoring and proactive support, working alongside your internal IT team.`,
+    points: ["24/7 monitoring", "Proactive support", "Works with your IT team"],
     href: "#contact",
   },
 ];
@@ -111,7 +111,7 @@ export function Azure() {
               <p className={s.lead}>{LEAD}</p>
             </Reveal>
             <Reveal y={30} duration={1} delay={0.15} amount={0.3} className={s.buttonWrap}>
-              <Button label="Book a free consultation" variant="outline" href="#contact" className={s.button} />
+              <Button label="Get your cloud cost review" variant="outline" href="#contact" className={s.button} />
             </Reveal>
           </div>
         </div>

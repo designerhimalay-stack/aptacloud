@@ -11,16 +11,17 @@
 
 import { motion, useScroll, useTransform, type MotionValue } from "@/lib/motion";
 import { useRef, useState, type FormEvent } from "react";
-import { BRAND } from "@/brand/brand";
-import { Button } from "@/components/ui/Button";
+import { BRAND, PRIMARY_CTA } from "@/brand/brand";
+import { NEXT_STEPS } from "@/data/services/shared";
 import { Reveal } from "@/components/ui/Reveal";
 import { RollingText } from "@/components/ui/RollingText";
 import { cn } from "@/lib/utils";
 import s from "./CTA.module.css";
 
-const HEADING = "Enterprise-grade solutions for connected, AI-driven growing businesses.";
-const LEAD = "Book a free consultation today to talk about our services.";
-const SUBMIT = "Book a free consultation";
+// Home defaults; service pages pass their own heading, lead and submit label.
+const HEADING = "Tell us what your team has started. We will help take it to production.";
+const LEAD = "Share the workflow, system, or AI idea you are working on, and we will come back with a clear first step.";
+const SUBMIT = PRIMARY_CTA.label;
 
 type Field = "name" | "email" | "company" | "phone" | "message";
 type Errors = Partial<Record<Field, string>>;
@@ -57,11 +58,11 @@ function validate(values: Record<Field, string>): Errors {
   return errors;
 }
 
-function mailtoHref({ name, email, company, phone, message }: Record<Field, string>) {
+function mailtoHref({ name, email, company, phone, message }: Record<Field, string>, topic: string) {
   const who = company.trim() ? `${name.trim()} (${company.trim()})` : name.trim();
-  const subject = `Free consultation request — ${who}`;
+  const subject = `${topic}: ${who}`;
   const signature = [name, company, email, phone].map((v) => v.trim()).filter(Boolean).join("\n");
-  const body = `${message.trim()}\n\n— ${signature}`;
+  const body = `${message.trim()}\n\n${signature}`;
   return `mailto:${BRAND.contact.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
 
@@ -101,7 +102,33 @@ function PhoneIcon() {
   );
 }
 
-function ContactForm() {
+function MailIcon() {
+  return (
+    <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <rect x="3" y="4.75" width="14" height="10.5" rx="2" stroke="currentColor" strokeWidth="1.25" />
+      <path d="m3.75 6 6.25 4.75L16.25 6" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+function PinIcon() {
+  return (
+    <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <path d="M10 17.25s5.25-4.6 5.25-9a5.25 5.25 0 0 0-10.5 0c0 4.4 5.25 9 5.25 9Z" stroke="currentColor" strokeWidth="1.25" strokeLinejoin="round" />
+      <circle cx="10" cy="8.25" r="1.9" stroke="currentColor" strokeWidth="1.25" />
+    </svg>
+  );
+}
+
+function RowArrow() {
+  return (
+    <svg className={s.rowArrow} viewBox="0 0 16 16" fill="none" aria-hidden="true">
+      <path d="M4.5 11.5 11.5 4.5M5.5 4.5h6v6" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+function ContactForm({ submit, submitShort, topic }: { submit: string; submitShort?: string; topic: string }) {
   const [values, setValues] = useState<Record<Field, string>>(EMPTY);
   const [errors, setErrors] = useState<Errors>({});
   const [sent, setSent] = useState(false);
@@ -125,12 +152,12 @@ function ContactForm() {
       refs.current[first.id]?.focus();
       return;
     }
-    window.location.href = mailtoHref(values);
+    window.location.href = mailtoHref(values, topic);
     setSent(true);
   };
 
   return (
-    <form className={s.form} onSubmit={onSubmit} noValidate aria-label="Book a free consultation">
+    <form className={s.form} onSubmit={onSubmit} noValidate aria-label={submit}>
       <div className={s.fields}>
         {FIELDS.map((f) => {
           const id = `contact-${f.id}`;
@@ -182,7 +209,14 @@ function ContactForm() {
       </div>
 
       <button type="submit" className={cn("roll-host", s.submit)}>
-        <RollingText text={SUBMIT} />
+        {submitShort ? (
+          <>
+            <RollingText text={submit} className="max-[519.98px]:!hidden" />
+            <RollingText text={submitShort} className="min-[520px]:!hidden" />
+          </>
+        ) : (
+          <RollingText text={submit} />
+        )}
       </button>
 
       <p className={s.status} role="status" aria-live="polite">
@@ -197,7 +231,24 @@ function ContactForm() {
   );
 }
 
-export function CTA() {
+export function CTA({
+  heading = HEADING,
+  lead = LEAD,
+  submit = SUBMIT,
+  submitShort,
+  topic = "AI assessment request",
+  steps = NEXT_STEPS,
+}: {
+  heading?: string;
+  lead?: string;
+  submit?: string;
+  /** Shorter submit label for narrow phones. */
+  submitShort?: string;
+  /** Email subject prefix, e.g. the service name. */
+  topic?: string;
+  /** Optional "What happens next" list above the direct contacts (service pages). */
+  steps?: { title: string; text: string }[];
+}) {
   return (
     <section id="contact" className={s.section}>
       <div className={s.container}>
@@ -209,40 +260,73 @@ export function CTA() {
             </p>
           </Reveal>
           <div className={s.copy}>
-            <FillHeading text={HEADING} />
+            <FillHeading text={heading} />
             <Reveal y={30} duration={1} delay={0.1} amount={0.3}>
-              <p className={s.lead}>{LEAD}</p>
+              <p className={s.lead}>{lead}</p>
             </Reveal>
           </div>
         </div>
 
         <Reveal y={30} duration={1} delay={0.1} amount={0.2} className={s.body}>
           <aside className={s.direct} aria-label="Contact details">
-            <p className={s.directTitle}>Contact us</p>
-            <ul className={s.directList}>
-              {BRAND.contact.phones.map((p) => (
-                <li key={p.number}>
-                  <a href={`tel:${p.number.replace(/[^+\d]/g, "")}`} className={s.directLink}>
-                    {p.number}
+            <div className={s.infoCard}>
+              <p className={s.infoTitle}>What happens next</p>
+              <ol className={s.nextList}>
+                {steps.map((st, i) => (
+                  <li key={st.title} className={s.nextItem}>
+                    <span className={s.nextNum}>{i + 1}</span>
+                    <div>
+                      <p className={s.nextTitle}>{st.title}</p>
+                      <p className={s.nextText}>{st.text}</p>
+                    </div>
+                  </li>
+                ))}
+              </ol>
+            </div>
+
+            <div className={s.infoCard}>
+              <p className={s.infoTitle}>Talk to us directly</p>
+              <ul className={s.rows}>
+                {BRAND.contact.phones.map((p) => (
+                  <li key={p.number}>
+                    <a href={`tel:${p.number.replace(/[^+\d]/g, "")}`} className={s.row}>
+                      <span className={s.rowIcon}>
+                        <PhoneIcon />
+                      </span>
+                      <span className={s.rowValue}>{p.number}</span>
+                      <RowArrow />
+                    </a>
+                  </li>
+                ))}
+                <li>
+                  <a href={`mailto:${BRAND.contact.email}`} className={s.row}>
+                    <span className={s.rowIcon}>
+                      <MailIcon />
+                    </span>
+                    <span className={cn(s.rowValue, s.email)}>{BRAND.contact.email}</span>
+                    <RowArrow />
                   </a>
                 </li>
-              ))}
-              <li>
-                <a href={`mailto:${BRAND.contact.email}`} className={cn(s.directLink, s.email)}>
-                  {BRAND.contact.email}
-                </a>
-              </li>
-              {BRAND.contact.address.map((line) => (
-                <li key={line} style={{ color: "var(--fg-muted)", fontSize: "14px", lineHeight: 1.4 }}>
-                  {line}
+                <li>
+                  <span className={cn(s.row, s.rowStatic)}>
+                    <span className={s.rowIcon}>
+                      <PinIcon />
+                    </span>
+                    <span className={s.rowValue}>
+                      {BRAND.contact.address.map((line) => (
+                        <span key={line} className={s.addressLine}>
+                          {line}
+                        </span>
+                      ))}
+                    </span>
+                  </span>
                 </li>
-              ))}
-            </ul>
-            <Button label="Book AI workshop" href="#workshop" variant="outline" className={s.workshop} />
+              </ul>
+            </div>
           </aside>
 
           <div className={s.card}>
-            <ContactForm />
+            <ContactForm submit={submit} submitShort={submitShort} topic={topic} />
           </div>
         </Reveal>
       </div>

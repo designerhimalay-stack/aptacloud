@@ -1,0 +1,127 @@
+---
+// Service pages (AI, Data & Analytics, Application Modernisation), one route per
+// entry in src/data/services. Slugs match the live aptacloud.com URLs.
+// Section order follows each live page's sequence (src/data/services/extras.ts),
+// then FAQs → related → contact. Backgrounds follow the home page rhythm —
+// grey → white → dark, repeating — whatever the order.
+import Site from "../layouts/Site.astro";
+import { BRAND } from "../brand/brand";
+import { SERVICE_PAGES, getService } from "../data/services";
+import { ServiceHero } from "../components/service/ServiceHero";
+import { PainPoints } from "../components/service/PainPoints";
+import { Capabilities } from "../components/service/Capabilities";
+import { Process } from "../components/service/Process";
+import { Industries } from "../components/service/Industries";
+import { WhyUs } from "../components/service/WhyUs";
+import { Faq } from "../components/service/Faq";
+import { Related } from "../components/service/Related";
+import { FeatureGrid } from "../components/service/FeatureGrid";
+import { StackGrid } from "../components/service/StackGrid";
+import { Frameworks } from "../components/service/Frameworks";
+import { Assessment } from "../components/service/Assessment";
+import { homeRhythm, type Tone } from "../components/service/tone";
+import { CTA } from "../components/site/CTA";
+
+export function getStaticPaths() {
+  return SERVICE_PAGES.map((p) => ({ params: { slug: p.slug } }));
+}
+
+const { slug } = Astro.params;
+const { page, extras, category, siblings } = getService(slug as string);
+
+// Alternating tones: the page's own sections, then FAQ and related.
+const flow = [...extras.sections, "faq", ...(siblings.length ? ["related"] : [])];
+const rhythm = homeRhythm(flow.length);
+const tones: Record<string, Tone> = Object.fromEntries(flow.map((id, i) => [id, rhythm[i]]));
+const stackHeading = extras.stackHeading ?? {
+  heading: "Tools and platforms we use.",
+  lead: "Microsoft first, with the tools your team already knows.",
+};
+
+// Only what the related cards need (keeps the island's props small).
+const related = siblings.map((p) => ({ slug: p.slug, name: p.name, summary: p.summary, photo: p.hero.photo }));
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const pageUrl = new URL(`${base}/${page.slug}/`, Astro.site).href;
+const homeUrl = new URL(`${base}/`, Astro.site).href;
+
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: homeUrl },
+      { "@type": "ListItem", position: 2, name: category.name },
+      { "@type": "ListItem", position: 3, name: page.name, item: pageUrl },
+    ],
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: page.name,
+    serviceType: page.name,
+    description: page.seo.description,
+    url: pageUrl,
+    areaServed: ["United States", "Australia", "India"],
+    provider: {
+      "@type": "Organization",
+      name: BRAND.name,
+      url: `https://${BRAND.contact.website}`,
+      email: BRAND.contact.email,
+    },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: page.faqs.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a },
+    })),
+  },
+];
+---
+
+<Site
+  title={page.seo.title}
+  description={page.seo.description}
+  jsonLd={jsonLd}
+  navCta={{ label: page.cta.short, href: "#contact" }}
+>
+  <ServiceHero client:load page={page} category={category} />
+  {
+    extras.sections.map((id) =>
+      id === "pains" ? (
+        <PainPoints client:visible pains={page.pains} tone={tones.pains} />
+      ) : id === "services" ? (
+        <Capabilities client:visible services={page.services} models={page.category === "ai"} tone={tones.services} />
+      ) : id === "process" ? (
+        <Process client:visible process={page.process} tone={tones.process} />
+      ) : id === "industries" ? (
+        <Industries client:visible industries={page.industries} tone={tones.industries} />
+      ) : id === "why" ? (
+        <WhyUs client:visible why={page.why} cta={page.cta} tone={tones.why} />
+      ) : id === "benefits" && extras.benefits ? (
+        <FeatureGrid client:visible id="benefits" variant="benefits" {...extras.benefits} tone={tones.benefits} />
+      ) : id === "useCases" && extras.useCases ? (
+        <FeatureGrid client:visible id="use-cases" variant="useCases" {...extras.useCases} tone={tones.useCases} />
+      ) : id === "stack" ? (
+        <StackGrid client:visible stack={page.stack} {...stackHeading} tone={tones.stack} />
+      ) : id === "frameworks" && extras.frameworks ? (
+        <Frameworks client:visible data={extras.frameworks} tone={tones.frameworks} />
+      ) : id === "assessment" && extras.assessment ? (
+        <Assessment client:visible data={extras.assessment} cta={page.cta} tone={tones.assessment} />
+      ) : null,
+    )
+  }
+  <Faq client:visible faqs={page.faqs} name={page.name} tone={tones.faq} />
+  {related.length > 0 && <Related client:visible category={category} siblings={related} tone={tones.related} />}
+  <CTA
+    client:visible
+    heading={page.cta.heading}
+    lead={page.cta.lead}
+    submit={page.cta.label}
+    submitShort={page.cta.short}
+    topic={`${page.name} enquiry`}
+  />
+</Site>

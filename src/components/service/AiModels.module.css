@@ -1,0 +1,134 @@
+/* AI models strip: copy (4/12) | five logo tiles (8/12) in a plain deep frame,
+   matching the services board above it. */
+
+.strip {
+  align-items: center;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  display: grid;
+  gap: 32px;
+  grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
+  padding: 28px 28px 28px 32px;
+}
+
+.copy {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.eyebrow {
+  align-items: center;
+  color: var(--fg-muted);
+  display: flex;
+  font-family: var(--ff-inter);
+  font-weight: 600;
+  font-size: 12.5px;
+  gap: 10px;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+.dot {
+  animation: pulse-dot 2.4s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+  background: var(--accent);
+  border-radius: 50%;
+  height: 6px;
+  width: 6px;
+}
+
+.title {
+  color: var(--fg);
+  font-family: var(--ff-inter);
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: -0.045em;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.text {
+  color: var(--fg-muted);
+  font-size: 14.5px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.45;
+  margin: 0;
+}
+
+.tiles {
+  display: grid;
+  gap: 8px;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.tile {
+  align-items: center;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  justify-content: center;
+  padding: 24px 10px 18px;
+  transition: background-color 0.45s var(--ease-out-quint), border-color 0.45s var(--ease-out-quint);
+}
+
+.tile:hover {
+  background: var(--surface-2);
+  border-color: var(--line-strong);
+}
+
+/* Marks sit on a white disc so black (GPT, Grok) and coloured marks read alike. */
+.mark {
+  align-items: center;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 10px 24px -14px rgba(0, 0, 0, 0.8);
+  color: #0a0a0a;
+  display: inline-flex;
+  height: 56px;
+  justify-content: center;
+  transition: transform 0.55s var(--ease-out-expo);
+  width: 56px;
+}
+
+.tile:hover .mark {
+  transform: translateY(-3px) scale(1.04);
+}
+
+.logo {
+  height: 28px !important;
+  width: 28px !important;
+}
+
+.name {
+  color: var(--fg-soft);
+  font-size: 13.5px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  text-align: center;
+}
+
+@media (max-width: 1199.98px) {
+  .strip { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+}
+
+@media (max-width: 809.98px) {
+  .strip { border-radius: 22px; padding: 22px 20px; }
+  .title { font-size: 21px; }
+  .tiles { margin: 0 -20px; padding: 4px 20px 4px; }
+  .tiles > * { flex: 0 0 30%; }
+  .tile { padding: 18px 8px 14px; }
+  .mark { height: 48px; width: 48px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dot { animation: none; }
+  .mark, .tile { transition: none; }
+}

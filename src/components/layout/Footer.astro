@@ -4,31 +4,38 @@
 // the giant wordmark and the copyright / privacy line. No newsletter signup:
 // there is no backend to subscribe anyone to.
 import styles from "./Footer.module.css";
-import { BRAND, asset, telHref, whatsappHref } from "../../brand/brand";
+import { BRAND, PRIMARY_CTA, asset, home, telHref, whatsappHref } from "../../brand/brand";
 import { SOCIAL_PATHS } from "../../brand/social";
 import { Logo, Wordmark } from "../../brand/Logo";
 import { Button } from "../ui/Button";
 
+interface Props {
+  /** The page's primary CTA (defaults to the home page's). */
+  cta?: { label: string; href: string };
+}
+const { cta = { label: PRIMARY_CTA.label, href: PRIMARY_CTA.href } } = Astro.props;
+
 type FooterLink = { label: string; href?: string; kind?: "email"; flag?: string; country?: string; whatsapp?: string };
 
-/* Contact details are the PDF's sample placeholders (BRAND.contact) — swap for real ones before launch. */
+/* Home-page sections are linked with home("#…") so they work from every page. */
 const COLUMNS: { title: string; links: FooterLink[]; wide?: boolean }[] = [
   {
     title: "Useful links",
     links: [
-      { label: "Home", href: "#top" },
-      { label: "Services", href: "#dynamics" },
-      { label: "Capabilities", href: "#microsoft" },
-      { label: "About us", href: "#about" },
+      { label: "Home", href: home() },
+      { label: "About us", href: home("#about") },
+      { label: "AI Assessment Workshop", href: home("#workshop") },
+      { label: "Partners", href: home("#partners") },
     ],
   },
   {
     title: "Services",
     links: [
-      { label: "AI Assessment Workshop", href: "#workshop" },
-      { label: "Application Modernisation", href: "#dynamics" },
-      { label: "Microsoft 365 & Copilot", href: "#microsoft" },
-      { label: "Azure & AWS Cloud", href: "#azure" },
+      { label: "AI Consulting", href: asset("/ai-consulting/") },
+      { label: "Data Engineering", href: asset("/data-engineering/") },
+      { label: "Application Modernisation", href: asset("/application-modernization/") },
+      { label: "Dynamics 365", href: home("#dynamics") },
+      { label: "Microsoft Azure", href: home("#azure") },
     ],
   },
   {
@@ -54,13 +61,10 @@ const COLUMNS: { title: string; links: FooterLink[]; wide?: boolean }[] = [
   <div class={styles.container}>
     <div class={styles.top}>
       <div class={styles.brandCard}>
-        <a href="#top" class={styles.logo} aria-label={`${BRAND.name} — back to top`}>
+        <a href={home()} class={styles.logo} aria-label={`${BRAND.name}, home`}>
           <Logo height={36} />
         </a>
-        <p class={styles.tagline}>
-          Experience the power of cloud services with <span class={styles.taglineBrand}>{BRAND.name}</span>. Your
-          journey to cloud excellence starts here.
-        </p>
+        <p class={styles.tagline}>{BRAND.valueProp}</p>
         <div class={styles.meta}>
         <ul class={styles.social} aria-label="Social media">
           {
@@ -118,8 +122,8 @@ const COLUMNS: { title: string; links: FooterLink[]; wide?: boolean }[] = [
         </nav>
 
         <div class={styles.cta}>
-          <p class={styles.ctaText}>Ready to transform your business with AI? Let’s talk.</p>
-          <Button label="Book a free consultation" href="#contact" variant="outline" className={styles.ctaButton} />
+          <p class={styles.ctaText}>See where AI pays off in your business first.</p>
+          <Button label={cta.label} href={cta.href} variant="outline" className={styles.ctaButton} />
         </div>
       </div>
     </div>
@@ -130,7 +134,7 @@ const COLUMNS: { title: string; links: FooterLink[]; wide?: boolean }[] = [
 
     <div class={styles.bottom}>
       <p class={styles.legal}>© {BRAND.name} {BRAND.year}. All rights reserved.</p>
-      <a href="/privacy" class:list={[styles.legal, styles.legalLink]}>Privacy policy</a>
+      <a href={asset("/privacy")} class:list={[styles.legal, styles.legalLink]}>Privacy policy</a>
     </div>
   </div>
 </footer>

@@ -6,9 +6,11 @@ import { BRAND, asset, brandCssVars } from "../brand/brand";
 interface Props {
   title: string;
   description: string;
+  /** Structured data objects, emitted as application/ld+json. */
+  jsonLd?: object[];
 }
 
-const { title, description } = Astro.props;
+const { title, description, jsonLd = [] } = Astro.props;
 ---
 
 <!doctype html>
@@ -24,8 +26,10 @@ const { title, description } = Astro.props;
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <link rel="preload" href="/fonts/GeistMono-400.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/fonts/Inter-400.woff2" as="font" type="font/woff2" crossorigin />
+    <meta property="og:site_name" content={BRAND.name} />
+    <link rel="preload" href={asset("/fonts/GeistMono-400.woff2")} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={asset("/fonts/Inter-400.woff2")} as="font" type="font/woff2" crossorigin />
+    {jsonLd.map((data) => <script type="application/ld+json" set:html={JSON.stringify(data)} />)}
   </head>
   <body>
     <slot />

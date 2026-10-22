@@ -7,16 +7,17 @@
 
 import { animate, motion, useInView, useScroll, useTransform, type MotionValue } from "@/lib/motion";
 import { useEffect, useRef, useState } from "react";
-import { BRAND, asset } from "@/brand/brand";
+import { BRAND, PRIMARY_CTA, asset } from "@/brand/brand";
 import { Reveal } from "@/components/ui/Reveal";
 import { SpreadGrid } from "@/components/ui/SpreadGrid";
 import { RollingText } from "@/components/ui/RollingText";
 import { cn } from "@/lib/utils";
 import s from "./About.module.css";
 
-const HEADING = `${BRAND.name} is a premier technology firm specialising in modern cloud systems and AI integration.`;
+// Short value proposition (Brand Guidelines v2.0, 3.2), Australian spelling.
+const HEADING = "Your team has already started. We take it to production.";
 const LEAD =
-  "With a strong focus on Microsoft-centric solutions and enterprise cloud services, we help businesses streamline operations, improve collaboration, and scale effectively through tailored Cloud, Data, IT, and AI offerings.";
+  "An AI pilot, a modernisation plan, a cloud migration: AptaCloud proves the value on your data with a proof of concept, then delivers in clear phases with senior Microsoft specialists, on the systems you already run.";
 
 const STATS = [
   {
@@ -159,9 +160,9 @@ export function About() {
               />
               <span className={s.photoShade} aria-hidden="true" />
               <div className={s.photoContent}>
-                <p className={s.photoText}>Ready to transform your business with AI? Let’s talk.</p>
-                <a href="#contact" className={cn("roll-host", s.photoButton)}>
-                  <RollingText text="Book a free consultation" />
+                <p className={s.photoText}>See where AI pays off in your business first.</p>
+                <a href={PRIMARY_CTA.href} className={cn("roll-host", s.photoButton)}>
+                  <RollingText text={PRIMARY_CTA.label} />
                 </a>
               </div>
             </div>

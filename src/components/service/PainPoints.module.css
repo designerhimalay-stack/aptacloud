@@ -1,0 +1,189 @@
+/* Pain bento — grid 3 cols × 2 rows, gap 8, radius 24 (the site's card
+   language). Feature = col 1 spanning both rows, dark with an accent glow;
+   tiles = white. Four items: the last tile spans the two right columns. */
+
+.bento {
+  display: grid;
+  gap: 8px;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-rows: auto auto;
+}
+
+.bentoFour > :last-child {
+  grid-column: 2 / span 2;
+}
+
+/* The wide tile reads side by side: what they say | what it costs. */
+@media (min-width: 1200px) {
+  .bentoFour > :last-child .body {
+    align-items: flex-end;
+    flex-direction: row;
+    gap: 32px;
+  }
+
+  .bentoFour > :last-child .title {
+    flex: 1;
+    font-size: 22px;
+  }
+
+  .bentoFour > :last-child .cost {
+    border-left: 1px solid var(--line);
+    border-top: 0;
+    flex: 1;
+    margin: 0;
+    padding: 0 0 0 24px;
+  }
+}
+
+/* Reveal wrapper (owns the entrance transform); the card inside owns hover. */
+.cell {
+  display: flex;
+}
+
+.cell > * {
+  width: 100%;
+}
+
+.featureCell {
+  grid-row: 1 / span 2;
+}
+
+.tile {
+  background: var(--card);
+  border-radius: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  isolation: isolate;
+  min-height: 228px;
+  overflow: hidden;
+  padding: 24px;
+  position: relative;
+}
+
+/* Hover: the tile lifts on a soft shadow and its quote mark warms and tilts. */
+.tile {
+  transition: box-shadow 0.55s var(--ease-out-quint), background-color 0.55s var(--ease-out-quint);
+}
+
+.tile:hover {
+  box-shadow: 0 28px 56px -32px rgba(10, 10, 10, 0.35);
+}
+
+.quote {
+  color: color-mix(in srgb, var(--fg) 14%, transparent);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 56px;
+  line-height: 0.62;
+  transform-origin: left bottom;
+  transition: color 0.45s var(--ease-out-quint), transform 0.6s var(--ease-out-expo);
+}
+
+.tile:hover .quote {
+  color: var(--accent);
+  transform: rotate(-8deg) scale(1.12);
+}
+
+.body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.title {
+  color: var(--fg);
+  font-family: var(--ff-inter);
+  font-size: 19px;
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 1.3;
+  margin: 0;
+  text-wrap: balance;
+}
+
+.cost {
+  border-top: 1px solid var(--line);
+  color: var(--fg-muted);
+  display: flex;
+  flex-direction: column;
+  font-size: 14.5px;
+  font-weight: 500;
+  gap: 6px;
+  letter-spacing: -0.025em;
+  line-height: 1.4;
+  margin: auto 0 0;
+  padding-top: 12px;
+}
+
+.costLabel {
+  color: var(--accent);
+  font-family: var(--ff-inter);
+  font-weight: 600;
+  font-size: 12.5px;
+  letter-spacing: -0.01em;
+}
+
+/* ── Feature tile: the same white card, larger type (home About style) ── */
+.feature {
+  justify-content: space-between;
+  padding: 28px;
+}
+
+.bigQuote {
+  color: var(--accent);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 120px;
+  line-height: 0.6;
+  margin-left: -4px;
+}
+
+.eyebrow {
+  color: var(--fg-muted);
+  font-family: var(--ff-inter);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+.featureTitle {
+  color: var(--fg);
+  font-family: var(--ff-inter);
+  font-size: 32px;
+  font-weight: 600;
+  letter-spacing: -0.05em;
+  line-height: 1.12;
+  margin: 0 0 8px;
+  text-wrap: balance;
+}
+
+.feature .body {
+  flex: 0;
+}
+
+.feature .cost {
+  font-size: 15.5px;
+  margin-top: 0;
+}
+@media (min-width: 810px) and (max-width: 1199.98px) {
+  .bento { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .featureCell { grid-column: 1 / -1; grid-row: auto; }
+  .feature { min-height: 260px; }
+  .bigQuote { font-size: 96px; }
+  .bentoFour > :last-child { grid-column: 1 / -1; }
+}
+
+@media (max-width: 809.98px) {
+  .bentoFour > :last-child { grid-column: auto; }
+  .featureCell { grid-row: auto; }
+  .feature { padding: 22px; }
+  .tile { min-height: 240px; padding: 20px; }
+  .bigQuote { font-size: 88px; }
+  .featureTitle { font-size: 22px; }
+  .title { font-size: 18px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tile, .quote { transition: none; }
+}

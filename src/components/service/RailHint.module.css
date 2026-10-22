@@ -1,0 +1,39 @@
+.label {
+  align-items: center;
+  display: inline-flex;
+  gap: 6px;
+}
+
+.label svg {
+  animation: nudge 2.4s var(--ease-out-quint) infinite;
+  height: 12px;
+  width: 12px;
+}
+
+.dots {
+  display: inline-flex;
+  gap: 6px;
+}
+
+.dot {
+  background: var(--line-strong);
+  border-radius: 6px;
+  height: 6px;
+  transition: background-color 0.35s var(--ease-out-quint), width 0.45s var(--ease-out-expo);
+  width: 6px;
+}
+
+.on {
+  background: var(--accent);
+  width: 18px;
+}
+
+@keyframes nudge {
+  0%, 60%, 100% { transform: translateX(0); }
+  30% { transform: translateX(4px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .label svg { animation: none; }
+  .dot { transition: none; }
+}

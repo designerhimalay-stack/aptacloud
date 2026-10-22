@@ -13,7 +13,8 @@ import s from "./AgentConsole.module.css";
 
 const ACCENT = "var(--accent)";
 
-const STACK = ["D365", "M365", "Azure", "Copilot"];
+// Product names per Brand Guidelines v2.0, 10 (never "D365").
+const STACK = ["Dynamics 365", "Microsoft 365", "Azure", "Copilot"];
 
 /** Writes --px / --py (−1…1, eased) on the root from the pointer position. */
 function usePointerDrift() {

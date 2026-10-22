@@ -12,35 +12,35 @@ import { Reveal } from "@/components/ui/Reveal";
 import { ToolColumn, type ToolColumnProps } from "./microsoft/ToolColumn";
 import s from "./Microsoft.module.css";
 
-const HEADING = `Unlock the power of Microsoft with ${BRAND.name}.`;
-const LEAD = `At ${BRAND.name}, we bring you the full suite of Microsoft services to help your business achieve greater efficiency, collaboration and security. Our tailored solutions are designed to seamlessly integrate into your operations, ensuring that your team has the tools they need to succeed.`;
+const HEADING = "Get more from the Microsoft tools you already pay for.";
+const LEAD = `Most firms already license Microsoft 365. ${BRAND.name} configures SharePoint, Copilot, and Power Platform around how your teams actually work, so the licences turn into fewer manual steps and faster answers.`;
 
 const TOOLS: ToolColumnProps[] = [
   {
     name: "SharePoint",
     caption: "Content & collaboration",
-    body: "Enable better content management and collaboration with Microsoft SharePoint. We help you organise, share and access important documents and data seamlessly.",
+    body: "Document management, governance, and intranet design on Microsoft SharePoint, so the right people find the right file first time.",
     tags: ["Content management", "Collaboration", "Documents & data"],
     icon: "sharepoint",
   },
   {
     name: "Microsoft 365",
     caption: "Productivity suite",
-    body: "Empower your workforce with Microsoft 365, a complete suite of productivity tools that drive collaboration and efficiency.",
+    body: "Microsoft 365 set up around your workflows, with Microsoft Teams, identity, and security configured from day one.",
     tags: ["Productivity tools", "Collaboration", "Efficiency"],
     icon: "m365",
   },
   {
     name: "Copilot",
     caption: "AI assistant",
-    body: "Unlock the potential of AI with Microsoft Copilot — whether automating repetitive tasks or providing intelligent insights.",
+    body: "Microsoft Copilot and Copilot Studio agents that take repetitive steps off your team, grounded in your own documents and data.",
     tags: ["AI", "Automate repetitive tasks", "Intelligent insights"],
     icon: "copilot",
   },
   {
     name: "Power Platform",
     caption: "Low-code & automation",
-    body: "Leverage Microsoft’s Power Platform to build low-code applications, automate workflows and analyse data.",
+    body: "Low-code apps, Power Automate workflows, and Power BI reporting that replace spreadsheets and rekeying.",
     tags: ["Low-code apps", "Workflow automation", "Data analysis"],
     icon: "power",
   },

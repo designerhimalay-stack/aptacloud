@@ -17,8 +17,8 @@ import s from "./Dynamics.module.css";
 import { FillHeading } from "./dynamics/FillHeading";
 import { StepCard } from "./dynamics/StepCard";
 
-const HEADING = `Get the most out of ${BRAND.name} Dynamics 365 consulting services.`;
-const LEAD = `Are you finding it difficult to organize data, connect HR, ERP and CRM, and streamline operations with Dynamics 365? ${BRAND.name}, a certified Microsoft Dynamics 365 consulting partner, brings you a customized solution to improve operational efficiency, data-driven decision-making and business growth.`;
+const HEADING = "Connect finance, operations, and field teams on Dynamics 365.";
+const LEAD = `When HR, ERP, and CRM data sit in separate systems, every report is rebuilt by hand. ${BRAND.name}’s Dynamics 365 specialists configure, integrate, and migrate it around the way your business already works, in clear phases you can plan and budget for.`;
 /** Official Microsoft Dynamics 365 lockup (PDF: on the photo badge and the first card). */
 const D365_LOGO = { src: asset("/images/microsoft/dynamics-365.svg"), alt: "Microsoft Dynamics 365" };
 
@@ -27,23 +27,23 @@ const SUBHEADING = "Our comprehensive Microsoft Dynamics 365 consulting solution
 const SERVICES = [
   {
     title: "Dynamics 365 consulting services",
-    text: "We assess your business processes and recommend the right Dynamics 365 Business Central services to interconnect sales, operations, HR and finances.",
+    text: "We assess your business processes and recommend the right Dynamics 365 modules to connect sales, operations, HR, and finance.",
   },
   {
     title: "Dynamics 365 implementation services",
-    text: "From customised solution ideation to deployment and strategic training, our expert team ensures Dynamics 365 meets your long-term vision.",
+    text: "Configuration, deployment, and training in phases, so Dynamics 365 goes live without stopping the work it supports.",
   },
   {
     title: "Dynamics 365 integration services",
-    text: "We seamlessly integrate Power Platform, Azure and third-party applications to provide you with unified data visibility across departments.",
+    text: "We integrate Power Platform, Azure, and third-party applications so every department works from the same data.",
   },
   {
     title: "Dynamics 365 migration services",
-    text: "Whether it’s on-premises or a legacy ERP upgrade, get it done efficiently with careful data preparation, cleaning, mapping and validation.",
+    text: "On-premises or a legacy ERP upgrade, moved with careful data preparation, cleaning, mapping, and validation.",
   },
   {
     title: "Dynamics 365 optimisation",
-    text: `Operate confidently with a compliance-ready, secured and fine-tuned Microsoft ecosystem, fully managed by your reliable Dynamics 365 consulting company — ${BRAND.name}.`,
+    text: "After go-live we tune performance, security, and licensing, so your Dynamics 365 investment keeps paying back.",
   },
 ] as const;
 
@@ -80,7 +80,7 @@ export function Dynamics() {
               </Reveal>
             </div>
             <Reveal y={30} duration={1} delay={0.15} amount={0.3}>
-              <Button label="Talk to a D365 consultant" href="#contact" variant="outline" className={s.button} />
+              <Button label="Talk to a Dynamics 365 specialist" href="#contact" variant="outline" className={s.button} />
             </Reveal>
           </div>
         </div>

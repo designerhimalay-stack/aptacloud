@@ -3,6 +3,7 @@
 // (01–04, title, text) in the site's rounded card language (24px cards,
 // 16px photos, 8px gaps).
 
+import { PRIMARY_CTA } from "@/brand/brand";
 import { Button } from "@/components/ui/Button";
 import { Photo } from "@/components/ui/Photo";
 import { PillTag } from "@/components/ui/PillTag";
@@ -13,9 +14,10 @@ import s from "./Workshop.module.css";
 
 const THRESHOLD = 0.1;
 
+// Statements in the buyer's words, not rhetorical questions (Content Guidelines 6.2).
 const QUESTIONS = [
-  "Are you confused about too much AI noise?",
-  "Want to know how AI can really impact and change your business?",
+  "Leadership wants AI, but the pilot never went anywhere.",
+  "Too much AI noise, not enough clarity on what applies to your operations.",
 ];
 
 /* The PDF's "What you'll gain"; one line each, written from the PDF's copy. */
@@ -23,7 +25,7 @@ const GAINS = [
   {
     index: "01",
     title: "In-depth AI analysis",
-    text: "Understand how artificial intelligence can really impact and change your business.",
+    text: "See which of your workflows AI can automate, and which it should not touch yet.",
     src: "/images/photos/workshop-analysis.jpg",
     alt: "A consultant presents to a team seated around a conference table with laptops",
     position: "45% 50%",
@@ -31,7 +33,7 @@ const GAINS = [
   {
     index: "02",
     title: "Customised AI strategy",
-    text: "A tailored plan for how AI can automate your operations and drive growth.",
+    text: "A phased plan built on Azure and the Microsoft tools you already run.",
     src: "/images/photos/workshop-strategy.jpg",
     alt: "Hands gesturing over a laptop during a strategy discussion",
     position: "40% 50%",
@@ -39,7 +41,7 @@ const GAINS = [
   {
     index: "03",
     title: "Hands-on experience",
-    text: "Cut through the AI noise and see what AI can really do for your business.",
+    text: "Work through a live example with our senior Microsoft specialists, not a slide deck.",
     src: "/images/photos/workshop-hands-on.jpg",
     alt: "Three colleagues laughing while working together on laptops at a shared table",
     position: "55% 50%",
@@ -47,7 +49,7 @@ const GAINS = [
   {
     index: "04",
     title: "Actionable insights",
-    text: "Leave with a clear view of where AI delivers measurable ROI for your business.",
+    text: "Leave with the first workflow to prove, what it costs, and how you will measure the return.",
     src: "/images/photos/workshop-insights.jpg",
     alt: "Team members point at a laptop screen while agreeing on next steps",
     position: "50% 45%",
@@ -69,20 +71,20 @@ export function Workshop() {
 
         <div className={s.head}>
           <LineReveal as="h2" className={cn("t-h2", s.title, s.centered)}>
-            <span>Unlock the power</span>
-            <span>of AI with our</span>
-            <span>exclusive workshop.</span>
+            <span>Find where AI</span>
+            <span>pays off first,</span>
+            <span>on your own data.</span>
           </LineReveal>
           <Reveal delay={0.1} amount={THRESHOLD} className={cn(s.lead, s.centered)}>
             <p className="t-body">
-              Our tailored AI assessment workshop is designed to help you understand how artificial intelligence (AI)
-              can automate your operations and drive growth.
+              Our AI Assessment Workshop maps one workflow in your business where artificial intelligence (AI) can
+              automate the work, what it needs from your data, and what it should return.
             </p>
             <ul className={s.questions}>
               {QUESTIONS.map((q) => (
                 <li key={q} className={s.question}>
                   <span className={s.qMark} aria-hidden="true">
-                    ?
+                    “
                   </span>
                   <span>{q}</span>
                 </li>
@@ -126,7 +128,7 @@ export function Workshop() {
 
         <div className={s.space40} />
         <Reveal delay={0.1} amount={THRESHOLD} className={s.cta}>
-          <Button label="Book AI workshop" href="#contact" />
+          <Button label={PRIMARY_CTA.label} href={PRIMARY_CTA.href} />
         </Reveal>
       </div>
     </section>

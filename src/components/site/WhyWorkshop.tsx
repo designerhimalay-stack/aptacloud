@@ -1,7 +1,7 @@
-// Why Workshop — Agentcraft's workshop benefits:
-// pill tag | heading whose words fill from grey to ink as you scroll through it
-// (the last two words fill to the accent) + muted lead + "Book now"; then three
-// white 24px-radius cards — big muted "01." numbers on top, an accent
+// Why AptaCloud — the four evidenced reasons, in the order Brand Guidelines v2.0
+// 3.4 fixes: pill tag | heading whose words fill from grey to ink as you scroll
+// through it (the last words fill to the accent) + muted lead + the primary CTA;
+// then four white 24px-radius cards — big muted "01." numbers on top, an accent
 // line icon, title and text at the bottom — that fan out of a stack as the
 // grid scrolls in (<SpreadGrid>).
 // On hover the number warms to a faint accent tint (0.5s ease-out) so the
@@ -9,28 +9,48 @@
 
 import { motion, useScroll, useTransform, type MotionValue } from "@/lib/motion";
 import { useRef } from "react";
+import { BRAND, PRIMARY_CTA } from "@/brand/brand";
 import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
 import { SpreadGrid } from "@/components/ui/SpreadGrid";
 import s from "./WhyWorkshop.module.css";
 
-// [word, accent?] — "with AI?" keeps the brand accent.
+// [word, accent?] — "before you commit." keeps the brand accent.
 const HEADING: [string, boolean][] = [
-  ["Ready", false],
-  ["to", false],
-  ["transform", false],
+  ["See", false],
+  ["it", false],
+  ["work", false],
+  ["on", false],
   ["your", false],
-  ["business", false],
-  ["with", true],
-  ["AI?", true],
+  ["data", false],
+  ["before", true],
+  ["you", true],
+  ["commit.", true],
 ];
-const LEAD = "Sign up now for our exclusive AI assessment workshop.";
+const LEAD = `Why mid-sized firms choose ${BRAND.name}: you judge our expertise on your own systems, not on a slide.`;
 
-// Support lines use only facts stated in the PDF.
+// The four reasons, in order (Brand Guidelines v2.0, 3.4).
 const BENEFITS = [
-  { title: "Expert guidance", text: "20+ years of experience and 200+ engineers under one roof.", icon: "guide" as const },
-  { title: "Tailored solutions", text: "Tailored Cloud, Data, IT and AI offerings for your business.", icon: "tailor" as const },
-  { title: "Proven results", text: "300+ clients served across 4+ global delivery locations.", icon: "results" as const },
+  {
+    title: "Proof before commitment",
+    text: "We prove it on your data with a proof of concept before you sign for the full project.",
+    icon: "results" as const,
+  },
+  {
+    title: "A mature, phased process",
+    text: "Discover, Define, Design, Build, Integrate, Optimise. You always know what happens next and what it costs.",
+    icon: "tailor" as const,
+  },
+  {
+    title: "Senior specialists, faster decisions",
+    text: "Senior Microsoft specialists do the work, without the layers and long discovery phases of larger firms.",
+    icon: "guide" as const,
+  },
+  {
+    title: "Built around what you already run",
+    text: "We modernise and connect your existing policy, ERP, SCADA and project systems rather than replacing them.",
+    icon: "connect" as const,
+  },
 ];
 
 function Word({
@@ -68,10 +88,17 @@ function FillHeading() {
   );
 }
 
-function BenefitIcon({ kind }: { kind: "guide" | "tailor" | "results" }) {
+function BenefitIcon({ kind }: { kind: "guide" | "tailor" | "results" | "connect" }) {
   return (
     <svg className={s.icon} viewBox="0 0 32 32" fill="none" aria-hidden="true">
-      {kind === "guide" ? (
+      {kind === "connect" ? (
+        // linked nodes: connect what you already run
+        <>
+          <rect x="4" y="5" width="9" height="9" rx="2" stroke="currentColor" strokeWidth="1.75" />
+          <rect x="19" y="18" width="9" height="9" rx="2" stroke="currentColor" strokeWidth="1.75" />
+          <path d="M13 9.5h4.5a2 2 0 0 1 2 2V18M19 22.5h-4.5a2 2 0 0 1-2-2V14" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" />
+        </>
+      ) : kind === "guide" ? (
         // compass: guidance
         <>
           <circle cx="16" cy="16" r="11" stroke="currentColor" strokeWidth="1.75" />
@@ -120,7 +147,7 @@ export function WhyWorkshop() {
           <Reveal y={30} duration={1} amount={0.3} className={s.tagCol}>
             <p className={s.tag}>
               <TagIcon />
-              <span>Why choose our workshop</span>
+              <span>Why {BRAND.name}</span>
             </p>
           </Reveal>
           <div className={s.copy}>
@@ -131,7 +158,7 @@ export function WhyWorkshop() {
               </Reveal>
             </div>
             <Reveal y={30} duration={1} delay={0.15} amount={0.3}>
-              <Button label="Book now" href="#contact" variant="primary" />
+              <Button label={PRIMARY_CTA.label} href={PRIMARY_CTA.href} variant="primary" />
             </Reveal>
           </div>
         </div>

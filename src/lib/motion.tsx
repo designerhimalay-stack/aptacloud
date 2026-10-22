@@ -269,14 +269,24 @@ export function useInView(ref: RefObject<Element | null>, { once = false, amount
   useEffect(() => {
     const el = ref.current;
     if (!el || typeof IntersectionObserver === "undefined") return;
+    // Fail-safes so a reveal never leaves content hidden:
+    //  • an element already scrolled past (fast scroll, anchor jump, late
+    //    hydration) counts as seen;
+    //  • an element too tall to ever reach `amount` counts once it fills
+    //    40% of the viewport.
     const io = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
+        const r = entry.boundingClientRect;
+        const passed = r.bottom < 0;
+        const enough =
+          entry.isIntersecting &&
+          (entry.intersectionRatio >= amount || entry.intersectionRect.height >= window.innerHeight * 0.4);
+        if (enough || (once && passed)) {
           setInView(true);
           if (once) io.disconnect();
         } else if (!once) setInView(false);
       },
-      { threshold: amount },
+      { threshold: amount > 0 ? [0, amount, 1] : [0, 1] },
     );
     io.observe(el);
     return () => io.disconnect();

@@ -1,0 +1,56 @@
+/* Tech marks and chips — 20px marks; chips are the site's pill language at 32px. */
+
+.mark {
+  display: inline-block;
+  flex: none;
+  height: 18px;
+  object-fit: contain;
+  width: 18px;
+}
+
+.mono {
+  background-color: currentColor;
+  mask-position: center;
+  mask-repeat: no-repeat;
+  mask-size: contain;
+  -webkit-mask-position: center;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+}
+
+/* No licensed mark: a quiet square monogram. */
+.monogram {
+  align-items: center;
+  border: 1px solid currentColor;
+  border-radius: 5px;
+  display: inline-flex;
+  font-family: var(--ff-mono);
+  font-size: 8px;
+  font-weight: 500;
+  justify-content: center;
+  letter-spacing: 0;
+  line-height: 1;
+  opacity: 0.8;
+}
+
+.chip {
+  align-items: center;
+  background: color-mix(in srgb, var(--fg) 4%, transparent);
+  border: 1px solid var(--line);
+  border-radius: 32px;
+  color: var(--fg-soft);
+  display: inline-flex;
+  font-family: var(--ff-inter);
+  font-size: 13px;
+  font-weight: 500;
+  gap: 8px;
+  height: 32px;
+  letter-spacing: -0.02em;
+  padding: 0 12px 0 8px;
+  white-space: nowrap;
+}
+
+.chip .mark {
+  height: 16px;
+  width: 16px;
+}

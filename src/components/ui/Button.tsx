@@ -30,18 +30,28 @@ const variants: Record<ButtonVariant, string> = {
 
 export function Button({
   label,
+  shortLabel,
   href = "#",
   variant = "primary",
   className,
 }: {
   label: string;
+  /** Same action in fewer words, swapped in below 520px (the label is one line). */
+  shortLabel?: string;
   href?: string;
   variant?: ButtonVariant;
   className?: string;
 }) {
   return (
-    <a href={href} className={cn(base, variants[variant], className)}>
-      <RollingText text={label} />
+    <a href={href} className={cn(base, variants[variant], className)} aria-label={shortLabel ? label : undefined}>
+      {shortLabel ? (
+        <>
+          <RollingText text={label} className="max-[519.98px]:!hidden" />
+          <RollingText text={shortLabel} className="min-[520px]:!hidden" />
+        </>
+      ) : (
+        <RollingText text={label} />
+      )}
     </a>
   );
 }

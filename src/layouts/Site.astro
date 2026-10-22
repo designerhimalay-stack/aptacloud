@@ -1,0 +1,27 @@
+---
+// Site shell for every page: Base document + fixed nav + construction lines +
+// footer. Pages put their sections in the default slot (inside <main>).
+import Base from "./Base.astro";
+import { ConstructionLines } from "../components/layout/ConstructionLines";
+import Footer from "../components/layout/Footer.astro";
+import { Nav } from "../components/layout/Nav";
+
+interface Props {
+  title: string;
+  description: string;
+  jsonLd?: object[];
+  /** The page's primary CTA, shown in the nav pill (one primary action per page). */
+  navCta?: { label: string; href: string };
+}
+
+const { title, description, jsonLd, navCta } = Astro.props;
+---
+
+<Base title={title} description={description} jsonLd={jsonLd}>
+  <Nav client:load cta={navCta} />
+  <ConstructionLines />
+  <main class="relative">
+    <slot />
+  </main>
+  <Footer cta={navCta} />
+</Base>

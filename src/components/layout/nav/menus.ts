@@ -1,10 +1,14 @@
-// Nav menu content updated as per Aptacloud (https://aptacloud.com/) with Australian English.
-// One shell for every panel — a 3-column grid + a footer strip — filled from three building blocks:
+// Nav menu content updated as per AptaCloud (https://aptacloud.com/) with Australian English.
+// One shell for every panel — a 3-column grid + a trust strip (no CTA) — filled from three building blocks:
 //   tabs   — Services: categories; hovering/focusing one swaps the next two cells
 //   column — a header, an optional two-line intro and its links
 //   promo  — a highlighted card: logo, eyebrow, title, copy and a CTA
 
-import { BRAND } from "@/brand/brand";
+import { BRAND, asset, home } from "@/brand/brand";
+
+/** Link to a service page on this site (slugs keep the live site's US spelling).
+ *  Labels mirror src/data/services; kept here so the nav island stays light. */
+const svc = (label: string, slug: string): NavLink => ({ label, href: asset(`/${slug}/`) });
 
 export type NavLink = { label: string; href: string };
 export type NavColumn = { title: string; text?: string; links: NavLink[] };
@@ -22,13 +26,10 @@ export type NavTab = { id: string; label: string; column: NavColumn; promo: NavP
 export type NavMenu = {
   id: string;
   label: string;
-  footer: { text: string; link: NavLink };
 } & (
   | { kind: "tabs"; tabsTitle: string; tabs: NavTab[] }
   | { kind: "columns"; lead?: NavPromo; columns: NavColumn[] }
 );
-
-const CONSULT: NavLink = { label: "Book a consultation", href: "#contact" };
 
 export const MENUS: NavMenu[] = [
   {
@@ -39,18 +40,15 @@ export const MENUS: NavMenu[] = [
     tabs: [
       {
         id: "ai",
-        label: "AI & Data Solutions",
+        label: "Artificial Intelligence",
         column: {
-          title: "AI & Data Solutions",
-          text: "Discover where AI pays off first, then roll it out safely across your enterprise.",
+          title: "Artificial Intelligence",
+          text: "Find where AI pays off first, then take it from pilot to production.",
           links: [
-            { label: "AI Consulting", href: "https://aptacloud.com/ai-consulting/" },
-            { label: "AI Agents", href: "https://aptacloud.com/ai-agents/" },
-            { label: "Generative AI", href: "https://aptacloud.com/generative-ai/" },
-            { label: "Machine Learning", href: "https://aptacloud.com/machine-learning/" },
-            { label: "Data Engineering", href: "https://aptacloud.com/data-engineering/" },
-            { label: "Data Warehousing", href: "https://aptacloud.com/data-warehousing/" },
-            { label: "Data Visualisation", href: "https://aptacloud.com/data-visualization/" },
+            svc("AI Consulting", "ai-consulting"),
+            svc("AI Agents", "ai-agents"),
+            svc("Generative AI", "generative-ai"),
+            svc("Machine Learning", "machine-learning"),
           ],
         },
         promo: {
@@ -58,31 +56,50 @@ export const MENUS: NavMenu[] = [
           logoAlt: "Microsoft Copilot",
           eyebrow: "Flagship Programme",
           title: "AI Assessment Workshop",
-          text: "A tailored workshop that demonstrates how AI automates operations and drives measurable ROI.",
-          cta: { label: "Book AI workshop", href: "#workshop" },
+          text: "A tailored workshop that shows where AI can automate your operations and what it should return.",
+          cta: { label: "See what the workshop covers", href: home("#workshop") },
         },
       },
       {
-        id: "app-mod",
-        label: "App Modernisation",
+        id: "data",
+        label: "Data & Analytics",
         column: {
-          title: "Application Modernisation",
-          text: "Re-engineer and migrate legacy platforms into resilient, cloud-native architectures.",
+          title: "Data & Analytics",
+          text: "Build the trusted data layer your reporting and AI depend on.",
           links: [
-            { label: "Legacy Application Migration", href: "https://aptacloud.com/legacy-application-migration/" },
-            { label: "Application Modernisation", href: "https://aptacloud.com/application-modernization/" },
-            { label: "Application Re-engineering", href: "https://aptacloud.com/application-re-engineering/" },
-            { label: "Cloud Architecture Review", href: "#azure" },
-            { label: "DevOps & CI/CD Pipelines", href: "#azure" },
+            svc("Data Engineering", "data-engineering"),
+            svc("Data Warehousing", "data-warehousing"),
+            svc("Data Visualisation", "data-visualization"),
           ],
         },
         promo: {
           logo: "/images/microsoft/azure.svg",
-          logoAlt: "Application Modernisation",
-          eyebrow: "App Modernisation Mastery",
+          logoAlt: "Microsoft Azure",
+          eyebrow: "Data Foundations",
+          title: "One Trusted Data Layer",
+          text: "Pipelines, warehouses, and Power BI on Microsoft Fabric and Azure, built around the systems you run.",
+          cta: { label: "Explore data engineering", href: asset("/data-engineering/") },
+        },
+      },
+      {
+        id: "app-mod",
+        label: "Application Modernisation",
+        column: {
+          title: "Application Modernisation",
+          text: "Keep the systems your business runs on, and make them connect, scale, and support AI.",
+          links: [
+            svc("Legacy Application Migration", "legacy-application-migration"),
+            svc("Application Modernisation", "application-modernization"),
+            svc("Application Re-engineering", "application-re-engineering"),
+          ],
+        },
+        promo: {
+          logo: "/images/microsoft/azure.svg",
+          logoAlt: "Microsoft Azure",
+          eyebrow: "Modernise Without Starting Over",
           title: "Modernise Core Applications",
-          text: "Transform legacy technical debt into scalable, high-performance cloud applications.",
-          cta: { label: "Explore app modernisation", href: "https://aptacloud.com/application-modernization/" },
+          text: "Phased re-platforming and re-architecture on Microsoft Azure, with no operational shutdown.",
+          cta: { label: "Explore app modernisation", href: asset("/application-modernization/") },
         },
       },
       {
@@ -92,15 +109,15 @@ export const MENUS: NavMenu[] = [
           title: "Microsoft Services",
           text: "Collaboration, business applications, and low-code suites your teams already know.",
           links: [
-            { label: "Microsoft 365", href: "https://aptacloud.com/services/microsoft/microsoft-365/" },
-            { label: "Microsoft Teams", href: "https://aptacloud.com/services/microsoft/teams/" },
-            { label: "Microsoft Copilot", href: "https://aptacloud.com/services/microsoft/copilot-studio/" },
-            { label: "Microsoft Dynamics 365", href: "https://aptacloud.com/services/microsoft/microsoft-dynamics-365/" },
-            { label: "Microsoft Power BI", href: "https://aptacloud.com/services/microsoft/power-bi/" },
-            { label: "Power Platform", href: "https://aptacloud.com/services/microsoft/power-platform/" },
-            { label: "Microsoft SharePoint", href: "https://aptacloud.com/services/microsoft/sharepoint/" },
-            { label: "Identity & Security", href: "https://aptacloud.com/services/microsoft/identity-security/" },
-            { label: "Cloud Storage & Databases", href: "https://aptacloud.com/services/microsoft/cloud-storage/" },
+            svc("Microsoft 365", "services/microsoft/microsoft-365"),
+            svc("Microsoft Teams", "services/microsoft/teams"),
+            svc("Microsoft Copilot", "services/microsoft/copilot-studio"),
+            svc("Microsoft Dynamics 365", "services/microsoft/microsoft-dynamics-365"),
+            svc("Microsoft Power BI", "services/microsoft/power-bi"),
+            svc("Power Platform", "services/microsoft/power-platform"),
+            svc("Microsoft SharePoint", "services/microsoft/sharepoint"),
+            svc("Identity & Security", "services/microsoft/identity-security"),
+            svc("Cloud Storage & Databases", "services/microsoft/cloud-storage"),
           ],
         },
         promo: {
@@ -109,7 +126,7 @@ export const MENUS: NavMenu[] = [
           eyebrow: "Certified Partner",
           title: "Full Microsoft Business Suite",
           text: "The complete Microsoft ecosystem tailored for productivity, collaboration and security.",
-          cta: { label: "Explore Microsoft services", href: "#microsoft" },
+          cta: { label: "Explore Microsoft 365", href: asset("/services/microsoft/microsoft-365/") },
         },
       },
       {
@@ -117,9 +134,9 @@ export const MENUS: NavMenu[] = [
         label: "Azure Cloud",
         column: {
           title: "Azure Cloud Services",
-          text: "End-to-end Azure support from workload migration to round-the-clock managed cloud.",
+          text: "Microsoft Azure support from workload migration to round-the-clock managed cloud.",
           links: [
-            { label: "Azure Hosting", href: "https://aptacloud.com/azure-hosting/" },
+            svc("Azure Hosting", "azure-hosting"),
             { label: "Azure Migration", href: "https://aptacloud.com/azure-migration/" },
             { label: "Azure Implementation", href: "https://aptacloud.com/azure-implementation/" },
             { label: "Azure Optimisation", href: "https://aptacloud.com/azure-optimization/" },
@@ -131,9 +148,9 @@ export const MENUS: NavMenu[] = [
           logo: "/images/microsoft/azure.svg",
           logoAlt: "Microsoft Azure",
           eyebrow: "Cloud Excellence",
-          title: "Modernise Your Infrastructure",
-          text: "Smarter operations, enhanced data security, and seamless digital transformation on Azure.",
-          cta: { label: "Explore Azure hosting", href: "https://aptacloud.com/azure-hosting/" },
+          title: "Cloud That Costs What It Should",
+          text: "Run more on Azure for less, with costs you can explain to finance.",
+          cta: { label: "Get your cloud cost review", href: home("#azure") },
         },
       },
       {
@@ -152,16 +169,15 @@ export const MENUS: NavMenu[] = [
           ],
         },
         promo: {
-          logo: "/images/microsoft/power-platform.svg",
-          logoAlt: "AWS Cloud",
-          eyebrow: "Multi-Cloud Expertise",
+          logo: "/images/partners/aws.svg",
+          logoAlt: "AWS",
+          eyebrow: "Multi-Cloud Support",
           title: "Scale Reliably on AWS",
-          text: "Robust architectures with automated failover, load balancing, and cost governance.",
+          text: "Resilient architectures with automated failover, load balancing, and cost governance.",
           cta: { label: "Talk to a cloud expert", href: "#contact" },
         },
       },
     ],
-    footer: { text: "Not sure where to begin? The AI Assessment Workshop maps out your path.", link: CONSULT },
   },
   {
     id: "industries",
@@ -198,7 +214,6 @@ export const MENUS: NavMenu[] = [
         ],
       },
     ],
-    footer: { text: "Don’t see your sector? We deliver solutions across diverse industries.", link: { label: "Talk to an industry specialist", href: "#contact" } },
   },
   {
     id: "about",
@@ -209,14 +224,14 @@ export const MENUS: NavMenu[] = [
       logoAlt: BRAND.name,
       eyebrow: `About ${BRAND.name}`,
       title: "Your Path to Measurable AI ROI",
-      text: `${BRAND.name} is a premier technology consulting firm specialising in modern cloud systems, IT infrastructure, software engineering, and enterprise AI integration.`,
+      text: BRAND.valueProp,
       cta: { label: `More about ${BRAND.name}`, href: "https://aptacloud.com/about-us" },
     },
     columns: [
       {
         title: "Company",
         links: [
-          { label: "Know More About Aptacloud", href: "https://aptacloud.com/about-us" },
+          { label: `About ${BRAND.name}`, href: "https://aptacloud.com/about-us" },
           { label: "Our Story", href: "https://aptacloud.com/about-us#our-story" },
           { label: "Leadership Team", href: "https://aptacloud.com/about-us#team1" },
           { label: "Global Locations", href: "https://aptacloud.com/about-us#locations" },
@@ -226,13 +241,12 @@ export const MENUS: NavMenu[] = [
       {
         title: "Insights & Media",
         links: [
-          { label: "Aptacloud Blog", href: "https://aptacloud.com/blog/" },
+          { label: `${BRAND.name} Blog`, href: "https://aptacloud.com/blog/" },
           { label: "White Papers", href: "https://aptacloud.com/whitepaper/" },
           { label: "Events", href: "https://aptacloud.com/events/" },
           { label: "Contact Us", href: "#contact" },
         ],
       },
     ],
-    footer: { text: "20+ years of collective experience · Hundreds of enterprises empowered", link: { label: "Let’s talk", href: "#contact" } },
   },
 ];

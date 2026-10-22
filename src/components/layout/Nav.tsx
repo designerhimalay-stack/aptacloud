@@ -10,7 +10,7 @@
 
 import { useEffect, useId, useLayoutEffect, useRef, useState, type MouseEvent, type ReactNode } from "react";
 import { flushSync } from "react-dom";
-import { BRAND, asset } from "@/brand/brand";
+import { BRAND, PRIMARY_CTA, asset } from "@/brand/brand";
 import { Logo } from "@/brand/Logo";
 import { RollingText } from "@/components/ui/RollingText";
 import { cn } from "@/lib/utils";
@@ -28,8 +28,10 @@ const REGIONS = [
 type Region = (typeof REGIONS)[number]["code"];
 const REGION_KEY = "site-region";
 
-const TALK = { label: "Let’s talk", href: "#contact" } as const;
-const WORKSHOP = { label: "Book AI workshop", href: "#workshop" } as const;
+// The nav's one CTA: the page's primary action (the mega panels carry no second
+// one). Pages pass their own via the `cta` prop; the home page uses PRIMARY_CTA.
+type NavCta = { label: string; href: string };
+const DEFAULT_CTA: NavCta = { label: PRIMARY_CTA.short, href: PRIMARY_CTA.href };
 
 const FOCUSABLE = 'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
 const COMPACT_QUERY = "(max-width: 1199.98px)";
@@ -118,7 +120,14 @@ function Check({ className }: { className?: string }) {
   );
 }
 
-export function Nav() {
+/** True when `href` points at the page we are on (so a hash link should scroll). */
+function onThisPage(url: URL) {
+  const strip = (p: string) => p.replace(/\/index\.html$/, "/").replace(/\/$/, "");
+  return url.origin === window.location.origin && strip(url.pathname) === strip(window.location.pathname);
+}
+
+export function Nav({ cta = DEFAULT_CTA }: { cta?: NavCta }) {
+  const TALK = cta;
   const [open, setOpen] = useState(false);
   const [drop, setDrop] = useState<string | null>(null); // desktop dropdown
   const [group, setGroup] = useState<string | null>(null); // compact accordion
@@ -142,7 +151,6 @@ export function Nav() {
     if (!open) return;
     const html = document.documentElement;
     const body = document.body;
-    const bar = barRef.current;
     const pill = pillRef.current;
     const toggle = toggleRef.current;
     const prevBody = body.style.overflow;
@@ -150,12 +158,18 @@ export function Nav() {
     body.style.overflow = "hidden";
     html.style.overflow = "hidden";
 
-    // Low viewports (phone landscape, open accordions): the fixed bar scrolls itself.
-    const prevBar = bar ? [bar.style.maxHeight, bar.style.overflowY, bar.style.overscrollBehavior] : null;
-    if (bar) {
-      bar.style.maxHeight = "100dvh";
-      bar.style.overflowY = "auto";
-      bar.style.overscrollBehavior = "contain";
+    // The open pill is capped to the viewport in CSS and its link list scrolls
+    // inside it (header row and CTA stay put), so the bar itself never scrolls.
+
+    // On a service page, open Services at the current page's category.
+    const here = window.location.pathname.replace(/\/$/, "");
+    for (const m of MENUS) {
+      if (m.kind !== "tabs") continue;
+      const tab = m.tabs.find((t) => t.column.links.some((l) => l.href.replace(/\/$/, "") === here));
+      if (tab) {
+        setGroup(m.id);
+        setSub(tab.id);
+      }
     }
 
     const first = window.setTimeout(() => {
@@ -192,11 +206,6 @@ export function Nav() {
     return () => {
       window.clearTimeout(first);
       window.removeEventListener("keydown", onKey);
-      if (bar && prevBar) {
-        bar.style.maxHeight = prevBar[0];
-        bar.style.overflowY = prevBar[1];
-        bar.style.overscrollBehavior = prevBar[2];
-      }
       body.style.overflow = prevBody;
       html.style.overflow = prevHtml;
       setGroup(null);
@@ -265,9 +274,15 @@ export function Nav() {
   const onAnchorClick = (e: MouseEvent<HTMLAnchorElement>, href: string) => {
     if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
     setDrop(null);
+    const url = new URL(href, window.location.href);
+    // Another page: let the browser navigate (close the menu so bfcache restores it closed).
+    if (!onThisPage(url)) {
+      if (open) setOpen(false);
+      return;
+    }
     // Close first so the scroll lock is released before scrolling.
     if (open) flushSync(() => setOpen(false));
-    if (scrollToHash(href)) e.preventDefault();
+    if (scrollToHash(url.hash || "#top")) e.preventDefault();
   };
 
   // Hover intent: open at once, close after a short grace so the cursor can cross the gap.
@@ -339,7 +354,6 @@ export function Nav() {
               </div>
             );
           })}
-          <div className={styles.groupFoot}>{accentLink(menu.footer.link)}</div>
         </>
       );
     }
@@ -357,7 +371,6 @@ export function Nav() {
             {compactLinks(c.links)}
           </div>
         ))}
-        <div className={styles.groupFoot}>{accentLink(menu.footer.link)}</div>
       </>
     );
   };
@@ -371,10 +384,10 @@ export function Nav() {
       >
         <div className={styles.row}>
           <a
-            href="#top"
+            href={asset("/")}
             className={styles.logo}
-            aria-label={`${BRAND.name} — home`}
-            onClick={(e) => onAnchorClick(e, "#top")}
+            aria-label={`${BRAND.name}, home`}
+            onClick={(e) => onAnchorClick(e, asset("/"))}
           >
             <Logo height={30} />
           </a>
@@ -484,13 +497,6 @@ export function Nav() {
               </div>
             </div>
             <div className={styles.sheetCtas}>
-              <a
-                href={WORKSHOP.href}
-                className={cn("roll-host", styles.cta, styles.ctaGhost)}
-                onClick={(e) => onAnchorClick(e, WORKSHOP.href)}
-              >
-                <RollingText text={WORKSHOP.label} />
-              </a>
               <a href={TALK.href} className={cn("roll-host", styles.cta)} onClick={(e) => onAnchorClick(e, TALK.href)}>
                 <RollingText text={TALK.label} />
               </a>

@@ -75,12 +75,14 @@ function SpreadItem({
 export function SpreadGrid({
   as: Tag = "div",
   itemAs = "div",
+  id,
   className,
   itemClassName,
   items,
 }: {
   as?: ElementType;
   itemAs?: "div" | "li";
+  id?: string;
   className?: string;
   itemClassName?: string;
   items: ReactNode[];
@@ -118,7 +120,7 @@ export function SpreadGrid({
   }, [items.length, reduce]);
 
   return (
-    <Tag ref={ref} className={className} style={{ position: "relative" }}>
+    <Tag ref={ref} id={id} className={className} style={{ position: "relative" }}>
       {items.map((item, i) => (
         <SpreadItem
           key={i}

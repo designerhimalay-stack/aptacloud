@@ -93,7 +93,7 @@ export function ServiceCard({ index, icon, title, body, points, href, className 
         ))}
       </ul>
       <span className={styles.more}>
-        Talk to us <span className={styles.arrow} aria-hidden="true">→</span>
+        Talk to an Azure specialist <span className={styles.arrow} aria-hidden="true">→</span>
       </span>
     </a>
   );

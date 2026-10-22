@@ -17,9 +17,9 @@ import { Partners } from "../components/site/Partners";
 import { WhyWorkshop } from "../components/site/WhyWorkshop";
 import { Workshop } from "../components/site/Workshop";
 
-const title = `${BRAND.name} — ${BRAND.tagline}`;
-const description =
-  `${BRAND.name} is a premier Microsoft-centric consulting firm specialising in modern cloud systems and AI integration — Dynamics 365, Microsoft 365, Copilot, Power Platform and Azure. Your path to measurable AI ROI.`;
+// No em dashes or superlatives in metadata either (Content Writing Guidelines 6.2).
+const title = `${BRAND.name} | Microsoft cloud, data and AI consultancy`;
+const description = BRAND.valueProp;
 ---
 
 <Base title={title} description={description}>

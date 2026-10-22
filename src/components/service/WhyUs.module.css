@@ -1,0 +1,217 @@
+/* Why: POC card (5/12, sticky) | reasons (7/12) as a 2-col tile grid. */
+
+.grid {
+  align-items: start;
+  display: grid;
+  gap: 8px;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+}
+
+.pocCol {
+  position: sticky;
+  top: 112px;
+}
+
+/* White card, like the home About / Why cards. */
+.poc {
+  background: var(--card);
+  border-radius: 24px;
+  color: var(--fg);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  isolation: isolate;
+  overflow: hidden;
+  padding: 28px;
+  position: relative;
+}
+
+.pocEyebrow {
+  align-items: center;
+  color: var(--fg-muted);
+  display: flex;
+  font-family: var(--ff-inter);
+  font-weight: 600;
+  font-size: 12.5px;
+  gap: 10px;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+.pocDot {
+  animation: pulse-dot 2.4s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+  background: var(--accent);
+  border-radius: 50%;
+  height: 6px;
+  width: 6px;
+}
+
+.pocTitle {
+  font-family: var(--ff-inter);
+  font-size: 30px;
+  font-weight: 600;
+  letter-spacing: -0.05em;
+  line-height: 1.12;
+  margin: 0;
+}
+
+.pocSteps {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.pocStep {
+  align-items: flex-start;
+  border-top: 1px solid var(--line);
+  display: flex;
+  gap: 14px;
+  padding: 14px 0;
+}
+
+.pocNum {
+  align-items: center;
+  background: rgba(var(--accent-rgb), 0.08);
+  border-radius: 50%;
+  color: var(--accent);
+  display: inline-flex;
+  flex: none;
+  font-family: var(--ff-inter);
+  font-weight: 600;
+  font-size: 13px;
+  height: 26px;
+  justify-content: center;
+  width: 26px;
+}
+
+.pocStepTitle {
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  margin: 2px 0 2px;
+}
+
+.pocStepText {
+  color: var(--fg-muted);
+  font-size: 14.5px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.35;
+  margin: 0;
+}
+
+.pocButton {
+  margin-top: auto;
+  width: 100%;
+}
+
+/* ── Reasons: 2-col tiles (icon top, title, text); an odd last tile spans both
+   columns and lays out horizontally. Radius 24 like every outer card. ───── */
+.reasons {
+  display: grid;
+  gap: 8px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.reason {
+  background: var(--card);
+  border-radius: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  padding: 24px;
+  position: relative;
+  transition: box-shadow 0.5s var(--ease-out-quint);
+}
+
+/* (no hover transform: <Reveal> owns this element's inline transform) */
+.reason:hover {
+  box-shadow: 0 18px 40px -24px rgba(10, 10, 10, 0.28);
+}
+
+.odd > :last-child {
+  align-items: center;
+  flex-direction: row;
+  grid-column: 1 / -1;
+  min-height: 0;
+}
+
+.reasonIcon {
+  align-items: center;
+  background: rgba(var(--accent-rgb), 0.08);
+  border-radius: 14px;
+  color: var(--accent);
+  display: inline-flex;
+  flex: none;
+  height: 48px;
+  justify-content: center;
+  transition: background-color 0.45s var(--ease-out-quint), color 0.45s var(--ease-out-quint);
+  width: 48px;
+}
+
+.reason:hover .reasonIcon {
+  background: var(--accent);
+  color: #ffffff;
+}
+
+.reasonIcon svg {
+  height: 22px;
+  width: 22px;
+}
+
+.reasonBody {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.odd > :last-child .reasonBody {
+  margin-top: 0;
+}
+
+.reasonTitle {
+  color: var(--fg);
+  font-family: var(--ff-inter);
+  font-size: 19px;
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 1.25;
+  margin: 0;
+}
+
+.reasonText {
+  color: var(--fg-muted);
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1.4;
+  margin: 0;
+  max-width: 560px;
+}
+@media (max-width: 1199.98px) {
+  .grid { grid-template-columns: minmax(0, 1fr); }
+  .pocCol { position: static; }
+  .poc { display: grid; gap: 20px 32px; grid-template-columns: 1fr 1fr; }
+  .pocEyebrow, .pocTitle { grid-column: 1; }
+  .pocSteps { grid-column: 2; grid-row: 1 / span 3; }
+  .pocButton { grid-column: 1; align-self: end; }
+}
+
+@media (max-width: 809.98px) {
+  .poc { display: flex; gap: 18px; padding: 22px 20px; }
+  .pocTitle { font-size: 24px; }
+  .pocStep { padding: 12px 0; }
+  .reasons { margin-top: 8px; }
+  .reason { gap: 16px; padding: 20px; }
+  .odd > :last-child { align-items: flex-start; flex-direction: column; }
+  .reasonIcon { border-radius: 12px; height: 40px; width: 40px; }
+  .reasonTitle { font-size: 17px; }
+  .reasonText { font-size: 14.5px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reason { transition: none; }
+  .pocDot { animation: none; }
+}

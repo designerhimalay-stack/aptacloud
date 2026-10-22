@@ -1,0 +1,418 @@
+/* Service hero — the home hero's structure: glow + masked grid, a full-bleed
+   duotone photo keyed to the brand dark (left under the copy, bottom under the
+   ticker, a soft top fade under the nav), copy | floating glass chips, ticker.
+   Shorter than the home hero so the next section stays one scroll away. */
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: min(860px, 94vh);
+  overflow: clip;
+  padding: 148px 0 0;
+  position: relative;
+  width: 100%;
+}
+
+.glow {
+  background: radial-gradient(54% 46% at 12% 30%, rgba(var(--accent-rgb), 0.2) 0%, rgba(var(--accent-rgb), 0) 70%);
+  filter: blur(90px);
+  height: 80%;
+  inset: 0 0 auto;
+  pointer-events: none;
+  position: absolute;
+  z-index: 0;
+}
+
+.grid {
+  height: 1080px;
+  left: 50%;
+  mask: radial-gradient(43.75% 50% at 50% 33.3%, #000 0%, transparent 78%);
+  -webkit-mask: radial-gradient(43.75% 50% at 50% 33.3%, #000 0%, transparent 78%);
+  opacity: 0.24;
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  transform: translateX(-62%);
+  width: 1920px;
+  z-index: 0;
+}
+
+.gridImg {
+  height: 100%;
+  inset: 0;
+  object-fit: cover;
+  position: absolute;
+  width: 100%;
+}
+
+/* Full-bleed photo layer (as home). */
+.backdrop {
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+  z-index: 1;
+}
+
+.bgPhoto {
+  height: 100%;
+  inset: 0;
+  position: absolute !important;
+  width: 100%;
+}
+
+.fade {
+  background:
+    linear-gradient(90deg, var(--brand-dark) 0%, color-mix(in srgb, var(--brand-dark) 94%, transparent) 30%, color-mix(in srgb, var(--brand-dark) 45%, transparent) 56%, color-mix(in srgb, var(--brand-dark) 0%, transparent) 78%),
+    linear-gradient(180deg, color-mix(in srgb, var(--brand-dark) 65%, transparent) 0%, color-mix(in srgb, var(--brand-dark) 0%, transparent) 28%, color-mix(in srgb, var(--brand-dark) 0%, transparent) 68%, var(--brand-dark) 100%);
+  inset: 0;
+  position: absolute;
+}
+
+.inner {
+  align-items: center;
+  display: grid;
+  flex: 1;
+  gap: 64px;
+  grid-template-columns: minmax(0, 1.18fr) minmax(0, 0.82fr);
+  margin: 0 auto;
+  max-width: 1296px;
+  padding: 0 60px 72px;
+  position: relative;
+  width: 100%;
+  z-index: 2;
+}
+
+/* ── Copy ───────────────────────────────────────────────────────────── */
+.copy {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+}
+
+.crumbs {
+  align-items: center;
+  color: var(--fg-subtle);
+  display: flex;
+  flex-wrap: wrap;
+  font-family: var(--ff-inter);
+  font-size: 13px;
+  font-weight: 600;
+  gap: 8px;
+  letter-spacing: -0.01em;
+  list-style: none;
+  margin: 0 0 22px;
+  padding: 0;
+}
+
+.crumbs a {
+  transition: color 0.3s var(--ease-out-quint);
+}
+
+.crumbs a:hover {
+  color: var(--fg);
+}
+
+.crumbNow {
+  color: var(--fg-soft);
+}
+
+.pill {
+  margin-bottom: 20px;
+}
+
+.title {
+  font-size: 64px;
+  margin: 0;
+  max-width: 680px;
+  text-wrap: balance;
+}
+
+.lead {
+  margin: 22px 0 0;
+  max-width: 560px;
+  text-wrap: pretty;
+}
+
+.actions {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 18px;
+  margin-top: 30px;
+}
+
+.textLink {
+  align-items: center;
+  color: var(--fg-soft);
+  display: inline-flex;
+  font-size: 16px;
+  font-weight: 500;
+  gap: 6px;
+  letter-spacing: -0.02em;
+  padding: 0 4px;
+  text-decoration: underline;
+  text-decoration-color: var(--line-strong);
+  text-underline-offset: 6px;
+  transition: color 0.35s var(--ease-out-quint), text-decoration-color 0.35s var(--ease-out-quint);
+  white-space: nowrap;
+}
+
+.textLink svg {
+  height: 14px;
+  transition: transform 0.45s var(--ease-out-expo);
+  width: 14px;
+}
+
+.textLink:hover {
+  color: var(--fg);
+  text-decoration-color: var(--accent);
+}
+
+.textLink:hover svg {
+  transform: rotate(45deg);
+}
+
+.textLink:focus-visible {
+  border-radius: 4px;
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+
+.creds {
+  align-items: center;
+  border-top: 1px solid var(--line);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 22px;
+  margin-top: 36px;
+  padding-top: 18px;
+  width: 100%;
+}
+
+.cred {
+  align-items: center;
+  color: var(--fg-muted);
+  display: inline-flex;
+  font-family: var(--ff-inter);
+  font-size: 13px;
+  font-weight: 600;
+  gap: 8px;
+  letter-spacing: -0.01em;
+}
+
+.cred + .cred::before {
+  background: var(--line-strong);
+  border-radius: 50%;
+  content: "";
+  height: 3px;
+  margin-right: 14px;
+  width: 3px;
+}
+
+/* ── Visual: chips floating over the photo (as the home AgentConsole) ── */
+.visual {
+  align-self: stretch;
+  min-height: 420px;
+  position: relative;
+}
+
+.stage {
+  --px: 0;
+  --py: 0;
+  inset: 0;
+  position: absolute;
+}
+
+/* One glass console, bottom-right over the photo (home HUD language). */
+.console {
+  -webkit-backdrop-filter: blur(18px) saturate(1.15);
+  backdrop-filter: blur(18px) saturate(1.15);
+  background: color-mix(in srgb, var(--brand-dark) 62%, transparent);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 20px;
+  bottom: 28px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 30px 70px -20px rgba(0, 0, 0, 0.8);
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  right: 0;
+  translate: calc(var(--px) * var(--depth, 8px)) calc(var(--py) * var(--depth, 8px));
+  width: min(340px, 100%);
+  z-index: 2;
+}
+
+.consoleHead {
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+  padding: 14px 14px 14px 18px;
+}
+
+.consoleTitle {
+  align-items: center;
+  color: var(--fg);
+  display: flex;
+  font-size: 14.5px;
+  font-weight: 600;
+  gap: 10px;
+  letter-spacing: -0.025em;
+  margin: 0;
+}
+
+/* logos as overlapping white tiles */
+.marks {
+  display: flex;
+}
+
+.markTile {
+  align-items: center;
+  background: #ffffff;
+  border-radius: 9px;
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--brand-dark) 80%, transparent);
+  color: var(--brand-ink);
+  display: inline-flex;
+  height: 30px;
+  justify-content: center;
+  margin-left: -4px;
+  width: 30px;
+}
+
+.markTile:first-child {
+  margin-left: 0;
+}
+
+.consoleList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  list-style: none;
+  margin: 0;
+  padding: 16px 18px;
+}
+
+.consoleList li {
+  align-items: center;
+  color: var(--fg-soft);
+  display: flex;
+  font-size: 14px;
+  font-weight: 500;
+  gap: 12px;
+  letter-spacing: -0.02em;
+}
+
+.tick {
+  align-items: center;
+  background: rgba(var(--accent-rgb), 0.16);
+  border-radius: 50%;
+  color: var(--accent);
+  display: inline-flex;
+  flex: none;
+  height: 22px;
+  justify-content: center;
+  width: 22px;
+}
+
+.tick svg {
+  height: 12px;
+  width: 12px;
+}
+
+.consoleFoot {
+  align-items: center;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 0 0 20px 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--fg-subtle);
+  display: flex;
+  font-size: 12px;
+  font-weight: 500;
+  gap: 10px;
+  justify-content: space-between;
+  letter-spacing: -0.01em;
+  margin: 0;
+  padding: 11px 18px;
+}
+
+.consoleFoot > span:first-child {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.status {
+  align-items: center;
+  color: var(--fg-muted);
+  display: inline-flex;
+  flex: none;
+  font-weight: 600;
+  gap: 6px;
+}
+
+.status i {
+  background: var(--fg-soft);
+  border-radius: 50%;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.12);
+  height: 6px;
+  width: 6px;
+}
+
+/* ── Ticker ─────────────────────────────────────────────────────────── */
+.ticker {
+  border-block: 1px solid var(--line);
+  mask: linear-gradient(90deg, transparent 0%, #000 6%, #000 94%, transparent 100%);
+  -webkit-mask: linear-gradient(90deg, transparent 0%, #000 6%, #000 94%, transparent 100%);
+  padding: 15px 0;
+  position: relative;
+  z-index: 2;
+}
+
+.tickerItem {
+  color: var(--fg-muted);
+  margin: 0;
+  white-space: nowrap;
+}
+
+/* ── Breakpoints ────────────────────────────────────────────────────── */
+@media (min-width: 1600px) {
+  .inner { padding: 0 72px 80px; }
+}
+
+/* Below 1200 the copy sits over the photo: darken evenly (as home), keep the
+   bottom key, and the chips line up under the copy. */
+@media (max-width: 1199.98px) {
+  .fade {
+    background: linear-gradient(180deg, color-mix(in srgb, var(--brand-dark) 88%, transparent) 0%, color-mix(in srgb, var(--brand-dark) 78%, transparent) 45%, color-mix(in srgb, var(--brand-dark) 55%, transparent) 70%, var(--brand-dark) 100%);
+  }
+  .hero { min-height: 0; padding-top: 132px; }
+  .inner { gap: 36px; grid-template-columns: minmax(0, 1fr); padding: 0 40.5px 56px; }
+  .title { font-size: 54px; }
+  .visual { min-height: 0; }
+  .stage { position: static; }
+  .console { position: static; translate: none; width: min(420px, 100%); }
+}
+
+@media (max-width: 809.98px) {
+  .hero { padding-top: 112px; }
+  .inner { gap: 28px; padding: 0 19.5px 44px; }
+  .crumbs { font-size: 12px; margin-bottom: 18px; }
+  .pill { margin-bottom: 16px; }
+  .title { font-size: 40px; }
+  .lead { font-size: 16.5px; margin-top: 18px; }
+  .actions { align-items: stretch; flex-direction: column; margin-top: 26px; width: 100%; }
+  .actions > a:first-child { width: 100%; }
+  .textLink { align-self: center; padding: 6px 0; }
+  .creds { align-items: flex-start; flex-direction: column; gap: 8px; margin-top: 26px; }
+  .cred + .cred::before { display: none; }
+  .cred + .cred { padding-left: 14px; }
+  .console { width: 100%; }
+}
+
+@media (max-width: 389.98px) {
+  .inner { padding: 0 18px 40px; }
+  .title { font-size: 36px; }
+}
