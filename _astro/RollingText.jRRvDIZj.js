@@ -1,1 +1,0 @@
-import{n as e,t}from"./utils.gKawoZAg.js";var n={roll:`_roll_1jjed_1`,ch:`_ch_1jjed_11`},r=e();function i({text:e,className:i}){return(0,r.jsx)(`span`,{className:t(n.roll,i),"aria-label":e,children:[...e].map((e,t)=>(0,r.jsx)(`span`,{"aria-hidden":`true`,className:n.ch,style:{transitionDelay:`${t*.018}s`},children:e===` `?`\xA0`:e},t))})}export{i as t};
