@@ -1,0 +1,97 @@
+/* Banner: sits in the previous section's tone with no top padding (it reads as
+   part of that section's close). Dark panel, radius 32, 8px inner frame for the photo. */
+
+.section {
+  padding-top: 0 !important;
+}
+
+.panel {
+  background: var(--brand-dark);
+  border-radius: 32px;
+  display: grid;
+  gap: 8px;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  min-height: 340px;
+  overflow: hidden;
+  padding: 8px;
+}
+
+/* On dark sections the panel lifts off the background instead. */
+section:not([data-theme]) .panel {
+  background: var(--surface-1);
+}
+
+.copy {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 40px 40px 40px 44px;
+}
+
+.eyebrow {
+  align-items: center;
+  color: var(--fg-muted);
+  display: inline-flex;
+  font-size: 13px;
+  font-weight: 600;
+  gap: 10px;
+  letter-spacing: -0.01em;
+  margin: 0 0 18px;
+}
+
+.heading {
+  color: var(--fg);
+  font-family: var(--ff-inter);
+  font-size: 38px;
+  font-weight: 600;
+  letter-spacing: -0.05em;
+  line-height: 1.12;
+  margin: 0;
+  max-width: 520px;
+  text-wrap: balance;
+}
+
+.text {
+  color: var(--fg-muted);
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  line-height: 1.45;
+  margin: 16px 0 0;
+  max-width: 460px;
+  text-wrap: pretty;
+}
+
+.actions {
+  margin-top: 28px;
+}
+
+.media {
+  border-radius: 24px;
+  min-height: 260px;
+  overflow: hidden;
+  position: relative;
+}
+
+.photo {
+  height: 100%;
+  inset: 0;
+  position: absolute !important;
+  width: 100%;
+}
+
+@media (min-width: 810px) and (max-width: 1199.98px) {
+  .copy { padding: 32px; }
+  .heading { font-size: 32px; }
+}
+
+@media (max-width: 809.98px) {
+  .panel { border-radius: 26px; grid-template-columns: minmax(0, 1fr); }
+  .media { min-height: 160px; order: -1; border-radius: 20px; }
+  .copy { padding: 20px 14px 16px; }
+  .heading { font-size: 24px; }
+  .text { font-size: 15px; }
+  .actions { margin-top: 22px; width: 100%; }
+  .actions > a { width: 100%; }
+}

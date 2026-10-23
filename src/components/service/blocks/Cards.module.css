@@ -1,0 +1,517 @@
+/* Card styles beyond the shared shell (Blocks.module.css). */
+
+.ctaCenter {
+  justify-content: center;
+}
+
+/* Centred flex grid: equal widths, a short last row sits in the middle. */
+.flex {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+
+.flexCell {
+  display: flex;
+  flex: 0 0 calc((100% - 8px * (var(--cols) - 1)) / var(--cols));
+}
+
+.flexCell > * {
+  width: 100%;
+}
+
+/* centered: icon ring on top, everything centred. */
+.centered {
+  align-items: center;
+  gap: 14px;
+  padding: 32px 26px 30px;
+  text-align: center;
+}
+
+.ring {
+  align-items: center;
+  background: rgba(var(--accent-rgb), 0.1);
+  border-radius: 50%;
+  box-shadow: 0 0 0 8px rgba(var(--accent-rgb), 0.05);
+  color: var(--accent);
+  display: inline-flex;
+  height: 60px;
+  justify-content: center;
+  margin-bottom: 10px;
+  transition: background-color 0.45s var(--ease-out-quint), color 0.45s var(--ease-out-quint), box-shadow 0.6s var(--ease-out-expo);
+  width: 60px;
+}
+
+.ring svg {
+  height: 26px;
+  width: 26px;
+}
+
+.centered:hover .ring {
+  background: var(--accent);
+  box-shadow: 0 0 0 12px rgba(var(--accent-rgb), 0.1);
+  color: #ffffff;
+}
+
+/* plain: index, title, text. */
+.plain {
+  gap: 10px;
+  padding: 26px 26px 28px;
+}
+
+.plainNo {
+  color: var(--accent);
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin-bottom: 18px;
+}
+
+/* chip: small pills in a centred row. */
+.chips {
+  gap: 8px;
+}
+
+.chips .flexCell {
+  flex: 0 1 auto;
+}
+
+.chip {
+  align-items: center;
+  background: var(--card);
+  border-radius: 999px;
+  display: inline-flex;
+  gap: 12px;
+  padding: 10px 22px 10px 10px;
+  transition: box-shadow 0.5s var(--ease-out-quint), transform 0.6s var(--ease-out-expo);
+}
+
+.chip:hover {
+  box-shadow: 0 18px 36px -26px rgba(10, 10, 10, 0.35);
+  transform: translateY(-2px);
+}
+
+.chipIcon {
+  align-items: center;
+  background: rgba(var(--accent-rgb), 0.1);
+  border-radius: 50%;
+  color: var(--accent);
+  display: inline-flex;
+  flex: none;
+  height: 40px;
+  justify-content: center;
+  width: 40px;
+}
+
+.chipIcon svg {
+  height: 19px;
+  width: 19px;
+}
+
+.chipTitle {
+  color: var(--fg);
+  font-family: var(--ff-inter);
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  margin: 0;
+}
+
+/* photo: photo on top in an 8px frame, copy below. */
+.photoCard {
+  background: var(--card);
+  border-radius: 24px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 8px;
+}
+
+.photoWrap {
+  border-radius: 18px;
+  height: 220px;
+  overflow: hidden;
+  position: relative;
+}
+
+.photo {
+  height: 100%;
+  width: 100%;
+}
+
+.photoBody {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 18px 16px 16px;
+}
+
+.photoPoints {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  list-style: none;
+  margin: 8px 0 0;
+  padding: 0;
+}
+
+.photoPoints li {
+  align-items: center;
+  color: var(--fg-soft);
+  display: flex;
+  font-size: 14.5px;
+  font-weight: 500;
+  gap: 10px;
+  letter-spacing: -0.02em;
+}
+
+.tickSm {
+  align-items: center;
+  background: rgba(var(--accent-rgb), 0.12);
+  border-radius: 50%;
+  color: var(--accent);
+  display: inline-flex;
+  flex: none;
+  height: 20px;
+  justify-content: center;
+  width: 20px;
+}
+
+.tickSm svg {
+  height: 11px;
+  width: 11px;
+}
+
+.note {
+  color: var(--fg-soft);
+  font-size: 17px;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1.5;
+  margin: 0 auto;
+  max-width: 760px;
+  text-align: center;
+  text-wrap: balance;
+}
+
+@media (min-width: 810px) and (max-width: 1199.98px) {
+  .flexCell { flex-basis: calc((100% - 8px) / 2); }
+  .chips .flexCell { flex-basis: auto; }
+}
+
+@media (max-width: 809.98px) {
+  .flex:not(.chips) { flex-wrap: nowrap; justify-content: flex-start; }
+  /* Rails: each card takes most of the screen, the next peeks in. */
+  .flex:not(.chips) > .flexCell { flex: 0 0 84%; }
+  .chips .flexCell { flex: 1 1 100%; }
+  .chip { width: 100%; }
+  /* Phones: every card reads from the same left edge as the section head. */
+  .centered { align-items: flex-start; gap: 10px; padding: 20px 18px; text-align: left; }
+  .ring { box-shadow: none; height: 44px; margin-bottom: 4px; width: 44px; }
+  .ring svg { height: 20px; width: 20px; }
+  .photoWrap { height: 150px; }
+  .note { font-size: 15px; margin: 0; text-align: left; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ring, .chip { transition: none; }
+  .chip:hover { transform: none; }
+}
+
+/* Intro copy under the head as icon points (side by side), not loose paragraphs. */
+.points {
+  display: grid;
+  gap: 8px;
+  grid-auto-columns: minmax(0, 1fr);
+  grid-auto-flow: column;
+}
+
+.point {
+  align-items: flex-start;
+  background: var(--card);
+  border-radius: 20px;
+  display: flex;
+  gap: 16px;
+  padding: 18px 20px;
+}
+
+.pointIcon {
+  align-items: center;
+  background: rgba(var(--accent-rgb), 0.1);
+  border-radius: 12px;
+  color: var(--accent);
+  display: inline-flex;
+  flex: none;
+  height: 40px;
+  justify-content: center;
+  width: 40px;
+}
+
+.pointIcon svg {
+  height: 19px;
+  width: 19px;
+}
+
+.pointText {
+  color: var(--fg-soft);
+  font-size: 15.5px;
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  line-height: 1.45;
+  margin: 0;
+  padding-top: 1px;
+}
+
+@media (max-width: 809.98px) {
+  .points { grid-auto-flow: row; }
+  .point { padding: 14px 16px; }
+  .pointText { font-size: 14.5px; }
+}
+
+/* statement: the buyer's words, larger, with a soft index. */
+/* The buyer's words, set like a pull quote: accent quote mark, large text,
+   the index tucked in the top corner. Compact, no dead space. */
+.statement {
+  gap: 22px;
+  min-height: 0;
+  padding: 26px 26px 28px;
+}
+
+.statement:hover .statementTitle {
+  color: var(--fg);
+}
+
+.statementTop {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.index {
+  color: var(--fg-subtle);
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.statementTitle {
+  color: var(--fg-soft);
+  font-family: var(--ff-inter);
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.045em;
+  line-height: 1.3;
+  margin: 0;
+  text-wrap: balance;
+  transition: color 0.4s var(--ease-out-quint);
+}
+
+.quoteMark {
+  color: var(--accent);
+  height: 22px;
+  width: 30px;
+}
+
+/* check: compact rows with a tick. */
+.check {
+  align-items: flex-start;
+  flex-direction: row;
+  gap: 16px;
+  padding: 22px 24px;
+}
+
+.tick {
+  align-items: center;
+  background: rgba(var(--accent-rgb), 0.12);
+  border-radius: 50%;
+  color: var(--accent);
+  display: inline-flex;
+  flex: none;
+  height: 30px;
+  justify-content: center;
+  transition: background-color 0.45s var(--ease-out-quint), color 0.45s var(--ease-out-quint);
+  width: 30px;
+}
+
+.tick svg {
+  height: 15px;
+  width: 15px;
+}
+
+.check:hover .tick {
+  background: var(--accent);
+  color: #ffffff;
+}
+
+.checkTitle {
+  font-size: 18px;
+  padding-top: 3px;
+}
+
+/* outcomes (check style): head 5/12 | numbered rows 7/12. Each row is a
+   card: accent index, the outcome in large type, a tick that fills on hover. */
+.outcomes {
+  align-items: start;
+  display: grid;
+  gap: 56px;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+}
+
+.outHead {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  position: sticky;
+  top: 110px;
+}
+
+.outList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.outRow {
+  align-items: center;
+  background: var(--card);
+  border-radius: 24px;
+  display: grid;
+  gap: 24px;
+  grid-template-columns: auto 1fr auto;
+  padding: 30px 30px 30px 28px;
+  transition: box-shadow 0.5s var(--ease-out-quint), transform 0.6s var(--ease-out-expo);
+}
+
+.outRow:hover {
+  box-shadow: 0 24px 48px -30px rgba(10, 10, 10, 0.35);
+  transform: translateX(6px);
+}
+
+.outNo {
+  color: var(--accent);
+  font-size: 15px;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.outTitle {
+  color: var(--fg);
+  font-family: var(--ff-inter);
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: -0.05em;
+  line-height: 1.2;
+  margin: 0;
+  text-wrap: balance;
+}
+
+.outTick {
+  align-items: center;
+  background: rgba(var(--accent-rgb), 0.1);
+  border-radius: 50%;
+  color: var(--accent);
+  display: inline-flex;
+  height: 44px;
+  justify-content: center;
+  transition: background-color 0.45s var(--ease-out-quint), color 0.45s var(--ease-out-quint);
+  width: 44px;
+}
+
+.outTick svg {
+  height: 18px;
+  width: 18px;
+}
+
+.outRow:hover .outTick {
+  background: var(--accent);
+  color: #ffffff;
+}
+
+@media (max-width: 1199.98px) {
+  .outcomes { gap: 32px; grid-template-columns: minmax(0, 1fr); }
+  .outHead { position: static; }
+}
+
+@media (max-width: 809.98px) {
+  .outRow { gap: 14px; padding: 20px 18px; }
+  .outRow:hover { transform: none; }
+  .outTitle { font-size: 19px; }
+  .outTick { height: 34px; width: 34px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .outRow, .outTick { transition: none; }
+  .outRow:hover { transform: none; }
+}
+
+/* more: a compact second row (e.g. further frameworks). */
+.more {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.moreHeading {
+  color: var(--fg-muted);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  margin: 0;
+}
+
+.mini {
+  border-radius: 20px;
+  box-shadow: inset 0 0 0 1px var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  height: 100%;
+  padding: 18px 18px 20px;
+  transition: background-color 0.45s var(--ease-out-quint);
+}
+
+.mini:hover {
+  background: var(--card);
+}
+
+.miniTitle {
+  color: var(--fg);
+  font-family: var(--ff-inter);
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  margin: 0;
+}
+
+.miniText {
+  color: var(--fg-muted);
+  font-size: 13.5px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.42;
+  margin: 0;
+}
+
+@media (min-width: 810px) and (max-width: 1199.98px) {
+  .moreGrid > * { grid-column: span 20; }
+}
+
+@media (max-width: 809.98px) {
+  .statement { gap: 24px; min-height: 0; }
+  .statementTitle { font-size: 18.5px; }
+  .check { padding: 18px; }
+  .checkTitle { font-size: 16.5px; }
+  .moreGrid > * { grid-column: span 30; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tick, .mini { transition: none; }
+}

@@ -1,0 +1,62 @@
+/* Client marquee: white plates 220 × 104, radius 22; logos greyscale until hover. */
+
+.section {
+  overflow: hidden;
+}
+
+.ticker {
+  margin-top: 48px;
+  mask: linear-gradient(90deg, transparent 0%, #000 8%, #000 92%, transparent 100%);
+  -webkit-mask: linear-gradient(90deg, transparent 0%, #000 8%, #000 92%, transparent 100%);
+}
+
+.plate {
+  align-items: center;
+  background: #ffffff;
+  border-radius: 22px;
+  box-shadow: inset 0 0 0 1px rgba(10, 10, 10, 0.06);
+  display: inline-flex;
+  height: 104px;
+  justify-content: center;
+  padding: 18px 28px;
+  width: 220px;
+}
+
+.logo {
+  filter: grayscale(1);
+  max-height: 56px;
+  max-width: 100%;
+  object-fit: contain;
+  opacity: 0.75;
+  transition: filter 0.5s var(--ease-out-quint), opacity 0.5s var(--ease-out-quint);
+}
+
+.plate:hover .logo {
+  filter: none;
+  opacity: 1;
+}
+
+/* grid: the live "Brands that trust us" tile grid, centred rows. */
+.grid {
+  flex-direction: row !important;
+  flex-wrap: wrap;
+  gap: 8px !important;
+  justify-content: center;
+  margin-top: 48px;
+}
+
+.gridCell {
+  display: flex;
+}
+
+.grid .plate {
+  width: 224px;
+}
+
+@media (max-width: 809.98px) {
+  .grid { margin-top: 28px; gap: 6px !important; }
+  .grid .plate { width: calc((100vw - 32px - 6px) / 2); }
+  .ticker { margin-top: 28px; }
+  .plate { border-radius: 18px; height: 80px; padding: 14px 20px; width: 168px; }
+  .logo { max-height: 44px; }
+}

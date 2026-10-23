@@ -1,0 +1,145 @@
+/* Index: sticky head 4/12 | rows 8/12. */
+
+.layout {
+  align-items: start;
+  display: grid;
+  gap: 56px;
+  grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
+}
+
+.head {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  position: sticky;
+  top: 110px;
+}
+
+.count {
+  color: var(--fg-muted);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin: 10px 0 0;
+}
+
+.count span {
+  color: var(--fg);
+  font-family: var(--ff-inter);
+  font-size: 56px;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  letter-spacing: -0.065em;
+  line-height: 1;
+  margin-right: 8px;
+}
+
+.list {
+  border-top: 1px solid var(--line);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.row {
+  border-bottom: 1px solid var(--line);
+  display: grid;
+  gap: 24px;
+  grid-template-columns: 56px minmax(0, 1fr);
+  padding: 28px 0;
+  transition: transform 0.6s var(--ease-out-expo);
+}
+
+.row:hover {
+  transform: translateX(6px);
+}
+
+.no {
+  color: var(--fg-subtle);
+  font-size: 15px;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  padding-top: 4px;
+  transition: color 0.4s var(--ease-out-quint);
+}
+
+.row:hover .no {
+  color: var(--accent);
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.title {
+  color: var(--fg);
+  font-family: var(--ff-inter);
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.045em;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.text {
+  color: var(--fg-muted);
+  font-size: 15.5px;
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  line-height: 1.5;
+  margin: 0;
+  max-width: 640px;
+}
+
+.pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  list-style: none;
+  margin: 6px 0 0;
+  padding: 0;
+}
+
+.pills li {
+  background: var(--card);
+  border-radius: 999px;
+  color: var(--fg-soft);
+  font-size: 13.5px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  padding: 7px 13px;
+}
+
+@media (max-width: 1199.98px) {
+  .layout { gap: 32px; grid-template-columns: minmax(0, 1fr); }
+  .head { position: static; }
+  .count { display: none; }
+}
+
+/* Phone: a swipe rail (sec.rail); each row becomes a card. The layout gap
+   is the container's, so the rail hint sits like every other rail's. */
+@media (max-width: 809.98px) {
+  .layout { gap: 28px; }
+  .list { border-top: 0; }
+  .row {
+    background: var(--card);
+    border-bottom: 0;
+    border-radius: 20px;
+    gap: 10px;
+    grid-template-columns: minmax(0, 1fr);
+    padding: 18px;
+  }
+  .row:hover { transform: none; }
+  .no { color: var(--accent); font-size: 13px; padding-top: 0; }
+  .title { font-size: 18px; }
+  .text { font-size: 14px; }
+  .pills li { background: var(--bg); font-size: 12.5px; padding: 6px 11px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .row, .no { transition: none; }
+  .row:hover { transform: none; }
+}

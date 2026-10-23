@@ -155,17 +155,18 @@
 }
 
 @media (max-width: 809.98px) {
-  .section { padding: 90px 19.5px; }
+  .section { padding: 64px 16px; }
   .container { gap: 40px; }
   .content { display: flex; flex-direction: column; gap: 24px; }
-  .heading { font-size: 40px; letter-spacing: -0.05em; }
-  .columns { grid-template-columns: minmax(0, 1fr); }
+  .heading { font-size: 28px; letter-spacing: -0.05em; }
+  /* The tool columns become a swipe rail. */
+  .columns { display: flex !important; gap: 8px; margin: 0 -16px; overflow-x: auto; overscroll-behavior-x: contain; padding: 4px 16px 8px; scroll-padding: 0 16px; scroll-snap-type: x mandatory; width: auto; }
+  .columns > * { flex: 0 0 84%; scroll-snap-align: start; }
   .meta { gap: 12px; }
   .metaLabel,
   .counter { font-size: 14.08px; line-height: 18.3px; }
 }
 
 @media (max-width: 389.98px) {
-  .section { padding: 80px 18px; }
-  .heading { font-size: 36px; }
+  .section { padding: 56px 16px; }
 }

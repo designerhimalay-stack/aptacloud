@@ -133,9 +133,9 @@
 }
 
 @media (max-width: 809.98px) {
-  .thumb { height: 190px; }
-  .useCase { font-size: 17.5px; }
-  .outcome { font-size: 14px; }
+  .thumb { height: 148px; }
+  .useCase { font-size: 16.5px; }
+  .outcome { font-size: 13.5px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

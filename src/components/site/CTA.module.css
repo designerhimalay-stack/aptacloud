@@ -457,23 +457,42 @@ a.row:hover .rowArrow {
   .body { display: flex; flex-direction: column-reverse; gap: 8px; }
 }
 
+/* Phone: a compact form first, then the next steps (titles only) and the
+   direct contacts. Inputs stay 16px so iOS does not zoom on focus. */
 @media (max-width: 809.98px) {
   .fields { grid-template-columns: minmax(0, 1fr); }
 
-  .section { padding: 90px 19.5px; }
-  .container { gap: 40px; }
-  .content { display: flex; flex-direction: column; gap: 20px; }
-  .heading { font-size: 36px; letter-spacing: -0.05em; }
+  .section { padding: 72px 16px; }
+  .container { gap: 28px; }
+  .content { display: flex; flex-direction: column; gap: 16px; }
+  .copy { gap: 12px; }
+  .heading { font-size: 30px; letter-spacing: -0.05em; line-height: 1.15; }
+  .lead { font-size: 15px; line-height: 1.4; }
   .body { display: flex; flex-direction: column-reverse; gap: 8px; }
-  .card { padding: 16px; }
-  .form { gap: 24px; }
-  .fields { gap: 12px; }
-  .textarea { height: 180px; }
+  .card { border-radius: 20px; padding: 12px; }
+  .form { gap: 12px; }
+  .fields { gap: 8px; }
+  .input { padding: 13px 18px; }
+  .textarea { border-radius: 20px; height: 112px; min-height: 96px; }
+  .submit { height: 50px; }
+  .status { margin: 0; }
+  .infoCard { border-radius: 20px; gap: 8px; padding: 16px 18px; }
+  .infoTitle { font-size: 16px; }
+  .nextItem { align-items: center; gap: 12px; padding: 9px 0; }
+  .nextNum { border-radius: 8px; font-size: 12px; height: 26px; width: 26px; }
+  .nextTitle { font-size: 14.5px; margin: 0; }
+  .nextText { display: none; }
+  .rows { gap: 0; margin: 0 -8px; }
+  .row { gap: 10px; padding: 5px 8px; }
+  .rowIcon { border-radius: 9px; height: 30px; width: 30px; }
+  .rowIcon svg { height: 16px; width: 16px; }
+  .rowValue { font-size: 14.5px; overflow-wrap: normal; }
+  .rowStatic .rowValue { font-size: 13.5px; padding-top: 5px; }
+  .rowArrow { display: none; }
 }
 
 @media (max-width: 389.98px) {
-  .section { padding: 80px 18px; }
-  .heading { font-size: 32px; }
+  .heading { font-size: 27px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

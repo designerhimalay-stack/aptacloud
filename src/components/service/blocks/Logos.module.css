@@ -1,0 +1,358 @@
+/* Logo wall: tiles wrap and centre; each tile is a white logo plate (so marks
+   keep their colours on any tone) over the tool's name. */
+
+/* Board: Microsoft as a full-width row (copy 4/12 | its tools 8/12), the other
+   groups as equal cards beneath. Cards are var(--card); tool rows inside are
+   var(--bg), so they contrast on any tone. Each mark sits on a white plate, so
+   every logo keeps its colours. */
+.groupLead {
+  align-items: center;
+  background: var(--card);
+  border-radius: 24px;
+  display: grid;
+  gap: 32px;
+  grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
+  padding: 28px;
+}
+
+.leadCopy {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* One child of the section container, so the lead row and the cards sit 8px apart. */
+.board {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.group {
+  background: var(--card);
+  border-radius: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  height: 100%;
+  padding: 24px;
+}
+
+.firstPill {
+  background: rgba(var(--accent-rgb), 0.12);
+  border-radius: 999px;
+  color: var(--accent);
+  font-family: var(--ff-inter);
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin-bottom: 4px;
+  padding: 6px 12px;
+}
+
+.groupTitle {
+  color: var(--fg);
+  font-family: var(--ff-inter);
+  font-size: 19px;
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.groupLead .groupTitle {
+  font-size: 28px;
+  letter-spacing: -0.05em;
+}
+
+.groupText {
+  color: var(--fg-muted);
+  font-size: 14.5px;
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  line-height: 1.45;
+  margin: 0;
+  text-wrap: pretty;
+}
+
+.list,
+.leadList {
+  display: grid;
+  gap: 6px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.list {
+  padding-top: 12px;
+}
+
+/* Wide cards (2 × 2): the tools in two columns, so 3 and 4 tools both take two rows. */
+.listTwo {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.leadList {
+  grid-template-columns: repeat(var(--n), minmax(0, 1fr));
+}
+
+.tool {
+  align-items: center;
+  background: var(--bg);
+  border-radius: 16px;
+  display: flex;
+  gap: 12px;
+  padding: 7px 14px 7px 7px;
+}
+
+.plate {
+  align-items: center;
+  background: #ffffff;
+  border-radius: 11px;
+  box-shadow: inset 0 0 0 1px rgba(10, 10, 10, 0.07);
+  color: var(--brand-ink);
+  display: inline-flex;
+  flex: none;
+  height: 40px;
+  justify-content: center;
+  transition: transform 0.6s var(--ease-out-expo);
+  width: 40px;
+}
+
+.tool:hover .plate {
+  transform: scale(1.07);
+}
+
+/* A little wider than tall: square icons stay 22px, wide wordmarks (IBM) get room. */
+.plateMark {
+  height: 22px !important;
+  width: 30px !important;
+}
+
+.toolName {
+  color: var(--fg);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+}
+
+.toolBig {
+  border-radius: 18px;
+  gap: 16px;
+  padding: 10px 18px 10px 10px;
+}
+
+.toolBig .plate {
+  border-radius: 14px;
+  height: 56px;
+  width: 56px;
+}
+
+.toolBig .plateMark {
+  height: 30px !important;
+  width: 40px !important;
+}
+
+.toolBig .toolName {
+  font-size: 18px;
+  letter-spacing: -0.04em;
+}
+
+@media (max-width: 1199.98px) {
+  .groupLead { gap: 20px; grid-template-columns: minmax(0, 1fr); }
+}
+
+@media (max-width: 809.98px) {
+  .group, .groupLead { border-radius: 20px; padding: 20px; }
+  .groupLead .groupTitle { font-size: 23px; }
+  .leadList, .listTwo { grid-template-columns: minmax(0, 1fr); }
+  .toolBig { padding: 8px 14px 8px 8px; }
+  .toolBig .plate { height: 46px; width: 46px; }
+  .toolBig .plateMark { height: 25px !important; width: 34px !important; }
+  .toolBig .toolName { font-size: 16px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .plate { transition: none; }
+}
+
+/* Split wall: copy 5/12 | logo grid 7/12 (4 columns). */
+.split {
+  align-items: stretch;
+  display: grid;
+  gap: 56px;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+}
+
+.side {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.points {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 10px;
+  width: 100%;
+}
+
+.point {
+  align-items: flex-start;
+  background: var(--card);
+  border-radius: 20px;
+  display: flex;
+  gap: 16px;
+  padding: 18px 20px;
+}
+
+.pointIcon {
+  align-items: center;
+  background: rgba(var(--accent-rgb), 0.1);
+  border-radius: 12px;
+  color: var(--accent);
+  display: inline-flex;
+  flex: none;
+  height: 40px;
+  justify-content: center;
+  width: 40px;
+}
+
+.pointIcon svg {
+  height: 19px;
+  width: 19px;
+}
+
+.pointText {
+  color: var(--fg-soft);
+  font-size: 15.5px;
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  line-height: 1.45;
+  margin: 0;
+  padding-top: 1px;
+}
+
+/* The grid fills the copy column's height, so there is no gap under it. */
+.grid {
+  display: grid;
+  gap: 8px;
+  grid-auto-rows: 1fr;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.gridCell {
+  display: flex;
+}
+
+.gridCell > * {
+  width: 100%;
+}
+
+.grid .tile {
+  justify-content: center;
+  padding: 26px 12px 20px;
+}
+
+@media (max-width: 1199.98px) {
+  .split { gap: 36px; grid-template-columns: minmax(0, 1fr); }
+  .grid { grid-auto-rows: auto; }
+}
+
+@media (max-width: 809.98px) {
+  .grid { gap: 6px; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .point { padding: 14px 16px; }
+  .pointText { font-size: 14.5px; }
+}
+
+.wall {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.wall {
+  margin: 0 auto;
+  max-width: calc(var(--per) * 200px + (var(--per) - 1) * 8px);
+  width: 100%;
+}
+
+.cell {
+  flex: 0 0 calc((100% - 8px * (var(--per) - 1)) / var(--per));
+}
+
+.tile {
+  align-items: center;
+  background: var(--card);
+  border-radius: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  height: 100%;
+  padding: 22px 12px 18px;
+  transition: box-shadow 0.5s var(--ease-out-quint), transform 0.6s var(--ease-out-expo);
+}
+
+.tile:hover {
+  box-shadow: 0 24px 48px -30px rgba(10, 10, 10, 0.35);
+  transform: translateY(-4px);
+}
+
+.logo {
+  align-items: center;
+  background: #ffffff;
+  border-radius: 18px;
+  box-shadow: inset 0 0 0 1px rgba(10, 10, 10, 0.06);
+  color: var(--brand-ink);
+  display: inline-flex;
+  height: 64px;
+  justify-content: center;
+  transition: transform 0.6s var(--ease-out-expo);
+  width: 64px;
+}
+
+.tile:hover .logo {
+  transform: scale(1.06);
+}
+
+.mark {
+  height: 32px !important;
+  width: 32px !important;
+}
+
+.name {
+  color: var(--fg);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.25;
+  text-align: center;
+}
+
+@media (min-width: 810px) and (max-width: 1199.98px) {
+  .cell { flex-basis: calc((100% - 8px * 3) / 4); }
+}
+
+@media (max-width: 809.98px) {
+  .cell { flex-basis: calc((100% - 6px * 2) / 3); }
+  .wall { gap: 6px; }
+  .tile { border-radius: 18px; gap: 10px; padding: 14px 6px 12px; }
+  .tile:hover { transform: none; }
+  .logo { border-radius: 14px; height: 48px; width: 48px; }
+  .mark { height: 24px !important; width: 24px !important; }
+  .name { font-size: 12px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tile, .logo { transition: none; }
+  .tile:hover { transform: none; }
+}

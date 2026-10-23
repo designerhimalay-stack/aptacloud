@@ -1,0 +1,143 @@
+/* Stats band: dark (continues the hero), intro | figures, hairline dividers.
+   Figures 72px Inter 600 with an accent suffix; a 32px accent line draws in. */
+
+.section {
+  background: var(--brand-dark);
+  color: #ffffff;
+  padding: 0 60px;
+  width: 100%;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) repeat(3, minmax(0, 1fr));
+  margin: 0 auto;
+  max-width: 1176px;
+}
+
+.intro,
+.stat {
+  display: flex;
+  flex-direction: column;
+  padding: 48px 0 52px;
+}
+
+.intro {
+  gap: 12px;
+  justify-content: center;
+  padding-right: 32px;
+}
+
+.label {
+  align-items: center;
+  color: #ffffff;
+  display: inline-flex;
+  font-size: 14px;
+  font-weight: 600;
+  gap: 10px;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.introText {
+  color: rgba(255, 255, 255, 0.58);
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  line-height: 1.45;
+  margin: 0;
+  max-width: 240px;
+}
+
+.stat {
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+  padding-left: 36px;
+}
+
+.figure {
+  display: flex;
+  font-family: var(--ff-inter);
+  font-size: 72px;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  letter-spacing: -0.07em;
+  line-height: 0.95;
+  margin: 0;
+}
+
+.suffix {
+  color: var(--accent);
+  margin-left: 2px;
+}
+
+.line {
+  background: var(--accent);
+  height: 2px;
+  margin: 20px 0 14px;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 1.2s var(--ease-out-expo);
+  transition-delay: calc(var(--i) * 0.15s + 0.3s);
+  width: 32px;
+}
+
+.on .line {
+  transform: scaleX(1);
+}
+
+.statLabel {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  margin: 0;
+}
+
+/* Stack ribbon along the bottom (moved here from the hero), full bleed. */
+.ribbon {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin: 0 -60px;
+  mask: linear-gradient(90deg, transparent 0%, #000 6%, #000 94%, transparent 100%);
+  -webkit-mask: linear-gradient(90deg, transparent 0%, #000 6%, #000 94%, transparent 100%);
+  padding: 15px 0;
+}
+
+.ribbonItem {
+  color: rgba(255, 255, 255, 0.62);
+  font-size: 12.5px !important;
+  margin: 0;
+  white-space: nowrap;
+}
+
+@media (min-width: 1600px) {
+  .ribbon { margin: 0 -72px; }
+  .section { padding: 0 72px; }
+}
+
+@media (min-width: 810px) and (max-width: 1199.98px) {
+  .section { padding: 0 40.5px; }
+  .ribbon { margin: 0 -40.5px; }
+  .row { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .intro { grid-column: 1 / -1; padding: 36px 0 0; }
+  .stat:nth-child(2) { border-left: 0; padding-left: 0; }
+  .figure { font-size: 60px; }
+}
+
+/* Phone: three figures across; they scale with the screen so "200+" and
+   "300+" never touch on the narrowest phones (32px at 320). */
+@media (max-width: 809.98px) {
+  .section { padding: 0 16px; }
+  .ribbon { margin: 0 -16px; padding: 12px 0; }
+  .row { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .intro { grid-column: 1 / -1; padding: 24px 0 0; gap: 6px; }
+  .introText { max-width: none; font-size: 14px; }
+  .stat { padding: 16px 0 24px 12px; }
+  .stat:nth-child(2) { border-left: 0; padding-left: 0; }
+  .figure { font-size: clamp(30px, 10vw, 40px); }
+  .line { margin: 10px 0 8px; width: 20px; }
+  .statLabel { font-size: 12.5px; line-height: 1.3; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .line { transform: none; transition: none; }
+}

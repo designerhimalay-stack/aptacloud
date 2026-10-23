@@ -156,11 +156,11 @@
     -ms-overflow-style: none;
     display: flex !important;
     gap: 8px;
-    margin: 0 -19.5px;
+    margin: 0 -16px;
     overflow-x: auto;
     overscroll-behavior-x: contain;
-    padding: 4px 19.5px 8px;
-    scroll-padding: 0 19.5px;
+    padding: 4px 16px 8px;
+    scroll-padding: 0 16px;
     scroll-snap-type: x mandatory;
     scrollbar-width: none;
   }
@@ -207,16 +207,19 @@
   .heading { font-size: 38px; }
 }
 
+/* Phone: 16px gutter, tighter rhythm so long pages scroll less. */
 @media (max-width: 809.98px) {
-  .section { padding: 76px 19.5px; }
-  .container { gap: 32px; }
-  .head { display: flex; flex-direction: column; gap: 16px; }
-  .copy { gap: 12px; }
-  .heading { font-size: 30px; letter-spacing: -0.05em; line-height: 1.15; }
+  .section { padding: 56px 16px; }
+  .container { gap: 28px; }
+  .head { display: flex; flex-direction: column; gap: 14px; }
+  /* Centred heads align left on phones, like every other section. */
+  .headCenter { align-items: flex-start; gap: 14px; text-align: left; }
+  .headCenter .tagCol, .headCenter .copy { align-items: flex-start; }
+  .copy { gap: 10px; }
+  .heading { font-size: 28px; letter-spacing: -0.05em; line-height: 1.15; }
   .lead { font-size: 15px; }
 }
 
-@media (max-width: 389.98px) {
-  .section { padding: 68px 18px; }
-  .rail { margin: 0 -18px; padding: 4px 18px 8px; scroll-padding: 0 18px; }
+@media (max-width: 359.98px) {
+  .heading { font-size: 26px; }
 }

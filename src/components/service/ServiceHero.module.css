@@ -121,11 +121,19 @@
   margin-bottom: 20px;
 }
 
+/* Two lines on desktop and tablet: each line stays on one line and the size
+   scales so the longer line (--chars) fits ~880px (Inter 600 ≈ 0.5em a char). */
 .title {
-  font-size: 64px;
+  font-size: min(64px, calc(880px / (var(--chars) * 0.5)));
   margin: 0;
-  max-width: 680px;
-  text-wrap: balance;
+  max-width: none;
+  position: relative;
+  width: max-content;
+  z-index: 3;
+}
+
+.titleLine {
+  white-space: nowrap;
 }
 
 .lead {
@@ -390,29 +398,35 @@
   }
   .hero { min-height: 0; padding-top: 132px; }
   .inner { gap: 36px; grid-template-columns: minmax(0, 1fr); padding: 0 40.5px 56px; }
-  .title { font-size: 54px; }
+  .title { font-size: min(54px, calc((100vw - 81px) / (var(--chars) * 0.52))); }
   .visual { min-height: 0; }
   .stage { position: static; }
   .console { position: static; translate: none; width: min(420px, 100%); }
 }
 
+/* Phone: the summary card repeats the lead, so it drops; everything else
+   tightens to fit one screen on the smallest phones. */
 @media (max-width: 809.98px) {
-  .hero { padding-top: 112px; }
-  .inner { gap: 28px; padding: 0 19.5px 44px; }
-  .crumbs { font-size: 12px; margin-bottom: 18px; }
-  .pill { margin-bottom: 16px; }
-  .title { font-size: 40px; }
-  .lead { font-size: 16.5px; margin-top: 18px; }
-  .actions { align-items: stretch; flex-direction: column; margin-top: 26px; width: 100%; }
+  .hero { padding-top: 96px; }
+  .inner { gap: 0; padding: 0 16px 36px; }
+  .crumbs { font-size: 12px; margin-bottom: 14px; }
+  .pill { margin-bottom: 14px; }
+  .title { font-size: 36px; max-width: 100%; width: auto; }
+  .titleLine { white-space: normal; text-wrap: balance; }
+  .lead { font-size: 15.5px; line-height: 1.45; margin-top: 14px; }
+  .actions { align-items: stretch; flex-direction: column; gap: 6px; margin-top: 22px; width: 100%; }
   .actions > a:first-child { width: 100%; }
   .textLink { align-self: center; padding: 6px 0; }
-  .creds { align-items: flex-start; flex-direction: column; gap: 8px; margin-top: 26px; }
+  .creds { align-items: flex-start; flex-direction: column; gap: 6px; margin-top: 18px; }
   .cred + .cred::before { display: none; }
   .cred + .cred { padding-left: 14px; }
-  .console { width: 100%; }
+  .console { display: none; }
 }
 
 @media (max-width: 389.98px) {
-  .inner { padding: 0 18px 40px; }
-  .title { font-size: 36px; }
+  .title { font-size: 32px; }
+}
+
+@media (max-width: 339.98px) {
+  .title { font-size: 29px; }
 }

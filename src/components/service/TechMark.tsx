@@ -7,14 +7,11 @@ import { TECH, type TechId } from "@/data/tech";
 import { cn } from "@/lib/utils";
 import s from "./TechMark.module.css";
 
+/** "AutoGen by Microsoft" → "AG", "MetaGPT" → "MG", "Haystack" → "H": the product word's capitals. */
 function monogram(name: string) {
-  return name
-    .replace(/^Microsoft /, "")
-    .split(/\s+/)
-    .map((w) => w[0])
-    .join("")
-    .slice(0, 2)
-    .toUpperCase();
+  const word = name.replace(/^Microsoft /, "").split(/\s+/)[0];
+  const caps = word.match(/[A-Z]/g)?.join("") ?? word[0].toUpperCase();
+  return caps.slice(0, 2);
 }
 
 export function TechMark({ id, className }: { id: TechId; className?: string }) {
@@ -43,7 +40,7 @@ export function TechMark({ id, className }: { id: TechId; className?: string }) 
     );
   return (
     <span className={cn(s.mark, s.monogram, className)} aria-hidden="true">
-      {monogram(t.name)}
+      <span>{monogram(t.name)}</span>
     </span>
   );
 }

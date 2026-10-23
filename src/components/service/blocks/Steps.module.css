@@ -1,0 +1,314 @@
+/* Steps: the board reuses Process.module.css with a variable column count;
+   the photo layout is a sticky photo beside a vertical, scroll-filled rail. */
+
+.boardSteps.boardSteps {
+  grid-template-columns: repeat(var(--n), minmax(0, 1fr));
+}
+
+.cta {
+  display: flex;
+  justify-content: center;
+}
+
+@media (min-width: 810px) and (max-width: 1199.98px) {
+  .boardSteps.boardSteps { grid-template-columns: repeat(var(--nmd), minmax(0, 1fr)); }
+}
+
+@media (max-width: 809.98px) {
+  .boardSteps.boardSteps { grid-template-columns: minmax(0, 1fr); }
+  .cta, .cta > a { width: 100%; }
+}
+
+/* ── Track (numbered timeline) ─────────────────────────────────────────
+   n equal columns, no gap between them (so the rail meets the node centres);
+   rail at node height, from the first node centre to the last. */
+.track {
+  position: relative;
+}
+
+.rail {
+  background: var(--line-strong);
+  height: 2px;
+  left: calc(50% / var(--n));
+  position: absolute;
+  right: calc(50% / var(--n));
+  top: 23px;
+}
+
+.railFill {
+  background: var(--accent);
+  display: block;
+  height: 100%;
+  transform-origin: left;
+  transition: transform 0.3s linear;
+}
+
+.trackSteps {
+  display: grid;
+  grid-template-columns: repeat(var(--n), minmax(0, 1fr));
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.tstep {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 0 4px;
+}
+
+.tnode {
+  align-items: center;
+  background: var(--bg);
+  border: 2px solid var(--line-strong);
+  border-radius: 50%;
+  color: var(--fg-muted);
+  display: inline-flex;
+  font-size: 14px;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  height: 48px;
+  justify-content: center;
+  letter-spacing: -0.02em;
+  position: relative;
+  transition: background-color 0.5s var(--ease-out-quint), border-color 0.5s var(--ease-out-quint), color 0.5s var(--ease-out-quint), box-shadow 0.6s var(--ease-out-expo);
+  width: 48px;
+  z-index: 1;
+}
+
+.reached .tnode {
+  background: var(--accent);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 6px rgba(var(--accent-rgb), 0.14);
+  color: #ffffff;
+}
+
+.tcard {
+  background: var(--card);
+  border-radius: 20px;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 8px;
+  padding: 22px 20px 24px;
+  text-align: center;
+  transition: box-shadow 0.6s var(--ease-out-quint);
+  width: 100%;
+}
+
+.reached .tcard {
+  box-shadow: 0 18px 36px -28px rgba(10, 10, 10, 0.3);
+}
+
+.ttitle {
+  color: var(--fg);
+  font-family: var(--ff-inter);
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 1.22;
+  margin: 0;
+}
+
+.ttext {
+  color: var(--fg-muted);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.45;
+  margin: 0;
+}
+
+/* Below desktop: a vertical list, the rail down the left. */
+@media (max-width: 1199.98px) {
+  .rail {
+    height: var(--rail-h, 0);
+    left: 23px;
+    right: auto;
+    top: var(--rail-top, 24px);
+    width: 2px;
+  }
+  .railFill { height: 100%; transform: none !important; }
+  .trackSteps { display: flex; flex-direction: column; gap: 10px; }
+  .tstep { align-items: flex-start; flex-direction: row; gap: 16px; padding: 0; }
+  .tcard { text-align: left; }
+}
+
+/* Phone: smaller nodes; the rail stays on their centres (36px node / 2 - 1 = 17). */
+@media (max-width: 809.98px) {
+  .rail { left: 17px; }
+  .trackSteps { gap: 6px; }
+  .tstep { gap: 12px; }
+  .tnode { font-size: 12.5px; height: 36px; width: 36px; }
+  .reached .tnode { box-shadow: 0 0 0 4px rgba(var(--accent-rgb), 0.14); }
+  .tcard { border-radius: 16px; gap: 4px; padding: 12px 14px; }
+  .ttitle { font-size: 16px; }
+  .ttext { font-size: 13.5px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .railFill, .tnode, .tcard { transition: none; }
+}
+/* ── Photo + vertical list ─────────────────────────────────────────── */
+.split {
+  align-items: start;
+  display: grid;
+  gap: 56px;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+}
+
+.media {
+  background: var(--card);
+  border-radius: 28px;
+  padding: 8px;
+  position: sticky;
+  top: 96px;
+}
+
+.photo {
+  aspect-ratio: 4 / 5;
+  border-radius: 22px;
+  width: 100%;
+}
+
+.side {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.side .cta {
+  justify-content: flex-start;
+}
+
+.vlist {
+  position: relative;
+}
+
+/* --rail-top / --rail-h come from the node centres (useRailSpan in Steps.tsx). */
+.vrail {
+  background: var(--line);
+  height: var(--rail-h, 0);
+  left: 19px;
+  position: absolute;
+  top: var(--rail-top, 38px);
+  width: 2px;
+}
+
+.vfill {
+  background: var(--accent);
+  inset: 0;
+  position: absolute;
+}
+
+.vsteps {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.vstep {
+  align-items: flex-start;
+  display: flex;
+  gap: 18px;
+  position: relative;
+}
+
+.vnode {
+  align-items: center;
+  background: var(--surface-2);
+  border-radius: 50%;
+  color: var(--fg-muted);
+  display: inline-flex;
+  flex: none;
+  font-size: 14px;
+  font-weight: 600;
+  height: 40px;
+  justify-content: center;
+  margin-top: 18px;
+  position: relative;
+  transition: background-color 0.5s var(--ease-out-quint), color 0.5s var(--ease-out-quint);
+  width: 40px;
+  z-index: 1;
+}
+
+.vnode svg {
+  height: 16px;
+  width: 16px;
+}
+
+.vdone .vnode,
+.vcurrent .vnode {
+  background: var(--accent);
+  color: #ffffff;
+}
+
+.vcurrent .vnode {
+  box-shadow: 0 0 0 6px rgba(var(--accent-rgb), 0.22);
+}
+
+.vbody {
+  background: var(--card);
+  border-radius: 22px;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 6px;
+  padding: 20px 24px 22px;
+  transition: box-shadow 0.6s var(--ease-out-quint), transform 0.6s var(--ease-out-expo);
+}
+
+.vcurrent .vbody {
+  box-shadow: 0 20px 40px -26px rgba(10, 10, 10, 0.3);
+  transform: translateX(6px);
+}
+
+.vtitle {
+  color: var(--fg);
+  font-family: var(--ff-inter);
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.045em;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.vtext {
+  color: var(--fg-muted);
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  line-height: 1.45;
+  margin: 0;
+}
+
+@media (min-width: 810px) and (max-width: 1199.98px) {
+  .split { gap: 36px; grid-template-columns: minmax(0, 1fr); }
+  .media { position: static; }
+  .photo { aspect-ratio: 16 / 8; }
+}
+
+/* Phone: the photo is decoration beside the steps, so it drops; the steps
+   stay compact. Rail at the node centres (left 15 = 32px node / 2 - 1). */
+@media (max-width: 809.98px) {
+  .split { gap: 0; grid-template-columns: minmax(0, 1fr); }
+  .media { display: none; }
+  .side { gap: 20px; }
+  .vsteps { gap: 6px; }
+  .vrail { left: 15px; }
+  .vstep { gap: 12px; }
+  .vnode { font-size: 13px; height: 32px; margin-top: 12px; width: 32px; }
+  .vbody { border-radius: 16px; gap: 4px; padding: 12px 14px; }
+  .vcurrent .vbody { transform: none; }
+  .vtitle { font-size: 16px; }
+  .vtext { font-size: 13.5px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vnode, .vbody { transition: none; }
+}

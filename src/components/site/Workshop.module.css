@@ -180,21 +180,21 @@
 }
 
 @media (max-width: 809.98px) {
-  .root { padding: 96px 19.5px; }
-  .container { align-items: center; }
-  .head { align-items: center; flex-direction: column; gap: 20px; }
+  .root { padding: 64px 16px; }
+  .container { align-items: flex-start; }
+  .head { align-items: flex-start; flex-direction: column; gap: 16px; }
   .title, .lead { flex: none; width: 100%; }
-  .lead { align-items: center; }
+  .lead { align-items: flex-start; }
   .question { width: 100%; }
-  .cards { grid-template-columns: minmax(0, 1fr); }
-  .photo { aspect-ratio: 16 / 10; }
-  .centered { text-align: center; }
+  .cards { display: flex !important; gap: 8px; margin: 0 -16px; overflow-x: auto; overscroll-behavior-x: contain; padding: 4px 16px 8px; scroll-padding: 0 16px; scroll-snap-type: x mandatory; }
+  .cards > * { flex: 0 0 84%; scroll-snap-align: start; }
+  .centered { text-align: left; }
   .cta { width: 100%; }
   .cta > a { width: 100%; }
 }
 
 @media (max-width: 389.98px) {
-  .root { padding: 96px 18px; }
+  .root { padding: 56px 16px; }
 }
 
 /* Muted Inter labels */

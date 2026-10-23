@@ -56,7 +56,15 @@ function usePointerDrift() {
   return ref;
 }
 
-export function ServiceHero({ page, category }: { page: ServicePage; category: Category }) {
+export function ServiceHero({ page, category, howHref = "#process",
+  ticker = true,
+}: {
+  page: ServicePage;
+  category: Category;
+  howHref?: string | null;
+  /** Off on rebuilt pages: the stack ribbon sits under the stats band instead. */
+  ticker?: boolean;
+}) {
   const drift = usePointerDrift();
   const { hero } = page;
 
@@ -103,7 +111,16 @@ export function ServiceHero({ page, category }: { page: ServicePage; category: C
             <PillTag icon={<Icon id={CATEGORY_ICON[page.category]} />}>{page.name}</PillTag>
           </Reveal>
 
-          <LineReveal as="h1" trigger="mount" startDelay={0.15} className={cn("t-display", s.title)}>
+          {/* Always two lines (title, then the accent tail): each line is kept on
+              one line and the size scales to the longer one (--chars). */}
+          <LineReveal
+            as="h1"
+            trigger="mount"
+            startDelay={0.15}
+            className={cn("t-display", s.title)}
+            lineClassName={s.titleLine}
+            style={{ ["--chars" as string]: Math.max(hero.title.length, hero.accent.length) }}
+          >
             <span>{hero.title}</span>
             <span style={{ color: "var(--accent)" }}>{hero.accent}</span>
           </LineReveal>
@@ -114,10 +131,12 @@ export function ServiceHero({ page, category }: { page: ServicePage; category: C
 
           <Reveal trigger="mount" delay={0.68} className={s.actions}>
             <Button label={page.cta.label} shortLabel={page.cta.short} href="#contact" variant="primary" />
-            <a href="#process" className={s.textLink}>
-              How we deliver
-              <ArrowUpRight />
-            </a>
+            {howHref && (
+              <a href={howHref} className={s.textLink}>
+                How we deliver
+                <ArrowUpRight />
+              </a>
+            )}
           </Reveal>
 
           <Reveal trigger="mount" delay={0.8} className={s.creds}>
@@ -171,17 +190,19 @@ export function ServiceHero({ page, category }: { page: ServicePage; category: C
         </Reveal>
       </div>
 
-      <Ticker
-        velocity={40}
-        gap={40}
-        className={s.ticker}
-        items={page.stack.map((id) => (
-          <p key={id} className={cn("t-label", s.tickerItem)}>
-            <span style={{ color: "var(--accent)" }}>{"// "}</span>
-            {TECH[id].name}
-          </p>
-        ))}
-      />
+      {ticker && (
+        <Ticker
+          velocity={40}
+          gap={40}
+          className={s.ticker}
+          items={page.stack.map((id) => (
+            <p key={id} className={cn("t-label", s.tickerItem)}>
+              <span style={{ color: "var(--accent)" }}>{"// "}</span>
+              {TECH[id].name}
+            </p>
+          ))}
+        />
+      )}
     </section>
   );
 }

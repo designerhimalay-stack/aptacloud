@@ -1,0 +1,179 @@
+/* Framework cards: 3 columns, var(--card), radius 24. Logo plate 52px white;
+   pitch in large type; tags pinned to the foot so rows line up. */
+
+.grid {
+  display: grid;
+  gap: 8px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.cell {
+  display: flex;
+}
+
+.card {
+  background: var(--card);
+  border-radius: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 26px 26px 24px;
+  transition: box-shadow 0.5s var(--ease-out-quint), transform 0.6s var(--ease-out-expo);
+  width: 100%;
+}
+
+.card:hover {
+  box-shadow: 0 24px 48px -30px rgba(10, 10, 10, 0.35);
+  transform: translateY(-4px);
+}
+
+.top {
+  align-items: center;
+  display: flex;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.logo {
+  align-items: center;
+  background: #ffffff;
+  border-radius: 15px;
+  box-shadow: inset 0 0 0 1px rgba(10, 10, 10, 0.07);
+  color: var(--brand-ink);
+  display: inline-flex;
+  flex: none;
+  height: 52px;
+  justify-content: center;
+  transition: transform 0.6s var(--ease-out-expo);
+  width: 52px;
+}
+
+.card:hover .logo {
+  transform: scale(1.07);
+}
+
+.logoMark {
+  height: 28px !important;
+  width: 28px !important;
+}
+
+.name {
+  color: var(--fg);
+  font-family: var(--ff-inter);
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  margin: 0;
+}
+
+.maker {
+  color: var(--fg-muted);
+  font-size: 13.5px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  margin: 2px 0 0;
+}
+
+.kicker {
+  color: var(--fg);
+  font-family: var(--ff-inter);
+  font-size: 21px;
+  font-weight: 600;
+  letter-spacing: -0.045em;
+  line-height: 1.22;
+  margin: 0;
+  text-wrap: balance;
+}
+
+.text {
+  color: var(--fg-muted);
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  line-height: 1.45;
+  margin: 0;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  list-style: none;
+  margin: auto 0 0;
+  padding: 10px 0 0;
+}
+
+.chips li {
+  background: rgba(var(--accent-rgb), 0.08);
+  border-radius: 999px;
+  color: var(--fg);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  padding: 6px 12px;
+}
+
+/* Rest of the toolkit */
+.more {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.moreHeading {
+  color: var(--fg-muted);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  margin: 0;
+}
+
+.moreGrid {
+  display: grid;
+  gap: 8px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.mini {
+  background: var(--card);
+  border-radius: 20px;
+  padding: 18px 20px 20px;
+}
+
+.miniTitle {
+  color: var(--fg);
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  margin: 0 0 6px;
+}
+
+.miniText {
+  color: var(--fg-muted);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.42;
+  margin: 0;
+}
+
+@media (min-width: 810px) and (max-width: 1199.98px) {
+  .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .moreGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 809.98px) {
+  .card { padding: 20px; }
+  .card:hover { transform: none; }
+  .kicker { font-size: 18.5px; }
+  .text { font-size: 14.5px; }
+  .moreGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; }
+  .mini { padding: 14px; }
+  .miniTitle { font-size: 15px; }
+  .miniText { font-size: 13px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card, .logo { transition: none; }
+  .card:hover { transform: none; }
+}

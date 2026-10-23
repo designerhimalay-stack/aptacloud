@@ -1,0 +1,164 @@
+/* Shared pieces of the service-page blocks: the 60-column card grid, the
+   card shell, icon / logo tiles and the CTA row. Home language: 24px cards on
+   var(--card), Inter, accent icon tiles that fill on hover, no borders. */
+
+.grid {
+  display: grid;
+  gap: 8px;
+  grid-template-columns: repeat(60, minmax(0, 1fr));
+}
+
+.grid > * {
+  display: flex;
+  grid-column: span var(--span, 20);
+}
+
+.grid > * > * {
+  width: 100%;
+}
+
+.card {
+  background: var(--card);
+  border-radius: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  height: 100%;
+  padding: 24px;
+  transition: box-shadow 0.5s var(--ease-out-quint), transform 0.6s var(--ease-out-expo);
+}
+
+.card:hover {
+  box-shadow: 0 24px 48px -30px rgba(10, 10, 10, 0.35);
+  transform: translateY(-3px);
+}
+
+.iconTile {
+  align-items: center;
+  background: rgba(var(--accent-rgb), 0.1);
+  border-radius: 14px;
+  color: var(--accent);
+  display: inline-flex;
+  flex: none;
+  height: 48px;
+  justify-content: center;
+  transition: background-color 0.45s var(--ease-out-quint), color 0.45s var(--ease-out-quint);
+  width: 48px;
+}
+
+.iconTile svg {
+  height: 22px;
+  width: 22px;
+}
+
+.card:hover .iconTile {
+  background: var(--accent);
+  color: #ffffff;
+}
+
+/* A tool's logo on a white tile (any section tone). */
+.logoTile {
+  align-items: center;
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: inset 0 0 0 1px rgba(10, 10, 10, 0.06);
+  color: var(--brand-ink);
+  display: inline-flex;
+  flex: none;
+  height: 48px;
+  justify-content: center;
+  width: 48px;
+}
+
+.logoTile > * {
+  height: 24px !important;
+  width: 24px !important;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.kicker {
+  color: var(--accent);
+  font-size: 13.5px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.35;
+  margin: 0;
+}
+
+.title {
+  color: var(--fg);
+  font-family: var(--ff-inter);
+  font-size: 19px;
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 1.25;
+  margin: 0;
+  text-wrap: balance;
+}
+
+.text {
+  color: var(--fg-muted);
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  line-height: 1.45;
+  margin: 0;
+  text-wrap: pretty;
+}
+
+.ctaRow {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px 22px;
+}
+
+.ctaNote {
+  color: var(--fg-muted);
+  font-size: 14.5px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+/* Paragraphs under a section head, set in two columns on desktop. */
+.bodyCols {
+  color: var(--fg-muted);
+  column-gap: 48px;
+  columns: 2;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  line-height: 1.5;
+}
+
+.bodyCols p {
+  break-inside: avoid;
+  margin: 0 0 14px;
+}
+
+@media (min-width: 810px) and (max-width: 1199.98px) {
+  .grid > * { grid-column: span var(--span-md, 30); }
+}
+
+@media (max-width: 809.98px) {
+  /* Grids that are not swipe rails stack to one column on phones. */
+  .grid { grid-template-columns: minmax(0, 1fr); }
+  .grid > * { grid-column: auto; }
+  .card { gap: 18px; padding: 20px; }
+  .card:hover { transform: none; }
+  .title { font-size: 18px; }
+  .text { font-size: 14.5px; }
+  .bodyCols { columns: 1; font-size: 15px; }
+  .ctaRow > a:first-child { width: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card, .iconTile { transition: none; }
+  .card:hover { transform: none; }
+}

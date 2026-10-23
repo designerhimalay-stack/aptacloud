@@ -89,8 +89,30 @@
 }
 [data-theme="light"] ::selection { background: var(--accent); color: #ffffff; }
 
+/* Dark scope inside a light section (e.g. the service-page banner panel). */
+[data-theme="dark"] {
+  --bg: var(--brand-dark);
+  --surface-0: #0d0d0d;
+  --surface-1: #141414;
+  --surface-2: #1a1a1a;
+  --surface-3: #1f1f1f;
+  --line: #2a2a2a;
+  --line-strong: #3a3a3a;
+  --fg: #ffffff;
+  --fg-soft: #ffffffd1;
+  --fg-muted: #ffffff94;
+  --fg-subtle: #ffffff85;
+  --fill-from: rgba(255, 255, 255, 0.2);
+  color: var(--fg);
+  color-scheme: dark;
+}
+
 * { box-sizing: border-box; }
 html { position: relative; background: var(--bg); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+
+/* No visible scrollbars anywhere (page, rails, menus); scrolling still works. */
+html, * { -ms-overflow-style: none; scrollbar-width: none; }
+::-webkit-scrollbar { display: none; height: 0; width: 0; }
 body {
   margin: 0;
   background: var(--bg);

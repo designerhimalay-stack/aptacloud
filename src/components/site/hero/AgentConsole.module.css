@@ -36,6 +36,15 @@
   color: var(--fg);
 }
 
+/* Readable minimums over the t-micro presets (9.3–9.9px). */
+.chipStack .chipTitle {
+  font-size: 12px;
+}
+
+.chipStack .tag {
+  font-size: 11px;
+}
+
 /* (b) Microsoft-centric solutions — bottom-right */
 .slotStack {
   bottom: 0;

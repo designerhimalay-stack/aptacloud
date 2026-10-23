@@ -1,0 +1,231 @@
+/* Testimonials: a 6-column grid; the lead quote spans 4 of the first row,
+   the rest share rows evenly (4 quotes → 4 + 2, then 3 + 3). */
+
+.grid {
+  display: grid;
+  gap: 8px;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+
+.cell {
+  display: flex;
+  grid-column: span 3;
+}
+
+.cell:nth-child(2) {
+  grid-column: span 2;
+}
+
+.lead {
+  grid-column: span 4;
+}
+
+/* A fifth quote closes the grid at full width. */
+.cell:nth-child(5):last-child {
+  grid-column: span 6;
+}
+
+.card {
+  background: var(--card);
+  border-radius: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  margin: 0;
+  padding: 28px;
+  transition: box-shadow 0.5s var(--ease-out-quint);
+  width: 100%;
+}
+
+.card:hover {
+  box-shadow: 0 24px 48px -30px rgba(10, 10, 10, 0.35);
+}
+
+.mark {
+  color: var(--accent);
+  height: 22px;
+  width: 30px;
+}
+
+.quote {
+  color: var(--fg);
+  font-family: var(--ff-inter);
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: -0.035em;
+  line-height: 1.48;
+  margin: 0;
+  text-wrap: pretty;
+}
+
+.lead .quote {
+  font-size: 22px;
+  letter-spacing: -0.045em;
+  line-height: 1.4;
+}
+
+.by {
+  align-items: center;
+  display: flex;
+  gap: 12px;
+  margin-top: auto;
+}
+
+.avatar {
+  align-items: center;
+  background: var(--fg);
+  border-radius: 50%;
+  color: var(--bg);
+  display: inline-flex;
+  flex: none;
+  font-size: 13px;
+  font-weight: 600;
+  height: 40px;
+  justify-content: center;
+  letter-spacing: -0.02em;
+  width: 40px;
+}
+
+.who {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.role {
+  color: var(--fg);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+}
+
+.company {
+  color: var(--fg-muted);
+  font-size: 13.5px;
+  font-weight: 500;
+  letter-spacing: -0.015em;
+}
+
+/* slider */
+.slide {
+  background: var(--card);
+  border-radius: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  min-height: 340px;
+  padding: 44px 48px 36px;
+  position: relative;
+}
+
+.slideMark {
+  color: var(--accent);
+  height: 34px;
+  width: 46px;
+}
+
+.slideBody {
+  animation: quote-in 0.7s var(--ease-out-expo) both;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 28px;
+  margin: 0;
+}
+
+@keyframes quote-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: none; }
+}
+
+.slideQuote {
+  color: var(--fg);
+  font-family: var(--ff-inter);
+  font-size: 30px;
+  font-weight: 500;
+  letter-spacing: -0.05em;
+  line-height: 1.3;
+  margin: 0;
+  max-width: 920px;
+  text-wrap: pretty;
+}
+
+.controls {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.dots {
+  display: flex;
+  gap: 6px;
+}
+
+.dot {
+  background: var(--line-strong);
+  border: 0;
+  border-radius: 999px;
+  cursor: pointer;
+  height: 6px;
+  padding: 0;
+  transition: background-color 0.4s var(--ease-out-quint), width 0.5s var(--ease-out-expo);
+  width: 6px;
+}
+
+.dotOn {
+  background: var(--accent);
+  width: 26px;
+}
+
+.arrows {
+  display: flex;
+  gap: 8px;
+}
+
+.arrow {
+  align-items: center;
+  background: color-mix(in srgb, var(--fg) 7%, var(--card));
+  border: 0;
+  border-radius: 50%;
+  color: var(--fg);
+  cursor: pointer;
+  display: inline-flex;
+  height: 44px;
+  justify-content: center;
+  transition: background-color 0.4s var(--ease-out-quint), color 0.4s var(--ease-out-quint);
+  width: 44px;
+}
+
+.arrow svg {
+  height: 16px;
+  width: 16px;
+}
+
+.arrow:hover {
+  background: var(--accent);
+  color: #ffffff;
+}
+
+.dot:focus-visible,
+.arrow:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+@media (max-width: 809.98px) {
+  .slide { border-radius: 24px; min-height: 0; padding: 26px 20px 22px; }
+  .slideQuote { font-size: 19px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slideBody { animation: none; }
+}
+
+@media (min-width: 810px) and (max-width: 1199.98px) {
+  .cell, .cell:nth-child(2), .lead { grid-column: span 3; }
+}
+
+@media (max-width: 809.98px) {
+  .card { padding: 22px 20px; }
+  .quote, .lead .quote { font-size: 16px; }
+}

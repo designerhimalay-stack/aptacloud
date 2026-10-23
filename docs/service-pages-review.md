@@ -173,3 +173,90 @@ URLs match the live site (for example `/services/microsoft/teams/`). Each page f
 - **Photography:** 13 new Unsplash photos (Unsplash licence, free for commercial use), chosen to match each service and the three industries. All have descriptive alt text.
 - **Logos:** Microsoft product logos come from the official Microsoft files already in the project. Other tools use Simple Icons (CC0), shown in one colour so Microsoft stays visually first.
 - **Without a licensed logo:** Power BI, Microsoft Fabric, Microsoft Entra ID and SQL Server show as a small letter mark beside the product name, rather than an invented logo.
+
+## 7. Live-structure rebuild, batch 1 (2026-10-22)
+
+These pages now carry every section of the live page, in the live order: AI Consulting, AI Agents, Generative AI, Machine Learning and Data Engineering. Items for the SEO reviewer and client:
+
+- **Case studies, testimonials and their figures** come from the live pages: 33%, 23%, 20%, 4x, 2.5x, 37%, 60% and $12M. The Content Guidelines say "no unapproved metrics or case studies", so the client needs to confirm them before launch.
+- **Industries:** the live pages list eight industries (healthcare, pharma, banking and others). We kept the three approved verticals. The AI Agents industry tabs cover Insurance, Oil & Gas and Engineering & Construction instead of the live healthcare, pharma and finance tabs.
+- **Calls to action:** every mid-page banner uses the page's single primary CTA. The live banners each had a different label, such as "free call" and "Contact Today!".
+- **FAQs:** the live questions come first, rewritten, and extra buyer questions bring each page to at least 6.
+- **Logos:** Power BI, Fabric, SQL Server, Langflow, Flowise, BERT, T5, Transformers and Looker Studio are cropped from the logo files already on the live site. AutoGen, Haystack and MetaGPT show monograms because no logo file is available for them.
+- **Hero counters** (20+, 200+, 300+) move to a stats strip under the hero.
+
+### 7a. Sections dropped or merged in batch 1 (2026-10-22, agreed with the designer)
+- **AI Consulting:** dropped the second banner ("Improve your return…").
+- **AI Agents:** dropped "digital employee", "Don't just build a bot", the 20+/200+/300+ track record (it repeats the stats band) and the MCP banner. The MCP outcomes moved into the MCP section. "How we build agents" moved into the services section, which gained a security card. The page is now 12 sections instead of 20.
+- **Generative AI:** dropped the "AI consulting" card from "What we offer" and merged the benefits into "The AptaCloud advantage".
+- **Machine Learning:** dropped the unattributed case results (60%, $12M) and the second banner. "What we do" and "Solutions" are merged.
+- **Data Engineering:** merged "Why AptaCloud" into the benefits section, cut the services from 11 to 8 (visualisation and cloud transformation have their own pages), and removed TensorFlow and PyTorch from the logos.
+
+## 8. Live-structure rebuild, batch 2 (2026-10-22)
+
+Rebuilt in live section order, with repeats cut using the batch 1 rules: Data Warehousing, Data Visualisation, Legacy Application Migration, Application Modernisation and Application Re-engineering.
+
+- **Dropped or merged:**
+  - Data Visualisation: the two service lists became one tabbed section (analytics and visualisation).
+  - Legacy Migration: the services section repeated the 5-step approach, so its detail moved into the steps. The first of two banners was dropped.
+  - Re-engineering: three overlapping benefit lists became one. The intro gains moved into the opening section, and "Why re-engineer" was dropped. The first of two banners was dropped, keeping the readiness banner.
+  - Application Modernisation: the live "industry-tailored" section (retail, healthcare, BFSI) became the standard three-vertical industries section.
+- **For client confirmation:**
+  - Case studies on Legacy Migration (20% NPS, 2x dispatch, $2M) and Application Modernisation (40%, 80%, 24h), and the 5 Application Modernisation testimonials, credited by company type and city as on the live page.
+  - The "Brands that trust us" client logos (7). We dropped one that is actually a Looker logo.
+- **Softened claims:**
+  - "4X faster migrations" became "faster migrations".
+  - "Guaranteed/financial SLAs" became "agreed service levels".
+  - "Over 90% of migrations in 90 days" became "most within a few months".
+  - "Near 100% data accuracy" was removed.
+- **Re-engineering case studies** have no outcomes on the live page, so none were added.
+
+### 8a. Batch 2 redone to the live layouts (2026-10-23)
+After review, batch 2 now keeps **every** live section, in the live order, and each section echoes the live layout in the site's design:
+
+- **Restored:** Data Visualisation's two service lists as panel + list cards (all 9 services) and all 16 tool logos; Legacy Migration's first banner, its services section and all 8 FAQs; Application Modernisation's retail, healthcare and BFSI cards, its frameworks closing line and the agilitas logo; Re-engineering's "you get" row, first banner, live use cases (manufacturing, healthcare, finance) and "Why re-engineer".
+- **New section layouts** in the block library:
+  - centred-icon cards
+  - plain step tiles
+  - icon chips
+  - photo cards
+  - wave process (data pages)
+  - panel + list
+  - list-beside-photo (cards or divided rows)
+  - wide case studies
+  - client logo grid
+  - testimonial slider
+  - logo strip
+
+## 9. Live-structure rebuild, batch 4 (2026-10-23)
+
+These pages now carry every section of the live page, in the live order: Power Platform, Microsoft SharePoint, Identity & Security, Cloud Storage & Databases, and Azure Hosting.
+
+- **Section layouts follow each live page:**
+  - Power Platform: the radial services diagram is rebuilt as a service hub, with the Power BI, Power Apps, Power Automate, and Copilot Studio logos as nodes.
+  - SharePoint: centred service cards (3 + 3 + 2, as live) and the "24/7 support" photo section.
+  - Identity: a "Microsoft products" section with the Entra, Entra ID, and Intune logos.
+  - Cloud Storage: the 2 × 2 OneDrive service cards.
+  - Azure Hosting: all 16 service cards, the curve process, and the live FAQs.
+- **Not added:** the live SharePoint page has no industries section, so none was added.
+- **For client confirmation:**
+  - The "Recent projects" titles on all four Microsoft pages. They name banking, healthcare, retail, and manufacturing clients, as on the live pages.
+  - Azure Hosting: "more than five years" of Azure managed hosting, and "Microsoft partner". The live page says "certified Microsoft Solution Partner"; please supply the exact designation.
+  - The Azure stats strip (20+, 300+, 200+). The live counters show "0+".
+- **Removed or softened:**
+  - "Saved up to 15% of the cost" was removed.
+  - "More than 250 products" was removed (no figure is given).
+  - "GDPR and HIPAA … guaranteeing" became "the regulations your industry works under".
+  - The live Azure Active Directory card described backups; it now describes Microsoft Entra ID.
+  - "Azure Active Directory" is shown as "Microsoft Entra ID (formerly Azure Active Directory)".
+- **Logos:** the Entra ID, Azure AD, and Intune icons are taken from the live page's own files.
+- **Photos:** eight new Pexels photos (Pexels licence, free for commercial use), listed in PHOTO_CREDITS.md.
+
+## 10. Imagery and tools pass (2026-10-23)
+- **Live-site images:** We reuse high-resolution originals only (1200px or wider) from the client's live pages. They now appear in these places:
+  - The "Recent projects" cards on all nine Microsoft pages.
+  - The Data Visualisation opening section, with the dashboard laptop image.
+  - The data, machine learning, and generative AI banners.
+- **Repeated photos:** The most reused generic photos have been replaced with new Pexels photos. No photo repeats within a page.
+- **"Our tools" (Data Warehousing, Data Visualisation):** The scrolling logo strip is now a board grouped by role, with Microsoft first.
+- **Footer:** The contact column repeated the contact section above it. It is now an Industries column linking to the three vertical pages.

@@ -4,14 +4,18 @@
 //  • mono:  Simple Icons (CC0) / LobeHub (MIT) silhouettes, drawn in currentColor via CSS mask.
 //  • AI model marks (Claude, GPT, Gemini, Grok, Llama) use their own colour where
 //    they have one; GPT and Grok are black marks, so they follow currentColor.
-//  • none:  no licensed mark available (e.g. Power BI, Microsoft Fabric) — the
-//    chip shows a small monogram instead of inventing a logo.
+//  • logos: product icons cropped from the logo files the live aptacloud.com
+//    pages already show (Power BI, Fabric, SQL Server, Langflow, Flowise, BERT…).
+//  • none:  no mark available (e.g. AutoGen, Haystack) — the chip shows a
+//    small monogram instead of inventing a logo.
 
 export type TechMark = { name: string; color?: string; mono?: string };
 
 const ms = (file: string) => `/images/microsoft/${file}.svg`;
 const si = (file: string) => `/images/tech/${file}.svg`;
 const ai = (file: string) => `/images/ai/${file}.svg`;
+/** Icons cropped from the logo files on the live aptacloud.com pages (no open-licence SVG exists). */
+const lg = (file: string) => `/images/logos/${file}.png`;
 
 export const TECH = {
   azure: { name: "Microsoft Azure", color: ms("azure") },
@@ -30,19 +34,21 @@ export const TECH = {
   m365: { name: "Microsoft 365", color: ms("microsoft-365") },
   powerPlatform: { name: "Power Platform", color: ms("power-platform") },
   sharepoint: { name: "Microsoft SharePoint", color: ms("sharepoint") },
-  powerBI: { name: "Power BI" },
-  fabric: { name: "Microsoft Fabric" },
-  entra: { name: "Microsoft Entra ID" },
-  sqlServer: { name: "SQL Server" },
+  powerBI: { name: "Power BI", color: "/images/m365/powerbi.png" },
+  fabric: { name: "Microsoft Fabric", color: lg("fabric") },
+  entra: { name: "Microsoft Entra ID", color: lg("entra") },
+  azureAD: { name: "Azure Active Directory", color: lg("azuread") },
+  sqlServer: { name: "SQL Server", color: lg("sqlserver") },
+  autogen: { name: "AutoGen by Microsoft" },
   teams: { name: "Microsoft Teams" },
   onedrive: { name: "Microsoft OneDrive" },
   exchange: { name: "Exchange Online" },
-  intune: { name: "Microsoft Intune" },
+  intune: { name: "Microsoft Intune", color: lg("intune") },
   defender: { name: "Microsoft Defender" },
   sentinel: { name: "Microsoft Sentinel" },
   purview: { name: "Microsoft Purview" },
-  powerApps: { name: "Power Apps", color: ms("power-platform") },
-  powerAutomate: { name: "Power Automate", color: ms("power-platform") },
+  powerApps: { name: "Power Apps", color: "/images/m365/powerapps.png" },
+  powerAutomate: { name: "Power Automate", color: "/images/m365/flow.png" },
   powerPages: { name: "Power Pages", color: ms("power-platform") },
   businessCentral: { name: "Dynamics 365 Business Central", color: ms("dynamics-365") },
   azureVM: { name: "Azure Virtual Machines", color: ms("azure") },
@@ -58,8 +64,30 @@ export const TECH = {
   gemini: { name: "Google Gemini", color: ai("gemini") },
   grok: { name: "xAI Grok", mono: ai("grok") },
   llama: { name: "Meta Llama", color: ai("meta") },
+  mistral: { name: "Mistral AI", color: ai("mistral") },
   langchain: { name: "LangChain", mono: si("langchain") },
-  huggingface: { name: "Hugging Face", mono: si("huggingface") },
+  langgraph: { name: "LangGraph", mono: ai("langgraph") },
+  llamaindex: { name: "LlamaIndex", mono: ai("llamaindex") },
+  crewai: { name: "CrewAI", mono: ai("crewai") },
+  mcp: { name: "Model Context Protocol", mono: ai("mcp") },
+  langflow: { name: "Langflow", color: lg("langflow") },
+  flowise: { name: "Flowise", color: lg("flowise") },
+  agentforce: { name: "Agentforce", mono: si("salesforce") },
+  zapier: { name: "Zapier", mono: si("zapier") },
+  haystack: { name: "Haystack" },
+  metagpt: { name: "MetaGPT" },
+  bert: { name: "Google BERT", color: lg("bert") },
+  t5: { name: "Google T5", color: lg("t5") },
+  transformers: { name: "Transformers", color: lg("transformers") },
+  bedrock: { name: "Amazon Bedrock", color: ai("bedrock") },
+  vertexai: { name: "Google Vertex AI", color: ai("vertexai") },
+  tensorflow: { name: "TensorFlow", mono: si("tensorflow") },
+  bigquery: { name: "Google BigQuery", mono: si("googlebigquery") },
+  redshift: { name: "Amazon Redshift", mono: si("amazonredshift") },
+  dataStudio: { name: "Looker Studio", color: lg("datastudio") },
+  googleCloud: { name: "Google Cloud", mono: si("googlecloud") },
+  ibm: { name: "IBM", color: lg("ibm") },
+  huggingface: { name: "Hugging Face", color: ai("huggingface") },
   python: { name: "Python", mono: si("python") },
   pytorch: { name: "PyTorch", mono: si("pytorch") },
   scikit: { name: "scikit-learn", mono: si("scikitlearn") },

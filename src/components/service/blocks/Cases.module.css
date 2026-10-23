@@ -1,0 +1,238 @@
+/* Case study cards: 2 columns, radius 24; result figure 64px with an accent suffix. */
+
+.grid {
+  display: grid;
+  gap: 8px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.cell {
+  display: flex;
+}
+
+.card {
+  background: var(--card);
+  border-radius: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  padding: 26px 28px 28px;
+  transition: box-shadow 0.5s var(--ease-out-quint), transform 0.6s var(--ease-out-expo);
+  width: 100%;
+}
+
+.card:hover {
+  box-shadow: 0 24px 48px -30px rgba(10, 10, 10, 0.35);
+  transform: translateY(-3px);
+}
+
+.top {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 14px;
+  justify-content: space-between;
+}
+
+.label {
+  background: rgba(var(--accent-rgb), 0.1);
+  border-radius: 999px;
+  color: var(--accent);
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  padding: 6px 12px;
+}
+
+.place {
+  align-items: center;
+  color: var(--fg-muted);
+  display: inline-flex;
+  font-size: 13px;
+  font-weight: 500;
+  gap: 6px;
+  letter-spacing: -0.01em;
+}
+
+.place svg {
+  color: var(--fg-subtle);
+  height: 14px;
+  width: 14px;
+}
+
+.result {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.metric {
+  color: var(--fg);
+  font-family: var(--ff-inter);
+  font-size: 64px;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  letter-spacing: -0.065em;
+  line-height: 1;
+}
+
+.metricSuffix {
+  color: var(--accent);
+}
+
+.metricLabel {
+  color: var(--fg-soft);
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  margin: 0;
+}
+
+.story {
+  border-top: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 20px;
+}
+
+.client {
+  color: var(--fg);
+  font-family: var(--ff-inter);
+  font-size: 19px;
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  margin: 0;
+}
+
+.text {
+  color: var(--fg-muted);
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.three {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+/* wide: story 7/12 | results panel 5/12, one card per case. */
+.wideList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.wide {
+  align-items: stretch;
+  background: var(--card);
+  border-radius: 28px;
+  display: grid;
+  gap: 8px;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  padding: 8px;
+  transition: box-shadow 0.5s var(--ease-out-quint);
+}
+
+.wide:hover {
+  box-shadow: 0 24px 48px -30px rgba(10, 10, 10, 0.35);
+}
+
+.wideStory {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 24px 24px 26px;
+}
+
+.wideClient {
+  color: var(--fg);
+  font-family: var(--ff-inter);
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: -0.045em;
+  margin: 10px 0 0;
+}
+
+.wideResults {
+  background: var(--bg);
+  border-radius: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  justify-content: center;
+  padding: 24px 26px;
+}
+
+/* Without a headline figure the story leads, with no divider above it. */
+.storyPlain {
+  border-top: 0;
+  margin-top: 0;
+  padding-top: 0;
+}
+
+.points {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  list-style: none;
+  margin: 8px 0 0;
+  padding: 0;
+}
+
+.points li {
+  align-items: flex-start;
+  color: var(--fg-soft);
+  display: flex;
+  font-size: 14.5px;
+  font-weight: 500;
+  gap: 10px;
+  letter-spacing: -0.02em;
+  line-height: 1.4;
+}
+
+.tick {
+  align-items: center;
+  background: rgba(var(--accent-rgb), 0.12);
+  border-radius: 50%;
+  color: var(--accent);
+  display: inline-flex;
+  flex: none;
+  height: 20px;
+  justify-content: center;
+  width: 20px;
+}
+
+.tick svg {
+  height: 11px;
+  width: 11px;
+}
+
+@media (min-width: 810px) and (max-width: 1199.98px) {
+  .three { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 809.98px) {
+  .wideList { flex-direction: row; }
+  .wide { align-content: start; border-radius: 20px; grid-template-columns: minmax(0, 1fr); padding: 6px; }
+  .wideStory { padding: 14px 12px; }
+  .wideClient { font-size: 18px; }
+  .wideResults { border-radius: 16px; padding: 16px; }
+}
+
+@media (max-width: 809.98px) {
+  .card { gap: 20px; padding: 20px; }
+  .card:hover { transform: none; }
+  .metric { font-size: 46px; }
+  .metricLabel { font-size: 14.5px; }
+  .client { font-size: 17px; }
+  .text { font-size: 14px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card { transition: none; }
+  .card:hover { transform: none; }
+}

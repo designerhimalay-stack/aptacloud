@@ -1,0 +1,136 @@
+/* Rows: card radius 28, 8px frame; photo 20px radius; copy padded 40. */
+
+.rows {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.row {
+  background: var(--card);
+  border-radius: 28px;
+  display: grid;
+  gap: 8px;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  padding: 8px;
+}
+
+.flip .media {
+  order: 2;
+}
+
+.media {
+  border-radius: 20px;
+  min-height: 380px;
+  overflow: hidden;
+  position: relative;
+}
+
+.photo {
+  height: 100%;
+  inset: 0;
+  position: absolute !important;
+  width: 100%;
+}
+
+.copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 36px 40px;
+}
+
+.index {
+  color: var(--accent);
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin-bottom: 14px;
+}
+
+.title {
+  color: var(--fg);
+  font-family: var(--ff-inter);
+  font-size: 30px;
+  font-weight: 600;
+  letter-spacing: -0.05em;
+  line-height: 1.15;
+  margin: 0 0 14px;
+}
+
+.intro {
+  color: var(--fg-muted);
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  line-height: 1.5;
+  margin: 0 0 20px;
+}
+
+.points {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.points li {
+  align-items: flex-start;
+  color: var(--fg);
+  display: flex;
+  font-size: 15.5px;
+  font-weight: 500;
+  gap: 12px;
+  letter-spacing: -0.025em;
+  line-height: 1.45;
+}
+
+.tick {
+  align-items: center;
+  background: rgba(var(--accent-rgb), 0.12);
+  border-radius: 50%;
+  color: var(--accent);
+  display: inline-flex;
+  flex: none;
+  height: 22px;
+  justify-content: center;
+  margin-top: 1px;
+  width: 22px;
+}
+
+.tick svg {
+  height: 12px;
+  width: 12px;
+}
+
+.note {
+  border-top: 1px solid var(--line);
+  color: var(--fg-muted);
+  font-size: 14.5px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.45;
+  margin: 22px 0 0;
+  padding-top: 18px;
+}
+
+@media (min-width: 810px) and (max-width: 1199.98px) {
+  .copy { padding: 28px; }
+  .title { font-size: 25px; }
+  .media { min-height: 320px; }
+}
+
+@media (max-width: 809.98px) {
+  .rows { flex-direction: row; }
+  .row { align-content: start; border-radius: 24px; grid-template-columns: minmax(0, 1fr); }
+  .flip .media { order: 0; }
+  .media { min-height: 190px; border-radius: 18px; }
+  .copy { padding: 18px 12px 14px; }
+  .title { font-size: 21px; }
+  .intro { font-size: 14.5px; margin-bottom: 14px; }
+  .points li { font-size: 14px; }
+  .note { font-size: 13.5px; }
+}

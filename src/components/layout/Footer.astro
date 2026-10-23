@@ -2,9 +2,10 @@
 // Footer — static Astro, ships no JavaScript. Dark:
 // a brand card (logo + tagline) | link columns over a call-to-action row, then
 // the giant wordmark and the copyright / privacy line. No newsletter signup:
-// there is no backend to subscribe anyone to.
+// there is no backend to subscribe anyone to. Phone, email, and address live in
+// the contact section right above the footer, so the footer does not repeat them.
 import styles from "./Footer.module.css";
-import { BRAND, PRIMARY_CTA, asset, home, telHref, whatsappHref } from "../../brand/brand";
+import { BRAND, PRIMARY_CTA, asset, home } from "../../brand/brand";
 import { SOCIAL_PATHS } from "../../brand/social";
 import { Logo, Wordmark } from "../../brand/Logo";
 import { Button } from "../ui/Button";
@@ -15,10 +16,10 @@ interface Props {
 }
 const { cta = { label: PRIMARY_CTA.label, href: PRIMARY_CTA.href } } = Astro.props;
 
-type FooterLink = { label: string; href?: string; kind?: "email"; flag?: string; country?: string; whatsapp?: string };
+type FooterLink = { label: string; href: string };
 
 /* Home-page sections are linked with home("#…") so they work from every page. */
-const COLUMNS: { title: string; links: FooterLink[]; wide?: boolean }[] = [
+const COLUMNS: { title: string; links: FooterLink[] }[] = [
   {
     title: "Useful links",
     links: [
@@ -39,19 +40,12 @@ const COLUMNS: { title: string; links: FooterLink[]; wide?: boolean }[] = [
     ],
   },
   {
-    title: "Contact us",
-    wide: true,
+    /* The three in-scope verticals (Brand Guidelines 13), linked to the live industry pages, as in the nav. */
+    title: "Industries",
     links: [
-      ...BRAND.contact.phones.map((p) => ({
-        label: p.number,
-        href: telHref(p.number),
-        flag: p.flag,
-        country: p.country,
-        whatsapp: "whatsapp" in p && p.whatsapp ? whatsappHref(p.number) : undefined,
-      })),
-      { label: BRAND.contact.email.toLowerCase(), href: `mailto:${BRAND.contact.email.toLowerCase()}`, kind: "email" as const },
-      ...BRAND.contact.address.map((line) => ({ label: line })),
-      { label: `Website: ${BRAND.contact.website}` },
+      { label: "Insurance", href: "https://aptacloud.com/industry/insurance/" },
+      { label: "Oil & Gas", href: "https://aptacloud.com/industry/oil-gas/" },
+      { label: "Engineering & Construction", href: "https://aptacloud.com/industry/engineering-and-construction/" },
     ],
   },
 ];
@@ -91,28 +85,14 @@ const COLUMNS: { title: string; links: FooterLink[]; wide?: boolean }[] = [
         <nav class={styles.columns} aria-label="Footer">
           {
             COLUMNS.map((col) => (
-              <div class:list={[styles.column, col.wide && styles.columnWide]}>
+              <div class={styles.column}>
                 <p class={styles.columnTitle}>{col.title}</p>
                 <ul class={styles.links}>
                   {col.links.map((link) => (
-                    <li class:list={[link.flag && styles.phoneRow]}>
-                      {link.flag && (
-                        <img class={styles.flag} src={asset(`/images/flags/${link.flag}.svg`)} alt={link.country} width="20" height="15" />
-                      )}
-                      {link.href ? (
-                        <a href={link.href} class:list={[styles.link, link.kind === "email" && styles.email]}>
-                          {link.label}
-                        </a>
-                      ) : (
-                        <span class={styles.plain}>{link.label}</span>
-                      )}
-                      {link.whatsapp && (
-                        <a href={link.whatsapp} class={styles.whatsapp} aria-label={`WhatsApp ${link.label}`} target="_blank" rel="noopener">
-                          <svg viewBox="0 0 24 24" aria-hidden="true">
-                            <path d={SOCIAL_PATHS.whatsapp} fill="currentColor" />
-                          </svg>
-                        </a>
-                      )}
+                    <li>
+                      <a href={link.href} class={styles.link}>
+                        {link.label}
+                      </a>
                     </li>
                   ))}
                 </ul>

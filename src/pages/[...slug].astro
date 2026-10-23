@@ -1,12 +1,16 @@
 ---
-// Service pages (AI, Data & Analytics, Application Modernisation), one route per
-// entry in src/data/services. Slugs match the live aptacloud.com URLs.
-// Section order follows each live page's sequence (src/data/services/extras.ts),
-// then FAQs → related → contact. Backgrounds follow the home page rhythm —
-// grey → white → dark, repeating — whatever the order.
+// Service pages, one route per entry in src/data/services. Slugs match the live
+// aptacloud.com URLs.
+// Rebuilt pages (src/data/services/layouts) render every live section in the
+// live order: hero → stats strip → the page's own blocks → related → contact.
+// Banners sit inside the tone of the section before them; every other section
+// follows the home rhythm (grey → white → dark, repeating).
+// Pages not rebuilt yet still use the fixed template (extras.ts).
 import Site from "../layouts/Site.astro";
 import { BRAND } from "../brand/brand";
 import { SERVICE_PAGES, getService } from "../data/services";
+import type { Block } from "../data/services/types";
+import { TECH } from "../data/tech";
 import { ServiceHero } from "../components/service/ServiceHero";
 import { PainPoints } from "../components/service/PainPoints";
 import { Capabilities } from "../components/service/Capabilities";
@@ -19,6 +23,23 @@ import { FeatureGrid } from "../components/service/FeatureGrid";
 import { StackGrid } from "../components/service/StackGrid";
 import { Frameworks } from "../components/service/Frameworks";
 import { Assessment } from "../components/service/Assessment";
+import { Stats } from "../components/service/blocks/Stats";
+import { Cards } from "../components/service/blocks/Cards";
+import { Banner } from "../components/service/blocks/Banner";
+import { Split } from "../components/service/blocks/Split";
+import { Rows } from "../components/service/blocks/Rows";
+import { Steps } from "../components/service/blocks/Steps";
+import { Cases } from "../components/service/blocks/Cases";
+import { Quotes } from "../components/service/blocks/Quotes";
+import { Logos } from "../components/service/blocks/Logos";
+import { Statement } from "../components/service/blocks/Statement";
+import { Tabs } from "../components/service/blocks/Tabs";
+import { Showcase } from "../components/service/blocks/Showcase";
+import { Clients } from "../components/service/blocks/Clients";
+import { Panels } from "../components/service/blocks/Panels";
+import { Suite } from "../components/service/blocks/Suite";
+import { Index } from "../components/service/blocks/Index";
+import { Hub } from "../components/service/blocks/Hub";
 import { homeRhythm, type Tone } from "../components/service/tone";
 import { CTA } from "../components/site/CTA";
 
@@ -27,9 +48,33 @@ export function getStaticPaths() {
 }
 
 const { slug } = Astro.params;
-const { page, extras, category, siblings } = getService(slug as string);
+const { page, extras, layout, stats, category, siblings } = getService(slug as string);
+const faqs = layout?.faqs ?? page.faqs;
+const cta = { label: page.cta.label, short: page.cta.short };
 
-// Alternating tones: the page's own sections, then FAQ and related.
+/* ── Tones ── */
+// Each section takes the next tone after the one before it (tint → white →
+// dark); a block may pin its tone and the cycle carries on from there.
+const blocks: Block[] = layout?.blocks ?? [];
+const CYCLE: Tone[] = ["tint", "white", "dark"];
+const after = (t: Tone) => CYCLE[(CYCLE.indexOf(t) + 1) % 3];
+// The stats band is dark (it continues the hero), so the first block starts at tint.
+const statsTone: Tone = "dark";
+const blockTones: Tone[] = [];
+let prev = statsTone;
+for (const b of blocks) {
+  if (b.kind === "banner") {
+    blockTones.push(prev);
+    continue;
+  }
+  const pinned = "tone" in b ? b.tone : undefined;
+  prev = pinned ?? after(prev);
+  blockTones.push(prev);
+}
+// The contact section is dark, so the last section before it never is.
+const relatedTone: Tone = after(prev) === "dark" ? "white" : after(prev);
+
+// Older template pages: their sections, then FAQ and related.
 const flow = [...extras.sections, "faq", ...(siblings.length ? ["related"] : [])];
 const rhythm = homeRhythm(flow.length);
 const tones: Record<string, Tone> = Object.fromEntries(flow.map((id, i) => [id, rhythm[i]]));
@@ -37,6 +82,9 @@ const stackHeading = extras.stackHeading ?? {
   heading: "Tools and platforms we use.",
   lead: "Microsoft first, with the tools your team already knows.",
 };
+
+// Hero's secondary link goes to the process section when the page has one.
+const howHref = !layout || blocks.some((b) => "id" in b && b.id === "process") ? "#process" : null;
 
 // Only what the related cards need (keeps the island's props small).
 const related = siblings.map((p) => ({ slug: p.slug, name: p.name, summary: p.summary, photo: p.hero.photo }));
@@ -73,7 +121,7 @@ const jsonLd = [
   {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: page.faqs.map((f) => ({
+    mainEntity: faqs.map((f) => ({
       "@type": "Question",
       name: f.q,
       acceptedAnswer: { "@type": "Answer", text: f.a },
@@ -88,34 +136,85 @@ const jsonLd = [
   jsonLd={jsonLd}
   navCta={{ label: page.cta.short, href: "#contact" }}
 >
-  <ServiceHero client:load page={page} category={category} />
+  <ServiceHero client:load page={page} category={category} howHref={howHref} ticker={!layout} />
   {
-    extras.sections.map((id) =>
-      id === "pains" ? (
-        <PainPoints client:visible pains={page.pains} tone={tones.pains} />
-      ) : id === "services" ? (
-        <Capabilities client:visible services={page.services} models={page.category === "ai"} tone={tones.services} />
-      ) : id === "process" ? (
-        <Process client:visible process={page.process} tone={tones.process} />
-      ) : id === "industries" ? (
-        <Industries client:visible industries={page.industries} tone={tones.industries} />
-      ) : id === "why" ? (
-        <WhyUs client:visible why={page.why} cta={page.cta} tone={tones.why} />
-      ) : id === "benefits" && extras.benefits ? (
-        <FeatureGrid client:visible id="benefits" variant="benefits" {...extras.benefits} tone={tones.benefits} />
-      ) : id === "useCases" && extras.useCases ? (
-        <FeatureGrid client:visible id="use-cases" variant="useCases" {...extras.useCases} tone={tones.useCases} />
-      ) : id === "stack" ? (
-        <StackGrid client:visible stack={page.stack} {...stackHeading} tone={tones.stack} />
-      ) : id === "frameworks" && extras.frameworks ? (
-        <Frameworks client:visible data={extras.frameworks} tone={tones.frameworks} />
-      ) : id === "assessment" && extras.assessment ? (
-        <Assessment client:visible data={extras.assessment} cta={page.cta} tone={tones.assessment} />
-      ) : null,
+    layout ? (
+      <>
+        <Stats client:visible stats={stats} ribbon={page.stack.map((id) => TECH[id].name)} />
+        {blocks.map((b, i) => {
+          const tone = blockTones[i];
+          return b.kind === "cards" ? (
+            <Cards client:visible block={b} cta={cta} tone={tone} />
+          ) : b.kind === "banner" ? (
+            <Banner client:visible block={b} cta={cta} tone={tone} id={`banner-${i}`} />
+          ) : b.kind === "split" ? (
+            <Split client:visible block={b} cta={cta} tone={tone} />
+          ) : b.kind === "rows" ? (
+            <Rows client:visible block={b} tone={tone} />
+          ) : b.kind === "steps" ? (
+            <Steps client:visible block={b} cta={cta} tone={tone} />
+          ) : b.kind === "cases" ? (
+            <Cases client:visible block={b} tone={tone} />
+          ) : b.kind === "quotes" ? (
+            <Quotes client:visible block={b} tone={tone} />
+          ) : b.kind === "logos" ? (
+            <Logos client:visible block={b} tone={tone} />
+          ) : b.kind === "statement" ? (
+            <Statement client:visible block={b} tone={tone} />
+          ) : b.kind === "suite" ? (
+            <Suite client:visible block={b} tone={tone} />
+          ) : b.kind === "index" ? (
+            <Index client:visible block={b} tone={tone} />
+          ) : b.kind === "hub" ? (
+            <Hub client:visible block={b} tone={tone} />
+          ) : b.kind === "panels" ? (
+            <Panels client:visible block={b} tone={tone} />
+          ) : b.kind === "clients" ? (
+            <Clients client:visible block={b} tone={tone} />
+          ) : b.kind === "assessment" ? (
+            <Assessment client:visible data={b} cta={page.cta} tone={tone} />
+          ) : b.kind === "showcase" ? (
+            <Showcase client:visible block={b} tone={tone} />
+          ) : b.kind === "tabs" ? (
+            <Tabs client:visible block={b} tone={tone} />
+          ) : b.kind === "industries" ? (
+            <Industries client:visible industries={page.industries} tone={tone} />
+          ) : (
+            <Faq client:visible faqs={faqs} name={page.name} tone={tone} />
+          );
+        })}
+        {related.length > 0 && <Related client:visible category={category} siblings={related} tone={relatedTone} />}
+      </>
+    ) : (
+      <>
+        {extras.sections.map((id) =>
+          id === "pains" ? (
+            <PainPoints client:visible pains={page.pains} tone={tones.pains} />
+          ) : id === "services" ? (
+            <Capabilities client:visible services={page.services} models={page.category === "ai"} tone={tones.services} />
+          ) : id === "process" ? (
+            <Process client:visible process={page.process} tone={tones.process} />
+          ) : id === "industries" ? (
+            <Industries client:visible industries={page.industries} tone={tones.industries} />
+          ) : id === "why" ? (
+            <WhyUs client:visible why={page.why} cta={page.cta} tone={tones.why} />
+          ) : id === "benefits" && extras.benefits ? (
+            <FeatureGrid client:visible id="benefits" variant="benefits" {...extras.benefits} tone={tones.benefits} />
+          ) : id === "useCases" && extras.useCases ? (
+            <FeatureGrid client:visible id="use-cases" variant="useCases" {...extras.useCases} tone={tones.useCases} />
+          ) : id === "stack" ? (
+            <StackGrid client:visible stack={page.stack} {...stackHeading} tone={tones.stack} />
+          ) : id === "frameworks" && extras.frameworks ? (
+            <Frameworks client:visible data={extras.frameworks} tone={tones.frameworks} />
+          ) : id === "assessment" && extras.assessment ? (
+            <Assessment client:visible data={extras.assessment} cta={page.cta} tone={tones.assessment} />
+          ) : null,
+        )}
+        <Faq client:visible faqs={faqs} name={page.name} tone={tones.faq} />
+        {related.length > 0 && <Related client:visible category={category} siblings={related} tone={tones.related} />}
+      </>
     )
   }
-  <Faq client:visible faqs={page.faqs} name={page.name} tone={tones.faq} />
-  {related.length > 0 && <Related client:visible category={category} siblings={related} tone={tones.related} />}
   <CTA
     client:visible
     heading={page.cta.heading}

@@ -18,19 +18,24 @@
   -webkit-mask-size: contain;
 }
 
-/* No licensed mark: a quiet square monogram. */
+/* No mark available: a solid ink tile with the product's initials, sized to
+   the mark (container units), so it reads as a deliberate badge at any size. */
 .monogram {
   align-items: center;
-  border: 1px solid currentColor;
-  border-radius: 5px;
+  background: var(--brand-ink);
+  border-radius: 26%;
+  color: #ffffff;
+  container-type: size;
   display: inline-flex;
-  font-family: var(--ff-mono);
-  font-size: 8px;
-  font-weight: 500;
+  font-family: var(--ff-inter);
+  font-weight: 700;
   justify-content: center;
-  letter-spacing: 0;
+  letter-spacing: -0.04em;
   line-height: 1;
-  opacity: 0.8;
+}
+
+.monogram > span {
+  font-size: 44cqi;
 }
 
 .chip {

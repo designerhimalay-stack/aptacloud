@@ -87,7 +87,7 @@
   display: grid;
   flex: 1 1 auto;
   gap: 32px 16px;
-  grid-template-columns: minmax(0, 0.8fr) minmax(0, 0.8fr) minmax(0, 1.2fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   padding: 24px;
 }
 
@@ -117,8 +117,7 @@
   padding: 0;
 }
 
-.link,
-.plain {
+.link {
   color: var(--fg-muted);
   display: inline-block;
   font-family: var(--ff-inter);
@@ -136,12 +135,6 @@
 
 .link:hover {
   color: var(--fg);
-}
-
-/* e-mail addresses keep their case */
-.email {
-  text-transform: none;
-  word-break: break-all;
 }
 
 .cta {
@@ -230,76 +223,50 @@
   .root { padding: 48px 72px 32px; }
 }
 
-/* Tablet: narrower brand card; the contact column drops below the two link columns. */
+/* Tablet: narrower brand card; the three link columns still fit side by side. */
 @media (min-width: 810px) and (max-width: 1199.98px) {
   .root { padding: 48px 32px 32px; }
   .brandCard { flex-basis: 300px; min-height: 0; }
-  .tagline { font-size: 24px; }
-  .columns { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .columnWide { grid-column: 1 / span 2; }
+  .tagline { font-size: 22px; }
+  .columns { gap: 32px 20px; grid-template-columns: repeat(3, minmax(0, 1fr)); padding: 20px; }
+  .link { font-size: 15px; }
   .cta { align-items: flex-start; flex-direction: column; }
 }
 
-/* Phone: everything stacks. */
+/* Phone: a compact stack. Brand card (short tagline, socials and badge on one
+   row), then two link columns: Useful links over Industries | Services. */
 @media (max-width: 809.98px) {
-  .root { padding: 40px 16px 24px; }
-  .top { flex-direction: column; gap: 32px; }
-  .brandCard { flex: none; gap: 48px; min-height: 0; }
-  .tagline { font-size: 22px; }
-  .columns { gap: 32px 16px; grid-template-columns: repeat(2, minmax(0, 1fr)); padding: 0 12px; }
-  .columnWide { grid-column: 1 / span 2; }
-  .cta { align-items: flex-start; flex-direction: column; padding: 16px 12px 0; }
-  .ctaText { font-size: 20px; }
-  .giant { padding-top: 40px; }
-  .bottom { align-items: flex-start; flex-direction: column; gap: 8px; }
+  .root { padding: 32px 16px 20px; }
+  .top { flex-direction: column; gap: 24px; }
+  .brandCard { border-radius: 20px; flex: none; gap: 18px; min-height: 0; padding: 20px; }
+  .tagline { font-size: 17px; line-height: 1.4; }
+  .columns {
+    gap: 24px 16px;
+    grid-template-areas: "a b" "c b";
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    padding: 0 4px;
+  }
+  .column { gap: 10px; }
+  .column:nth-child(1) { grid-area: a; }
+  .column:nth-child(2) { grid-area: b; }
+  .column:nth-child(3) { grid-area: c; }
+  .links { gap: 0; }
+  .link { font-size: 15px; line-height: 1.3; padding: 5px 0; }
+  .cta { align-items: flex-start; flex-direction: column; gap: 14px; padding: 8px 4px 0; }
+  .ctaText { font-size: 17px; line-height: 1.35; }
+  .giant { padding: 28px 0 12px; }
+  .bottom { gap: 12px; padding-top: 16px; }
+  .legal { font-size: 12.5px; }
+  .legalLink { flex: none; white-space: nowrap; }
+}
+
+@media (max-width: 359.98px) {
+  .link { font-size: 14px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .link,
   .legalLink { transition: none; }
-}
-
-/* Phone rows: country flag (PDF) + WhatsApp on the India line */
-.phoneRow {
-  align-items: center;
-  display: flex;
-  gap: 10px;
-}
-
-.flag {
-  border-radius: 3px;
-  box-shadow: 0 0 0 1px var(--line);
-  display: block;
-  flex: none;
-  height: 15px;
-  object-fit: cover;
-  width: 20px;
-}
-
-.whatsapp {
-  align-items: center;
-  border-radius: 50%;
-  color: #25d366; /* WhatsApp brand green */
-  display: inline-flex;
-  flex: none;
-  height: 28px;
-  justify-content: center;
-  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-  width: 28px;
-}
-
-.whatsapp svg {
-  height: 18px;
-  width: 18px;
-}
-
-.whatsapp:hover {
-  transform: scale(1.12);
-}
-
-.whatsapp:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 2px;
 }
 
 /* Brand card: social icons + membership badge (PDF footer) */
@@ -359,4 +326,19 @@
   height: 80px;
   padding: 4px;
   width: 80px;
+}
+
+/* Phone: socials and badge share one row (these follow the base rules above). */
+@media (max-width: 809.98px) {
+  .meta { flex-wrap: nowrap; gap: 12px; }
+  .social { flex-wrap: nowrap; gap: 6px; }
+  .socialLink { height: 36px; width: 36px; }
+  .socialLink svg { height: 15px; width: 15px; }
+  .badge { flex: none; height: 56px; padding: 3px; width: 56px; }
+}
+
+/* Smallest phones: five socials and the badge still fit on one row. */
+@media (max-width: 359.98px) {
+  .socialLink { height: 32px; width: 32px; }
+  .badge { height: 48px; width: 48px; }
 }

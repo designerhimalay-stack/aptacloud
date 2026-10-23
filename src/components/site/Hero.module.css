@@ -377,52 +377,63 @@
 @media (min-width: 810px) and (max-width: 1199.98px) {
   .grid { left: -555px; }
   .inner { flex-direction: column; gap: 40px; padding: 0px 40.5px 45px 40.5px; }
-  .copy { align-content: center; align-items: center; flex: none; width: 100%; }
-  .values { justify-content: center; }
-  .stat { align-content: center; align-items: center; }
+  .copy { align-content: flex-start; align-items: flex-start; flex: none; width: 100%; }
+  .values { justify-content: flex-start; }
+  .stat { align-content: flex-start; align-items: flex-start; }
   .visual { flex: none; height: 360px; width: 100%; }
 
   .copy .eyebrow p,
   .copy .title,
-  .copy .lead p { text-align: center; }
+  .copy .lead p { text-align: left; }
 }
 
 /* 390–809.98 — Phone */
 @media (min-width: 390px) and (max-width: 809.98px) {
-  .hero { padding: 110px 0px 0px 0px; }
+  .hero { padding: 96px 0px 0px 0px; }
   .grid { left: -765px; }
-  .inner { flex-direction: column; gap: 40px; padding: 0px 19.5px 45px 19.5px; }
-  .copy { align-content: center; align-items: center; flex: none; width: 100%; }
+  .inner { flex-direction: column; gap: 40px; padding: 0 16px 40px; }
+  .copy { align-content: flex-start; align-items: flex-start; flex: none; width: 100%; }
   .buttons { flex-direction: column; gap: 10px; width: 100%; }
   .btnWrap { flex: none; width: 100%; }
   .btnWrap > a { width: 100%; }
-  .textLink { align-self: center; padding: 8px 0; }
+  .textLink { align-self: flex-start; padding: 8px 0; }
   .values { align-content: unset; align-items: unset; display: grid; gap: 22px; grid-auto-rows: minmax(0, 1fr); grid-template-columns: repeat(3, minmax(0, 1fr)); grid-template-rows: repeat(1, minmax(0, 1fr)); justify-content: center; }
-  .stat { align-content: center; align-items: center; align-self: start; justify-self: start; width: 100%; }
-  .counterWrap > span { text-align: center !important; }
-  .visual { flex: none; height: 300px; width: 100%; }
+  .stat { align-content: flex-start; align-items: flex-start; align-self: start; justify-self: start; width: 100%; }
+  .counterWrap > span { text-align: left !important; }
+  .visual { display: none; }
 
   .copy .eyebrow p,
   .copy .title,
-  .copy .lead p { text-align: center; }
+  .copy .lead p { text-align: left; }
 }
 
 /* ≤389.98 — Phone Small */
 @media (max-width: 389.98px) {
-  .hero { padding: 110px 0px 0px 0px; }
+  .hero { padding: 96px 0px 0px 0px; }
   .grid { left: -780px; }
-  .inner { flex-direction: column; gap: 40px; padding: 0px 18px 45px 18px; }
-  .copy { align-content: center; align-items: center; flex: none; width: 100%; }
+  .inner { flex-direction: column; gap: 40px; padding: 0 16px 36px; }
+  .copy { align-content: flex-start; align-items: flex-start; flex: none; width: 100%; }
   .buttons { flex-direction: column; gap: 10px; width: 100%; }
   .btnWrap { flex: none; width: 100%; }
   .btnWrap > a { width: 100%; }
-  .textLink { align-self: center; padding: 8px 0; }
+  .textLink { align-self: flex-start; padding: 8px 0; }
   .values { align-content: unset; align-items: unset; display: grid; gap: 22px; grid-auto-rows: minmax(0, 1fr); grid-template-columns: repeat(3, minmax(0, 1fr)); grid-template-rows: repeat(1, minmax(0, 1fr)); justify-content: center; }
-  .stat { align-content: center; align-items: center; align-self: start; justify-self: start; width: 100%; }
-  .counterWrap > span { text-align: center !important; }
-  .visual { flex: none; height: 280px; width: 100%; }
+  .stat { align-content: flex-start; align-items: flex-start; align-self: start; justify-self: start; width: 100%; }
+  .counterWrap > span { text-align: left !important; }
+  .visual { display: none; }
 
   .copy .eyebrow p,
   .copy .title,
-  .copy .lead p { text-align: center; }
+  .copy .lead p { text-align: left; }
+}
+
+/* Phone title scale, shared with the service heroes (36 / 32 / 29). */
+@media (max-width: 809.98px) {
+  .copy .title { font-size: 36px; line-height: 1.08; }
+}
+@media (max-width: 389.98px) {
+  .copy .title { font-size: 32px; }
+}
+@media (max-width: 339.98px) {
+  .copy .title { font-size: 29px; }
 }

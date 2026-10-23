@@ -114,6 +114,7 @@ export function LineReveal({
   stagger = 0.05,
   trigger = "inView",
   lineClassName,
+  style,
 }: {
   as?: ElementType;
   children: ReactNode;
@@ -122,6 +123,7 @@ export function LineReveal({
   stagger?: number;
   trigger?: Trigger;
   lineClassName?: string;
+  style?: CSSProperties;
 }) {
   const reduce = useReducedMotion();
   const ref = useRef<HTMLElement>(null);
@@ -133,7 +135,7 @@ export function LineReveal({
     const n = Math.max(1, tokenLines.flat().filter((t) => t.kind === "word").length);
     let w = 0;
     return (
-      <Tag ref={ref} className={className} style={{ position: "relative" }}>
+      <Tag ref={ref} className={className} style={{ position: "relative", ...style }}>
         {tokenLines.map((tokens, li) => (
           <span key={li} className={lineClassName} style={{ display: "block" }}>
             {tokens.map((t, ti) =>
@@ -154,7 +156,7 @@ export function LineReveal({
   }
 
   return (
-    <Tag ref={ref} className={className} style={{ position: "relative" }}>
+    <Tag ref={ref} className={className} style={{ position: "relative", ...style }}>
       {lines.map((line, i) => {
         const hidden = { opacity: 0.001, y: 40, filter: "blur(10px)" };
         const shown = {

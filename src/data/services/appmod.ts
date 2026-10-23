@@ -329,9 +329,9 @@ export const APPMOD_PAGES: ServicePage[] = [
       accent: "keep what works.",
       lead: "AptaCloud re-engineers legacy applications into cloud-native platforms on Microsoft Azure. We keep your critical data and business logic, redesign the architecture and user experience, and add automation and artificial intelligence (AI) where they remove manual work.",
       photo: {
-        src: "/images/photos/services/reeng-screen.jpg",
-        alt: "Two engineers reviewing an application design on a large monitor",
-        position: "50% 40%",
+        src: "/images/photos/services/reeng-code.jpg",
+        alt: "An engineer pointing at application code on a monitor while working at the keyboard",
+        position: "50% 45%",
       },
       chip: { title: "Re-engineering", items: ["Code and architecture audit", "Cloud-native rebuild", "Modern user experience"] },
       marks: ["azure", "aks", "react"],

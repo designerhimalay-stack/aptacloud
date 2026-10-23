@@ -603,7 +603,7 @@ export const MS_PAGES: ServicePage[] = [
       lead: "AptaCloud sets up Microsoft Entra ID, Intune, Defender, and Sentinel for Zero Trust. Sign-in, devices, and data access are controlled and monitored, without slowing your teams down.",
       photo: photo("ms-identity", "A security engineer monitoring systems across several screens", "50% 40%"),
       chip: { title: "Identity & Security", items: ["Microsoft Entra ID", "Device management", "Threat monitoring"] },
-      marks: ["azure", "m365", "keyVault"],
+      marks: ["entra", "intune", "azure"],
     },
     cta: {
       label: "Book a security review",

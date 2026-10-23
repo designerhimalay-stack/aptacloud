@@ -141,10 +141,10 @@
 }
 
 @media (max-width: 809.98px) {
-  .section { padding-bottom: 56px; padding-top: 64px; }
-  .title { font-size: 26px; }
-  .thumb { height: 150px; }
-  .name { font-size: 18px; }
+  .section { padding-bottom: 48px; padding-top: 56px; }
+  .title { font-size: 24px; }
+  .thumb { height: 120px; }
+  .name { font-size: 17px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

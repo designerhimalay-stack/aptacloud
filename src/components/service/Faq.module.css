@@ -170,8 +170,9 @@
 }
 
 .icon {
-  background: #ffffff;
+  background: var(--bg);
   border-radius: 50%;
+  color: var(--fg);
   box-shadow: inset 0 0 0 1px var(--line-strong);
   flex: none;
   height: 32px;
@@ -245,12 +246,23 @@
   .ask { margin-top: 8px; order: 3; }
 }
 
+/* Phone: tight question rows; the ask card keeps its title and contact row only. */
 @media (max-width: 809.98px) {
-  .heading { font-size: 30px; }
-  .q { font-size: 16px; gap: 16px; padding: 16px 14px 16px 18px; }
-  .icon { height: 28px; width: 28px; }
-  .aInner p { font-size: 15px; padding: 0 18px 18px; }
-  .ask { padding: 20px; }
+  .layout { gap: 12px; }
+  .heading { font-size: 28px; }
+  .list { gap: 6px; margin-top: 8px; }
+  .item { border-radius: 16px; }
+  .q { border-radius: 16px; font-size: 15.5px; gap: 14px; padding: 13px 12px 13px 16px; }
+  .icon { height: 26px; width: 26px; }
+  .icon::before, .icon::after { width: 10px; }
+  .aInner p { font-size: 14.5px; line-height: 1.5; padding: 0 16px 16px; }
+  .ask { border-radius: 18px; gap: 4px; margin-top: 2px; padding: 16px; }
+  .askIcon { display: none; }
+  .askTitle { font-size: 17px; }
+  .askText { font-size: 13.5px; }
+  .askLinks { margin-top: 6px; padding-top: 10px; }
+  .askLink { font-size: 14px; }
+  .askJump { font-size: 13px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

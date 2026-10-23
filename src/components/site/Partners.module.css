@@ -235,19 +235,19 @@
 }
 
 @media (max-width: 809.98px) {
-  .section { padding: 90px 19.5px; }
+  .section { padding: 64px 16px; }
   .container { gap: 40px; }
   .content { display: flex; flex-direction: column; gap: 20px; }
-  .heading { font-size: 32px; letter-spacing: -0.05em; }
+  .heading { font-size: 28px; letter-spacing: -0.05em; }
   .body { grid-template-columns: minmax(0, 1fr); }
   .panel, .logosWrap { grid-column: 1; }
-  .logos { grid-template-columns: minmax(0, 1fr); }
-  .card { height: 124px; padding: 28px; }
-  .mark { --cap: 22px; }
+  .logos { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .card { height: 72px; padding: 8px 6px; }
+  .mark { --cap: 12px; max-width: 100%; }
 }
 
 @media (max-width: 389.98px) {
-  .section { padding: 80px 18px; }
+  .section { padding: 56px 16px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

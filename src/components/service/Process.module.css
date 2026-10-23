@@ -160,31 +160,25 @@
   .stepTop { margin-bottom: 16px; }
 }
 
-/* Phone: a vertical list with a rail on the left; cards stay compact. */
+/* Phone: a compact vertical list. The numbered node inside each card carries
+   the order, so no separate rail runs beside the cards. */
 @media (max-width: 809.98px) {
-  .board { background: none; border-radius: 0; overflow: visible; padding: 0 0 0 22px; }
-  .railY {
-    background: var(--line);
-    bottom: 12px;
-    display: block;
-    left: 7px;
-    position: absolute;
-    top: 12px;
-    width: 2px;
-  }
-  .steps { gap: 8px; grid-template-columns: minmax(0, 1fr); padding: 0; }
+  .board { background: none; border-radius: 0; overflow: visible; padding: 0; }
+  .railY { display: none; }
+  .steps { gap: 6px; grid-template-columns: minmax(0, 1fr); padding: 0; }
   .step {
     background: var(--surface-1);
     display: grid;
     gap: 2px 12px;
     grid-template-columns: auto 1fr;
     min-height: 0;
-    padding: 14px 16px;
+    padding: 12px 14px;
   }
   .stepTop { grid-row: 1 / span 2; margin: 0; }
+  .node { height: 28px; width: 28px; }
   .phaseNo { display: none; }
-  .phase { align-self: center; font-size: 17px; }
-  .stepText { font-size: 14px; grid-column: 2; }
+  .phase { align-self: center; font-size: 16px; }
+  .stepText { font-size: 13.5px; grid-column: 2; }
   .current { transform: none; }
   .timeline { border-radius: 18px; padding: 10px 14px; }
 }
