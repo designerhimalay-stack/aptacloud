@@ -1,0 +1,1 @@
+import{n as e}from"./utils.AT9gPSA9.js";import{r as t}from"./motion.CLXC8eaH.js";var n=e();function r({size:e=7,color:r=`var(--accent)`,style:i,className:a}){return(0,n.jsx)(`i`,{"aria-hidden":`true`,className:`pulse ${a??``}`,style:{...i,display:`block`,width:e,height:e,borderRadius:100,background:r,boxShadow:t(r)}})}export{r as t};
