@@ -17,7 +17,7 @@ import s from "./Industries.module.css";
 
 const ORDER: IndustryId[] = ["insurance", "oilgas", "construction"];
 
-export function Industries({ industries, tone = "dark" }: { industries: ServicePage["industries"]; tone?: Tone }) {
+export function Industries({ industries, tone = "dark" }: { industries: NonNullable<ServicePage["industries"]>; tone?: Tone }) {
   return (
     <section id="industries" {...toneProps(tone, "light", "deep")}>
       <div className={sec.container}>

@@ -1,0 +1,248 @@
+/* Layers: nested rings (square, 500px) | detail + names. One card, radius 32. */
+
+.stage {
+  align-items: center;
+  background: var(--card);
+  border-radius: 32px;
+  display: grid;
+  gap: 48px;
+  grid-template-columns: minmax(0, 500px) minmax(0, 1fr);
+  padding: 36px 44px 36px 36px;
+}
+
+.rings {
+  aspect-ratio: 1;
+  position: relative;
+  width: 100%;
+}
+
+/* Each ring covers the ones outside it, so only its band shows. */
+.ring {
+  background: var(--bg);
+  border: 0;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 1px var(--line-strong);
+  cursor: pointer;
+  padding: 0;
+  position: absolute;
+  transition: background-color 0.5s var(--ease-out-quint);
+}
+
+.ringOn {
+  background: color-mix(in srgb, var(--accent) 11%, var(--bg));
+}
+
+.ringLabel {
+  color: var(--fg-muted);
+  font-family: var(--ff-inter);
+  font-size: 12.5px;
+  font-weight: 600;
+  left: 50%;
+  letter-spacing: -0.015em;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  transition: color 0.5s var(--ease-out-quint);
+  white-space: nowrap;
+}
+
+.ringOn .ringLabel {
+  color: var(--accent);
+}
+
+.core {
+  align-items: center;
+  background: var(--accent);
+  border-radius: 50%;
+  box-shadow: 0 0 0 8px rgba(var(--accent-rgb), 0.14);
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+  position: absolute;
+}
+
+.core svg {
+  height: 34%;
+  width: 34%;
+}
+
+.side {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.detail {
+  animation: layer-in 0.6s var(--ease-out-expo) both;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 330px;
+}
+
+@keyframes layer-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: none; }
+}
+
+.detailNo {
+  color: var(--accent);
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+}
+
+.detailTitle {
+  color: var(--fg);
+  font-family: var(--ff-inter);
+  font-size: 32px;
+  font-weight: 600;
+  letter-spacing: -0.055em;
+  line-height: 1.12;
+  margin: 0;
+}
+
+.detailText {
+  color: var(--fg-muted);
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.svcs {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  list-style: none;
+  margin: 8px 0 0;
+  padding: 0;
+}
+
+.svc {
+  align-items: flex-start;
+  background: var(--bg);
+  border-radius: 18px;
+  display: flex;
+  gap: 14px;
+  padding: 14px 16px;
+}
+
+.svcMark {
+  align-items: center;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 0 0 1px rgba(10, 10, 10, 0.07);
+  display: inline-flex;
+  flex: none;
+  height: 44px;
+  justify-content: center;
+  width: 44px;
+}
+
+.svcMark > * {
+  height: 26px !important;
+  width: 26px !important;
+}
+
+.svcTitle {
+  color: var(--fg);
+  font-family: var(--ff-inter);
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  margin: 2px 0 4px;
+}
+
+.svcText {
+  color: var(--fg-muted);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.45;
+  margin: 0;
+}
+
+.names {
+  border-top: 1px solid var(--line);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding-top: 18px;
+}
+
+.name {
+  align-items: center;
+  background: transparent;
+  border: 0;
+  border-radius: 999px;
+  color: var(--fg-muted);
+  cursor: pointer;
+  display: inline-flex;
+  font-family: var(--ff-inter);
+  font-size: 14px;
+  font-weight: 600;
+  gap: 8px;
+  letter-spacing: -0.02em;
+  padding: 8px 14px 8px 12px;
+  transition: background-color 0.4s var(--ease-out-quint), color 0.4s var(--ease-out-quint);
+}
+
+.nameDot {
+  background: var(--line-strong);
+  border-radius: 50%;
+  height: 7px;
+  transition: background-color 0.4s var(--ease-out-quint);
+  width: 7px;
+}
+
+.name:hover,
+.nameOn {
+  background: color-mix(in srgb, var(--fg) 5%, var(--card));
+  color: var(--fg);
+}
+
+.nameOn .nameDot {
+  background: var(--accent);
+}
+
+.name:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.mobile {
+  display: none;
+}
+
+@media (min-width: 810px) and (max-width: 1199.98px) {
+  .stage { grid-template-columns: minmax(0, 1fr); padding: 28px; }
+  .rings { margin: 0 auto; max-width: 460px; }
+  .detail { min-height: 0; }
+}
+
+@media (max-width: 809.98px) {
+  .stage { display: none; }
+  .mobile { display: grid; gap: 8px; }
+  .mcard {
+    background: var(--card);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 18px;
+  }
+  .mtitle { color: var(--fg); font-size: 20px; font-weight: 600; letter-spacing: -0.045em; margin: 0; }
+  .mtext { color: var(--fg-muted); font-size: 14px; font-weight: 500; letter-spacing: -0.02em; line-height: 1.45; margin: 0; }
+  .svc { padding: 12px; }
+  .svcMark { height: 38px; width: 38px; }
+  .svcMark > * { height: 22px !important; width: 22px !important; }
+  .svcTitle { font-size: 15px; }
+  .svcText { font-size: 13.5px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .detail { animation: none; }
+  .ring, .ringLabel, .name, .nameDot { transition: none; }
+}

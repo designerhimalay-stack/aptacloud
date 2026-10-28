@@ -41,7 +41,7 @@ const FIELDS: FieldSpec[] = [
   { id: "email", label: "Email address", type: "email", autoComplete: "email", inputMode: "email", required: true },
   { id: "company", label: "Company name", autoComplete: "organization" },
   { id: "phone", label: "Phone number", type: "tel", autoComplete: "tel", inputMode: "tel" },
-  { id: "message", label: "How can we help you?", required: true, multiline: true },
+  { id: "message", label: "Tell us what you are working on", required: true, multiline: true },
 ];
 
 const EMPTY: Record<Field, string> = { name: "", email: "", company: "", phone: "", message: "" };

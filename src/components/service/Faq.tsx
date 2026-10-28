@@ -35,7 +35,7 @@ export function Faq({ faqs, name, tone = "tint" }: { faqs: ServicePage["faqs"]; 
             <span className={s.askIcon}>
               <Icon id="chat" />
             </span>
-            <p className={s.askTitle}>Still have a question?</p>
+            <p className={s.askTitle}>Ask a specialist</p>
             <p className={s.askText}>Ask a specialist directly by email, or send the form below with your details.</p>
             <div className={s.askLinks}>
               <a className={s.askLink} href={`mailto:${BRAND.contact.email}`}>

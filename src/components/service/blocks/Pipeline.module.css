@@ -1,0 +1,163 @@
+/* Integration pipeline: a strip card (end · stages · end) on one track, then the service cards. */
+
+.strip {
+  align-items: center;
+  background: var(--card);
+  border-radius: 32px;
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+  padding: 36px 40px;
+  position: relative;
+}
+
+/* The track: from the first marker's centre to the last (set by useTrack). */
+.track {
+  background: var(--line-strong);
+  height: var(--t-h, 0);
+  left: var(--t-x, 0);
+  position: absolute;
+  top: var(--t-y, 0);
+  width: var(--t-w, 0);
+}
+
+.strip[data-axis="x"] .track { transform: translateY(-50%); }
+.strip[data-axis="y"] .track { transform: translateX(-50%); }
+
+.packet {
+  animation: packet-x 4.2s var(--ease-in-out, ease-in-out) infinite;
+  background: var(--accent);
+  border-radius: 50%;
+  box-shadow: 0 0 0 6px rgba(var(--accent-rgb), 0.16);
+  height: 10px;
+  left: 0;
+  margin: -4px 0 0 -5px;
+  position: absolute;
+  top: 0;
+  width: 10px;
+}
+
+.strip[data-axis="y"] .packet {
+  animation-name: packet-y;
+  margin: -5px 0 0 -4px;
+}
+
+@keyframes packet-x {
+  0% { left: 0; opacity: 0; }
+  8% { opacity: 1; }
+  92% { opacity: 1; }
+  100% { left: 100%; opacity: 0; }
+}
+
+@keyframes packet-y {
+  0% { top: 0; opacity: 0; }
+  8% { opacity: 1; }
+  92% { opacity: 1; }
+  100% { top: 100%; opacity: 0; }
+}
+
+/* The systems at either end. */
+.end {
+  background: var(--card);
+  border-radius: 999px;
+  box-shadow: inset 0 0 0 1.5px var(--line-strong);
+  color: var(--fg-muted);
+  flex: none;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  max-width: 150px;
+  padding: 12px 18px;
+  position: relative;
+  text-align: center;
+  z-index: 1;
+}
+
+/* A stage: its name over its service icons, on a plate that sits on the track. */
+.stage {
+  align-items: center;
+  background: var(--bg);
+  border-radius: 22px;
+  box-shadow: 0 0 0 1px var(--line), 0 18px 36px -28px rgba(10, 10, 10, 0.35);
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  gap: 14px;
+  max-width: 190px;
+  padding: 18px 16px 20px;
+  position: relative;
+  transition: background-color 0.45s var(--ease-out-quint), transform 0.6s var(--ease-out-expo);
+  z-index: 1;
+}
+
+.lit {
+  background: color-mix(in srgb, var(--accent) 9%, var(--bg));
+  transform: translateY(-4px);
+}
+
+.stageLabel {
+  color: var(--fg);
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  margin: 0;
+  transition: color 0.45s var(--ease-out-quint);
+}
+
+.lit .stageLabel {
+  color: var(--accent);
+}
+
+.icons {
+  display: flex;
+  gap: 8px;
+}
+
+.icon {
+  align-items: center;
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 0 0 1px rgba(10, 10, 10, 0.07);
+  display: inline-flex;
+  height: 48px;
+  justify-content: center;
+  width: 48px;
+}
+
+.icon > * {
+  height: 28px !important;
+  width: 28px !important;
+}
+
+.cardWrap {
+  display: flex;
+  width: 100%;
+}
+
+.cardWrap > * {
+  width: 100%;
+}
+
+@media (min-width: 810px) and (max-width: 1199.98px) {
+  .strip { gap: 12px; padding: 28px; }
+  .end { font-size: 13px; max-width: 110px; padding: 10px 12px; }
+  .stage { padding: 16px 10px 18px; }
+  .icon { height: 42px; width: 42px; }
+  .icon > * { height: 24px !important; width: 24px !important; }
+}
+
+/* Phones: the strip runs top to bottom; each stage is a row (name left, icons right). */
+@media (max-width: 809.98px) {
+  .strip { align-items: stretch; border-radius: 24px; flex-direction: column; gap: 14px; padding: 18px; }
+  .end { align-self: center; font-size: 13px; max-width: none; padding: 9px 16px; }
+  .stage { flex: none; flex-direction: row; justify-content: space-between; max-width: none; padding: 12px 12px 12px 18px; }
+  .lit { transform: none; }
+  .icon { border-radius: 12px; height: 40px; width: 40px; }
+  .icon > * { height: 24px !important; width: 24px !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .packet { display: none; }
+  .stage, .stageLabel { transition: none; }
+  .lit { transform: none; }
+}

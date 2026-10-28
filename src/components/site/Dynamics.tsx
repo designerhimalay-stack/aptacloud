@@ -80,7 +80,7 @@ export function Dynamics() {
               </Reveal>
             </div>
             <Reveal y={30} duration={1} delay={0.15} amount={0.3}>
-              <Button label="Talk to a Dynamics 365 specialist" href="#contact" variant="outline" className={s.button} />
+              <Button label="Explore Dynamics 365 services" href={asset("/services/microsoft/microsoft-dynamics-365/")} variant="outline" className={s.button} />
             </Reveal>
           </div>
         </div>

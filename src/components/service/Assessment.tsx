@@ -17,7 +17,8 @@ export function Assessment({
   tone,
 }: {
   data: NonNullable<ServiceExtras["assessment"]>;
-  cta: ServicePage["cta"];
+  /** Only when this is the page's mid-page call to action. */
+  cta?: ServicePage["cta"];
   tone: Tone;
 }) {
   return (
@@ -52,7 +53,7 @@ export function Assessment({
                 </li>
               ))}
             </ul>
-            <Button label={cta.label} shortLabel={cta.short} href="#contact" variant="primary" className={s.button} />
+            {cta && <Button label={cta.label} shortLabel={cta.short} href="#contact" variant="primary" className={s.button} />}
           </Reveal>
         </div>
       </div>

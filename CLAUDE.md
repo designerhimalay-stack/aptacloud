@@ -5,9 +5,9 @@ Dev: `npm run dev -- --port 4321` → http://localhost:4321/aptacloud/ · Check:
 
 ## Where things live
 - `src/brand/brand.ts` — name, colours, contact, `PRIMARY_CTA`, `TRUST`, `asset()` (always wrap paths), `home("#x")` for home anchors.
-- `src/pages/index.astro` — home (sections in `src/components/site/`). `src/pages/[slug].astro` — the 10 service pages.
+- `src/pages/index.astro` — home (sections in `src/components/site/`). `src/pages/[...slug].astro` — every service, industry, and company page (50 routes).
 - `src/data/services/` — all service-page copy (`ai.ts`, `data.ts`, `appmod.ts`, `shared.ts`); `extras.ts` sets each page's section order (mirrors the live site) + benefits / use cases / frameworks / assessment. Backgrounds follow the home rhythm grey → white → dark (`homeRhythm` in `components/service/tone.ts`); inner panels use `var(--card)` / `var(--bg)` so they contrast on any tone. `src/data/tech.ts` — logo registry.
-- `src/data/services/layouts/` — rebuilt pages: every live-page section in live order as typed blocks (cards, banner, split, rows, steps, cases, quotes, logos, statement, tabs, industries, faq), rendered by `components/service/blocks/`. Stats strip always sits under the hero. Pages without a layout still use the old extras.ts template.
+- `src/data/services/layouts/` — rebuilt pages: every live-page section in live order as typed blocks (cards, banner, split, rows, steps, cases, quotes, logos, statement, tabs, hub, map, pipeline, plans, layers, spectrum, phases, ledger, focus, posts, people, offices, events, papers, blog, industries, faq). Industry pages: `industries.ts` + `layouts/industries.ts`; Company pages (about-us, careers, blog, whitepaper, events): `company.ts` + `layouts/company.ts`, category "company" (no hero console, stats optional). Blog posts: `src/data/blog.ts`, rendered by `components/service/blocks/`. Azure service icons (official architecture set) live in `public/images/azure/`, registered in `src/data/tech.ts`. Stats strip always sits under the hero. Pages without a layout still use the old extras.ts template.
 - `src/components/service/` — service-page sections; `src/layouts/Site.astro` wraps Nav + Footer.
 - `docs/home-page-review.md`, `docs/service-pages-review.md` — decisions and open items for the SEO reviewer.
 
@@ -15,6 +15,8 @@ Dev: `npm run dev -- --port 4321` → http://localhost:4321/aptacloud/ · Check:
 - "AptaCloud" only. Australian spelling in copy, US spelling in URLs. Oxford comma. No em dashes.
 - Banned: seamless, end-to-end, robust, cutting-edge, leverage, unlock, revolutionise, "free", "Contact us", "Book now", superlatives.
 - One primary CTA per page, POC-led. No unapproved metrics, case studies or partner claims. No NetSuite. Microsoft leads.
+- SEO-team skills (from Downloads `aptacloud-content*.skill`): no rhetorical questions; segment pages name the matrix buyer and map only that segment's services; proof = "typical engagement" (client-pattern, no figures, no client names) until RWLS/Warrikal are approved; no testimonials or client logos.
+- CRO (template rule in `[...slug].astro`): nav "Let's talk"; primary CTA in hero, once mid-page (pricing/assessment, else first banner/cta block via `ctaFor`), and the form. Later banners get a "Let's talk" text link. Never two identical buttons in one section.
 - Verticals only: Insurance, Oil & Gas, Engineering & Construction.
 
 ## Design rules

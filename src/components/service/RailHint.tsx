@@ -30,6 +30,9 @@ export function RailHint({ forId, count, label = "Swipe" }: { forId: string; cou
     };
   }, [forId, count]);
 
+  // One card has nothing to swipe to.
+  if (count < 2) return null;
+
   return (
     <div className={sec.railHint} aria-hidden="true">
       <span className={s.label}>

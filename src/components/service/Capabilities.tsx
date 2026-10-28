@@ -36,7 +36,7 @@ const uniqueMarks = (ids: (keyof typeof TECH)[]) => {
   });
 };
 
-export function Capabilities({ services, models = false, tone = "dark" }: { services: ServicePage["services"]; models?: boolean; tone?: Tone }) {
+export function Capabilities({ services, models = false, tone = "dark" }: { services: NonNullable<ServicePage["services"]>; models?: boolean; tone?: Tone }) {
   const n = services.items.length;
   const cols = n === 4 ? s.c2 : n === 5 ? s.c5 : s.c3;
 

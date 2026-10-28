@@ -6,7 +6,8 @@
 
 import type { TechId } from "@/data/tech";
 
-export type CategoryId = "ai" | "data" | "appmod" | "microsoft" | "azure";
+/** Service categories, plus the industry hubs ("industries") and each vertical's segment pages. */
+export type CategoryId = "ai" | "data" | "appmod" | "microsoft" | "azure" | "aws" | "industries" | "insurance" | "oilgas" | "construction" | "company";
 export type IndustryId = "insurance" | "oilgas" | "construction";
 export type IconId =
   | "spark" | "agent" | "chat" | "chart" | "db" | "pipe" | "layers" | "migrate" | "code" | "shield"
@@ -28,24 +29,28 @@ export type ServicePage = {
     accent: string;
     lead: string;
     photo: ServicePhoto;
-    /** Glass chip over the photo: a short list of what the page delivers. */
-    chip: { title: string; items: string[] };
-    /** Logos floating on the second chip. */
-    marks: TechId[];
+    /** Glass chip over the photo: a short list of what the page delivers (company pages leave it out). */
+    chip?: { title: string; items: string[] };
+    /** Logos on the chip. */
+    marks?: TechId[];
   };
   /** The page's one primary CTA (Brand Guidelines 7.2). */
   cta: { label: string; /** Same action, short enough for the nav pill. */ short: string; heading: string; lead: string };
-  pains: { heading: string; lead: string; items: { title: string; text: string }[] };
-  services: {
+  /* The fields below feed the older fixed template (pages without a layout)
+     and the "industries" block; industry pages have a layout and leave them out. */
+  pains?: { heading: string; lead: string; items: { title: string; text: string }[] };
+  services?: {
     heading: string;
     lead: string;
     items: { title: string; text: string; outcome: string; icon: IconId; tools: TechId[] }[];
   };
-  industries: { heading: string; lead: string; items: Record<IndustryId, { useCase: string; outcome: string }> };
-  process: { heading: string; lead: string; timeline: string; steps: [string, string, string, string, string, string] };
-  why: { heading: string; lead: string; extra: { title: string; text: string; icon: IconId }[] };
+  industries?: { heading: string; lead: string; items: Record<IndustryId, { useCase: string; outcome: string }> };
+  process?: { heading: string; lead: string; timeline: string; steps: [string, string, string, string, string, string] };
+  why?: { heading: string; lead: string; extra: { title: string; text: string; icon: IconId }[] };
   stack: TechId[];
   faqs: { q: string; a: string }[];
+  /** Related cards come from this category instead of the page's own (an industry hub lists its segments). */
+  relatedCategory?: CategoryId;
 };
 
 /** Sections whose order follows each page's live-site sequence (between the hero and the FAQ). */
@@ -82,6 +87,12 @@ export type BlockItem = {
   photo?: ServicePhoto;
   /** Short ticked points under the text. */
   points?: string[];
+  /** The products a card covers, as icon + name chips under the text. */
+  marks?: TechId[];
+  /** A platform's own logo file (wordmarks too), shown at the top of the card. */
+  logo?: string;
+  /** A link at the foot of the card ("Explore …"), already resolved with asset(). */
+  href?: string;
 };
 
 type Head = {
@@ -142,8 +153,9 @@ export type Block =
       items?: BlockItem[];
       reverse?: boolean;
       cta?: boolean;
-      /** card = the points on one card (default) · cards = one small card per point · divided = rows split by hairlines */
-      list?: "card" | "cards" | "divided";
+      /** card = the points on one card (default) · cards = one small card per point · divided = rows split by hairlines
+       *  flank = the photo in the middle with the points on either side (live "why choose" around an image) */
+      list?: "card" | "cards" | "divided" | "flank";
       /** A row of text chips under the points (e.g. languages we migrate from). */
       chips?: { heading: string; items: string[] };
       /** A closing line under the section (centred). */
@@ -152,7 +164,7 @@ export type Block =
   | (Head & {
       kind: "panels";
       /** Live "panel + list" services: an accent panel with the group's name and pitch beside its list; alternates sides. */
-      groups: { title: string; text: string; items: { title: string; text: string }[] }[];
+      groups: { title: string; text: string; items: { title: string; text: string; marks?: TechId[] }[] }[];
     })
   | (Head & { kind: "rows"; items: { title: string; intro: string; bullets: string[]; note?: string; photo: ServicePhoto }[] })
   | (Head & {
@@ -160,13 +172,86 @@ export type Block =
       steps: { title: string; text: string }[];
       photo?: ServicePhoto;
       cta?: boolean;
-      /** board = phase cards (default) · curve = a wave path with large numbers (live data pages) */
-      variant?: "board" | "curve";
+      /** board = phase cards (default) · curve = a wave path with large numbers (live data pages)
+       *  cycle = the steps around a loop that closes back on the first (continuous work)
+       *  arc = the steps as nodes on a half-circle around the heading (live managed-services process) */
+      variant?: "board" | "curve" | "cycle" | "arc";
+      /** cycle: the words in the middle of the loop. */
+      centre?: string;
+    })
+  | (Head & {
+      kind: "spectrum";
+      /** Compute models placed along a control ↔ convenience axis, with their products. */
+      ends: [string, string];
+      models: { title: string; text: string; marks: TechId[] }[];
+      /** What applies across every model (compact cards under the scale). */
+      more?: { heading: string; items: BlockItem[] };
+    })
+  | (Head & {
+      kind: "phases";
+      /** Services grouped by migration phase: a connected stepper, one phase open at a time. */
+      phases: { label: string; text: string; items: { title: string; text: string; mark?: TechId; icon?: IconId }[] }[];
+    })
+  | (Head & {
+      kind: "focus";
+      /** Core-service deep dive: two featured services, each with what it does here and a link to its page. */
+      items: { title: string; text: string; points: string[]; icon: IconId; mark?: TechId; href?: string }[];
+    })
+  | (Head & {
+      kind: "posts";
+      /** Articles from the live blog, by slug, each with a one-line summary written for this page. */
+      items: { slug: string; summary: string }[];
+    })
+  | (Head & {
+      kind: "ledger";
+      /** An itemised bill: where the spend comes down, what we change, and the tools that do it. */
+      title: string;
+      rows: { area: string; title: string; text: string; marks?: TechId[]; names?: string[] }[];
+      /** Column headings (default: Area · What we change · Tools) and the unit in the count ("lines"). */
+      cols?: [string, string, string];
+      unit?: string;
+      note?: string;
+    })
+  | (Head & {
+      kind: "map";
+      /** Migration map: where workloads come from → the Azure landing point → what they land as. */
+      from: { label: string; icon: IconId }[];
+      hub: { mark: TechId; label: string };
+      to: { mark: TechId; label: string }[];
+      /** Column labels over the two sides (defaults to the migration wording). */
+      labels?: [string, string];
+      /** The services under the map (centred cards, each with its Azure product icon). */
+      items: BlockItem[];
+      cols?: number;
+    })
+  | (Head & {
+      kind: "pipeline";
+      /** Integration pipeline: named stages in flow order, each with its Azure services. */
+      stages: { label: string; items: { title: string; text: string; mark: TechId }[] }[];
+      /** The systems at either end of the flow. */
+      ends: [string, string];
+    })
+  | (Head & {
+      kind: "plans";
+      /** Live pricing table: plan cards with the headline terms, then the full comparison. */
+      plans: { name: string; summary: string; facts: { label: string; value: string }[] }[];
+      price: string;
+      groups: { label: string; rows: { label: string; values: string[] }[] }[];
+      note?: string;
+    })
+  | (Head & {
+      kind: "layers";
+      /** Defence in depth: nested layers, outermost first, each with the services that guard it. */
+      layers: { label: string; text: string; items: { title: string; text: string; mark?: TechId; icon?: IconId }[] }[];
+      /** The icon in the core (default: a shield). */
+      core?: IconId;
     })
   | (Head & {
       kind: "cases";
       /** grid = cards (default) · wide = one row per case, story left and results right */
       layout?: "grid" | "wide";
+      /** The label on each card (default "Case study"); "Typical engagement" for client-pattern proof without client names or figures. */
+      label?: string;
       items: { client: string; place?: string; text?: string; metric?: string; metricLabel?: string; points?: string[] }[] })
   | (Head & { kind: "quotes"; layout?: "grid" | "slider"; items: { quote: string; role: string; company?: string; place: string }[] })
   | (Head & {
@@ -187,6 +272,30 @@ export type Block =
     })
   | (Head & { kind: "clients"; layout?: "marquee" | "grid"; logos: { src: string; name: string }[] })
   | { kind: "assessment"; heading: string; lead: string; areas: string[]; deliverables: string[] }
+  | (Head & {
+      kind: "people";
+      /** Leadership: name and role on a card, with the person's initials (no stock faces). */
+      items: { name: string; role: string; text?: string }[];
+    })
+  | (Head & {
+      kind: "offices";
+      /** Office locations: flag, city, address, and the local time there. */
+      items: { country: string; flag: string; city: string; address?: string; timeZone: string; label?: string }[];
+    })
+  | (Head & {
+      kind: "events";
+      /** The next event in full, then past events as a dated list. Dates are ISO (yyyy-mm-dd). */
+      next?: { name: string; start: string; end: string; venue: string; text: string; href: string; register?: string; photo: ServicePhoto };
+      past: { name: string; start: string; end: string; venue: string; href?: string }[];
+      /** "All events" link under the section (About). */
+      all?: string;
+    })
+  | (Head & {
+      kind: "papers";
+      /** White papers: cover, title, summary, what it covers, and where to read it. */
+      items: { title: string; summary: string; points: string[]; cover: ServicePhoto; href: string; topic: string }[];
+    })
+  | (Head & { kind: "blog" })
   | (Partial<Head> & { kind: "industries" })
   | { kind: "faq" };
 

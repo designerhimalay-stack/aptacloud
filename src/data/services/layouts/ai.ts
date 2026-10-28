@@ -22,7 +22,7 @@ export const AI_LAYOUTS: Record<string, ServiceLayout> = {
         style: "statement",
         tag: "The challenge",
         icon: "target",
-        heading: "What's slowing your business?",
+        heading: "Where businesses get stuck.",
         lead: "Five things we hear from leadership teams before their first AI project.",
         cols: 3,
         cta: true,
@@ -91,70 +91,28 @@ export const AI_LAYOUTS: Record<string, ServiceLayout> = {
       },
       {
         kind: "cases",
-        tag: "Case studies",
+        id: "case-studies",
+        layout: "wide",
+        label: "Typical engagement",
+        tag: "Typical engagements",
         icon: "chart",
-        heading: "Transformation stories.",
-        lead: "What AI consulting changed for four of our clients.",
+        heading: "What AI consulting looks like in our industries.",
+        lead: "How first AI projects usually run, from proof of concept to production.",
         items: [
           {
-            client: "Healthcare services group",
-            place: "Toronto, Canada",
-            metric: "33%",
-            metricLabel: "Faster appointment allocation",
-            text: "Patient demand was putting pressure on their appointment system. After reviewing operations, we advised an AI-supported scheduling framework that shortened allocation time and improved patient response.",
+            client: "Insurance: submission and claims triage",
+            text: "We often see underwriting and claims teams reading every document by hand. We prove AI extraction and triage on one intake channel with Azure OpenAI, then connect it to the policy and claims systems already in place.",
+            points: ["Faster triage of submissions and claims","More consistent decisions","Teams focused on judgement, not data entry"],
           },
           {
-            client: "Consumer lending company",
-            place: "Dallas, USA",
-            metric: "23%",
-            metricLabel: "Fewer verification errors",
-            text: "Loan applications piled up because document checks were manual. We introduced intelligent document review and automated validation, reducing errors while speeding up approvals.",
+            client: "Oil and gas: predictive maintenance",
+            text: "Field teams often hold SCADA, sensor, and inspection data in separate systems. We bring one asset class onto an Azure data platform and train models that flag failure risk before it becomes downtime.",
+            points: ["Earlier warning of equipment risk","Maintenance planned on evidence","A data foundation for further models"],
           },
           {
-            client: "Industrial equipment manufacturer",
-            place: "Ohio, USA",
-            metric: "20%",
-            metricLabel: "Less unexpected downtime",
-            text: "Frequent production delays were hurting output. We designed a predictive monitoring strategy with their team that improved maintenance planning.",
-          },
-          {
-            client: "Insurance claims management firm",
-            place: "Vancouver, Canada",
-            metric: "4x",
-            metricLabel: "Faster claims processing",
-            text: "Manual review made high claim volumes hard to handle. We recommended an AI workflow for claim analysis and document classification, with automated approvals where the rules allow.",
-          },
-        ],
-      },
-      {
-        kind: "quotes",
-        tag: "Testimonials",
-        icon: "chat",
-        heading: "Words from our clients.",
-        items: [
-          {
-            quote: "What impressed us most was how clearly AptaCloud set out the AI adoption strategy. With their recommendations, our insurance workflow became much faster, with 2.5x better efficiency across departments.",
-            role: "Operations Executive",
-            company: "Insurance Services Firm",
-            place: "Calgary, Canada",
-          },
-          {
-            quote: "Their AI consulting team helped us simplify patient scheduling and internal coordination. We've seen around a 20% improvement in operational efficiency across our clinics.",
-            role: "Operations Manager",
-            company: "Healthcare Provider Network",
-            place: "Toronto, Canada",
-          },
-          {
-            quote: "They helped us understand how AI could improve production forecasting. Planning accuracy rose by about 30%, giving our operations team far more confidence in scheduling.",
-            role: "Supply Chain Head",
-            company: "Manufacturing Company",
-            place: "Detroit, USA",
-          },
-          {
-            quote: "AptaCloud took a practical approach to our compliance workflow, adding AI-supported document validation and auditing. We cut manual review tasks by close to 37% while meeting strict regulatory standards.",
-            role: "Director",
-            company: "Financial Lending Company",
-            place: "New York, USA",
+            client: "Engineering and construction: field documents",
+            text: "Contractors often capture inspections, forms, and site reports on paper or in disconnected apps. We start with one document type, using AI to read and route it into the systems the office already uses.",
+            points: ["Less manual re-keying","Faster site-to-office reporting","Searchable project records"],
           },
         ],
       },
@@ -179,15 +137,15 @@ export const AI_LAYOUTS: Record<string, ServiceLayout> = {
     faqs: [
       {
         q: "How is AptaCloud different from other AI consulting firms?",
-        a: "We combine local knowledge of the US and Canadian markets with a thorough AI readiness process. We do not install AI and leave; we make sure your business is ready to support it, then stay to run and improve it.",
+        a: "We work only with mid-sized businesses in insurance, oil and gas, and engineering and construction, and we prove every idea on your data with a proof of concept before you commit. We do not install AI and leave; we make sure your business is ready to support it, then stay to run and improve it.",
       },
       {
         q: "How can I tell if my business needs an AI consultant?",
         a: "If you hold large amounts of data but are unsure how to turn it into revenue, or competitors are using automation to move ahead, it is time to get advice. Our AI strategy consulting helps you set the direction.",
       },
       {
-        q: "Do you support Canadian businesses locally?",
-        a: "Yes. Our AI consulting in Canada covers the market dynamics, currency, and regulations such as PIPEDA that apply to North American clients.",
+        q: "Which industries do you provide AI consulting for?",
+        a: "Insurance, oil and gas, and engineering and construction. Our consultants know the claims, underwriting, field, and project workflows in those industries, and the systems they run on.",
       },
       {
         q: "What does an AI implementation consultant do?",
@@ -195,7 +153,7 @@ export const AI_LAYOUTS: Record<string, ServiceLayout> = {
       },
       {
         q: "Do your AI consulting services meet industry standards?",
-        a: "Yes. Whether it is HIPAA in healthcare or SOC 2 in technology, we make security and compliance a priority on every AI engagement in the USA and Canada.",
+        a: "Yes. We design every AI engagement around the security and compliance standards your industry works under, such as SOC 2, GLBA, and NAIC model laws in insurance, and NIST CSF and ISA/IEC 62443 in industrial operations.",
       },
       {
         q: "How much does AI consulting cost?",
@@ -250,7 +208,7 @@ export const AI_LAYOUTS: Record<string, ServiceLayout> = {
       },
       {
         kind: "banner",
-        heading: "Want to see how these frameworks can work for your business?",
+        heading: "See how these frameworks would work in your business.",
         text: "Talk us through your use case and we'll map out an agent design for it.",
         photo: { src: `${P}/ai-laptop-prompt.jpg`, alt: "A laptop showing an AI assistant ready for a prompt", position: "50% 45%" },
       },
@@ -306,7 +264,7 @@ export const AI_LAYOUTS: Record<string, ServiceLayout> = {
         icon: "spark",
         heading: "Put agentic AI to work.",
         body: [
-          "Imagine autonomous agents that think, collaborate, and act like your best team members.",
+          "Imagine autonomous agents that think, collaborate, and act like experienced members of your team.",
           "Agentic AI goes beyond simple automation. These agents reason, plan, adapt, and work across workflows on their own, so your business runs smarter and more efficiently.",
         ],
         photo: { src: `${P}/robot-hand-touch.jpg`, alt: "A robotic hand reaching towards a human hand", position: "50% 55%" },
@@ -443,7 +401,7 @@ export const AI_LAYOUTS: Record<string, ServiceLayout> = {
         items: [
           {
             title: "Customer service automation",
-            intro: "Want to give customers better support? Here's how we use AI in customer service:",
+            intro: "Here is how we use AI in customer service:",
             bullets: [
               "AI chat assistants that answer customer questions in real time.",
               "Automatic ticket summaries, so your agents resolve queries faster.",
@@ -534,7 +492,7 @@ export const AI_LAYOUTS: Record<string, ServiceLayout> = {
       },
       {
         kind: "banner",
-        heading: "Want to see how generative AI can work for your business?",
+        heading: "See how generative AI would work in your business.",
         text: "Talk us through your use case and we'll map out a solution for it.",
         photo: { src: `${L}/ai-agent-holo.jpg`, alt: "A person at a laptop working with an AI assistant shown as a hologram", position: "50% 45%" },
       },
@@ -621,7 +579,7 @@ export const AI_LAYOUTS: Record<string, ServiceLayout> = {
         tag: "Benefits",
         icon: "spark",
         heading: "Key benefits of machine learning services.",
-        lead: "Why invest in machine learning? Here's what it gives your business.",
+        lead: "What machine learning gives your business.",
         cols: 4,
         items: [
           { title: "Efficiency and automation", text: "Models process large volumes of data in seconds, freeing your team for higher-value work.", icon: "flow" },

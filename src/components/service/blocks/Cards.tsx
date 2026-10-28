@@ -2,7 +2,7 @@
 // benefits, frameworks, reasons). One shell, several card styles, each echoing
 // a layout from the live pages:
 //  • icon      — icon tile, title, text (the tile fills with the accent on hover)
-//  • statement — a buyer's statement in larger type, numbered softly
+//  • statement — a buyer's statement in larger type under a quote mark
 //  • check     — the head beside large numbered outcome rows
 //  • mark      — the tool's own logo, its tagline, title and text
 //  • centered  — a centred icon ring over the title and text (live service cards)
@@ -17,8 +17,10 @@ import { PillTag } from "@/components/ui/PillTag";
 import { FillHeading } from "@/components/site/dynamics/FillHeading";
 import { Reveal } from "@/components/ui/Reveal";
 import type { Block, BlockItem } from "@/data/services/types";
+import { TECH } from "@/data/tech";
+import { asset } from "@/brand/brand";
 import { cn } from "@/lib/utils";
-import { Icon } from "../Icon";
+import { ArrowUpRight, Icon } from "../Icon";
 import { RailHint } from "../RailHint";
 import { SectionHead } from "../SectionHead";
 import { TechMark } from "../TechMark";
@@ -36,12 +38,12 @@ const Tick = () => (
   </svg>
 );
 
-function Card({ item, style, i }: { item: BlockItem; style: NonNullable<CardsBlock["style"]>; i: number }) {
+export function Card({ item, style, i }: { item: BlockItem; style: NonNullable<CardsBlock["style"]>; i: number }) {
   if (style === "centered")
     return (
       <article className={cn(b.card, s.centered)}>
-        <span className={s.ring}>
-          <Icon id={item.icon ?? "spark"} />
+        <span className={cn(s.ring, item.mark && s.ringMark)}>
+          {item.mark ? <TechMark id={item.mark} /> : <Icon id={item.icon ?? "spark"} />}
         </span>
         <h3 className={b.title}>{item.title}</h3>
         {item.text && <p className={b.text}>{item.text}</p>}
@@ -119,7 +121,6 @@ function Card({ item, style, i }: { item: BlockItem; style: NonNullable<CardsBlo
           <svg className={s.quoteMark} viewBox="0 0 32 24" fill="currentColor" aria-hidden="true">
             <path d="M0 24V14.4C0 6.6 4.2 1.8 12.6 0l1.5 3.3C9.6 4.6 7.4 7.3 7.1 11.1H13V24H0Zm19 0V14.4C19 6.6 23.2 1.8 31.6 0l1.4 3.3c-4.5 1.3-6.7 4-7 7.8H32V24H19Z" />
           </svg>
-          <span className={s.index}>{String(i + 1).padStart(2, "0")}</span>
         </div>
         <h3 className={s.statementTitle}>{item.title}</h3>
         {item.text && <p className={b.text}>{item.text}</p>}
@@ -128,7 +129,11 @@ function Card({ item, style, i }: { item: BlockItem; style: NonNullable<CardsBlo
 
   return (
     <article className={b.card}>
-      {style === "mark" && item.mark ? (
+      {item.logo ? (
+        <span className={s.logoWide}>
+          <img src={asset(item.logo)} alt="" loading="lazy" decoding="async" />
+        </span>
+      ) : style === "mark" && item.mark ? (
         <span className={b.logoTile} title={item.title}>
           <TechMark id={item.mark} />
         </span>
@@ -142,6 +147,22 @@ function Card({ item, style, i }: { item: BlockItem; style: NonNullable<CardsBlo
         <h3 className={b.title}>{item.title}</h3>
         {item.text && <p className={b.text}>{item.text}</p>}
       </div>
+      {item.marks && (
+        <ul className={s.toolChips} aria-label="Products">
+          {item.marks.map((m) => (
+            <li key={m} className={s.toolChip}>
+              <TechMark id={m} />
+              {TECH[m].name}
+            </li>
+          ))}
+        </ul>
+      )}
+      {item.href && (
+        <a href={item.href} className={s.cardLink}>
+          Explore {item.title}
+          <ArrowUpRight />
+        </a>
+      )}
     </article>
   );
 }
@@ -180,7 +201,7 @@ function Outcomes({ block, tone }: { block: CardsBlock; tone: Tone }) {
   );
 }
 
-export function Cards({ block, cta, tone }: { block: CardsBlock; cta: { label: string; short: string }; tone: Tone }) {
+export function Cards({ block, cta, tone }: { block: CardsBlock; cta?: { label: string; short: string }; tone: Tone }) {
   const id = block.id ?? "cards";
   const style = block.style ?? "icon";
   const spans = spanStyles(block.items.length, block.cols);
@@ -252,7 +273,7 @@ export function Cards({ block, cta, tone }: { block: CardsBlock; cta: { label: s
           </div>
         )}
 
-        {block.cta && (
+        {block.cta && cta && (
           <Reveal y={20} duration={0.9} className={cn(b.ctaRow, (centred || block.note) && s.ctaCenter)}>
             <Button label={cta.label} shortLabel={cta.short} href="#contact" />
             <p className={b.ctaNote}>Fixed scope, a clear plan, and no obligation to continue.</p>

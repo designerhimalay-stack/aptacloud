@@ -1,0 +1,240 @@
+/* Phases: a stepper (n equal columns, line between the first and last node centres), then the open phase's panel. */
+
+.desk {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.stepper {
+  display: grid;
+  grid-template-columns: repeat(var(--n), minmax(0, 1fr));
+  position: relative;
+}
+
+/* Node centres sit at half a column in from each end; nodes are 44px tall, so the line is at 22px. */
+.line {
+  background: var(--line-strong);
+  height: 2px;
+  left: calc(50% / var(--n));
+  position: absolute;
+  right: calc(50% / var(--n));
+  top: 21px;
+}
+
+.fill {
+  background: var(--accent);
+  display: block;
+  height: 100%;
+  transform-origin: left;
+  transition: transform 0.6s var(--ease-out-expo);
+}
+
+.step {
+  align-items: center;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 0 6px;
+  position: relative;
+}
+
+.node {
+  align-items: center;
+  background: var(--bg);
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 1.5px var(--line-strong);
+  color: var(--fg-muted);
+  display: inline-flex;
+  font-family: var(--ff-inter);
+  font-size: 15px;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  height: 44px;
+  justify-content: center;
+  transition: background-color 0.45s var(--ease-out-quint), color 0.45s var(--ease-out-quint), box-shadow 0.45s var(--ease-out-quint);
+  width: 44px;
+}
+
+.reached .node {
+  box-shadow: inset 0 0 0 2px var(--accent);
+  color: var(--accent);
+}
+
+.on .node {
+  background: var(--accent);
+  box-shadow: 0 0 0 8px rgba(var(--accent-rgb), 0.14);
+  color: #ffffff;
+}
+
+.label {
+  color: var(--fg-muted);
+  font-family: var(--ff-inter);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.25;
+  text-align: center;
+  transition: color 0.45s var(--ease-out-quint);
+}
+
+.on .label,
+.step:hover .label {
+  color: var(--fg);
+}
+
+.step:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+  border-radius: 12px;
+}
+
+.panel {
+  animation: phase-in 0.55s var(--ease-out-expo) both;
+  background: var(--card);
+  border-radius: 32px;
+  display: grid;
+  gap: 40px;
+  grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
+  padding: 36px;
+}
+
+.panel[hidden] {
+  display: none;
+}
+
+@keyframes phase-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
+}
+
+.intro {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.introNo {
+  color: var(--accent);
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+}
+
+.introTitle {
+  color: var(--fg);
+  font-family: var(--ff-inter);
+  font-size: 30px;
+  font-weight: 600;
+  letter-spacing: -0.055em;
+  line-height: 1.12;
+  margin: 0;
+}
+
+.introText {
+  color: var(--fg-muted);
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* One to three services side by side; a single service spans the width. */
+.svcs {
+  display: grid;
+  gap: 8px;
+  grid-template-columns: repeat(var(--k), minmax(0, 1fr));
+}
+
+/* A soft fill on the panel, so a tile reads as a tile on any section tone. */
+.svc {
+  background: color-mix(in srgb, var(--fg) 4%, var(--card));
+  border-radius: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 22px;
+}
+
+.svcMark {
+  align-items: center;
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 0 0 1px rgba(10, 10, 10, 0.07);
+  display: inline-flex;
+  height: 48px;
+  justify-content: center;
+  margin-bottom: 8px;
+  width: 48px;
+}
+
+.svcMark > * {
+  border-radius: 6px;
+  height: 30px !important;
+  width: 30px !important;
+}
+
+.svcIcon {
+  background: rgba(var(--accent-rgb), 0.1);
+  box-shadow: none;
+  color: var(--accent);
+}
+
+.svcIcon svg {
+  height: 22px !important;
+  width: 22px !important;
+}
+
+.kicker {
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  margin: 0;
+}
+
+.svcTitle {
+  color: var(--fg);
+  font-family: var(--ff-inter);
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  margin: 0;
+}
+
+.svcText {
+  color: var(--fg-muted);
+  font-size: 14.5px;
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.mobile {
+  display: none;
+}
+
+@media (min-width: 810px) and (max-width: 1199.98px) {
+  .panel { gap: 24px; grid-template-columns: minmax(0, 1fr); padding: 28px; }
+  .label { font-size: 14px; }
+}
+
+@media (max-width: 809.98px) {
+  .desk { display: none; }
+  .mobile { display: grid; gap: 8px; }
+  .svc { background: var(--card); border-radius: 20px; padding: 18px; }
+  .svcMark { height: 40px; margin-bottom: 4px; width: 40px; }
+  .svcMark > * { height: 26px !important; width: 26px !important; }
+  .svcTitle { font-size: 17px; }
+  .svcText { font-size: 14px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .panel { animation: none; }
+  .fill, .node, .label { transition: none; }
+}

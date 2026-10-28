@@ -9,13 +9,16 @@ import { Pulse } from "@/components/ui/Pulse";
 import { Reveal } from "@/components/ui/Reveal";
 import type { Block } from "@/data/services/types";
 import { cn } from "@/lib/utils";
+import { ArrowUpRight } from "../Icon";
 import { toneProps, type Tone } from "../tone";
 import sec from "../Section.module.css";
 import s from "./Banner.module.css";
 
 type BannerBlock = Extract<Block, { kind: "banner" }>;
 
-export function Banner({ block, cta, tone, id }: { block: BannerBlock; cta: { label: string; short: string }; tone: Tone; id: string }) {
+/** `cta` is passed to the page's one mid-page call to action; any later banner
+ *  keeps its message and offers a quiet "Let's talk" link instead of a second button. */
+export function Banner({ block, cta, tone, id }: { block: BannerBlock; cta?: { label: string; short: string }; tone: Tone; id: string }) {
   const t = toneProps(tone);
   return (
     <section id={id} {...t} className={cn(t.className, s.section)}>
@@ -29,7 +32,14 @@ export function Banner({ block, cta, tone, id }: { block: BannerBlock; cta: { la
             <h2 className={s.heading}>{block.heading}</h2>
             {block.text && <p className={s.text}>{block.text}</p>}
             <div className={s.actions}>
-              <Button label={cta.label} shortLabel={cta.short} href="#contact" />
+              {cta ? (
+                <Button label={cta.label} shortLabel={cta.short} href="#contact" />
+              ) : (
+                <a href="#contact" className={s.talk}>
+                  Let's talk
+                  <ArrowUpRight />
+                </a>
+              )}
             </div>
           </div>
           <div className={s.media}>

@@ -9,8 +9,7 @@
 
 import { motion, useScroll, useTransform, type MotionValue } from "@/lib/motion";
 import { useRef } from "react";
-import { BRAND, PRIMARY_CTA } from "@/brand/brand";
-import { Button } from "@/components/ui/Button";
+import { BRAND } from "@/brand/brand";
 import { Reveal } from "@/components/ui/Reveal";
 import { SpreadGrid } from "@/components/ui/SpreadGrid";
 import s from "./WhyWorkshop.module.css";
@@ -157,9 +156,6 @@ export function WhyWorkshop() {
                 <p className={s.lead}>{LEAD}</p>
               </Reveal>
             </div>
-            <Reveal y={30} duration={1} delay={0.15} amount={0.3}>
-              <Button label={PRIMARY_CTA.label} href={PRIMARY_CTA.href} variant="primary" />
-            </Reveal>
           </div>
         </div>
 

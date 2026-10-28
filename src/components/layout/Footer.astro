@@ -5,16 +5,12 @@
 // there is no backend to subscribe anyone to. Phone, email, and address live in
 // the contact section right above the footer, so the footer does not repeat them.
 import styles from "./Footer.module.css";
-import { BRAND, PRIMARY_CTA, asset, home } from "../../brand/brand";
+import { BRAND, asset, home } from "../../brand/brand";
 import { SOCIAL_PATHS } from "../../brand/social";
 import { Logo, Wordmark } from "../../brand/Logo";
 import { Button } from "../ui/Button";
 
-interface Props {
-  /** The page's primary CTA (defaults to the home page's). */
-  cta?: { label: string; href: string };
-}
-const { cta = { label: PRIMARY_CTA.label, href: PRIMARY_CTA.href } } = Astro.props;
+
 
 type FooterLink = { label: string; href: string };
 
@@ -24,7 +20,7 @@ const COLUMNS: { title: string; links: FooterLink[] }[] = [
     title: "Useful links",
     links: [
       { label: "Home", href: home() },
-      { label: "About us", href: home("#about") },
+      { label: "About us", href: asset("/about-us/") },
       { label: "AI Assessment Workshop", href: home("#workshop") },
       { label: "Partners", href: home("#partners") },
     ],
@@ -40,12 +36,12 @@ const COLUMNS: { title: string; links: FooterLink[] }[] = [
     ],
   },
   {
-    /* The three in-scope verticals (Brand Guidelines 13), linked to the live industry pages, as in the nav. */
+    /* The three in-scope verticals (Brand Guidelines 13), linked to their hub pages. */
     title: "Industries",
     links: [
-      { label: "Insurance", href: "https://aptacloud.com/industry/insurance/" },
-      { label: "Oil & Gas", href: "https://aptacloud.com/industry/oil-gas/" },
-      { label: "Engineering & Construction", href: "https://aptacloud.com/industry/engineering-and-construction/" },
+      { label: "Insurance", href: asset("/industry/insurance/") },
+      { label: "Oil & Gas", href: asset("/industry/oil-gas/") },
+      { label: "Engineering & Construction", href: asset("/industry/engineering-and-construction/") },
     ],
   },
 ];
@@ -101,9 +97,10 @@ const COLUMNS: { title: string; links: FooterLink[] }[] = [
           }
         </nav>
 
+        {/* The contact form sits directly above the footer, so no second CTA here. */}
         <div class={styles.cta}>
-          <p class={styles.ctaText}>See where AI pays off in your business first.</p>
-          <Button label={cta.label} href={cta.href} variant="outline" className={styles.ctaButton} />
+          <p class={styles.ctaText}>Microsoft first, and proven on your data.</p>
+          <Button label="Back to top" href="#top" variant="outline" className={styles.ctaButton} />
         </div>
       </div>
     </div>

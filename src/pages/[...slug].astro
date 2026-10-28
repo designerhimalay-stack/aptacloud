@@ -40,6 +40,20 @@ import { Panels } from "../components/service/blocks/Panels";
 import { Suite } from "../components/service/blocks/Suite";
 import { Index } from "../components/service/blocks/Index";
 import { Hub } from "../components/service/blocks/Hub";
+import { MigrationMap } from "../components/service/blocks/Map";
+import { Pipeline } from "../components/service/blocks/Pipeline";
+import { Plans } from "../components/service/blocks/Plans";
+import { Layers } from "../components/service/blocks/Layers";
+import { Spectrum } from "../components/service/blocks/Spectrum";
+import { Phases } from "../components/service/blocks/Phases";
+import { Ledger } from "../components/service/blocks/Ledger";
+import { Focus } from "../components/service/blocks/Focus";
+import { Posts } from "../components/service/blocks/Posts";
+import { People } from "../components/service/blocks/People";
+import { Offices } from "../components/service/blocks/Offices";
+import { Events } from "../components/service/blocks/Events";
+import { Papers } from "../components/service/blocks/Papers";
+import { BlogIndex } from "../components/service/blocks/BlogIndex";
 import { homeRhythm, type Tone } from "../components/service/tone";
 import { CTA } from "../components/site/CTA";
 
@@ -48,7 +62,7 @@ export function getStaticPaths() {
 }
 
 const { slug } = Astro.params;
-const { page, extras, layout, stats, category, siblings } = getService(slug as string);
+const { page, extras, layout, stats, category, relatedIn, siblings } = getService(slug as string);
 const faqs = layout?.faqs ?? page.faqs;
 const cta = { label: page.cta.label, short: page.cta.short };
 
@@ -58,7 +72,8 @@ const cta = { label: page.cta.label, short: page.cta.short };
 const blocks: Block[] = layout?.blocks ?? [];
 const CYCLE: Tone[] = ["tint", "white", "dark"];
 const after = (t: Tone) => CYCLE[(CYCLE.indexOf(t) + 1) % 3];
-// The stats band is dark (it continues the hero), so the first block starts at tint.
+// The stats band is dark (it continues the hero), so the first block starts at
+// tint. Pages without stats (blog, events, white papers) start from the hero's dark.
 const statsTone: Tone = "dark";
 const blockTones: Tone[] = [];
 let prev = statsTone;
@@ -83,6 +98,17 @@ const stackHeading = extras.stackHeading ?? {
   lead: "Microsoft first, with the tools your team already knows.",
 };
 
+// CRO: the primary action appears in the hero, once mid-page, and in the contact
+// form. The mid-page slot goes to the pricing table if the page has one (it is
+// the decision point), otherwise to the first banner or section that offers the
+// CTA. Every other block renders without a button (later banners keep a quiet
+// "Let's talk" link). The nav pill reads "Let's talk" on every page.
+const offers = (b: Block) =>
+  b.kind === "banner" || b.kind === "plans" || b.kind === "assessment" || ((b.kind === "cards" || b.kind === "split" || b.kind === "steps") && !!b.cta);
+const decision = blocks.findIndex((b) => b.kind === "plans" || b.kind === "assessment");
+const midCta = decision >= 0 ? decision : blocks.findIndex(offers);
+const ctaFor = (i: number) => (i === midCta ? cta : undefined);
+
 // Hero's secondary link goes to the process section when the page has one.
 const howHref = !layout || blocks.some((b) => "id" in b && b.id === "process") ? "#process" : null;
 
@@ -92,6 +118,10 @@ const related = siblings.map((p) => ({ slug: p.slug, name: p.name, summary: p.su
 const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 const pageUrl = new URL(`${base}/${page.slug}/`, Astro.site).href;
 const homeUrl = new URL(`${base}/`, Astro.site).href;
+
+// Company pages describe the organisation, not a service.
+const company = page.category === "company";
+const pageType = page.slug === "about-us" ? "AboutPage" : page.slug === "blog" ? "Blog" : "WebPage";
 
 const jsonLd = [
   {
@@ -103,30 +133,43 @@ const jsonLd = [
       { "@type": "ListItem", position: 3, name: page.name, item: pageUrl },
     ],
   },
-  {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    name: page.name,
-    serviceType: page.name,
-    description: page.seo.description,
-    url: pageUrl,
-    areaServed: ["United States", "Australia", "India"],
-    provider: {
-      "@type": "Organization",
-      name: BRAND.name,
-      url: `https://${BRAND.contact.website}`,
-      email: BRAND.contact.email,
-    },
-  },
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faqs.map((f) => ({
-      "@type": "Question",
-      name: f.q,
-      acceptedAnswer: { "@type": "Answer", text: f.a },
-    })),
-  },
+  company
+    ? {
+        "@context": "https://schema.org",
+        "@type": pageType,
+        name: page.seo.title,
+        description: page.seo.description,
+        url: pageUrl,
+        publisher: { "@type": "Organization", name: BRAND.name, url: `https://${BRAND.contact.website}`, email: BRAND.contact.email },
+      }
+    : {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        name: page.name,
+        serviceType: page.name,
+        description: page.seo.description,
+        url: pageUrl,
+        areaServed: ["United States", "Australia", "India"],
+        provider: {
+          "@type": "Organization",
+          name: BRAND.name,
+          url: `https://${BRAND.contact.website}`,
+          email: BRAND.contact.email,
+        },
+      },
+  ...(faqs.length
+    ? [
+        {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: faqs.map((f) => ({
+            "@type": "Question",
+            name: f.q,
+            acceptedAnswer: { "@type": "Answer", text: f.a },
+          })),
+        },
+      ]
+    : []),
 ];
 ---
 
@@ -134,25 +177,25 @@ const jsonLd = [
   title={page.seo.title}
   description={page.seo.description}
   jsonLd={jsonLd}
-  navCta={{ label: page.cta.short, href: "#contact" }}
+  navCta={{ label: "Let's talk", href: "#contact" }}
 >
   <ServiceHero client:load page={page} category={category} howHref={howHref} ticker={!layout} />
   {
     layout ? (
       <>
-        <Stats client:visible stats={stats} ribbon={page.stack.map((id) => TECH[id].name)} />
+        {stats.length > 0 && <Stats client:visible stats={stats} ribbon={page.stack.map((id) => TECH[id].name)} />}
         {blocks.map((b, i) => {
           const tone = blockTones[i];
           return b.kind === "cards" ? (
-            <Cards client:visible block={b} cta={cta} tone={tone} />
+            <Cards client:visible block={b} cta={ctaFor(i)} tone={tone} />
           ) : b.kind === "banner" ? (
-            <Banner client:visible block={b} cta={cta} tone={tone} id={`banner-${i}`} />
+            <Banner client:visible block={b} cta={ctaFor(i)} tone={tone} id={`banner-${i}`} />
           ) : b.kind === "split" ? (
-            <Split client:visible block={b} cta={cta} tone={tone} />
+            <Split client:visible block={b} cta={ctaFor(i)} tone={tone} />
           ) : b.kind === "rows" ? (
             <Rows client:visible block={b} tone={tone} />
           ) : b.kind === "steps" ? (
-            <Steps client:visible block={b} cta={cta} tone={tone} />
+            <Steps client:visible block={b} cta={ctaFor(i)} tone={tone} />
           ) : b.kind === "cases" ? (
             <Cases client:visible block={b} tone={tone} />
           ) : b.kind === "quotes" ? (
@@ -167,37 +210,65 @@ const jsonLd = [
             <Index client:visible block={b} tone={tone} />
           ) : b.kind === "hub" ? (
             <Hub client:visible block={b} tone={tone} />
+          ) : b.kind === "map" ? (
+            <MigrationMap client:visible block={b} tone={tone} />
+          ) : b.kind === "pipeline" ? (
+            <Pipeline client:visible block={b} tone={tone} />
+          ) : b.kind === "plans" ? (
+            <Plans client:visible block={b} cta={ctaFor(i)} tone={tone} />
+          ) : b.kind === "layers" ? (
+            <Layers client:visible block={b} tone={tone} />
+          ) : b.kind === "spectrum" ? (
+            <Spectrum client:visible block={b} tone={tone} />
+          ) : b.kind === "phases" ? (
+            <Phases client:visible block={b} tone={tone} />
+          ) : b.kind === "ledger" ? (
+            <Ledger client:visible block={b} tone={tone} />
+          ) : b.kind === "focus" ? (
+            <Focus client:visible block={b} tone={tone} />
+          ) : b.kind === "posts" ? (
+            <Posts client:visible block={b} tone={tone} />
+          ) : b.kind === "people" ? (
+            <People client:visible block={b} tone={tone} />
+          ) : b.kind === "offices" ? (
+            <Offices client:visible block={b} tone={tone} />
+          ) : b.kind === "events" ? (
+            <Events client:visible block={b} tone={tone} />
+          ) : b.kind === "papers" ? (
+            <Papers client:visible block={b} tone={tone} />
+          ) : b.kind === "blog" ? (
+            <BlogIndex client:load tone={tone} />
           ) : b.kind === "panels" ? (
             <Panels client:visible block={b} tone={tone} />
           ) : b.kind === "clients" ? (
             <Clients client:visible block={b} tone={tone} />
           ) : b.kind === "assessment" ? (
-            <Assessment client:visible data={b} cta={page.cta} tone={tone} />
+            <Assessment client:visible data={b} cta={ctaFor(i) && page.cta} tone={tone} />
           ) : b.kind === "showcase" ? (
             <Showcase client:visible block={b} tone={tone} />
           ) : b.kind === "tabs" ? (
             <Tabs client:visible block={b} tone={tone} />
           ) : b.kind === "industries" ? (
-            <Industries client:visible industries={page.industries} tone={tone} />
+            <Industries client:visible industries={page.industries!} tone={tone} />
           ) : (
             <Faq client:visible faqs={faqs} name={page.name} tone={tone} />
           );
         })}
-        {related.length > 0 && <Related client:visible category={category} siblings={related} tone={relatedTone} />}
+        {related.length > 0 && <Related client:visible category={relatedIn} siblings={related} tone={relatedTone} />}
       </>
     ) : (
       <>
         {extras.sections.map((id) =>
           id === "pains" ? (
-            <PainPoints client:visible pains={page.pains} tone={tones.pains} />
+            <PainPoints client:visible pains={page.pains!} tone={tones.pains} />
           ) : id === "services" ? (
-            <Capabilities client:visible services={page.services} models={page.category === "ai"} tone={tones.services} />
+            <Capabilities client:visible services={page.services!} models={page.category === "ai"} tone={tones.services} />
           ) : id === "process" ? (
-            <Process client:visible process={page.process} tone={tones.process} />
+            <Process client:visible process={page.process!} tone={tones.process} />
           ) : id === "industries" ? (
-            <Industries client:visible industries={page.industries} tone={tones.industries} />
+            <Industries client:visible industries={page.industries!} tone={tones.industries} />
           ) : id === "why" ? (
-            <WhyUs client:visible why={page.why} cta={page.cta} tone={tones.why} />
+            <WhyUs client:visible why={page.why!} cta={page.cta} tone={tones.why} />
           ) : id === "benefits" && extras.benefits ? (
             <FeatureGrid client:visible id="benefits" variant="benefits" {...extras.benefits} tone={tones.benefits} />
           ) : id === "useCases" && extras.useCases ? (
@@ -211,7 +282,7 @@ const jsonLd = [
           ) : null,
         )}
         <Faq client:visible faqs={faqs} name={page.name} tone={tones.faq} />
-        {related.length > 0 && <Related client:visible category={category} siblings={related} tone={tones.related} />}
+        {related.length > 0 && <Related client:visible category={relatedIn} siblings={related} tone={tones.related} />}
       </>
     )
   }

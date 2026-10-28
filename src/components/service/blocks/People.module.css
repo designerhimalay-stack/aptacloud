@@ -1,0 +1,77 @@
+/* People: equal cards, each a large initials tile over the name and role. */
+
+.grid {
+  display: grid;
+  gap: 8px;
+  grid-template-columns: repeat(var(--n), minmax(0, 1fr));
+}
+
+.cell {
+  display: flex;
+}
+
+.card {
+  background: var(--card);
+  border-radius: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  padding: 8px 8px 24px;
+  width: 100%;
+}
+
+/* The initials sit on an accent-tinted panel in place of a portrait. */
+.mono {
+  align-items: center;
+  aspect-ratio: 16 / 10;
+  background: rgba(var(--accent-rgb), 0.08);
+  border-radius: 18px;
+  color: var(--accent);
+  display: flex;
+  font-family: var(--ff-inter);
+  font-size: clamp(56px, 6vw, 88px);
+  font-weight: 600;
+  justify-content: center;
+  letter-spacing: -0.06em;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 0 16px;
+}
+
+.name {
+  color: var(--fg);
+  font-family: var(--ff-inter);
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.045em;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.role {
+  color: var(--accent);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.text {
+  color: var(--fg-muted);
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.45;
+  margin: 4px 0 0;
+}
+
+@media (max-width: 809.98px) {
+  .grid { grid-template-columns: none; }
+  .card { border-radius: 22px; gap: 20px; padding: 6px 6px 20px; }
+  .mono { border-radius: 16px; font-size: 64px; }
+  .name { font-size: 20px; }
+}

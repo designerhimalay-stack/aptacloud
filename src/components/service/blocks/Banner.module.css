@@ -95,3 +95,28 @@ section:not([data-theme]) .panel {
   .actions { margin-top: 22px; width: 100%; }
   .actions > a { width: 100%; }
 }
+
+/* Later banners: a quiet text link in place of a second primary button. */
+.talk {
+  align-items: center;
+  color: var(--fg);
+  display: inline-flex;
+  font-size: 15px;
+  font-weight: 600;
+  gap: 6px;
+  letter-spacing: -0.02em;
+  text-decoration: underline;
+  text-decoration-color: var(--line-strong);
+  text-underline-offset: 5px;
+  transition: color 0.35s var(--ease-out-quint), text-decoration-color 0.35s var(--ease-out-quint);
+}
+
+.talk svg {
+  height: 14px;
+  width: 14px;
+}
+
+.talk:hover {
+  color: var(--accent);
+  text-decoration-color: var(--accent);
+}

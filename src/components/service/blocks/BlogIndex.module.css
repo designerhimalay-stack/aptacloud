@@ -1,0 +1,205 @@
+/* Blog index: a wide lead card, the filter bar (topic pills + search), the count, the grid, "Show more". */
+
+.lead {
+  background: var(--card);
+  border-radius: 28px;
+  display: grid;
+  gap: 40px;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  padding: 8px;
+  transition: box-shadow 0.5s var(--ease-out-quint);
+}
+
+.lead:hover {
+  box-shadow: 0 24px 48px -30px rgba(10, 10, 10, 0.35);
+}
+
+.leadThumb {
+  aspect-ratio: 3 / 2;
+  border-radius: 22px;
+  overflow: hidden;
+}
+
+.leadBody {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  justify-content: center;
+  padding: 32px 40px 32px 0;
+}
+
+.leadKicker {
+  color: var(--accent);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  margin: 0;
+}
+
+.leadTitle {
+  color: var(--fg);
+  font-family: var(--ff-inter);
+  font-size: 36px;
+  font-weight: 600;
+  letter-spacing: -0.055em;
+  line-height: 1.1;
+  margin: 0;
+  text-wrap: balance;
+}
+
+.lead:hover .leadRead {
+  color: var(--accent);
+}
+
+.bar {
+  align-items: center;
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+  margin-top: 24px;
+}
+
+.topics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.topic {
+  background: var(--card);
+  border: 0;
+  border-radius: 999px;
+  color: var(--fg-soft);
+  cursor: pointer;
+  font: inherit;
+  font-size: 14.5px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  padding: 10px 16px;
+  transition: background 0.3s var(--ease-out-quint), color 0.3s var(--ease-out-quint);
+}
+
+.topic:hover {
+  color: var(--fg);
+}
+
+.topicOn,
+.topicOn:hover {
+  background: var(--fg);
+  color: var(--bg);
+}
+
+.search {
+  align-items: center;
+  background: var(--card);
+  border-radius: 999px;
+  color: var(--fg-muted);
+  display: flex;
+  flex: none;
+  gap: 8px;
+  padding: 0 16px;
+  width: 280px;
+}
+
+.search svg {
+  flex: none;
+  height: 16px;
+  width: 16px;
+}
+
+.search input {
+  background: none;
+  border: 0;
+  color: var(--fg);
+  font: inherit;
+  font-size: 14.5px;
+  font-weight: 500;
+  height: 42px;
+  min-width: 0;
+  outline: none;
+  width: 100%;
+}
+
+.search:focus-within {
+  box-shadow: 0 0 0 2px var(--accent);
+}
+
+.count {
+  color: var(--fg-muted);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  margin: 4px 0 0;
+}
+
+.grid {
+  display: grid;
+  gap: 8px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.empty {
+  align-items: center;
+  background: var(--card);
+  border-radius: 24px;
+  color: var(--fg-muted);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 48px 24px;
+}
+
+.empty p {
+  font-size: 16px;
+  font-weight: 500;
+  margin: 0;
+}
+
+.more {
+  align-self: center;
+  background: var(--fg);
+  border: 0;
+  border-radius: 999px;
+  color: var(--bg);
+  cursor: pointer;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  padding: 14px 24px;
+  transition: background 0.3s var(--ease-out-quint);
+}
+
+.more:hover {
+  background: var(--accent);
+  color: #ffffff;
+}
+
+@media (min-width: 810px) and (max-width: 1199.98px) {
+  .lead { gap: 28px; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .leadBody { padding: 24px 24px 24px 0; }
+  .leadTitle { font-size: 28px; }
+  .bar { align-items: stretch; flex-direction: column; }
+  .search { width: 100%; }
+  .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 809.98px) {
+  .lead { border-radius: 22px; gap: 0; grid-template-columns: none; padding: 6px; }
+  .leadThumb { border-radius: 16px; }
+  .leadBody { padding: 18px 14px 16px; }
+  .leadTitle { font-size: 24px; }
+  .bar { align-items: stretch; flex-direction: column; margin-top: 8px; }
+  /* Topics scroll sideways on one line instead of stacking. */
+  .topics { flex-wrap: nowrap; margin: 0 -16px; overflow-x: auto; padding: 0 16px; scrollbar-width: none; }
+  .topics::-webkit-scrollbar { display: none; }
+  .topic { flex: none; }
+  .search { width: 100%; }
+  .grid { grid-template-columns: none; }
+  /* Compact rows (thumbnail beside the title) so 64 posts don't make an endless scroll. */
+  .grid > * > a { align-items: center; border-radius: 18px; flex-direction: row; gap: 4px; padding: 6px; }
+  .grid > * > a > div:first-child { aspect-ratio: 1; border-radius: 13px; flex: none; width: 96px; }
+  .grid > * > a > div:last-child { gap: 4px; padding: 4px 8px 4px 10px; }
+  .grid > * > a > div:last-child > span:last-child { display: none; }
+  .grid h3 { font-size: 15.5px; }
+}

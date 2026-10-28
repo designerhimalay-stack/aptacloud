@@ -12,13 +12,50 @@ import { FillHeading } from "@/components/site/dynamics/FillHeading";
 import type { Block } from "@/data/services/types";
 import { cn } from "@/lib/utils";
 import { Icon } from "../Icon";
+import { SectionHead } from "../SectionHead";
 import { toneProps, type Tone } from "../tone";
 import sec from "../Section.module.css";
 import s from "./Split.module.css";
 
 type SplitBlock = Extract<Block, { kind: "split" }>;
 
-export function Split({ block, cta, tone }: { block: SplitBlock; cta: { label: string; short: string }; tone: Tone }) {
+/** flank: centred head, then the points in two columns either side of a tall photo. */
+function Flank({ block, tone }: { block: SplitBlock; tone: Tone }) {
+  const items = block.items ?? [];
+  const half = Math.ceil(items.length / 2);
+  const side = (list: typeof items, from: number) => (
+    <div className={s.flankSide}>
+      {list.map((it, i) => (
+        <Reveal key={it.title} y={18} duration={0.9} delay={(from + i) * 0.07} className={s.flankItem}>
+          <span className={s.icon}>
+            <Icon id={it.icon ?? "spark"} />
+          </span>
+          <div className={s.itemBody}>
+            <h3 className={s.itemTitle}>{it.title}</h3>
+            {it.text && <p className={s.itemText}>{it.text}</p>}
+          </div>
+        </Reveal>
+      ))}
+    </div>
+  );
+  return (
+    <section id={block.id ?? "about"} {...toneProps(tone)}>
+      <div className={sec.container}>
+        <SectionHead variant="center" tag={block.tag} icon={<Icon id={block.icon ?? "spark"} />} heading={block.heading} lead={block.lead} />
+        <div className={s.flank}>
+          {side(items.slice(0, half), 0)}
+          <Reveal y={40} duration={1.2} className={cn(s.flankMedia, "photo-host")}>
+            <Photo src={block.photo.src} alt={block.photo.alt} position={block.photo.position} tone="color" sizes="(min-width: 810px) 380px, 100vw" className={s.photo} />
+          </Reveal>
+          {side(items.slice(half), half)}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export function Split({ block, cta, tone }: { block: SplitBlock; cta?: { label: string; short: string }; tone: Tone }) {
+  if (block.list === "flank") return <Flank block={block} tone={tone} />;
   return (
     <section id={block.id ?? "about"} {...toneProps(tone)}>
       <div className={cn(sec.container, s.layout, block.reverse && s.reverse, !block.items && s.compact)}>
@@ -62,7 +99,7 @@ export function Split({ block, cta, tone }: { block: SplitBlock; cta: { label: s
             </div>
           )}
 
-          {block.cta && !block.note && (
+          {block.cta && cta && !block.note && (
             <Reveal y={20} duration={0.9} className={s.cta}>
               <Button label={cta.label} shortLabel={cta.short} href="#contact" />
             </Reveal>
@@ -86,7 +123,7 @@ export function Split({ block, cta, tone }: { block: SplitBlock; cta: { label: s
       {block.note && (
         <Reveal y={16} duration={0.9} className={cn(sec.container, s.noteWrap)}>
           <p className={s.note}>{block.note}</p>
-          {block.cta && <Button label={cta.label} shortLabel={cta.short} href="#contact" />}
+          {block.cta && cta && <Button label={cta.label} shortLabel={cta.short} href="#contact" />}
         </Reveal>
       )}
     </section>

@@ -1,6 +1,7 @@
 // Case studies (the live "Transformation stories"): one card per client, the
 // result first as a large figure that counts up when the card enters view,
-// then who it was for and what we did. Two columns; phones get a swipe rail.
+// then who it was for and what we did. Without approved figures, a card is a
+// "typical engagement": the segment, the pattern we see, and what changes. Two columns; phones get a swipe rail.
 
 import { animate, useInView } from "@/lib/motion";
 import { useEffect, useRef, useState } from "react";
@@ -58,7 +59,7 @@ function Wide({ block, tone }: { block: CasesBlock; tone: Tone }) {
             <Reveal key={c.client} y={32} duration={1} className={s.wide}>
               <div className={s.wideStory}>
                 <div className={s.top}>
-                  <span className={s.label}>Case study {String(i + 1).padStart(2, "0")}</span>
+                  <span className={s.label}>{block.label ?? "Case study"}</span>
                   {c.place && (
                     <span className={s.place}>
                       <Icon id="target" />
@@ -70,11 +71,13 @@ function Wide({ block, tone }: { block: CasesBlock; tone: Tone }) {
                 {c.text && <p className={s.text}>{c.text}</p>}
               </div>
               <div className={s.wideResults}>
-                {c.metric && (
+                {c.metric ? (
                   <div className={s.result}>
                     <Metric value={c.metric} />
                     <p className={s.metricLabel}>{c.metricLabel}</p>
                   </div>
+                ) : (
+                  c.points && <p className={s.resultsTitle}>What changes</p>
                 )}
                 {c.points && (
                   <ul className={s.points}>
@@ -112,7 +115,7 @@ export function Cases({ block, tone }: { block: CasesBlock; tone: Tone }) {
             <Reveal key={c.client} y={32} duration={1} delay={(i % 2) * 0.08} className={s.cell}>
               <article className={s.card}>
                 <div className={s.top}>
-                  <span className={s.label}>Case study {String(i + 1).padStart(2, "0")}</span>
+                  <span className={s.label}>{block.label ?? "Case study"}</span>
                   {c.place && (
                     <span className={s.place}>
                       <Icon id="target" />

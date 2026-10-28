@@ -28,10 +28,10 @@ const REGIONS = [
 type Region = (typeof REGIONS)[number]["code"];
 const REGION_KEY = "site-region";
 
-// The nav's one CTA: the page's primary action (the mega panels carry no second
-// one). Pages pass their own via the `cta` prop; the home page uses PRIMARY_CTA.
+// The nav's one CTA reads "Let's talk" on every page and opens the page's contact
+// form (CRO: the page-specific primary action lives in the hero and the form).
 type NavCta = { label: string; href: string };
-const DEFAULT_CTA: NavCta = { label: PRIMARY_CTA.short, href: PRIMARY_CTA.href };
+const DEFAULT_CTA: NavCta = { label: "Let's talk", href: PRIMARY_CTA.href };
 
 const FOCUSABLE = 'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
 const COMPACT_QUERY = "(max-width: 1199.98px)";

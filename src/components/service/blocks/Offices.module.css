@@ -1,0 +1,109 @@
+/* Offices: equal cards; flag and country, the city, the address, and the local time at the foot. */
+
+.grid {
+  display: grid;
+  gap: 8px;
+  grid-template-columns: repeat(var(--n), minmax(0, 1fr));
+}
+
+.cell {
+  display: flex;
+}
+
+.card {
+  background: var(--card);
+  border-radius: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 260px;
+  padding: 24px;
+  width: 100%;
+}
+
+.top {
+  align-items: center;
+  display: flex;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.flag {
+  border-radius: 4px;
+  box-shadow: 0 0 0 1px var(--line);
+  height: 21px;
+  object-fit: cover;
+  width: 28px;
+}
+
+.country {
+  color: var(--fg-muted);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+
+.label {
+  background: rgba(var(--accent-rgb), 0.1);
+  border-radius: 999px;
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin-left: auto;
+  padding: 4px 10px;
+}
+
+.city {
+  color: var(--fg);
+  font-family: var(--ff-inter);
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: -0.05em;
+  line-height: 1.1;
+  margin: 0;
+}
+
+.address {
+  color: var(--fg-muted);
+  font-size: 14.5px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.45;
+  margin: 0;
+}
+
+.time {
+  align-items: center;
+  border-top: 1px solid var(--line);
+  color: var(--fg);
+  display: flex;
+  font-size: 15px;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  gap: 8px;
+  letter-spacing: -0.02em;
+  margin: auto 0 0;
+  padding-top: 16px;
+}
+
+.time svg {
+  color: var(--accent);
+  height: 16px;
+  width: 16px;
+}
+
+.local {
+  color: var(--fg-muted);
+  font-weight: 500;
+}
+
+@media (min-width: 810px) and (max-width: 1199.98px) {
+  .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 809.98px) {
+  .grid { grid-template-columns: none; }
+  .card { border-radius: 22px; min-height: 230px; padding: 20px; }
+  .city { font-size: 23px; }
+}

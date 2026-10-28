@@ -25,7 +25,7 @@ const SERVICES: AzureService[] = [
     title: "Azure Hosting",
     body: "We design and run the compute, networking, and security your workloads need on Azure, sized for how your applications actually scale.",
     points: ["Cloud computing", "Networking", "Secured workloads", "Scalable applications"],
-    href: "#contact",
+    href: asset("/azure-hosting/"),
   },
   {
     index: "02",
@@ -33,7 +33,7 @@ const SERVICES: AzureService[] = [
     title: "Azure Migration",
     body: "We assess your on-premises, AWS, and other cloud workloads, then move servers, applications, and databases to the right Azure resources in phases.",
     points: ["Servers, apps & databases", "On-premises & AWS workloads", "Right-sized Azure resources"],
-    href: "#contact",
+    href: asset("/azure-migration/"),
   },
   {
     index: "03",
@@ -41,7 +41,7 @@ const SERVICES: AzureService[] = [
     title: "Azure Optimisation",
     body: "A cost review, right-sizing, reserved capacity, and governance, so your Azure bill reflects what the business actually uses.",
     points: ["Cost review", "Right-sizing", "Governance"],
-    href: "#contact",
+    href: asset("/azure-optimization/"),
   },
   {
     index: "04",
@@ -49,7 +49,7 @@ const SERVICES: AzureService[] = [
     title: "Azure Managed Services",
     body: `${BRAND.name} runs your Azure environment with 24/7 monitoring and proactive support, working alongside your internal IT team.`,
     points: ["24/7 monitoring", "Proactive support", "Works with your IT team"],
-    href: "#contact",
+    href: asset("/azure-managed-services/"),
   },
 ];
 
@@ -111,7 +111,7 @@ export function Azure() {
               <p className={s.lead}>{LEAD}</p>
             </Reveal>
             <Reveal y={30} duration={1} delay={0.15} amount={0.3} className={s.buttonWrap}>
-              <Button label="Get your cloud cost review" variant="outline" href="#contact" className={s.button} />
+              <Button label="Explore Azure services" variant="outline" href={asset("/azure-hosting/")} className={s.button} />
             </Reveal>
           </div>
         </div>

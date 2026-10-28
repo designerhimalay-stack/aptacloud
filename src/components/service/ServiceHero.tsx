@@ -22,7 +22,19 @@ import { ArrowUpRight, Icon } from "./Icon";
 import { TechMark } from "./TechMark";
 import s from "./ServiceHero.module.css";
 
-const CATEGORY_ICON = { ai: "spark", data: "db", appmod: "layers", microsoft: "team", azure: "cloud" } as const;
+const CATEGORY_ICON = {
+  ai: "spark",
+  data: "db",
+  appmod: "layers",
+  microsoft: "team",
+  azure: "cloud",
+  aws: "cloud",
+  industries: "target",
+  insurance: "shield",
+  oilgas: "pipe",
+  construction: "layers",
+  company: "team",
+} as const;
 
 /** Writes --px / --py (−1…1, eased) from the pointer, as the home hero's chips. */
 function usePointerDrift() {
@@ -67,6 +79,8 @@ export function ServiceHero({ page, category, howHref = "#process",
 }) {
   const drift = usePointerDrift();
   const { hero } = page;
+  // AWS pages credit AWS certification and the Well-Architected Framework instead of Microsoft.
+  const aws = page.category === "aws";
 
   return (
     <section id="top" className={s.hero}>
@@ -142,12 +156,13 @@ export function ServiceHero({ page, category, howHref = "#process",
           <Reveal trigger="mount" delay={0.8} className={s.creds}>
             <span className={s.cred}>
               <Pulse size={6} color="var(--accent)" />
-              Microsoft-certified specialists
+              {aws ? "AWS-certified specialists" : "Microsoft-certified specialists"}
             </span>
             <span className={s.cred}>Proof of concept on your data</span>
           </Reveal>
         </div>
 
+        {hero.chip && (
         <Reveal trigger="mount" delay={0.3} duration={1.2} y={24} className={s.visual}>
           <div ref={drift} className={s.stage}>
             {/* One glass console (home HUD language): title + logo stack, the
@@ -159,7 +174,7 @@ export function ServiceHero({ page, category, howHref = "#process",
                   {hero.chip.title}
                 </p>
                 <span className={s.marks}>
-                  {hero.marks.map((id) => (
+                  {(hero.marks ?? []).map((id) => (
                     <span key={id} className={s.markTile} title={TECH[id].name}>
                       <TechMark id={id} />
                     </span>
@@ -182,12 +197,13 @@ export function ServiceHero({ page, category, howHref = "#process",
                 <span>Delivered in six phases</span>
                 <span className={s.status}>
                   <i aria-hidden="true" />
-                  Microsoft-first
+                  {aws ? "Well-Architected" : "Microsoft-first"}
                 </span>
               </p>
             </div>
           </div>
         </Reveal>
+        )}
       </div>
 
       {ticker && (

@@ -1,0 +1,387 @@
+// Industry pages: the three vertical hubs (category "industries") and each
+// vertical's segment pages (categories "insurance", "oilgas", "construction").
+// URLs keep the live /industry/... paths. Topics follow the live pages; copy is
+// rewritten to Brand Guidelines v2.0 and Content Writing Guidelines v2.0
+// (Australian English). Every page has a layout (layouts/industries.ts), so the
+// older template fields are left out. Hero photos are the live pages' own.
+
+import type { ServicePage } from "./types";
+
+const photo = (file: string, alt: string, position = "50% 45%") => ({ src: `/images/photos/industry/${file}.jpg`, alt, position });
+
+export const INDUSTRY_PAGES: ServicePage[] = [
+  /* ─────────────── Hubs ─────────────── */
+  {
+    slug: "industry/insurance",
+    category: "industries",
+    relatedCategory: "insurance",
+    name: "Insurance",
+    summary: "Policy, claims, and customer systems modernised and connected for insurers.",
+    seo: {
+      title: "Insurance Technology Solutions | AptaCloud",
+      description: "Insurance technology for carriers, MGAs, TPAs, and agencies: cloud, modernisation, integration, data, and AI across policy, claims, and customer systems.",
+    },
+    hero: {
+      title: "Modernise insurance operations",
+      accent: "with connected technology.",
+      lead: "AptaCloud builds scalable insurance cloud solutions across your policy, claims, customer, and enterprise systems. We modernise what holds you back and connect the rest, so information flows from first notice of loss to renewal.",
+      photo: photo("ins-hero", "An insurance specialist reviewing policy data across two monitors", "60% 35%"),
+      chip: { title: "Insurance technology", items: ["Policy and claims modernisation", "System integration", "Data and AI"] },
+      marks: ["azure", "dynamics", "powerBI"],
+    },
+    cta: {
+      label: "Get an insurance technology assessment",
+      short: "Get an assessment",
+      heading: "Find out where your insurance technology is holding you back.",
+      lead: "Tell us about your policy, claims, and customer systems. We will assess them and show what to modernise or connect first.",
+    },
+    stack: ["azure", "dynamics", "powerBI", "fabric", "azureSQL", "azureDataFactory", "apiManagement", "logicApps", "azureOpenAI", "copilotStudio"],
+    faqs: [],
+  },
+  {
+    slug: "industry/oil-gas",
+    category: "industries",
+    relatedCategory: "oilgas",
+    name: "Oil & Gas",
+    summary: "Operational and enterprise systems connected for oil and gas organisations.",
+    seo: {
+      title: "Oil & Gas Technology Solutions | AptaCloud",
+      description: "Oil and gas technology: SCADA, EAM, ERP, and field systems integrated, with data, analytics, and AI built on Microsoft Azure.",
+    },
+    hero: {
+      title: "Connect and modernise",
+      accent: "oil & gas operations.",
+      lead: "AptaCloud helps oil and gas organisations modernise systems, connect operational data, improve field operations, and build scalable digital solutions across assets, facilities, and the enterprise.",
+      photo: photo("og-hero", "Pipelines and valves at a processing facility under an evening sky", "50% 50%"),
+      chip: { title: "Oil & gas technology", items: ["SCADA, EAM, and ERP integration", "Field operations", "Data and AI"] },
+      marks: ["azure", "powerBI", "dynamics"],
+    },
+    cta: {
+      label: "Get an oil & gas technology assessment",
+      short: "Get an assessment",
+      heading: "Find out where your operational data is getting stuck.",
+      lead: "Tell us which systems run your assets and field work. We will assess how they connect and show what to integrate first.",
+    },
+    stack: ["azure", "powerBI", "fabric", "azureDataFactory", "azureSynapse", "dynamics", "azureML", "azureFunctions"],
+    faqs: [],
+  },
+  {
+    slug: "industry/engineering-and-construction",
+    category: "industries",
+    relatedCategory: "construction",
+    name: "Engineering & Construction",
+    summary: "BIM, project, ERP, and field systems connected into one project data platform.",
+    seo: {
+      title: "Engineering & Construction Technology | AptaCloud",
+      description: "Engineering and construction technology: BIM, project management, ERP, IoT, and field apps integrated into one data platform for better project decisions.",
+    },
+    hero: {
+      title: "Build connected engineering",
+      accent: "and construction operations.",
+      lead: "AptaCloud brings BIM, project management software, ERP, IoT devices, and field apps together on one digital platform, so projects are easier to see, execution risks fall, and engineering decisions improve.",
+      photo: photo("ec-hero", "An engineer reviewing plans on a tablet beside a window over a construction site", "60% 45%"),
+      chip: { title: "Engineering & construction", items: ["BIM and project integration", "Project data platform", "AI and analytics"] },
+      marks: ["azure", "dynamics", "powerBI"],
+    },
+    cta: {
+      label: "Explore your integration roadmap",
+      short: "Get your roadmap",
+      heading: "See how your project systems could work as one.",
+      lead: "Tell us which design, project, and field tools your teams use. We will map how they could connect and what to integrate first.",
+    },
+    stack: ["azure", "dynamics", "powerBI", "fabric", "azureDataFactory", "azureSynapse", "azureML"],
+    faqs: [],
+  },
+
+  /* ─────────────── Insurance segments ─────────────── */
+  {
+    slug: "industry/insurance/carriers",
+    category: "insurance",
+    name: "Carriers",
+    summary: "Core policy systems modernised and connected for insurance carriers.",
+    seo: {
+      title: "Technology for Insurance Carriers | AptaCloud",
+      description: "Technology for insurance carriers: policy administration modernisation, AI for underwriting and claims, and integration on Microsoft Azure.",
+    },
+    hero: {
+      title: "Modernise your core systems",
+      accent: "and protect underwriting margins.",
+      lead: "AptaCloud helps insurance carriers modernise core technology, automate critical workflows, and connect policy, claims, and billing, without disrupting the book you write today.",
+      photo: photo("carriers-hero", "Two insurance colleagues reviewing a policy document together", "60% 40%"),
+      chip: { title: "For carriers", items: ["Policy administration modernisation", "AI for underwriting and claims", "Compliance-ready data"] },
+      marks: ["azure", "dynamics", "copilot"],
+    },
+    cta: {
+      label: "Get your modernisation roadmap",
+      short: "Get your roadmap",
+      heading: "Modernise your core system without disrupting it.",
+      lead: "Let us show you how to build secure API wrappers around your existing policy administration system, then modernise in phases.",
+    },
+    stack: ["azure", "dynamics", "powerBI", "fabric", "azureSynapse", "azureOpenAI", "apiManagement", "copilotStudio"],
+    faqs: [],
+  },
+  {
+    slug: "industry/insurance/managing-general-agents",
+    category: "insurance",
+    name: "Managing General Agents",
+    summary: "Submission triage, underwriting, and broker workflows automated for MGAs.",
+    seo: {
+      title: "Technology for Managing General Agents (MGAs) | AptaCloud",
+      description: "Technology for MGAs: AI submission triage, appetite matching, and connected underwriting workflows on Microsoft Azure, without replacing your systems.",
+    },
+    hero: {
+      title: "Faster submissions and underwriting",
+      accent: "for managing general agents.",
+      lead: "AptaCloud helps managing general agents (MGAs) automate submissions, speed up underwriting, and grow profitably, with AI and integration built around the systems you already run.",
+      photo: photo("mga-hero", "An underwriter working on a laptop with dashboards behind him", "60% 40%"),
+      chip: { title: "For MGAs", items: ["AI submission triage", "Appetite matching", "Connected broker workflows"] },
+      marks: ["azure", "azureOpenAI", "dynamics"],
+    },
+    cta: {
+      label: "Get a workflow assessment",
+      short: "Get an assessment",
+      heading: "Scale your MGA with smarter underwriting.",
+      lead: "Let us show how to modernise your underwriting workflows without disrupting the systems you run today.",
+    },
+    stack: ["azure", "azureOpenAI", "dynamics", "powerBI", "fabric", "apiManagement", "logicApps", "exchange"],
+    faqs: [],
+  },
+  {
+    slug: "industry/insurance/third-party-adjusters",
+    category: "insurance",
+    name: "Third-Party Adjusters",
+    summary: "Claims intake, validation, and multi-carrier workflows automated for TPAs.",
+    seo: {
+      title: "Technology for Third-Party Adjusters (TPAs) | AptaCloud",
+      description: "Technology for TPAs: automated claims intake and validation, multi-carrier integration, and claims visibility on Microsoft Azure.",
+    },
+    hero: {
+      title: "Faster claims and settlements",
+      accent: "for third-party adjusters.",
+      lead: "AptaCloud helps third-party adjusters (TPAs) streamline claims processing, speed up settlements, and run more efficiently, by connecting carrier systems and automating the work in between.",
+      photo: photo("tpa-hero", "Claims colleagues greeting a client in a bright office", "55% 40%"),
+      chip: { title: "For TPAs", items: ["Automated claims intake", "Multi-carrier integration", "Claims visibility"] },
+      marks: ["azure", "dynamics", "azureOpenAI"],
+    },
+    cta: {
+      label: "Get a claims automation assessment",
+      short: "Get an assessment",
+      heading: "Modernise the way you manage claims.",
+      lead: "Let us show how to connect your claims systems, automate workflows, and improve efficiency.",
+    },
+    stack: ["azure", "azureOpenAI", "dynamics", "powerBI", "apiManagement", "logicApps", "serviceBus", "exchange"],
+    faqs: [],
+  },
+  {
+    slug: "industry/insurance/independent-agents",
+    category: "insurance",
+    name: "Independent Agents",
+    summary: "Quoting, renewals, and client service connected for independent agencies.",
+    seo: {
+      title: "Technology for Independent Insurance Agents | AptaCloud",
+      description: "Technology for independent agencies: agency management integration, automated renewals and servicing, and a single client view with Dynamics 365.",
+    },
+    hero: {
+      title: "Sell, renew, and service",
+      accent: "with less admin.",
+      lead: "AptaCloud modernises policy sales, renewals, and customer service for independent agencies, with intelligent automation and workflows that connect your agency management system, carriers, and CRM.",
+      photo: photo("agents-hero", "An independent agent walking a family through their policy on a tablet", "55% 40%"),
+      chip: { title: "For independent agents", items: ["Agency system integration", "Automated renewals", "One client view"] },
+      marks: ["dynamics", "azure", "copilot"],
+    },
+    cta: {
+      label: "Get an agency workflow review",
+      short: "Get a review",
+      heading: "Transform every customer interaction.",
+      lead: "Let us show how to connect your agency systems and simplify policy sales, renewals, and customer service.",
+    },
+    stack: ["dynamics", "azure", "azureOpenAI", "powerBI", "copilot", "exchange", "logicApps", "powerAutomate"],
+    faqs: [],
+  },
+
+  /* ─────────────── Oil & Gas segments ─────────────── */
+  {
+    slug: "industry/oil-gas/major-operators",
+    category: "oilgas",
+    name: "Major Operators",
+    summary: "SCADA, EAM, GIS, and field systems connected into one operational platform.",
+    seo: {
+      title: "Technology for Major Oil & Gas Operators | AptaCloud",
+      description: "SCADA, EAM, GIS, and field systems integrated into one operational data platform on Microsoft Azure, for less downtime and better asset performance.",
+    },
+    hero: {
+      title: "A connected oilfield",
+      accent: "for major operators.",
+      lead: "AptaCloud connects SCADA, EAM, GIS, and field systems into one operational platform that reduces downtime, improves asset performance, and speeds up enterprise decisions.",
+      photo: photo("majors-hero", "An offshore production platform on open water under a blue sky", "50% 55%"),
+      chip: { title: "For major operators", items: ["SCADA and EAM integration", "Operational data platform", "Predictive maintenance"] },
+      marks: ["azure", "powerBI", "dynamics"],
+    },
+    cta: {
+      label: "Book an architecture assessment",
+      short: "Book an assessment",
+      heading: "Drive the next generation of connected operations.",
+      lead: "Let us assess your SCADA, asset, and field architecture and show how to connect it into one governed data platform.",
+    },
+    stack: ["azure", "azureSynapse", "fabric", "powerBI", "dynamics", "serviceBus", "eventGrid", "azureML"],
+    faqs: [],
+  },
+  {
+    slug: "industry/oil-gas/drilling-and-well-services",
+    category: "oilgas",
+    name: "Drilling & Well Services",
+    summary: "Seismic, well-test, cementing, and job data connected for well service firms.",
+    seo: {
+      title: "Technology for Drilling & Well Service Firms | AptaCloud",
+      description: "For seismic and surveying, well testing and cementing, and coiled tubing and pumping firms: rig, WITSML, SCADA, and job data in one queryable platform on Microsoft Azure.",
+    },
+    hero: {
+      title: "Connected well data",
+      accent: "for drilling and well services.",
+      lead: "AptaCloud helps seismic and surveying, well testing and cementing, and coiled tubing and pumping firms bring survey, well-test, rig, and job data into one queryable platform, so field decisions are faster and client reports stop being rebuilt by hand.",
+      photo: photo("drilling-hero", "Engineers monitoring a drilling rig from screens on site", "55% 45%"),
+      chip: { title: "For well service firms", items: ["Well and job data in one place", "Rig and WITSML integration", "Field and client dashboards"] },
+      marks: ["azure", "powerBI", "azureML"],
+    },
+    cta: {
+      label: "Book a technical discovery session",
+      short: "Book a session",
+      heading: "Advance drilling and well service operations.",
+      lead: "Let us show how secure, connected data platforms and AI can improve drilling performance and speed engineering decisions.",
+    },
+    stack: ["azure", "azureSynapse", "fabric", "powerBI", "dynamics", "azureML", "eventGrid", "azureDataFactory"],
+    faqs: [],
+  },
+  {
+    slug: "industry/oil-gas/pipeline-maintenance",
+    category: "oilgas",
+    name: "Pipeline Maintenance",
+    summary: "SCADA, GIS, inline inspection, and asset data connected for pipeline integrity teams.",
+    seo: {
+      title: "Pipeline Maintenance and Integrity Technology | AptaCloud",
+      description: "For pipeline inspection and integrity firms, compression service providers, and SCADA support teams: predict corrosion and leak risk from SCADA, ILI, and sensor data on Microsoft Azure.",
+    },
+    hero: {
+      title: "See failure risk",
+      accent: "before it becomes downtime.",
+      lead: "AptaCloud helps pipeline inspection and integrity firms, compression service providers, and SCADA and operations support teams connect SCADA, GIS, inline inspection (ILI), sensor, and asset data, then predict corrosion and leak risk before failures happen.",
+      photo: photo("pipeline-hero", "A pipeline engineer with a tablet in front of a wall of network monitoring screens", "55% 40%"),
+      chip: { title: "For pipeline integrity teams", items: ["Corrosion and leak risk prediction", "SCADA, GIS, and ILI integration", "Leak detection and response"] },
+      marks: ["azure", "iotHub", "powerBI"],
+    },
+    cta: {
+      label: "Get your integration roadmap",
+      short: "Get a roadmap",
+      heading: "Turn pipeline data into better maintenance decisions.",
+      lead: "Tell us about your pipeline assets and systems. We will show how to connect them for predictive maintenance and more reliable operations.",
+    },
+    stack: ["azure", "iotHub", "eventHubs", "dataLake", "azureSynapse", "azureML", "powerBI", "dynamics"],
+    faqs: [],
+  },
+  {
+    slug: "industry/oil-gas/refining-and-distribution",
+    category: "oilgas",
+    name: "Refining & Distribution",
+    summary: "Inspection, NDT, and compliance data connected for firms that serve refineries.",
+    seo: {
+      title: "Technology for Refining & Distribution Service Firms | AptaCloud",
+      description: "For HSE consultancies, turnaround contractors, and NDT and inspection firms: inspection, NDT, and compliance data from every client site in one audit-ready reporting layer on Microsoft Azure.",
+    },
+    hero: {
+      title: "Audit-ready inspection data",
+      accent: "across every refinery client.",
+      lead: "AptaCloud helps environmental and HSE consultancies, turnaround and shutdown contractors, and NDT and asset inspection firms connect inspection, NDT, and compliance data from every client site into one audit-ready reporting layer.",
+      photo: photo("refining-hero", "An inspection lead in front of operations screens, with the refinery through the window", "60% 35%"),
+      chip: { title: "For refinery service firms", items: ["Inspection and NDT data integration", "Audit-ready compliance reporting", "Turnaround coordination"] },
+      marks: ["azure", "azureSynapse", "powerBI"],
+    },
+    cta: {
+      label: "Get an inspection data assessment",
+      short: "Get an assessment",
+      heading: "Bring every client site's inspection data together.",
+      lead: "Tell us about your inspection, NDT, and compliance systems. We will show how to connect them into one audit-ready reporting layer.",
+    },
+    stack: ["azure", "eventHubs", "dataLake", "azureSynapse", "azureML", "powerBI", "dynamics", "serviceBus"],
+    faqs: [],
+  },
+
+  /* ─────────────── Engineering & Construction segments ─────────────── */
+  {
+    slug: "industry/engineering-and-construction/construction",
+    category: "construction",
+    name: "Construction",
+    summary: "Project, ERP, BIM, IoT, and field systems connected for construction delivery.",
+    seo: {
+      title: "Construction Technology Solutions | AptaCloud",
+      description: "Project management, ERP, BIM, IoT, and field applications connected on Microsoft Azure, for better project visibility, delivery, and control.",
+    },
+    hero: {
+      title: "Faster construction delivery",
+      accent: "with connected digital operations.",
+      lead: "AptaCloud helps general contractors connect the project management, scheduling, ERP, BIM, and field tools they already run, so subcontractors stop re-keying data and project teams see progress as it happens.",
+      photo: photo("construction-hero", "Two site engineers reviewing a building model on a tablet at a construction site at sunset", "60% 40%"),
+      chip: { title: "For general contractors", items: ["Connect the tools you already run", "Digital field reporting", "Live project dashboards"] },
+      marks: ["azure", "dynamics", "powerBI"],
+    },
+    cta: {
+      label: "Explore your digital construction strategy",
+      short: "Explore your strategy",
+      heading: "Build smarter construction operations.",
+      lead: "Tell us about your jobsite, project, and enterprise systems. We will show how connecting them speeds up delivery and improves visibility.",
+    },
+    stack: ["azure", "dynamics", "powerBI", "dataLake", "azureSynapse", "azureML", "iotHub", "logicApps"],
+    faqs: [],
+  },
+  {
+    slug: "industry/engineering-and-construction/engineering-and-design",
+    category: "construction",
+    name: "Engineering & Design",
+    summary: "CAD, BIM, PLM, and document systems connected for engineering teams.",
+    seo: {
+      title: "Engineering & Design Technology | AptaCloud",
+      description: "CAD, BIM, PLM, document management, and enterprise systems connected into one engineering platform, for faster collaboration and design delivery.",
+    },
+    hero: {
+      title: "Connected design data",
+      accent: "for smarter project delivery.",
+      lead: "AptaCloud helps architecture and engineering design firms bring CAD, BIM, PLM, document management, and project financials into one platform, and turn BIM and design data into audit-ready records as digital-record requirements grow.",
+      photo: photo("design-hero", "An engineer pointing at a digital plant model on a large screen", "55% 40%"),
+      chip: { title: "For A&E design firms", items: ["CAD, BIM, and PLM integration", "Audit-ready design records", "Project financials on Dynamics 365"] },
+      marks: ["azure", "sharepoint", "powerBI"],
+    },
+    cta: {
+      label: "Request a design roadmap",
+      short: "Get a roadmap",
+      heading: "Build the future of engineering design on connected workflows.",
+      lead: "Tell us about your design tools and processes. We will show how to connect them, so teams collaborate better and deliver projects sooner.",
+    },
+    stack: ["azure", "sharepoint", "dataLake", "azureSynapse", "azureOpenAI", "digitalTwins", "powerBI", "dynamics"],
+    faqs: [],
+  },
+  {
+    slug: "industry/engineering-and-construction/field-services",
+    category: "construction",
+    name: "Field Services",
+    summary: "Crew scheduling, field forms, and handover data for trade contractors.",
+    seo: {
+      title: "Field Service Technology for Trade Contractors | AptaCloud",
+      description: "For mechanical, electrical, plumbing, concrete, and steel contractors: schedule crews, capture field work without paper, and hand over clean project data, on Dynamics 365 and Azure.",
+    },
+    hero: {
+      title: "Schedule crews and capture field work",
+      accent: "without paper.",
+      lead: "AptaCloud helps mechanical, electrical, plumbing, concrete, and steel contractors connect field service, ERP, and CRM, give crews mobile apps for work orders and forms, and carry project data into asset management at handover.",
+      photo: photo("field-hero", "A field technician in a hard hat checking a tablet beside equipment", "60% 40%"),
+      chip: { title: "For trade contractors", items: ["Crew scheduling and dispatch", "Mobile field forms", "Clean handover data"] },
+      marks: ["dynamics", "azure", "iotHub"],
+    },
+    cta: {
+      label: "Book a field service technology assessment",
+      short: "Book an assessment",
+      heading: "Deliver smarter field service with connected operations.",
+      lead: "Tell us about your technicians, assets, and systems. We will show where connecting them would speed up service and raise productivity.",
+    },
+    stack: ["dynamics", "azure", "iotHub", "dataLake", "azureSynapse", "azureML", "powerBI", "logicApps"],
+    faqs: [],
+  },
+];

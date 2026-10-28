@@ -17,7 +17,7 @@ import { toneProps, type Tone } from "./tone";
 import sec from "./Section.module.css";
 import s from "./Process.module.css";
 
-export function Process({ process, tone = "tint" }: { process: ServicePage["process"]; tone?: Tone }) {
+export function Process({ process, tone = "tint" }: { process: NonNullable<ServicePage["process"]>; tone?: Tone }) {
   const ref = useRef<HTMLDivElement>(null);
   const reduce = useReducedMotion();
   // Runs while the board's top travels from 90% to 15% of the viewport, so the

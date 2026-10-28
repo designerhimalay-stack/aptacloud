@@ -2,6 +2,7 @@
 // the named delivery phases and the four "Why AptaCloud" reasons (Brand Guidelines
 // v2.0 §3.4, in this order). Australian English.
 
+import { asset } from "@/brand/brand";
 import type { Category, CategoryId, IconId, IndustryId, ServicePhoto } from "./types";
 
 export const CATEGORIES: Record<CategoryId, Category> = {
@@ -35,6 +36,42 @@ export const CATEGORIES: Record<CategoryId, Category> = {
     short: "Azure",
     intro: "Run more on Microsoft Azure, with costs you can explain.",
   },
+  aws: {
+    id: "aws",
+    name: "AWS Cloud",
+    short: "AWS",
+    intro: "Design, move, secure, and run workloads on Amazon Web Services (AWS).",
+  },
+  industries: {
+    id: "industries",
+    name: "Industries",
+    short: "Industries",
+    intro: "Technology for the three industries we specialise in.",
+  },
+  insurance: {
+    id: "insurance",
+    name: "Insurance",
+    short: "Insurance",
+    intro: "Connected technology for carriers, MGAs, TPAs, and independent agents.",
+  },
+  oilgas: {
+    id: "oilgas",
+    name: "Oil & Gas",
+    short: "Oil & Gas",
+    intro: "Connected operations for drilling, pipeline, refining, and operating teams.",
+  },
+  construction: {
+    id: "construction",
+    name: "Engineering & Construction",
+    short: "E&C",
+    intro: "Connected project delivery for contractors, engineering firms, and field services.",
+  },
+  company: {
+    id: "company",
+    name: "Company",
+    short: "Company",
+    intro: "Who we are, where we work, and what we are thinking about.",
+  },
 };
 
 /** The named phases (Brand Guidelines v2.0 §3.4), Australian spelling in copy. */
@@ -49,7 +86,7 @@ export const INDUSTRIES: Record<IndustryId, { name: string; segments: string; ph
       alt: "An insurance operations team talking through a workflow around a laptop",
       position: "50% 40%",
     },
-    href: "https://aptacloud.com/industry/insurance/managing-general-agents/",
+    href: asset("/industry/insurance/"),
   },
   oilgas: {
     name: "Oil & Gas",
@@ -59,7 +96,7 @@ export const INDUSTRIES: Record<IndustryId, { name: string; segments: string; ph
       alt: "A field engineer in safety gear on a refinery platform",
       position: "38% 35%",
     },
-    href: "https://aptacloud.com/industry/oil-gas/pipeline-maintenance/",
+    href: asset("/industry/oil-gas/"),
   },
   construction: {
     name: "Engineering & Construction",
@@ -69,7 +106,7 @@ export const INDUSTRIES: Record<IndustryId, { name: string; segments: string; ph
       alt: "Two site engineers in hard hats reviewing plans on a tablet",
       position: "50% 45%",
     },
-    href: "https://aptacloud.com/industry/engineering-and-construction/construction/",
+    href: asset("/industry/engineering-and-construction/"),
   },
 };
 

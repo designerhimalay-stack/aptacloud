@@ -312,3 +312,318 @@
 @media (prefers-reduced-motion: reduce) {
   .vnode, .vbody { transition: none; }
 }
+
+/* ── Arc: nodes on a half-circle, labels outside, the reached step inside. ── */
+.arc {
+  aspect-ratio: 600 / 330;
+  margin: 24px auto 0;
+  max-width: 720px;
+  position: relative;
+  width: calc(100% - 300px);
+}
+
+.arcSvg {
+  display: block;
+  height: 100%;
+  inset: 0;
+  overflow: visible;
+  position: absolute;
+  width: 100%;
+}
+
+.arcTrack,
+.arcFill {
+  fill: none;
+  stroke-width: 2;
+}
+
+.arcTrack {
+  stroke: var(--line-strong);
+}
+
+.arcFill {
+  stroke: var(--accent);
+  stroke-linecap: round;
+  stroke-width: 3;
+}
+
+.arcNode circle {
+  fill: var(--card);
+  stroke: var(--line-strong);
+  stroke-width: 1.5;
+  transition: fill 0.45s var(--ease-out-quint), stroke 0.45s var(--ease-out-quint);
+}
+
+.arcNode text {
+  fill: var(--fg-muted);
+  font-family: var(--ff-inter);
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.arcDone circle,
+.arcCurrent circle {
+  fill: var(--accent);
+  stroke: var(--accent);
+}
+
+.arcCurrent text {
+  fill: #ffffff;
+}
+
+.arcLabel {
+  color: var(--fg-muted);
+  font-family: var(--ff-inter);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.25;
+  position: absolute;
+  transition: color 0.45s var(--ease-out-quint);
+  width: 140px;
+}
+
+.arcLabelOn {
+  color: var(--fg);
+}
+
+/* Centred in the dome: top at 40% keeps it clear of the arc on both sides. */
+.arcDetail {
+  animation: arc-in 0.5s var(--ease-out-expo) both;
+  top: 40%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  left: 50%;
+  position: absolute;
+  text-align: center;
+  transform: translateX(-50%);
+  width: 58%;
+}
+
+@keyframes arc-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.arcNo {
+  color: var(--accent);
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+}
+
+.arcTitle {
+  color: var(--fg);
+  font-family: var(--ff-inter);
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: -0.05em;
+  line-height: 1.15;
+  margin: 0;
+}
+
+.arcText {
+  color: var(--fg-muted);
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.arcPhone {
+  display: none;
+}
+
+@media (min-width: 810px) and (max-width: 1199.98px) {
+  .arc { width: calc(100% - 260px); }
+  .arcLabel { font-size: 14px; width: 120px; }
+  .arcTitle { font-size: 22px; }
+  .arcText { font-size: 14px; }
+}
+
+@media (max-width: 809.98px) {
+  .arc { display: none; }
+  .arcPhone { display: block; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .arcDetail { animation: none; }
+  .arcNode circle, .arcLabel { transition: none; }
+}
+
+/* ── Cycle: a sticky loop (5/12) beside the step list (7/12). ────────── */
+.cycle {
+  align-items: start;
+  display: grid;
+  gap: 56px;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+}
+
+.loopWrap {
+  position: sticky;
+  top: 120px;
+}
+
+.loop {
+  aspect-ratio: 1;
+  margin: 0 auto;
+  max-width: 440px;
+  position: relative;
+  width: 100%;
+}
+
+.loopSvg {
+  display: block;
+  height: 100%;
+  overflow: visible;
+  width: 100%;
+}
+
+.loopTrack {
+  fill: none;
+  stroke: var(--line-strong);
+  stroke-width: 2;
+}
+
+.loopFill {
+  fill: none;
+  stroke: var(--accent);
+  stroke-linecap: round;
+  stroke-width: 3;
+}
+
+.loopChevron {
+  fill: none;
+  stroke: var(--accent);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2.5;
+}
+
+.loopNode circle {
+  fill: var(--card);
+  stroke: var(--line-strong);
+  stroke-width: 1.5;
+  transition: fill 0.45s var(--ease-out-quint), stroke 0.45s var(--ease-out-quint);
+}
+
+.loopNode text {
+  fill: var(--fg-muted);
+  font-family: var(--ff-inter);
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.loopDone circle,
+.loopCurrent circle {
+  fill: var(--accent);
+  stroke: var(--accent);
+}
+
+.loopCurrent text {
+  fill: #ffffff;
+}
+
+.loopTick {
+  fill: none;
+  stroke: #ffffff;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2.5;
+}
+
+.loopCentre {
+  color: var(--fg);
+  font-family: var(--ff-inter);
+  font-size: 22px;
+  font-weight: 600;
+  left: 50%;
+  letter-spacing: -0.045em;
+  line-height: 1.2;
+  margin: 0;
+  max-width: 44%;
+  position: absolute;
+  text-align: center;
+  text-wrap: balance;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.cycleList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.citem {
+  align-items: flex-start;
+  background: var(--card);
+  border-radius: 22px;
+  display: grid;
+  gap: 18px;
+  grid-template-columns: auto minmax(0, 1fr);
+  padding: 22px 24px;
+  transition: transform 0.6s var(--ease-out-expo), box-shadow 0.5s var(--ease-out-quint);
+}
+
+.ccurrent {
+  box-shadow: 0 24px 48px -30px rgba(10, 10, 10, 0.35);
+  transform: translateX(8px);
+}
+
+.cno {
+  color: var(--fg-subtle);
+  font-size: 14px;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  padding-top: 3px;
+  transition: color 0.45s var(--ease-out-quint);
+}
+
+.cdone .cno,
+.ccurrent .cno {
+  color: var(--accent);
+}
+
+.ctitle {
+  color: var(--fg);
+  font-family: var(--ff-inter);
+  font-size: 19px;
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  margin: 0 0 6px;
+}
+
+.ctext {
+  color: var(--fg-muted);
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  line-height: 1.45;
+  margin: 0;
+}
+
+@media (min-width: 810px) and (max-width: 1199.98px) {
+  .cycle { gap: 32px; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .loopCentre { font-size: 18px; }
+}
+
+@media (max-width: 809.98px) {
+  .cycle { gap: 24px; grid-template-columns: minmax(0, 1fr); }
+  .loopWrap { position: static; }
+  .loop { max-width: 260px; }
+  .loopCentre { font-size: 16px; }
+  .citem { border-radius: 16px; gap: 12px; padding: 14px 16px; }
+  .ccurrent { transform: none; }
+  .ctitle { font-size: 16px; }
+  .ctext { font-size: 13.5px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loopNode circle, .cno, .citem { transition: none; }
+}

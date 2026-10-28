@@ -296,3 +296,53 @@
 @media (prefers-reduced-motion: reduce) {
   .item, .icon { transition: none; }
 }
+
+/* ── flank: points | tall photo | points (live "why choose" around an image) ── */
+.flank {
+  align-items: center;
+  display: grid;
+  gap: 32px;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 380px) minmax(0, 1fr);
+}
+
+.flankSide {
+  display: flex;
+  flex-direction: column;
+}
+
+.flankItem {
+  align-items: flex-start;
+  border-top: 1px solid var(--line);
+  display: flex;
+  gap: 16px;
+  padding: 24px 0;
+}
+
+.flankItem:first-child {
+  border-top: 0;
+}
+
+.flankMedia {
+  background: var(--card);
+  border-radius: 28px;
+  padding: 8px;
+}
+
+.flankMedia .photo {
+  aspect-ratio: 4 / 5;
+}
+
+@media (min-width: 810px) and (max-width: 1199.98px) {
+  .flank { gap: 24px; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .flankMedia { grid-column: 1 / -1; grid-row: 1; }
+  .flankMedia .photo { aspect-ratio: 16 / 8; }
+}
+
+@media (max-width: 809.98px) {
+  .flank { gap: 4px; grid-template-columns: minmax(0, 1fr); }
+  .flankMedia { border-radius: 20px; margin-bottom: 12px; order: -1; padding: 6px; }
+  .flankMedia .photo { aspect-ratio: 16 / 10; border-radius: 15px; }
+  .flankItem { gap: 12px; padding: 14px 0; }
+  .flankSide + .flankSide .flankItem:first-child,
+  .flankMedia + .flankSide .flankItem:first-child { border-top: 1px solid var(--line); }
+}

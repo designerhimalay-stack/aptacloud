@@ -7,7 +7,7 @@
 
 import { animate, motion, useInView, useScroll, useTransform, type MotionValue } from "@/lib/motion";
 import { useEffect, useRef, useState } from "react";
-import { BRAND, PRIMARY_CTA, asset } from "@/brand/brand";
+import { BRAND, asset } from "@/brand/brand";
 import { Reveal } from "@/components/ui/Reveal";
 import { SpreadGrid } from "@/components/ui/SpreadGrid";
 import { RollingText } from "@/components/ui/RollingText";
@@ -31,7 +31,7 @@ const STATS = [
     value: 300,
     from: 750,
     title: "Clients Served",
-    text: "200+ engineers under one roof, delivering from 4+ global locations.",
+    text: "200+ engineers under one roof, delivering from 4 locations.",
     icon: "chart" as const,
   },
 ];
@@ -161,8 +161,9 @@ export function About() {
               <span className={s.photoShade} aria-hidden="true" />
               <div className={s.photoContent}>
                 <p className={s.photoText}>See where AI pays off in your business first.</p>
-                <a href={PRIMARY_CTA.href} className={cn("roll-host", s.photoButton)}>
-                  <RollingText text={PRIMARY_CTA.label} />
+                {/* Points to the workshop section below (the hero already carries the primary CTA). */}
+                <a href="#workshop" className={cn("roll-host", s.photoButton)}>
+                  <RollingText text="How the assessment works" />
                 </a>
               </div>
             </div>

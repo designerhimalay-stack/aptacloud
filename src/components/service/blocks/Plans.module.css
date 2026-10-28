@@ -1,0 +1,257 @@
+/* Plans: three equal plan cards, then the comparison table on one card. */
+
+.cards {
+  display: grid;
+  gap: 8px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.cell {
+  display: flex;
+}
+
+.card {
+  background: var(--card);
+  border-radius: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 28px;
+  width: 100%;
+}
+
+.top {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.name {
+  color: var(--fg);
+  font-family: var(--ff-inter);
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: -0.05em;
+  margin: 0;
+}
+
+.summary {
+  color: var(--fg-muted);
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  line-height: 1.45;
+  margin: 0;
+}
+
+.facts {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  margin: 0;
+}
+
+.fact {
+  align-items: baseline;
+  border-top: 1px solid var(--line);
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+  padding: 12px 0;
+}
+
+.fact dt {
+  color: var(--fg-muted);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+.fact dd {
+  color: var(--fg);
+  font-size: 14.5px;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  margin: 0;
+  text-align: right;
+}
+
+.foot {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.price {
+  color: var(--fg-soft);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.btn {
+  width: 100%;
+}
+
+/* ── Comparison ──────────────────────────────────────────────────────── */
+.compare {
+  background: var(--card);
+  border-radius: 24px;
+  padding: 28px 28px 20px;
+}
+
+.compareHead {
+  align-items: center;
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.compareTitle {
+  color: var(--fg);
+  font-family: var(--ff-inter);
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  margin: 0;
+}
+
+/* The plan switcher is for phones only. */
+.switch {
+  display: none;
+}
+
+.table {
+  border-collapse: collapse;
+  table-layout: fixed;
+  width: 100%;
+}
+
+.table thead th {
+  background: var(--card);
+  color: var(--fg);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  padding: 14px 16px;
+  position: sticky;
+  text-align: left;
+  /* Clear the fixed nav while the table scrolls under it. */
+  top: 88px;
+  z-index: 1;
+}
+
+.table thead th:first-child {
+  width: 26%;
+}
+
+.groupRow th {
+  color: var(--accent);
+  font-size: 13.5px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  padding: 26px 16px 8px;
+  text-align: left;
+}
+
+.table tbody tr:not(.groupRow) {
+  border-top: 1px solid var(--line);
+}
+
+.table tbody th[scope="row"] {
+  color: var(--fg);
+  font-size: 14.5px;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  padding: 13px 16px;
+  text-align: left;
+  vertical-align: top;
+}
+
+.table td {
+  color: var(--fg-muted);
+  font-size: 14.5px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.45;
+  padding: 13px 16px;
+  vertical-align: top;
+}
+
+.note {
+  color: var(--fg-muted);
+  font-size: 13.5px;
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  line-height: 1.45;
+  margin: 16px 16px 0;
+}
+
+@media (min-width: 810px) and (max-width: 1199.98px) {
+  .card { padding: 22px; }
+  .name { font-size: 22px; }
+  .fact { flex-direction: column; gap: 2px; }
+  .fact dd { text-align: left; }
+  .compare { padding: 22px 16px 16px; }
+  .table thead th:first-child { width: 24%; }
+  .table td, .table tbody th[scope="row"] { font-size: 13.5px; padding: 11px 10px; }
+}
+
+/* Phones: cards on a rail; the table shows the chosen plan's column only. */
+@media (max-width: 809.98px) {
+  .cards { grid-template-columns: none; }
+  /* Auto layout so the hidden plans' columns collapse to nothing. */
+  .table { table-layout: auto; }
+  .card { gap: 18px; padding: 20px; }
+  .name { font-size: 22px; }
+  .compare { padding: 18px 14px 14px; }
+  .compareHead { align-items: flex-start; flex-direction: column; gap: 12px; }
+  .compareTitle { font-size: 18px; }
+  .switch {
+    background: color-mix(in srgb, var(--fg) 6%, var(--card));
+    border-radius: 999px;
+    display: flex;
+    gap: 2px;
+    padding: 3px;
+    width: 100%;
+  }
+  .switchBtn {
+    background: transparent;
+    border: 0;
+    border-radius: 999px;
+    color: var(--fg-muted);
+    cursor: pointer;
+    flex: 1;
+    font-family: var(--ff-inter);
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    padding: 9px 6px;
+    transition: background-color 0.35s var(--ease-out-quint), color 0.35s var(--ease-out-quint);
+  }
+  .switchOn { background: var(--bg); color: var(--fg); box-shadow: 0 1px 3px rgba(10, 10, 10, 0.12); }
+  .table thead { display: none; }
+  .table thead th:first-child { width: auto; }
+  .table tbody th[scope="row"] { font-size: 13.5px; padding: 11px 10px 11px 2px; width: 42%; }
+  .table td { font-size: 13.5px; padding: 11px 2px 11px 6px; }
+  .groupRow th { padding: 20px 2px 6px; }
+  /* Show only the chosen plan's column. */
+  .table[data-plan="0"] td:not(:nth-child(2)),
+  .table[data-plan="1"] td:not(:nth-child(3)),
+  .table[data-plan="2"] td:not(:nth-child(4)) { display: none; }
+  .note { margin: 14px 2px 0; }
+}
+
+/* The single plan CTA, centred under the cards. */
+.action {
+  align-self: center;
+  display: flex;
+  justify-content: center;
+}
+
+@media (max-width: 809.98px) {
+  .action, .action > a { width: 100%; }
+}

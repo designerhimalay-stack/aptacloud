@@ -2,7 +2,7 @@
 // + lead header, a panel of link rows with round arrow buttons, and a row of dark logo cards — here the client's three
 // partners (white), with the orange glow fading in on hover.
 
-import { BRAND, PRIMARY_CTA, asset } from "@/brand/brand";
+import { BRAND, asset } from "@/brand/brand";
 import { LineReveal, Reveal } from "@/components/ui/Reveal";
 import { PillTag } from "@/components/ui/PillTag";
 import { cn } from "@/lib/utils";
@@ -30,10 +30,12 @@ const PARTNERS = [
   },
 ];
 
+// Where each partnership shows up in our services (the primary CTA lives in the hero and workshop).
 const LINKS = [
-  { label: PRIMARY_CTA.label, href: PRIMARY_CTA.href },
-  { label: "Dynamics 365 services", href: "#dynamics" },
-  { label: "Microsoft Azure services", href: "#azure" },
+  { label: "Dynamics 365 services", href: asset("/services/microsoft/microsoft-dynamics-365/") },
+  { label: "Microsoft Azure services", href: asset("/azure-hosting/") },
+  { label: "AI consulting services", href: asset("/ai-consulting/") },
+  { label: "AWS cloud services", href: asset("/aws-compute/") },
 ];
 
 function PartnersIcon() {

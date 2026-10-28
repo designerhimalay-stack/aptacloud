@@ -236,3 +236,13 @@
   .card { transition: none; }
   .card:hover { transform: none; }
 }
+
+/* Results panel title when a case has no headline figure (typical engagements). */
+.resultsTitle {
+  color: var(--fg);
+  font-family: var(--ff-inter);
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  margin: 0 0 4px;
+}

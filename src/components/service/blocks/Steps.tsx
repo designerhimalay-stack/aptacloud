@@ -169,8 +169,165 @@ function Curve({ steps }: { steps: StepsBlock["steps"] }) {
   );
 }
 
-export function Steps({ block, cta, tone }: { block: StepsBlock; cta: { label: string; short: string }; tone: Tone }) {
-  const button = block.cta && (
+/* ── Cycle: work that never finishes (live optimisation process) ───────
+   The steps sit on a loop; a chevron on the closing arc shows the last step
+   leads back into the first. As the section scrolls the loop fills with the
+   accent and each node ticks off, while the list beside it marks the same
+   step. Nodes and arc share one SVG coordinate system, so the fill always
+   meets the nodes exactly. Phones: a smaller loop above the list. */
+const R = 160;
+const at = (deg: number) => ({ x: 200 + R * Math.cos((deg * Math.PI) / 180), y: 200 + R * Math.sin((deg * Math.PI) / 180) });
+
+function Cycle({ steps, centre }: { steps: StepsBlock["steps"]; centre?: string }) {
+  const n = steps.length;
+  const { ref, done, current, scrollYProgress, reduce } = useReached(n, ["start 0.7", "end 0.6"]);
+  const [p, setP] = useState(0);
+  useEffect(() => {
+    if (reduce) return;
+    setP(scrollYProgress.get());
+    return scrollYProgress.on("change", setP);
+  }, [scrollYProgress, reduce]);
+  const fill = reduce ? 1 : p;
+  const close = at(-90 - 180 / n);
+  return (
+    <div ref={ref} className={s.cycle}>
+      <div className={s.loopWrap}>
+        <div className={s.loop}>
+          <svg viewBox="0 0 400 400" className={s.loopSvg} aria-hidden="true">
+            <circle cx="200" cy="200" r={R} className={s.loopTrack} />
+            {/* pathLength 1: the dash offset is the unfilled share of the loop. */}
+            <circle cx="200" cy="200" r={R} pathLength={1} strokeDasharray="1 1" strokeDashoffset={1 - fill} className={s.loopFill} transform="rotate(-90 200 200)" />
+            {/* Chevron on the closing arc, pointing clockwise back to step one. */}
+            <path d="M-6 -7 L3 0 L-6 7" className={s.loopChevron} transform={`translate(${close.x} ${close.y}) rotate(${-180 / n})`} />
+            {steps.map((step, i) => {
+              const p = at(-90 + (i * 360) / n);
+              return (
+                <g key={step.title} className={cn(s.loopNode, done(i) && s.loopDone, current(i) && s.loopCurrent)}>
+                  <circle cx={p.x} cy={p.y} r="24" />
+                  {done(i) ? (
+                    <path d={`M${p.x - 7} ${p.y + 0.5} l5 5 l10 -11`} className={s.loopTick} />
+                  ) : (
+                    <text x={p.x} y={p.y} dy="0.36em" textAnchor="middle">
+                      {i + 1}
+                    </text>
+                  )}
+                </g>
+              );
+            })}
+          </svg>
+          {centre && <p className={s.loopCentre}>{centre}</p>}
+        </div>
+      </div>
+      <ol className={s.cycleList}>
+        {steps.map((step, i) => (
+          <li key={step.title} className={cn(s.citem, done(i) && s.cdone, current(i) && s.ccurrent)}>
+            <span className={s.cno}>{String(i + 1).padStart(2, "0")}</span>
+            <div>
+              <h3 className={s.ctitle}>{step.title}</h3>
+              <p className={s.ctext}>{step.text}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  );
+}
+
+/* ── Arc: the live managed-services process, nodes on a half-circle ──────
+   The steps sit on an arc from left to right over the top. As the section
+   scrolls the arc fills with the accent; a node lights the moment the fill
+   reaches it (both measured as the same share of the arc), and the step it
+   has reached is shown in full inside the arc. Every step's text is also in
+   the list beside it for screen readers. Phones: the vertical list. */
+const AR = 250;
+// Rounded so server and browser trig agree to the last digit (hydration).
+const r2 = (v: number) => Math.round(v * 100) / 100;
+const arcAt = (i: number, n: number) => {
+  const a = Math.PI + (i * Math.PI) / (n - 1);
+  return { x: r2(300 + AR * Math.cos(a)), y: r2(300 + AR * Math.sin(a)), a };
+};
+
+function Arc({ steps }: { steps: StepsBlock["steps"] }) {
+  const n = steps.length;
+  const ref = useRef<HTMLDivElement>(null);
+  const reduce = useReducedMotion();
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start 0.75", "end 0.45"] });
+  const [p, setP] = useState(0);
+  useEffect(() => {
+    if (reduce) return;
+    setP(scrollYProgress.get());
+    return scrollYProgress.on("change", setP);
+  }, [scrollYProgress, reduce]);
+  const fill = reduce ? 1 : p;
+  // Node i sits at fraction i / (n - 1) of the arc.
+  const at = Math.min(n - 1, Math.floor(fill * (n - 1) + 1e-6));
+  const step = steps[at];
+  return (
+    <>
+      <div ref={ref} className={s.arc}>
+        <svg viewBox="0 0 600 330" className={s.arcSvg} aria-hidden="true">
+          <path d="M50 300 A250 250 0 0 1 550 300" className={s.arcTrack} />
+          <path d="M50 300 A250 250 0 0 1 550 300" pathLength={1} strokeDasharray="1 1" strokeDashoffset={1 - fill} className={s.arcFill} />
+          {steps.map((st, i) => {
+            const q = arcAt(i, n);
+            const done = i < at || fill >= 1;
+            return (
+              <g key={st.title} className={cn(s.arcNode, done && s.arcDone, i === at && fill < 1 && s.arcCurrent)}>
+                <circle cx={q.x} cy={q.y} r="22" />
+                {done ? (
+                  <path d={`M${q.x - 7} ${q.y + 0.5} l5 5 l10 -11`} className={s.loopTick} />
+                ) : (
+                  <text x={q.x} y={q.y} dy="0.36em" textAnchor="middle">
+                    {i + 1}
+                  </text>
+                )}
+              </g>
+            );
+          })}
+        </svg>
+        {steps.map((st, i) => {
+          const q = arcAt(i, n);
+          // Labels sit outside the arc, 40 units out along the radius, anchored
+          // by side: right-aligned on the left, left-aligned on the right, centred over the top.
+          const c = Math.cos(q.a);
+          const lx = 300 + (AR + 40) * c;
+          const ly = 300 + (AR + 40) * Math.sin(q.a);
+          const shift = c < -0.35 ? "translate(-100%, -50%)" : c > 0.35 ? "translate(0, -50%)" : "translate(-50%, -100%)";
+          return (
+            <span
+              key={st.title}
+              className={cn(s.arcLabel, i <= at && s.arcLabelOn)}
+              style={{ left: `${r2((lx / 600) * 100)}%`, top: `${r2((ly / 330) * 100)}%`, transform: shift, textAlign: c < -0.35 ? "right" : c > 0.35 ? "left" : "center" }}
+              aria-hidden="true"
+            >
+              {st.title}
+            </span>
+          );
+        })}
+        <div key={at} className={s.arcDetail} aria-hidden="true">
+          <span className={s.arcNo}>
+            Step {at + 1} of {n}
+          </span>
+          <p className={s.arcTitle}>{step.title}</p>
+          <p className={s.arcText}>{step.text}</p>
+        </div>
+      </div>
+      <ol className="sr-only">
+        {steps.map((st) => (
+          <li key={st.title}>
+            {st.title}: {st.text}
+          </li>
+        ))}
+      </ol>
+      <div className={s.arcPhone}>
+        <Vertical steps={steps} />
+      </div>
+    </>
+  );
+}
+
+export function Steps({ block, cta, tone }: { block: StepsBlock; cta?: { label: string; short: string }; tone: Tone }) {
+  const button = block.cta && cta && (
     <Reveal y={20} duration={0.9} className={s.cta}>
       <Button label={cta.label} shortLabel={cta.short} href="#contact" />
     </Reveal>
@@ -198,7 +355,15 @@ export function Steps({ block, cta, tone }: { block: StepsBlock; cta: { label: s
     <section id={block.id ?? "process"} {...toneProps(tone)}>
       <div className={sec.container}>
         <SectionHead variant={block.head ?? "center"} tag={block.tag} icon={<Icon id={block.icon ?? "flow"} />} heading={block.heading} lead={block.lead} />
-        {block.variant === "curve" ? <Curve steps={block.steps} /> : <Board steps={block.steps} />}
+        {block.variant === "curve" ? (
+          <Curve steps={block.steps} />
+        ) : block.variant === "cycle" ? (
+          <Cycle steps={block.steps} centre={block.centre} />
+        ) : block.variant === "arc" ? (
+          <Arc steps={block.steps} />
+        ) : (
+          <Board steps={block.steps} />
+        )}
         {button}
       </div>
     </section>

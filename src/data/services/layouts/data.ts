@@ -63,7 +63,7 @@ export const DATA_LAYOUTS: Record<string, ServiceLayout> = {
       },
       {
         kind: "banner",
-        heading: "Ready to improve your data infrastructure?",
+        heading: "Improve your data infrastructure.",
         text: "Partner with AptaCloud to future-proof your data strategy.",
         photo: { src: `${L}/datacentre-servers.jpg`, alt: "Rows of servers in a data centre", position: "50% 50%" },
       },
@@ -159,7 +159,7 @@ export const DATA_LAYOUTS: Record<string, ServiceLayout> = {
       },
       {
         kind: "banner",
-        heading: "Ready to improve your data infrastructure?",
+        heading: "Improve your data infrastructure.",
         text: "Partner with AptaCloud to future-proof your data strategy.",
         photo: { src: `${L}/servers-cloud.jpg`, alt: "A data centre aisle with a cloud above the server racks", position: "50% 50%" },
       },
@@ -291,7 +291,7 @@ export const DATA_LAYOUTS: Record<string, ServiceLayout> = {
       },
       {
         kind: "banner",
-        heading: "Ready to get more from your reporting?",
+        heading: "Get more from your reporting.",
         text: "Partner with AptaCloud to future-proof your data strategy.",
         photo: { src: `${L}/dv-monitors.jpg`, alt: "Monitors showing interactive dashboards with maps and charts", position: "50% 50%" },
       },

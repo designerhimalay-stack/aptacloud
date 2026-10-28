@@ -1,0 +1,196 @@
+/* Migration map: one card, three columns (from | hub | to), wires behind. */
+
+.stage {
+  align-items: center;
+  background: var(--card);
+  border-radius: 32px;
+  display: grid;
+  gap: 0 96px;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  padding: 40px 48px;
+  position: relative;
+}
+
+.wires {
+  inset: 0;
+  overflow: visible;
+  pointer-events: none;
+  position: absolute;
+}
+
+.wire {
+  fill: none;
+  stroke: var(--line-strong);
+  stroke-width: 1.5;
+}
+
+/* A short accent dash travelling along each wire toward Azure. */
+.flow {
+  animation: map-flow 1.8s linear infinite;
+  fill: none;
+  stroke: var(--accent);
+  stroke-dasharray: 10 150;
+  stroke-linecap: round;
+  stroke-width: 2;
+}
+
+@keyframes map-flow {
+  to { stroke-dashoffset: -160; }
+}
+
+/* Labels sit on their own row, so the hub centres on the pill stacks (an even fan). */
+.col {
+  display: contents;
+}
+
+.colFrom > .colLabel { grid-column: 1; grid-row: 1; }
+.colFrom > .pills { grid-column: 1; grid-row: 2; }
+.colTo > .colLabel { grid-column: 3; grid-row: 1; }
+.colTo > .pills { grid-column: 3; grid-row: 2; }
+
+.colLabel {
+  color: var(--fg-muted);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  margin: 0 0 16px;
+  position: relative;
+  z-index: 1;
+}
+
+.pills {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.pill {
+  align-items: center;
+  background: var(--bg);
+  border-radius: 999px;
+  box-shadow: 0 0 0 1px var(--line);
+  color: var(--fg);
+  display: flex;
+  font-size: 15.5px;
+  font-weight: 600;
+  gap: 12px;
+  letter-spacing: -0.03em;
+  padding: 8px 20px 8px 8px;
+}
+
+.pillIcon,
+.pillMark {
+  align-items: center;
+  border-radius: 50%;
+  display: inline-flex;
+  flex: none;
+  height: 38px;
+  justify-content: center;
+  width: 38px;
+}
+
+.pillIcon {
+  background: rgba(var(--accent-rgb), 0.1);
+  color: var(--accent);
+}
+
+.pillIcon svg {
+  height: 18px;
+  width: 18px;
+}
+
+.pillMark {
+  background: #ffffff;
+  box-shadow: 0 0 0 1px rgba(10, 10, 10, 0.06);
+}
+
+.pillMark > * {
+  height: 22px !important;
+  width: 22px !important;
+}
+
+/* The landing point: a white plate with two soft halo rings. */
+.hubCol {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  grid-column: 2;
+  grid-row: 2;
+  position: relative;
+  z-index: 1;
+}
+
+.hub {
+  align-items: center;
+  background: #ffffff;
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px rgba(10, 10, 10, 0.06), 0 0 0 14px rgba(var(--accent-rgb), 0.07), 0 0 0 30px rgba(var(--accent-rgb), 0.04), 0 28px 48px -20px rgba(10, 10, 10, 0.35);
+  display: flex;
+  height: 112px;
+  justify-content: center;
+  width: 112px;
+}
+
+.hubMark {
+  height: 56px !important;
+  width: 56px !important;
+}
+
+/* Hangs under the plate without adding height, so the plate stays centred. */
+.hubLabel {
+  color: var(--fg);
+  font-size: 16px;
+  font-weight: 600;
+  left: 50%;
+  letter-spacing: -0.035em;
+  margin: 0;
+  position: absolute;
+  text-align: center;
+  top: calc(100% + 38px);
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+
+@media (min-width: 810px) and (max-width: 1199.98px) {
+  .stage { gap: 0 64px; padding: 32px; }
+  .pill { font-size: 14.5px; }
+  .hub { height: 92px; width: 92px; }
+  .hubMark { height: 46px !important; width: 46px !important; }
+}
+
+/* Phones: from → hub → to, top to bottom, with a short rail between groups. */
+@media (max-width: 809.98px) {
+  .stage { border-radius: 24px; gap: 0; grid-template-columns: minmax(0, 1fr); padding: 20px 18px; }
+  .pill { font-size: 14.5px; padding: 6px 16px 6px 6px; }
+  .pillIcon, .pillMark { height: 34px; width: 34px; }
+  /* Same specificity as the desktop placements, so the groups flow top to bottom. */
+  .colFrom > .colLabel, .colFrom > .pills,
+  .colTo > .colLabel, .colTo > .pills,
+  .hubCol { grid-column: 1; grid-row: auto; }
+  /* The rails are exactly as tall as the padding, so they meet the plate and the next group. */
+  .hubCol { gap: 10px; padding: 24px 0; }
+  .hubLabel { position: static; transform: none; }
+  .hubCol::before,
+  .hubCol::after {
+    background: var(--line-strong);
+    content: "";
+    height: 24px;
+    left: 50%;
+    position: absolute;
+    width: 1.5px;
+  }
+  .hubCol::before { top: 0; }
+  .hubCol::after { bottom: 0; }
+  .hub { height: 76px; width: 76px; box-shadow: 0 0 0 1px rgba(10, 10, 10, 0.06), 0 0 0 10px rgba(var(--accent-rgb), 0.07); }
+  .hubMark { height: 40px !important; width: 40px !important; }
+  .hubLabel { font-size: 15px; margin-top: 8px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flow { animation: none; stroke-dasharray: none; stroke-opacity: 0.35; }
+}

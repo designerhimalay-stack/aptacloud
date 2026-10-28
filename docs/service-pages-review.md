@@ -252,6 +252,228 @@ These pages now carry every section of the live page, in the live order: Power P
 - **Logos:** the Entra ID, Azure AD, and Intune icons are taken from the live page's own files.
 - **Photos:** eight new Pexels photos (Pexels licence, free for commercial use), listed in PHOTO_CREDITS.md.
 
+## 9b. Azure Cloud pages, batch 5 (2026-10-26)
+
+These pages are built to the live aptacloud.com layouts, with every live section in the live order:
+- Azure Migration
+- Azure Implementation
+- Azure Optimisation
+- Azure Managed Services
+- Azure Security
+
+The nav's Azure Cloud menu now links to them.
+
+The five live pages share one template: icon cards, a banner, "why" cards, another banner, and a curved process. Mirroring that literally would have produced five near-identical pages. Instead, each page keeps its sections and order, and gets one section designed from its own content:
+
+| Page | Section | Design |
+|---|---|---|
+| Migration | Services | A migration map: where workloads run today (on-premises, VMware, AWS, Google Cloud) → Azure Migrate → where they land (Virtual Machines, Azure SQL, App Service, Azure VMware Solution). The eight services sit below it. |
+| Implementation | Services | An integration pipeline: your apps → Connect (API Management) → Route (Service Bus, Event Grid) → Process (Logic Apps, Functions) → Move data (Data Factory) → your data platform. |
+| Optimisation | Tools, help, process | The nine Azure tools with their product icons. The eleven "how we help" points are grouped into Cost, Performance, and Governance tabs. The process is a loop, because the live page calls optimisation "an ongoing practice". |
+| Managed Services | Pricing | The live pricing table, rebuilt as three plan cards plus a full feature comparison. On phones, a plan switcher shows one plan at a time. |
+| Security | Services | Defence in depth: nested layers, each mapped to the services that protect it (Detect and respond, Govern deployments, Network, Workloads, Data and secrets). |
+
+**Icons.** Azure services now show Microsoft's official Azure architecture icons (`public/images/azure/`). Microsoft permits these icons in architecture diagrams and documentation, and we use them only to identify the products in service diagrams and cards. Please confirm the client is comfortable with this.
+
+**Confirmed by the client (2026-10-26):** the Managed Services plan terms stay exactly as on the live page, including the database list, US$35 extra hours, the 10% prepayment discount, the response times, the support hours, and the contract lengths.
+
+**For client confirmation:**
+- **Timelines from the live FAQs:**
+  - Migration: "one week to a month"
+  - Implementation: "about a week for a single service, sometimes a few days"
+- **Product names.** Two names on the live page were wrong or out of date:
+  - "Microsoft Defender 365" described Defender for Cloud, so the card now says "Microsoft Defender for Cloud".
+  - "Azure Sentinel" is now "Microsoft Sentinel".
+- **Dropped (duplicates):**
+  - Optimisation's third banner, which repeated the first banner's heading on the live page.
+  - Three Implementation benefits that restated the service cards above them: API Management, cloud messaging (Service Bus and Event Grid), and data transformation (Data Factory).
+
+**Removed or softened:**
+- "Save up to 15%–30%" and "up to 30% cost savings" (Optimisation hero, reasons, and FAQ)
+- "Up to 72%" for Reserved Instances. The FAQ now says reservations "cost less than pay-as-you-go".
+- "More than 90 compliances"
+- "250+ products"
+- "Top-certified", "leading", and "premier" partner claims
+- "Free demo", "free consultation", and "free audit" CTA labels. Every banner uses the page's single primary CTA.
+- Healthcare, pharma, banking, and manufacturing industry cards. The pages show the three approved verticals.
+
+**Photos.** Each page gets new Pexels photos, none reused from other pages, plus its own live hero image (1536px to 2121px wide) in a section where tech imagery suits the content. All are listed in PHOTO_CREDITS.md.
+
+## 9c. AWS Cloud pages, batch 6 (2026-10-27)
+
+These pages are built to the live layouts, in live order, with duplicates dropped:
+- AWS Compute
+- AWS Migration
+- AWS Implementation
+- AWS Optimisation
+- AWS Managed Services
+
+They form a new "AWS Cloud" category, and the nav's AWS Cloud menu links to them. AWS Security follows in the next batch.
+
+**Each page's own design:**
+
+| Page | Section | Design |
+|---|---|---|
+| Compute | Services | A spectrum from "more control" to "less to manage": EC2 → app platforms → containers → serverless, each with its AWS product icons. Nitro security and VMware sit underneath as "across every model". |
+| Migration | Services | A five-phase stepper (Discover, Move data, Move workloads, Track, Optimise), with each phase's services in its panel. |
+| Implementation | Services | Cards with a chip row of the AWS products each service uses. |
+| Implementation | Advantages | A divided list beside the live AWS image. |
+| Optimisation | Benefits | An itemised "bill": area, what we change, and the tools that do it. |
+| Managed Services | Why | The points either side of a central image, as on the live page. |
+| Managed Services | Process | An arc process, as on the live page. |
+| Managed Services | Plans | The client-approved pricing table, with T3 (AWS) instances. |
+
+On Managed Services, the live order (FAQ, then industries, then process) is kept.
+
+**Dropped (duplicates):**
+- **Migration:** the "20+ years of experience" point, which repeats the stats strip and lists out-of-scope industries.
+- **Implementation:**
+  - "Align security and compliance" (advantages) and "High security" (why) both repeat the Security and compliance service.
+  - The why section's "Adopt innovation", "Cost-effectiveness", and "24/7 monitoring" repeat the advantages. "Monitoring around the clock" is kept once.
+- **Optimisation:**
+  - The benefits "Compute control" (repeats Resource utilisation analysis) and "Improved visibility" (merged with Financial monitoring).
+  - The why section's "Tailored solutions", "Enterprise-grade security", "Cost-saving approach", and "Continuous optimisation", which repeat the services.
+
+**Removed or softened:**
+- "Save 15% to 30%" (Optimisation hero and why)
+- "Up to 75% on compute costs"
+- "Best", "leading", "top-most certified", "most trusted", and "ultimate saviour"
+- "Free consultation", "free call", "free guide", and "free cost optimisation plan" CTAs. Every banner uses the page's single primary CTA.
+- GDPR, HIPAA, and PCI-DSS compliance claims
+- The Migration process said "Microsoft-certified engineers" on an AWS page; it now says "certified engineers".
+
+**For client confirmation:**
+- **Credentials.** On AWS pages, the hero credential reads "AWS-certified specialists" and the chip footer reads "Well-Architected", in place of "Microsoft-certified" and "Microsoft-first". This follows the live AWS pages' "certified AWS partner" claim; please confirm the exact AWS partner status.
+- **Live FAQ answer.** The Managed Services answer to "Can you integrate AI or IoT?" described encryption keys. It now names Amazon SageMaker and AWS IoT Core; please confirm AptaCloud offers these.
+- **Icons.** The AWS service icons are AWS's official architecture icons, used under the same terms as Microsoft's.
+
+**AWS Security** was built in the following batch. Its services sit in three groups (Protect, Detect and respond, Comply), and its process is a continuous loop.
+
+## 9d. Industry pages (2026-10-27 and 2026-10-28)
+
+These 14 pages are built to the live layouts, in live order, at the live URLs (`/industry/...`). Each has its own page in the nav and footer:
+- **The three vertical hubs:** Insurance, Oil & Gas, and Engineering & Construction.
+- **Insurance:** Carriers, Managing General Agents, Third-Party Adjusters, and Independent Agents.
+- **Oil & Gas:** Major Operators, Drilling & Well Services, Pipeline Maintenance, and Refining & Distribution.
+- **Engineering & Construction:** Construction, Engineering & Design, and Field Services.
+
+Each hub's "Keep exploring" cards list its segment pages.
+
+**Shared live template, different designs.** The live segment pages share one template: challenges, eight solutions, a deep dive, a six-step framework, integrations, compliance, a banner, why us, a case study, FAQs, and blogs. So that sibling pages don't look like copies, each page gives its key sections a different form:
+
+| Page | Signature section |
+|---|---|
+| Third-Party Adjusters | Solutions as a ring around Azure |
+| Independent Agents | Process as an arc |
+| Drilling & Well Services | Integrations as a map (wellsite → Azure → teams) |
+| Pipeline Maintenance | Solutions as a four-phase stepper (Monitor, Predict, Maintain, Modernise), integrations as a system register, process as a loop |
+| Refining & Distribution | Integrations as layered rings (process control → plant → enterprise → cloud) |
+| Construction | Solutions in three panels, integrations as a map |
+| Engineering & Design | Solutions as a four-phase stepper (Design, Coordinate, Analyse, Operate) |
+| Field Services | Solutions as a ring around Dynamics 365 |
+
+**Blogs.** Every live segment page showed the same three life-insurance posts. Each page now shows three posts relevant to its audience, linking to the live blog.
+
+**Dropped or merged:**
+- Integration groups with one or two entries are merged (for example "Historian and GIS"), so card rows stay even.
+- On Drilling, the compliance standards stay inside the integrations, as on the live page.
+- The Construction deep-dive point "Supports the largest single category of construction software spend" and the Engineering & Design point "Supports the fastest-growing segment in construction technology" are removed as unsourced claims.
+
+**For client confirmation:**
+- **Case-study figures.** Every outcome figure is kept from the live pages, for example "30–40% less time on submission triage" and "28% less non-productive time". Please confirm each one is approved for publication (Brand Guidelines: no unapproved metrics).
+- **Major Operators.** The brand guidelines say major operators are not a target segment. The page is built because it is live and in the nav; please confirm whether to keep it.
+- **Standards wording.** ISO 27001, NIST, HIPAA, and similar items read "we design for" or "built to", never "certified". Please confirm no certification is implied that AptaCloud does not hold.
+- **Partner platforms.** Guidewire, Duck Creek, DXC, Applied Epic, Vertafore, Procore, Autodesk, and other platforms are named because the live pages name them. This is not a partner claim.
+
+## 9e. Company pages (2026-10-28)
+
+These five pages are built at the live URLs, and the nav's About menu and the footer now link to them:
+- **About Us** (`/about-us/`)
+- **Careers** (`/careers/`)
+- **Blog** (`/blog/`)
+- **White Papers** (`/whitepaper/`)
+- **Events** (`/events/`)
+
+They share the service-page shell but have no deliverables console in the hero.
+
+| Page | Sections |
+|---|---|
+| About Us | Live order: our story, Microsoft services (each links to its page), leadership, partners, latest blog posts, next event, and global presence. The leadership cards show initials, because the live page has no portraits. The office cards show each office's local time. |
+| Careers | The live page is empty (footer only). It now has who we are, the service lines you would work on, and our offices. The form invites candidates to send their details. |
+| Blog | All 64 live posts. The newest post leads, followed by topic filters (Insurance, Oil & Gas, AI, Modernisation, Microsoft, Azure), a title search, and "Show more". On phones, posts appear as compact rows. Each post opens on the live blog. |
+| White Papers | The one live paper, with its cover, a summary, and a link to the live download page. Related Azure articles sit underneath. |
+| Events | The next event (Connected Claims USA 2026, 3–4 November, Orlando), with links to the event details and to registration, followed by past events as dated rows. |
+
+The page schema is AboutPage, Blog, or WebPage, not Service. Blog, White Papers, and Events have no stats strip.
+
+**Left out of the live content:**
+- **NetSuite** partner logo (brand rule). The partners shown are Microsoft, Anthropic, and AWS, matching the home page.
+- **"300+ Global Delivery Locations"** (About stats). This is clearly an error: the live page lists four offices.
+- **White paper highlights.** The live paper page lists highlights from a different paper, on vibe coding, which even names "JumpGrowth". Only the paper's own Azure-cost introduction is used. The page also quotes third-party figures (Azure revenue up 31%, 82% of organisations), which are left out as unsourced.
+- **HealthCon 2025.** This is a healthcare event, outside the three verticals, and its name and dates disagree (2025 against March 2026).
+- **"Free Consultation"** and **"Contact Us"** labels. The nav item is now "Talk to our team".
+
+**For client confirmation:**
+- **Careers.** No open roles are listed, and the page does not invent any. Please supply roles, benefits, or a careers email if you want them shown.
+- **Leadership.** Please supply portraits if you want photos in place of the initials, and confirm the titles (Hemant Madaan, Chief Executive Officer; Naval Madaan, Chief Operating Officer; Jignesh Jayaswal, Financial Controller).
+- **Mexico City office.** The live page gives no address, so the card shows only the city.
+- **Anthropic.** The logo is a text wordmark until the official file is supplied, as on the home page.
+- **White paper.** Please confirm what the paper covers, so the "What it covers" list can match the PDF.
+
+## 9f. SEO-team skills and CRO pass (2026-10-28)
+
+The SEO team supplied two skills: `aptacloud-content` (house style, authority lanes, and the industry segment and service matrix) and `aptacloud-content-audit` (EEAT, SEO, AEO, SXO, and CRO audit). Every page was checked against them.
+
+**CRO: one primary action, no duplicate buttons.** A template rule now applies on every page:
+| Place | What it shows |
+|---|---|
+| Nav | "Let's talk" on every page, linking to the page's contact form |
+| Hero | The page's primary CTA |
+| Mid-page | The primary CTA once only: on the pricing table or readiness assessment if the page has one, otherwise on the first banner or section that offers it |
+| Later banners | Their message and photo, with a quiet "Let's talk" text link instead of a second button |
+| Contact form | The primary CTA as the submit button |
+| Footer | "Back to top" (it sat right under the form, so its CTA button was a duplicate) |
+
+- **Pricing tables** (Azure and AWS managed services) had the same button on all three plan cards. They now have one button under the cards.
+- **Home page:** the primary CTA now appears only in the hero, the workshop, and the form.
+  - The About photo card links to the workshop.
+  - The Partners rows, the Dynamics 365 button, and the four "Talk to an Azure specialist" links now open the matching service pages, which also helps internal linking.
+  - The Why section's duplicate button was removed.
+- **Result:** a CTA audit across all 52 pages finds no section with two identical buttons.
+
+**Proof: no unapproved results.** The audit skill says anonymised results from the live industry and AI Consulting pages are not approved. RWLS and Warrikal can't be published until AptaCloud confirms them. The site now handles proof like this:
+- **Typical engagements.** All 17 case-study blocks (14 industry pages, AI Consulting, Legacy Migration, and Re-engineering) are now typical engagements. Each one names the segment, the pattern we often see, how a first project runs (proof of concept, then rollout), and what changes. They use no figures and no client names.
+- **Removed outright:**
+  - The testimonial blocks on AI Consulting and Legacy Migration.
+  - The client-logo wall on Legacy Migration.
+  - The healthcare, retail, banking, and manufacturing "Recent projects" cards on the nine Microsoft service pages.
+- **Rebuilt for our verticals:** the App Modernisation industry and use-case cards (they were retail, healthcare, and finance).
+- **When proof is approved,** the approved case studies replace the typical engagements one for one.
+
+**Segment accuracy (industry matrix).** Each segment page now names the buyer from the matrix:
+| Page | Buyer |
+|---|---|
+| Refining & Distribution | HSE consultancies, turnaround contractors, and NDT and inspection firms. Hero, pains, solutions, process, why us, and FAQs were rewritten, led by system integration across client sites. |
+| Drilling & Well Services | Seismic and surveying, well testing and cementing, and coiled tubing and pumping firms. "GIS and field data capture" is added as its segment-specific service. |
+| Pipeline Maintenance | Inspection and integrity firms, compression services, and SCADA support. The hero uses the matrix angle, "See failure risk before it becomes downtime". |
+| Field Services | Mechanical, electrical, plumbing, concrete, and steel trade contractors. The hero reads "Schedule crews and capture field work without paper", and the pains cover contractor portals, crew scheduling, paper forms, and handover. |
+| Construction | General contractors |
+| Engineering & Design | A&E design firms. "ERP and project financials" is added as its segment-specific service. |
+
+Services outside a segment's matrix row were renamed or removed. For example, Refining's "Enterprise asset management integration" is gone, because EAM and SCADA integration belongs to Major Operators and Pipeline only.
+
+**House style:**
+- **Rhetorical questions.** 37 CTA, banner, and intro questions are now statements (for example "Ready to get more from Dynamics 365?" → "Get more from Dynamics 365."). Informational question headings that the section answers, such as "Why choose AptaCloud?", are kept for AEO.
+- **Out-of-vertical content.** Canada and healthcare content is replaced with the three verticals (AI Consulting FAQs, App Modernisation FAQ, and the Dynamics 365 "Local and global reach" card).
+- **Other copy fixes.** "End-to-end", "industry-leading", "your best team members", and "industries we know best" are reworded.
+- **Credentials.** About shows the approved credentials (20+ years, 300+ clients, 200+ engineers, and 4 delivery locations), and the home page now says "4 locations", not "4+".
+- **AWS wording.** Company-level AWS certification claims ("certified AWS partner", "certified through the AWS Partner Network") now read "AWS partner". The client brief confirms AWS as a partner, but not a certification. Engineer-level "AWS-certified" wording stays flagged `[CONFIRM CREDENTIAL]`.
+
+**Still open (site-wide decisions):**
+- **URL slugs.** The matrix uses different slugs from the live site (for example `/industry/insurance/mgas-program-administrators/` and `/industry/construction/field-services/`). We kept the live, indexed URLs. If the matrix slugs are wanted, add 301 redirects from the live URLs.
+- **Major Operators.** The audit skill names major operators as a non-ICP buyer. The page stays because it's live and in the matrix. `[NEEDS CEO SIGN-OFF]`
+- **Segment-specific services.** The matrix marks its specialised O&G services (EAM and SCADA integration; GIS and field data capture) as "recommended, not yet internally confirmed". `[NEEDS CEO SIGN-OFF]`
+
 ## 10. Imagery and tools pass (2026-10-23)
 - **Live-site images:** We reuse high-resolution originals only (1200px or wider) from the client's live pages. They now appear in these places:
   - The "Recent projects" cards on all nine Microsoft pages.

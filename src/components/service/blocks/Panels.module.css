@@ -19,22 +19,14 @@
   order: 2;
 }
 
+/* The panel takes its list's height (grid stretch), with the name and pitch at its foot. */
 .panel {
   background: var(--brand-dark);
   border-radius: 26px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  min-height: 320px;
   padding: 36px;
-}
-
-.panelNo {
-  color: var(--accent);
-  font-size: 14px;
-  font-variant-numeric: tabular-nums;
-  font-weight: 600;
-  margin-bottom: auto;
 }
 
 .panelTitle {
@@ -44,7 +36,7 @@
   font-weight: 600;
   letter-spacing: -0.05em;
   line-height: 1.12;
-  margin: 40px 0 14px;
+  margin: 0 0 14px;
 }
 
 .panelText {
@@ -97,22 +89,27 @@
   margin: 0;
 }
 
+/* Product chips under a row's text. */
+.row > ul {
+  margin-top: 12px;
+}
+
 @media (max-width: 1199.98px) {
   .group { grid-template-columns: minmax(0, 1fr); }
   .flip .panel { order: 0; }
-  .panel { min-height: 0; }
-  .panelTitle { margin-top: 24px; }
 }
 
 /* Phone: the panel, then its services as a short swipe strip of cards. */
 @media (max-width: 809.98px) {
   .group { border-radius: 22px; padding: 6px; }
   .panel { border-radius: 18px; padding: 20px 18px; }
-  .panelTitle { font-size: 22px; margin-top: 16px; }
+  .panelTitle { font-size: 22px; }
   .panelText { font-size: 14px; }
+  /* Start-aligned: a centred row would overflow both edges, and the left edge cannot be scrolled to. */
   .list {
     flex-direction: row;
     gap: 6px;
+    justify-content: flex-start;
     overflow-x: auto;
     overscroll-behavior-x: contain;
     padding: 0;

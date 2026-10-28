@@ -16,7 +16,7 @@ import { toneProps, type Tone } from "./tone";
 import sec from "./Section.module.css";
 import s from "./WhyUs.module.css";
 
-export function WhyUs({ why, cta, tone = "tint" }: { why: ServicePage["why"]; cta: ServicePage["cta"]; tone?: Tone }) {
+export function WhyUs({ why, cta, tone = "tint" }: { why: NonNullable<ServicePage["why"]>; cta: ServicePage["cta"]; tone?: Tone }) {
   const reasons = [...WHY, ...why.extra];
   return (
     <section id="why" {...toneProps(tone, "tint")}>

@@ -14,7 +14,7 @@ import { toneProps, type Tone } from "./tone";
 import sec from "./Section.module.css";
 import s from "./PainPoints.module.css";
 
-export function PainPoints({ pains, tone = "tint" }: { pains: ServicePage["pains"]; tone?: Tone }) {
+export function PainPoints({ pains, tone = "tint" }: { pains: NonNullable<ServicePage["pains"]>; tone?: Tone }) {
   const [lead, ...rest] = pains.items;
   const n = pains.items.length;
   return (
