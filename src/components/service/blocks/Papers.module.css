@@ -45,7 +45,7 @@
 .title {
   color: var(--fg);
   font-family: var(--ff-inter);
-  font-size: 34px;
+  font-size: 32px;
   font-weight: 600;
   letter-spacing: -0.055em;
   line-height: 1.1;
@@ -85,7 +85,7 @@
   align-items: flex-start;
   color: var(--fg-soft);
   display: flex;
-  font-size: 15.5px;
+  font-size: 15px;
   font-weight: 500;
   gap: 12px;
   letter-spacing: -0.025em;
@@ -147,5 +147,5 @@
   .stage { border-radius: 16px; padding: 28px; }
   .cover { max-width: 200px; }
   .body { padding: 20px 14px 18px; }
-  .title { font-size: 25px; }
+  .title { font-size: 26px; }
 }

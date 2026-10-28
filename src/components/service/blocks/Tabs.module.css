@@ -16,7 +16,7 @@
   font-size: 15px;
   font-weight: 600;
   letter-spacing: -0.025em;
-  padding: 12px 20px;
+  padding: 11px 18px;
   transition: background-color 0.4s var(--ease-out-quint), color 0.4s var(--ease-out-quint);
 }
 
@@ -69,7 +69,7 @@
 
 .intro {
   color: var(--fg-soft);
-  font-size: 16.5px;
+  font-size: 16px;
   font-weight: 500;
   letter-spacing: -0.03em;
   line-height: 1.45;
@@ -120,7 +120,7 @@
 .itemTitle {
   color: var(--fg);
   font-family: var(--ff-inter);
-  font-size: 17px;
+  font-size: 18px;
   font-weight: 600;
   letter-spacing: -0.035em;
   margin: 0 0 3px;
@@ -128,7 +128,7 @@
 
 .itemText {
   color: var(--fg-muted);
-  font-size: 14.5px;
+  font-size: 15px;
   font-weight: 500;
   letter-spacing: -0.02em;
   line-height: 1.42;
@@ -168,8 +168,8 @@
   .media { min-height: 140px; border-radius: 18px; }
   .content { padding: 14px 6px 8px; }
   .item { padding: 10px 8px; }
-  .itemTitle { font-size: 15.5px; }
-  .itemText { font-size: 13.5px; }
+  .itemTitle { font-size: 15px; }
+  .itemText { font-size: 13px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

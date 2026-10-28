@@ -52,7 +52,7 @@
 .title {
   color: var(--fg);
   font-family: var(--ff-inter);
-  font-size: 30px;
+  font-size: 32px;
   font-weight: 600;
   letter-spacing: -0.05em;
   line-height: 1.15;
@@ -81,7 +81,7 @@
   align-items: flex-start;
   color: var(--fg);
   display: flex;
-  font-size: 15.5px;
+  font-size: 15px;
   font-weight: 500;
   gap: 12px;
   letter-spacing: -0.025em;
@@ -109,7 +109,7 @@
 .note {
   border-top: 1px solid var(--line);
   color: var(--fg-muted);
-  font-size: 14.5px;
+  font-size: 15px;
   font-weight: 500;
   letter-spacing: -0.02em;
   line-height: 1.45;
@@ -119,7 +119,7 @@
 
 @media (min-width: 810px) and (max-width: 1199.98px) {
   .copy { padding: 28px; }
-  .title { font-size: 25px; }
+  .title { font-size: 26px; }
   .media { min-height: 320px; }
 }
 
@@ -129,8 +129,8 @@
   .flip .media { order: 0; }
   .media { min-height: 190px; border-radius: 18px; }
   .copy { padding: 18px 12px 14px; }
-  .title { font-size: 21px; }
-  .intro { font-size: 14.5px; margin-bottom: 14px; }
+  .title { font-size: 22px; }
+  .intro { font-size: 15px; margin-bottom: 14px; }
   .points li { font-size: 14px; }
-  .note { font-size: 13.5px; }
+  .note { font-size: 13px; }
 }

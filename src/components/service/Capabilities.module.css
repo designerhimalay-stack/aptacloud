@@ -115,7 +115,7 @@
 
 .text {
   color: var(--fg-muted);
-  font-size: 15.5px;
+  font-size: 15px;
   font-weight: 500;
   letter-spacing: -0.03em;
   line-height: 1.45;
@@ -137,7 +137,7 @@
   background: var(--accent-08);
   border-radius: 20px;
   color: var(--accent);
-  font-size: 12.5px;
+  font-size: 12px;
   font-weight: 600;
   letter-spacing: -0.01em;
   padding: 3px 9px;
@@ -145,7 +145,7 @@
 
 .outcome p {
   color: var(--fg);
-  font-size: 15.5px;
+  font-size: 15px;
   font-weight: 600;
   letter-spacing: -0.03em;
   line-height: 1.35;
@@ -155,7 +155,7 @@
 .tools {
   border-top: 1px solid var(--line);
   color: var(--fg-muted);
-  font-size: 13.5px;
+  font-size: 13px;
   font-weight: 500;
   letter-spacing: -0.02em;
   line-height: 1.4;
@@ -182,7 +182,7 @@
   .card { gap: 20px; padding: 22px; }
   .card:hover { transform: none; }
   .title { font-size: 20px; }
-  .text { font-size: 14.5px; }
+  .text { font-size: 15px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

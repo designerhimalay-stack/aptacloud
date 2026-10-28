@@ -14,7 +14,7 @@ export const AI_PAGES: ServicePage[] = [
     seo: {
       title: "AI Consulting Services | AptaCloud",
       description:
-        "AI consulting for mid-sized insurance, oil & gas, and construction firms. We find the workflow where AI pays off, prove it on your data, and take it to production on Microsoft Azure.",
+        "AI consulting for mid-sized insurance, oil and gas, and construction firms: find where AI pays off, prove it on your data, then take it to production on Azure.",
     },
     hero: {
       title: "Take your AI plans from pilot",
@@ -171,7 +171,7 @@ export const AI_PAGES: ServicePage[] = [
     seo: {
       title: "AI Agent Development Services | AptaCloud",
       description:
-        "We design, build, and run AI agents that take repetitive steps off your teams, grounded in your own procedures and connected to the systems you already use. Proven on your data first.",
+        "AI agents that take repetitive work off your teams, grounded in your own procedures and connected to the systems you already use. Proven on your data first.",
     },
     hero: {
       title: "AI agents that do the work,",
@@ -328,7 +328,7 @@ export const AI_PAGES: ServicePage[] = [
     seo: {
       title: "Generative AI Development Services | AptaCloud",
       description:
-        "Generative AI built on your own documents and data: assistants, drafting, and document automation on Azure OpenAI Service, with the security controls your business needs.",
+        "Generative AI built on your own documents and data: assistants, drafting, and document automation on Azure OpenAI, with the security controls you need.",
     },
     hero: {
       title: "Generative AI grounded in",

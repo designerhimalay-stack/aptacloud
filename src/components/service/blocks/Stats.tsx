@@ -44,7 +44,7 @@ export function Stats({ stats, ribbon }: { stats: Stat[]; ribbon: string[] }) {
 
   return (
     <section id="numbers" className={s.section}>
-      <div ref={ref} className={cn(s.row, on && s.on)}>
+      <div ref={ref} className={cn(s.row, on && s.on, stats.length === 4 && s.four)} style={{ ["--n" as string]: stats.length }}>
         <div className={s.intro}>
           <p className={s.label}>
             <Pulse size={6} color="var(--accent)" />

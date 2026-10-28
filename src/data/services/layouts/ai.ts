@@ -118,7 +118,7 @@ export const AI_LAYOUTS: Record<string, ServiceLayout> = {
       },
       {
         kind: "banner",
-        heading: "Overwhelmed by AI hype? Get real clarity in two weeks.",
+        heading: "Cut through the AI noise with a fixed-scope assessment.",
         text: "Our fixed-cost AI assessment shows exactly where and how to start with AI. No lock-ins, just guidance focused on your return.",
         photo: { src: `${P}/chatgpt-monitors.jpg`, alt: "A desk with two monitors, one showing the ChatGPT launch page", position: "60% 38%" },
       },

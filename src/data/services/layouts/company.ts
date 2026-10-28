@@ -33,7 +33,7 @@ export const COMPANY_LAYOUTS: Record<string, ServiceLayout> = {
   /* ─────────────────────────── About Us ─────────────────────────── */
   "about-us": {
     // The approved credentials (20+ years, 300+ clients, 200+ engineers, 4 delivery locations).
-    stats: [...COMPANY_STATS, { value: 4, label: "Delivery locations" }],
+    stats: [...COMPANY_STATS, { value: 4, suffix: "", label: "Delivery locations" }],
     blocks: [
       {
         kind: "split",

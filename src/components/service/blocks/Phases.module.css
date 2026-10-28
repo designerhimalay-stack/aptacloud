@@ -127,7 +127,7 @@
 .introTitle {
   color: var(--fg);
   font-family: var(--ff-inter);
-  font-size: 30px;
+  font-size: 32px;
   font-weight: 600;
   letter-spacing: -0.055em;
   line-height: 1.12;
@@ -208,7 +208,7 @@
 
 .svcText {
   color: var(--fg-muted);
-  font-size: 14.5px;
+  font-size: 15px;
   font-weight: 500;
   letter-spacing: -0.025em;
   line-height: 1.5;
@@ -227,10 +227,10 @@
 @media (max-width: 809.98px) {
   .desk { display: none; }
   .mobile { display: grid; gap: 8px; }
-  .svc { background: var(--card); border-radius: 20px; padding: 18px; }
+  .svc { background: var(--card); border-radius: 22px; padding: 20px; }
   .svcMark { height: 40px; margin-bottom: 4px; width: 40px; }
   .svcMark > * { height: 26px !important; width: 26px !important; }
-  .svcTitle { font-size: 17px; }
+  .svcTitle { font-size: 18px; }
   .svcText { font-size: 14px; }
 }
 

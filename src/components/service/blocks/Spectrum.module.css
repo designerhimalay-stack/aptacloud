@@ -164,7 +164,7 @@
 @media (max-width: 809.98px) {
   .board { border-radius: 24px; padding: 18px 0 14px; }
   .scale { padding: 0 18px; }
-  .end { font-size: 12.5px; }
+  .end { font-size: 12px; }
   .track { display: none; }
   /* The shared rail bleeds 16px past its parent; inside this card it stays within the edges. */
   .board .models { margin: 12px 0 0; padding: 0 16px 6px; scroll-padding: 0 16px; }

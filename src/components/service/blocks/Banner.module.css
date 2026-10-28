@@ -43,7 +43,7 @@ section:not([data-theme]) .panel {
 .heading {
   color: var(--fg);
   font-family: var(--ff-inter);
-  font-size: 38px;
+  font-size: 40px;
   font-weight: 600;
   letter-spacing: -0.05em;
   line-height: 1.12;
@@ -90,7 +90,7 @@ section:not([data-theme]) .panel {
   .panel { border-radius: 26px; grid-template-columns: minmax(0, 1fr); }
   .media { min-height: 160px; order: -1; border-radius: 20px; }
   .copy { padding: 20px 14px 16px; }
-  .heading { font-size: 24px; }
+  .heading { font-size: 26px; }
   .text { font-size: 15px; }
   .actions { margin-top: 22px; width: 100%; }
   .actions > a { width: 100%; }

@@ -22,3 +22,6 @@ pnpm-debug.log*
 # local tooling
 .claude/
 .playwright-mcp/
+
+# Audit tool output (screenshots, slices)
+tools/audit/out/

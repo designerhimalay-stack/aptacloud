@@ -20,7 +20,7 @@ export const APPMOD_LAYOUTS: Record<string, ServiceLayout> = {
       {
         kind: "split",
         id: "overview",
-        tag: "Should you migrate?",
+        tag: "When to migrate",
         icon: "migrate",
         heading: "Signs your legacy applications are ready to migrate.",
         body: [
@@ -397,7 +397,7 @@ export const APPMOD_LAYOUTS: Record<string, ServiceLayout> = {
       },
       {
         kind: "banner",
-        heading: "Still running legacy applications? It's time to evolve.",
+        heading: "Move your legacy applications forward, one at a time.",
         text: "Modernise your core systems without starting from scratch, with cloud-native architecture, automation, and AI.",
         photo: { src: `${P}/black-table.jpg`, alt: "A team planning an application rebuild together around a screen", position: "50% 45%" },
       },

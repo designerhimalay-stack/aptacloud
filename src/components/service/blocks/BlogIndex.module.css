@@ -39,7 +39,7 @@
 .leadTitle {
   color: var(--fg);
   font-family: var(--ff-inter);
-  font-size: 36px;
+  font-size: 32px;
   font-weight: 600;
   letter-spacing: -0.055em;
   line-height: 1.1;
@@ -72,10 +72,10 @@
   color: var(--fg-soft);
   cursor: pointer;
   font: inherit;
-  font-size: 14.5px;
+  font-size: 15px;
   font-weight: 600;
   letter-spacing: -0.02em;
-  padding: 10px 16px;
+  padding: 11px 18px;
   transition: background 0.3s var(--ease-out-quint), color 0.3s var(--ease-out-quint);
 }
 
@@ -112,7 +112,7 @@
   border: 0;
   color: var(--fg);
   font: inherit;
-  font-size: 14.5px;
+  font-size: 15px;
   font-weight: 500;
   height: 42px;
   min-width: 0;
@@ -188,7 +188,7 @@
   .lead { border-radius: 22px; gap: 0; grid-template-columns: none; padding: 6px; }
   .leadThumb { border-radius: 16px; }
   .leadBody { padding: 18px 14px 16px; }
-  .leadTitle { font-size: 24px; }
+  .leadTitle { font-size: 26px; }
   .bar { align-items: stretch; flex-direction: column; margin-top: 8px; }
   /* Topics scroll sideways on one line instead of stacking. */
   .topics { flex-wrap: nowrap; margin: 0 -16px; overflow-x: auto; padding: 0 16px; scrollbar-width: none; }
@@ -201,5 +201,5 @@
   .grid > * > a > div:first-child { aspect-ratio: 1; border-radius: 13px; flex: none; width: 96px; }
   .grid > * > a > div:last-child { gap: 4px; padding: 4px 8px 4px 10px; }
   .grid > * > a > div:last-child > span:last-child { display: none; }
-  .grid h3 { font-size: 15.5px; }
+  .grid h3 { font-size: 15px; }
 }

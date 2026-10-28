@@ -10,14 +10,17 @@ interface Props {
   title: string;
   description: string;
   jsonLd?: object[];
-  /** The page's primary CTA, shown in the nav pill (one primary action per page). */
+  /** The nav pill (defaults to "Let's talk"). */
   navCta?: { label: string; href: string };
+  /** Share image for Open Graph and Twitter (a site path). */
+  image?: string;
+  noindex?: boolean;
 }
 
-const { title, description, jsonLd, navCta } = Astro.props;
+const { title, description, jsonLd, navCta, image, noindex } = Astro.props;
 ---
 
-<Base title={title} description={description} jsonLd={jsonLd}>
+<Base title={title} description={description} jsonLd={jsonLd} image={image} noindex={noindex}>
   <Nav client:load cta={navCta} />
   <ConstructionLines />
   <main class="relative">

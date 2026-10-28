@@ -58,7 +58,7 @@
 .name {
   color: var(--fg);
   font-family: var(--ff-inter);
-  font-size: 36px;
+  font-size: 32px;
   font-weight: 600;
   letter-spacing: -0.055em;
   line-height: 1.08;
@@ -165,7 +165,7 @@
 
 .rowDate {
   color: var(--fg-muted);
-  font-size: 14.5px;
+  font-size: 15px;
   font-variant-numeric: tabular-nums;
   font-weight: 600;
   letter-spacing: -0.015em;
@@ -180,7 +180,7 @@
 
 .rowVenue {
   color: var(--fg-muted);
-  font-size: 14.5px;
+  font-size: 15px;
   font-weight: 500;
   letter-spacing: -0.02em;
 }
@@ -196,7 +196,7 @@
 @media (min-width: 810px) and (max-width: 1199.98px) {
   .next { gap: 28px; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
   .body { padding: 24px 24px 24px 0; }
-  .name { font-size: 30px; }
+  .name { font-size: 32px; }
   .row { gap: 16px; grid-template-columns: 200px minmax(0, 1fr) minmax(0, 1fr) 16px; }
 }
 

@@ -266,7 +266,7 @@ export const MS_PAGES: ServicePage[] = [
     name: "Microsoft Dynamics 365",
     summary: "Dynamics 365 implemented, integrated, and supported around how you work.",
     seo: {
-      title: "Dynamics 365 Consulting and Implementation Services | AptaCloud",
+      title: "Dynamics 365 Consulting and Implementation | AptaCloud",
       description: "Dynamics 365 consulting, implementation, migration, and support, connecting finance, operations, and field teams on one platform.",
     },
     hero: {
@@ -677,7 +677,7 @@ export const MS_PAGES: ServicePage[] = [
     summary: "OneDrive, Azure Storage, and Azure SQL set up securely and at scale.",
     seo: {
       title: "Microsoft Cloud Storage and Database Services | AptaCloud",
-      description: "OneDrive, Azure Blob Storage, Azure SQL, and Cosmos DB set up for secure access, backup, and growth.",
+      description: "Microsoft cloud storage done properly: OneDrive, Azure Blob Storage, Azure SQL, and Cosmos DB set up for secure access, backup, and growth.",
     },
     hero: {
       title: "Your files and data,",

@@ -24,7 +24,7 @@
 
 .textSmall {
   color: var(--fg-muted);
-  font-size: 17px;
+  font-size: 18px;
   letter-spacing: -0.03em;
   max-width: 720px;
 }

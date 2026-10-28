@@ -16,7 +16,7 @@
   display: flex;
   flex-direction: column;
   gap: 28px;
-  padding: 26px 28px 28px;
+  padding: 28px;
   transition: box-shadow 0.5s var(--ease-out-quint), transform 0.6s var(--ease-out-expo);
   width: 100%;
 }
@@ -38,7 +38,7 @@
   background: rgba(var(--accent-rgb), 0.1);
   border-radius: 999px;
   color: var(--accent);
-  font-size: 12.5px;
+  font-size: 12px;
   font-weight: 600;
   letter-spacing: -0.01em;
   padding: 6px 12px;
@@ -100,7 +100,7 @@
 .client {
   color: var(--fg);
   font-family: var(--ff-inter);
-  font-size: 19px;
+  font-size: 20px;
   font-weight: 600;
   letter-spacing: -0.04em;
   margin: 0;
@@ -151,7 +151,7 @@
 .wideClient {
   color: var(--fg);
   font-family: var(--ff-inter);
-  font-size: 24px;
+  font-size: 26px;
   font-weight: 600;
   letter-spacing: -0.045em;
   margin: 10px 0 0;
@@ -187,7 +187,7 @@
   align-items: flex-start;
   color: var(--fg-soft);
   display: flex;
-  font-size: 14.5px;
+  font-size: 15px;
   font-weight: 500;
   gap: 10px;
   letter-spacing: -0.02em;
@@ -217,7 +217,7 @@
 
 @media (max-width: 809.98px) {
   .wideList { flex-direction: row; }
-  .wide { align-content: start; border-radius: 20px; grid-template-columns: minmax(0, 1fr); padding: 6px; }
+  .wide { align-content: start; border-radius: 22px; grid-template-columns: minmax(0, 1fr); padding: 6px; }
   .wideStory { padding: 14px 12px; }
   .wideClient { font-size: 18px; }
   .wideResults { border-radius: 16px; padding: 16px; }
@@ -227,8 +227,8 @@
   .card { gap: 20px; padding: 20px; }
   .card:hover { transform: none; }
   .metric { font-size: 46px; }
-  .metricLabel { font-size: 14.5px; }
-  .client { font-size: 17px; }
+  .metricLabel { font-size: 15px; }
+  .client { font-size: 18px; }
   .text { font-size: 14px; }
 }
 

@@ -63,7 +63,7 @@
 
 .askText {
   color: var(--fg-muted);
-  font-size: 14.5px;
+  font-size: 15px;
   font-weight: 500;
   letter-spacing: -0.02em;
   line-height: 1.4;
@@ -153,7 +153,7 @@
   cursor: pointer;
   display: flex;
   font-family: var(--ff-inter);
-  font-size: 17.5px;
+  font-size: 18px;
   font-weight: 600;
   gap: 24px;
   justify-content: space-between;
@@ -227,7 +227,7 @@
 
 .aInner p {
   color: var(--fg-muted);
-  font-size: 15.5px;
+  font-size: 15px;
   font-weight: 500;
   letter-spacing: -0.025em;
   line-height: 1.55;
@@ -241,7 +241,7 @@
 @media (max-width: 1199.98px) {
   .layout { gap: 16px; grid-template-columns: minmax(0, 1fr); }
   .side { display: contents; }
-  .heading { font-size: 38px; }
+  .heading { font-size: 40px; }
   .list { margin-top: 16px; order: 2; }
   .ask { margin-top: 8px; order: 3; }
 }
@@ -252,14 +252,14 @@
   .heading { font-size: 28px; }
   .list { gap: 6px; margin-top: 8px; }
   .item { border-radius: 16px; }
-  .q { border-radius: 16px; font-size: 15.5px; gap: 14px; padding: 13px 12px 13px 16px; }
+  .q { border-radius: 16px; font-size: 15px; gap: 14px; padding: 13px 12px 13px 16px; }
   .icon { height: 26px; width: 26px; }
   .icon::before, .icon::after { width: 10px; }
-  .aInner p { font-size: 14.5px; line-height: 1.5; padding: 0 16px 16px; }
+  .aInner p { font-size: 15px; line-height: 1.5; padding: 0 16px 16px; }
   .ask { border-radius: 18px; gap: 4px; margin-top: 2px; padding: 16px; }
   .askIcon { display: none; }
-  .askTitle { font-size: 17px; }
-  .askText { font-size: 13.5px; }
+  .askTitle { font-size: 18px; }
+  .askText { font-size: 13px; }
   .askLinks { margin-top: 6px; padding-top: 10px; }
   .askLink { font-size: 14px; }
   .askJump { font-size: 13px; }

@@ -25,7 +25,7 @@
 .centered {
   align-items: center;
   gap: 14px;
-  padding: 32px 26px 30px;
+  padding: 28px;
   text-align: center;
 }
 
@@ -132,7 +132,7 @@
 /* plain: index, title, text. */
 .plain {
   gap: 10px;
-  padding: 26px 26px 28px;
+  padding: 24px;
 }
 
 .plainNo {
@@ -236,7 +236,7 @@
   align-items: center;
   color: var(--fg-soft);
   display: flex;
-  font-size: 14.5px;
+  font-size: 15px;
   font-weight: 500;
   gap: 10px;
   letter-spacing: -0.02em;
@@ -261,7 +261,7 @@
 
 .note {
   color: var(--fg-soft);
-  font-size: 17px;
+  font-size: 18px;
   font-weight: 500;
   letter-spacing: -0.03em;
   line-height: 1.5;
@@ -280,8 +280,12 @@
   .flex:not(.chips) { flex-wrap: nowrap; justify-content: flex-start; }
   /* Rails: each card takes most of the screen, the next peeks in. */
   .flex:not(.chips) > .flexCell { flex: 0 0 84%; }
-  .chips .flexCell { flex: 1 1 100%; }
-  .chip { width: 100%; }
+  /* Chips wrap at their natural width (a full-width stack ran ten rows deep). */
+  .chips .flexCell { flex: 0 1 auto; }
+  .chips { gap: 6px; justify-content: flex-start; }
+  .chip { font-size: 14px; gap: 8px; padding: 6px 14px 6px 6px; }
+  .chipIcon { height: 30px; width: 30px; }
+  .chipIcon svg { height: 15px; width: 15px; }
   /* Phones: every card reads from the same left edge as the section head. */
   .centered { align-items: flex-start; gap: 10px; padding: 20px 18px; text-align: left; }
   .ring { box-shadow: none; height: 44px; margin-bottom: 4px; width: 44px; }
@@ -333,7 +337,7 @@
 
 .pointText {
   color: var(--fg-soft);
-  font-size: 15.5px;
+  font-size: 15px;
   font-weight: 500;
   letter-spacing: -0.025em;
   line-height: 1.45;
@@ -344,7 +348,7 @@
 @media (max-width: 809.98px) {
   .points { grid-auto-flow: row; }
   .point { padding: 14px 16px; }
-  .pointText { font-size: 14.5px; }
+  .pointText { font-size: 15px; }
 }
 
 /* statement: the buyer's words, larger, with a soft index. */
@@ -353,7 +357,7 @@
 .statement {
   gap: 22px;
   min-height: 0;
-  padding: 26px 26px 28px;
+  padding: 28px;
 }
 
 .statement:hover .statementTitle {
@@ -520,7 +524,7 @@
 @media (max-width: 809.98px) {
   .outRow { gap: 14px; padding: 20px 18px; }
   .outRow:hover { transform: none; }
-  .outTitle { font-size: 19px; }
+  .outTitle { font-size: 20px; }
   .outTick { height: 34px; width: 34px; }
 }
 
@@ -570,7 +574,7 @@
 
 .miniText {
   color: var(--fg-muted);
-  font-size: 13.5px;
+  font-size: 13px;
   font-weight: 500;
   letter-spacing: -0.02em;
   line-height: 1.42;
@@ -583,9 +587,9 @@
 
 @media (max-width: 809.98px) {
   .statement { gap: 24px; min-height: 0; }
-  .statementTitle { font-size: 18.5px; }
+  .statementTitle { font-size: 18px; }
   .check { padding: 18px; }
-  .checkTitle { font-size: 16.5px; }
+  .checkTitle { font-size: 16px; }
   .moreGrid > * { grid-column: span 30; }
 }
 
@@ -599,7 +603,7 @@
   align-self: flex-start;
   color: var(--fg);
   display: inline-flex;
-  font-size: 14.5px;
+  font-size: 15px;
   font-weight: 600;
   gap: 6px;
   letter-spacing: -0.02em;

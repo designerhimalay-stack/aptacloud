@@ -932,7 +932,7 @@ export const MS_LAYOUTS: Record<string, ServiceLayout> = {
       },
       {
         kind: "banner",
-        heading: "Too many Azure options? We will help you choose.",
+        heading: "We help you choose the right Azure options.",
         text: "Tell us what you run today, and we will recommend the hosting set-up that fits.",
         photo: { src: "/images/photos/services/appmod-team.jpg", alt: "Two engineers comparing hosting options at their monitors", position: "50% 40%" },
       },

@@ -105,7 +105,7 @@
 .ttitle {
   color: var(--fg);
   font-family: var(--ff-inter);
-  font-size: 17px;
+  font-size: 18px;
   font-weight: 600;
   letter-spacing: -0.04em;
   line-height: 1.22;
@@ -141,11 +141,11 @@
   .rail { left: 17px; }
   .trackSteps { gap: 6px; }
   .tstep { gap: 12px; }
-  .tnode { font-size: 12.5px; height: 36px; width: 36px; }
+  .tnode { font-size: 12px; height: 36px; width: 36px; }
   .reached .tnode { box-shadow: 0 0 0 4px rgba(var(--accent-rgb), 0.14); }
   .tcard { border-radius: 16px; gap: 4px; padding: 12px 14px; }
   .ttitle { font-size: 16px; }
-  .ttext { font-size: 13.5px; }
+  .ttext { font-size: 13px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -306,7 +306,7 @@
   .vbody { border-radius: 16px; gap: 4px; padding: 12px 14px; }
   .vcurrent .vbody { transform: none; }
   .vtitle { font-size: 16px; }
-  .vtext { font-size: 13.5px; }
+  .vtext { font-size: 13px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -593,7 +593,7 @@
 .ctitle {
   color: var(--fg);
   font-family: var(--ff-inter);
-  font-size: 19px;
+  font-size: 20px;
   font-weight: 600;
   letter-spacing: -0.04em;
   margin: 0 0 6px;
@@ -621,7 +621,7 @@
   .citem { border-radius: 16px; gap: 12px; padding: 14px 16px; }
   .ccurrent { transform: none; }
   .ctitle { font-size: 16px; }
-  .ctext { font-size: 13.5px; }
+  .ctext { font-size: 13px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

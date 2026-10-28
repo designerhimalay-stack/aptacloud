@@ -17,8 +17,8 @@ export const COMPANY_PAGES: ServicePage[] = [
     name: "About Us",
     summary: "Who we are, the team that leads us, and where we work.",
     seo: {
-      title: "About AptaCloud | Cloud, Data, and AI for Mid-Sized Businesses",
-      description: "AptaCloud modernises and connects the systems mid-sized insurance, oil and gas, and engineering and construction businesses run on, and puts AI to work on top of them.",
+      title: "About AptaCloud | Cloud, Data, and AI Consultancy",
+      description: "AptaCloud modernises and connects the systems mid-sized insurance, oil and gas, and construction firms run on, then puts AI to work on top of them.",
     },
     hero: {
       title: "We take your plans",
@@ -41,7 +41,7 @@ export const COMPANY_PAGES: ServicePage[] = [
     name: "Careers",
     summary: "Work with senior engineers on the systems businesses run on.",
     seo: {
-      title: "Careers at AptaCloud",
+      title: "Careers at AptaCloud | Cloud, Data, and AI Engineering",
       description: "Work with AptaCloud's engineers in the United States, India, and Mexico on AI, data, application modernisation, and Microsoft cloud projects.",
     },
     hero: {
@@ -114,7 +114,7 @@ export const COMPANY_PAGES: ServicePage[] = [
     summary: "Where to meet our leadership next.",
     seo: {
       title: "AptaCloud Events | Where to Meet Our Team",
-      description: "The industry conferences where AptaCloud's leadership will be next, and the events we have attended.",
+      description: "The insurance, oil and gas, and technology conferences where you can meet AptaCloud's leadership next, plus the events we have attended.",
     },
     hero: {
       title: "Meet our team",

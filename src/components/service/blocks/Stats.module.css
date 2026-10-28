@@ -10,7 +10,7 @@
 
 .row {
   display: grid;
-  grid-template-columns: minmax(0, 1.25fr) repeat(3, minmax(0, 1fr));
+  grid-template-columns: minmax(0, 1.25fr) repeat(var(--n, 3), minmax(0, 1fr));
   margin: 0 auto;
   max-width: 1176px;
 }
@@ -104,7 +104,7 @@
 
 .ribbonItem {
   color: rgba(255, 255, 255, 0.62);
-  font-size: 12.5px !important;
+  font-size: 12px !important;
   margin: 0;
   white-space: nowrap;
 }
@@ -117,7 +117,7 @@
 @media (min-width: 810px) and (max-width: 1199.98px) {
   .section { padding: 0 40.5px; }
   .ribbon { margin: 0 -40.5px; }
-  .row { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .row { grid-template-columns: repeat(var(--n, 3), minmax(0, 1fr)); }
   .intro { grid-column: 1 / -1; padding: 36px 0 0; }
   .stat:nth-child(2) { border-left: 0; padding-left: 0; }
   .figure { font-size: 60px; }
@@ -128,14 +128,17 @@
 @media (max-width: 809.98px) {
   .section { padding: 0 16px; }
   .ribbon { margin: 0 -16px; padding: 12px 0; }
-  .row { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .row { grid-template-columns: repeat(var(--n, 3), minmax(0, 1fr)); }
   .intro { grid-column: 1 / -1; padding: 24px 0 0; gap: 6px; }
   .introText { max-width: none; font-size: 14px; }
   .stat { padding: 16px 0 24px 12px; }
   .stat:nth-child(2) { border-left: 0; padding-left: 0; }
   .figure { font-size: clamp(30px, 10vw, 40px); }
   .line { margin: 10px 0 8px; width: 20px; }
-  .statLabel { font-size: 12.5px; line-height: 1.3; }
+  .statLabel { font-size: 12px; line-height: 1.3; }
+  /* Four figures (About) stay on one row with a slightly smaller figure. */
+  .four .figure { font-size: clamp(26px, 8vw, 34px); }
+  .four .stat { padding-left: 8px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

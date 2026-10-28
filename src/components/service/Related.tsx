@@ -25,7 +25,7 @@ export function Related({ category, siblings, tone = "dark" }: { category: Categ
           <div>
             <p className={s.kicker}>Keep exploring</p>
             <h2 id="related-title" className={s.title}>
-              More in {category.name}
+              More in {category.name}.
             </h2>
           </div>
           <p className={s.intro}>{category.intro}</p>

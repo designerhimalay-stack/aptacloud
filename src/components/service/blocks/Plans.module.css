@@ -69,7 +69,7 @@
 
 .fact dd {
   color: var(--fg);
-  font-size: 14.5px;
+  font-size: 15px;
   font-weight: 600;
   letter-spacing: -0.025em;
   margin: 0;
@@ -150,7 +150,7 @@
 
 .groupRow th {
   color: var(--accent);
-  font-size: 13.5px;
+  font-size: 13px;
   font-weight: 600;
   letter-spacing: -0.015em;
   padding: 26px 16px 8px;
@@ -163,7 +163,7 @@
 
 .table tbody th[scope="row"] {
   color: var(--fg);
-  font-size: 14.5px;
+  font-size: 15px;
   font-weight: 600;
   letter-spacing: -0.025em;
   padding: 13px 16px;
@@ -173,7 +173,7 @@
 
 .table td {
   color: var(--fg-muted);
-  font-size: 14.5px;
+  font-size: 15px;
   font-weight: 500;
   letter-spacing: -0.02em;
   line-height: 1.45;
@@ -183,7 +183,7 @@
 
 .note {
   color: var(--fg-muted);
-  font-size: 13.5px;
+  font-size: 13px;
   font-weight: 500;
   letter-spacing: -0.015em;
   line-height: 1.45;
@@ -197,7 +197,7 @@
   .fact dd { text-align: left; }
   .compare { padding: 22px 16px 16px; }
   .table thead th:first-child { width: 24%; }
-  .table td, .table tbody th[scope="row"] { font-size: 13.5px; padding: 11px 10px; }
+  .table td, .table tbody th[scope="row"] { font-size: 13px; padding: 11px 10px; }
 }
 
 /* Phones: cards on a rail; the table shows the chosen plan's column only. */
@@ -235,8 +235,8 @@
   .switchOn { background: var(--bg); color: var(--fg); box-shadow: 0 1px 3px rgba(10, 10, 10, 0.12); }
   .table thead { display: none; }
   .table thead th:first-child { width: auto; }
-  .table tbody th[scope="row"] { font-size: 13.5px; padding: 11px 10px 11px 2px; width: 42%; }
-  .table td { font-size: 13.5px; padding: 11px 2px 11px 6px; }
+  .table tbody th[scope="row"] { font-size: 13px; padding: 11px 10px 11px 2px; width: 42%; }
+  .table td { font-size: 13px; padding: 11px 2px 11px 6px; }
   .groupRow th { padding: 20px 2px 6px; }
   /* Show only the chosen plan's column. */
   .table[data-plan="0"] td:not(:nth-child(2)),

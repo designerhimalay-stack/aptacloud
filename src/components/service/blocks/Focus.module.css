@@ -98,7 +98,7 @@
   align-items: flex-start;
   color: var(--fg-soft);
   display: flex;
-  font-size: 15.5px;
+  font-size: 15px;
   font-weight: 500;
   gap: 12px;
   letter-spacing: -0.025em;
@@ -159,7 +159,7 @@
   .pair { grid-template-columns: minmax(0, 1fr); }
   .card { border-radius: 22px; gap: 10px; padding: 22px 20px; }
   .mark { height: 46px; width: 46px; }
-  .title { font-size: 24px; }
+  .title { font-size: 26px; }
   .text { font-size: 15px; }
-  .points li { font-size: 14.5px; }
+  .points li { font-size: 15px; }
 }

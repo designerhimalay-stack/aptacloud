@@ -10,12 +10,10 @@ import { AZURE_LAYOUTS } from "./azure";
 import { AWS_LAYOUTS } from "./aws";
 import { INDUSTRY_LAYOUTS } from "./industries";
 import { COMPANY_LAYOUTS } from "./company";
+import { COMPANY_STATS } from "./shared";
 
 export const LAYOUTS: Record<string, ServiceLayout> = { ...AI_LAYOUTS, ...DATA_LAYOUTS, ...APPMOD_LAYOUTS, ...MS_LAYOUTS, ...AZURE_LAYOUTS, ...AWS_LAYOUTS, ...INDUSTRY_LAYOUTS, ...COMPANY_LAYOUTS };
 
-/** The live hero counters (most pages). */
-export const DEFAULT_STATS: Stat[] = [
-  { value: 20, label: "Years in technology strategy" },
-  { value: 200, label: "Cloud and AI experts" },
-  { value: 300, label: "Projects delivered" },
-];
+/** The hero counters, in the approved credential wording (20+ years, 300+
+ *  clients, 200+ engineers). The live pages varied this wording; one set now. */
+export const DEFAULT_STATS: Stat[] = COMPANY_STATS;

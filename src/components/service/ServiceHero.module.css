@@ -265,7 +265,7 @@
   align-items: center;
   color: var(--fg);
   display: flex;
-  font-size: 14.5px;
+  font-size: 15px;
   font-weight: 600;
   gap: 10px;
   letter-spacing: -0.025em;
@@ -411,9 +411,9 @@
   .inner { gap: 0; padding: 0 16px 36px; }
   .crumbs { font-size: 12px; margin-bottom: 14px; }
   .pill { margin-bottom: 14px; }
-  .title { font-size: 36px; max-width: 100%; width: auto; }
+  .title { font-size: 32px; max-width: 100%; width: auto; }
   .titleLine { white-space: normal; text-wrap: balance; }
-  .lead { font-size: 15.5px; line-height: 1.45; margin-top: 14px; }
+  .lead { font-size: 15px; line-height: 1.45; margin-top: 14px; }
   .actions { align-items: stretch; flex-direction: column; gap: 6px; margin-top: 22px; width: 100%; }
   .actions > a:first-child { width: 100%; }
   .textLink { align-self: center; padding: 6px 0; }
@@ -428,5 +428,5 @@
 }
 
 @media (max-width: 339.98px) {
-  .title { font-size: 29px; }
+  .title { font-size: 28px; }
 }

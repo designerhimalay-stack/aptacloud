@@ -1,5 +1,7 @@
 # AptaCloud site
 
+Full handover (rules, architecture, audits, open items): **SUMMARY.md**. Launch status: `docs/launch-checklist.md`. Design bugs: `docs/design-audit.md`.
+
 Astro 7 + React 19 islands, Tailwind v4 + CSS Modules, static build to GitHub Pages under `/aptacloud`.
 Dev: `npm run dev -- --port 4321` → http://localhost:4321/aptacloud/ · Check: `npx tsc --noEmit`, `npm run build`.
 
@@ -21,6 +23,7 @@ Dev: `npm run dev -- --port 4321` → http://localhost:4321/aptacloud/ · Check:
 
 ## Design rules
 - Match the home page system: pill tags, 24px cards, mono labels, scroll word-fill headings, `<Reveal>`.
+- Type scale (service CSS): 12/13/14/15/16/18/20/22/26/28/32 + heading tiers; section H2 48/40/28; no half-pixel sizes. Card padding 24 or 28. Verify with `tools/audit/` (see SUMMARY.md §7).
 - Labels use Inter (600, sentence case), never mono uppercase micro-labels; mono only in the hero ticker (as on home).
 - No accent "border line" hover effects (user dislikes them).
 - Cards stay clean and flat like home: white cards on light sections, surface cards on dark, photos above text (no dark overlays, glows or gradient cards). Hero glow/grid only. Numbers only where order matters (process).

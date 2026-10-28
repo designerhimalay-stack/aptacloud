@@ -233,7 +233,7 @@ export const INDUSTRY_PAGES: ServicePage[] = [
     summary: "Seismic, well-test, cementing, and job data connected for well service firms.",
     seo: {
       title: "Technology for Drilling & Well Service Firms | AptaCloud",
-      description: "For seismic and surveying, well testing and cementing, and coiled tubing and pumping firms: rig, WITSML, SCADA, and job data in one queryable platform on Microsoft Azure.",
+      description: "For seismic, well testing, cementing, and pumping firms: rig, WITSML, SCADA, and job data in one queryable platform on Microsoft Azure.",
     },
     hero: {
       title: "Connected well data",
@@ -259,7 +259,7 @@ export const INDUSTRY_PAGES: ServicePage[] = [
     summary: "SCADA, GIS, inline inspection, and asset data connected for pipeline integrity teams.",
     seo: {
       title: "Pipeline Maintenance and Integrity Technology | AptaCloud",
-      description: "For pipeline inspection and integrity firms, compression service providers, and SCADA support teams: predict corrosion and leak risk from SCADA, ILI, and sensor data on Microsoft Azure.",
+      description: "For pipeline integrity, inspection, and compression teams: predict corrosion and leak risk from SCADA, ILI, and sensor data on Microsoft Azure.",
     },
     hero: {
       title: "See failure risk",
@@ -284,8 +284,8 @@ export const INDUSTRY_PAGES: ServicePage[] = [
     name: "Refining & Distribution",
     summary: "Inspection, NDT, and compliance data connected for firms that serve refineries.",
     seo: {
-      title: "Technology for Refining & Distribution Service Firms | AptaCloud",
-      description: "For HSE consultancies, turnaround contractors, and NDT and inspection firms: inspection, NDT, and compliance data from every client site in one audit-ready reporting layer on Microsoft Azure.",
+      title: "Refining & Distribution Service Firms | AptaCloud",
+      description: "For HSE, turnaround, and NDT inspection firms: inspection and compliance data from every refinery client site in one audit-ready reporting layer.",
     },
     hero: {
       title: "Audit-ready inspection data",
@@ -365,7 +365,7 @@ export const INDUSTRY_PAGES: ServicePage[] = [
     summary: "Crew scheduling, field forms, and handover data for trade contractors.",
     seo: {
       title: "Field Service Technology for Trade Contractors | AptaCloud",
-      description: "For mechanical, electrical, plumbing, concrete, and steel contractors: schedule crews, capture field work without paper, and hand over clean project data, on Dynamics 365 and Azure.",
+      description: "For MEP, concrete, and steel contractors: schedule crews, capture field work without paper, and hand over clean project data on Dynamics 365.",
     },
     hero: {
       title: "Schedule crews and capture field work",

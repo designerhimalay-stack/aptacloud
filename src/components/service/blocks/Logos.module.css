@@ -44,7 +44,7 @@
   border-radius: 999px;
   color: var(--accent);
   font-family: var(--ff-inter);
-  font-size: 12.5px;
+  font-size: 12px;
   font-weight: 600;
   letter-spacing: -0.01em;
   margin-bottom: 4px;
@@ -54,7 +54,7 @@
 .groupTitle {
   color: var(--fg);
   font-family: var(--ff-inter);
-  font-size: 19px;
+  font-size: 20px;
   font-weight: 600;
   letter-spacing: -0.04em;
   line-height: 1.2;
@@ -68,7 +68,7 @@
 
 .groupText {
   color: var(--fg-muted);
-  font-size: 14.5px;
+  font-size: 15px;
   font-weight: 500;
   letter-spacing: -0.025em;
   line-height: 1.45;
@@ -166,8 +166,8 @@
 }
 
 @media (max-width: 809.98px) {
-  .group, .groupLead { border-radius: 20px; padding: 20px; }
-  .groupLead .groupTitle { font-size: 23px; }
+  .group, .groupLead { border-radius: 22px; padding: 20px; }
+  .groupLead .groupTitle { font-size: 22px; }
   .leadList, .listTwo { grid-template-columns: minmax(0, 1fr); }
   .toolBig { padding: 8px 14px 8px 8px; }
   .toolBig .plate { height: 46px; width: 46px; }
@@ -230,7 +230,7 @@
 
 .pointText {
   color: var(--fg-soft);
-  font-size: 15.5px;
+  font-size: 15px;
   font-weight: 500;
   letter-spacing: -0.025em;
   line-height: 1.45;
@@ -267,7 +267,7 @@
 @media (max-width: 809.98px) {
   .grid { gap: 6px; grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .point { padding: 14px 16px; }
-  .pointText { font-size: 14.5px; }
+  .pointText { font-size: 15px; }
 }
 
 .wall {

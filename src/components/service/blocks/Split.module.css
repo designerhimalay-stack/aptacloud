@@ -59,7 +59,7 @@
 .lead,
 .para {
   color: var(--fg-muted);
-  font-size: 16.5px;
+  font-size: 16px;
   font-weight: 500;
   letter-spacing: -0.03em;
   line-height: 1.5;
@@ -118,7 +118,7 @@
   color: var(--fg);
   flex: none;
   font-family: var(--ff-inter);
-  font-size: 30px;
+  font-size: 32px;
   font-weight: 600;
   letter-spacing: -0.06em;
   line-height: 1;
@@ -259,11 +259,11 @@
 @media (max-width: 809.98px) {
   .layout, .reverse { gap: 20px; grid-template-columns: minmax(0, 1fr); }
   .reverse .media { order: 0; }
-  .media { border-radius: 20px; padding: 6px; position: static; }
+  .media { border-radius: 22px; padding: 6px; position: static; }
   .photo, .compact .photo { aspect-ratio: 16 / 10; border-radius: 15px; }
   .content { gap: 12px; }
   .lead, .para { font-size: 15px; line-height: 1.45; }
-  .list { margin-top: 4px; padding: 6px; border-radius: 20px; }
+  .list { margin-top: 4px; padding: 6px; border-radius: 22px; }
   .listCards, .listDivided { padding: 0; }
   /* One small card per point: a swipe rail, so long "why" lists scroll sideways. */
   .listCards {
@@ -282,13 +282,17 @@
   .listDivided .item { padding: 12px 2px; }
   .icon { border-radius: 10px; height: 34px; width: 34px; }
   .icon svg { height: 17px; width: 17px; }
-  .value { font-size: 24px; min-width: 64px; }
+  .value { font-size: 26px; min-width: 64px; }
   .itemTitle { font-size: 16px; }
   .itemText { font-size: 14px; }
   .cta { margin-top: 4px; }
   .cta, .cta > a { width: 100%; }
   .chipsWrap { margin-top: 32px; }
   .chip { font-size: 14px; padding: 10px 16px; }
+  /* Phones: the chips and their heading align left with the section, like every other block. */
+  .chipsWrap { align-items: flex-start; }
+  .chipsHeading { font-size: 18px; text-align: left; }
+  .chips { gap: 6px; justify-content: flex-start; }
   .noteWrap { margin-top: 28px; }
   .note { font-size: 16px; }
 }
@@ -340,7 +344,7 @@
 
 @media (max-width: 809.98px) {
   .flank { gap: 4px; grid-template-columns: minmax(0, 1fr); }
-  .flankMedia { border-radius: 20px; margin-bottom: 12px; order: -1; padding: 6px; }
+  .flankMedia { border-radius: 22px; margin-bottom: 12px; order: -1; padding: 6px; }
   .flankMedia .photo { aspect-ratio: 16 / 10; border-radius: 15px; }
   .flankItem { gap: 12px; padding: 14px 0; }
   .flankSide + .flankSide .flankItem:first-child,

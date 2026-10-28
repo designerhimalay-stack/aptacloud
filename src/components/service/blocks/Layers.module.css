@@ -35,7 +35,7 @@
 .ringLabel {
   color: var(--fg-muted);
   font-family: var(--ff-inter);
-  font-size: 12.5px;
+  font-size: 12px;
   font-weight: 600;
   left: 50%;
   letter-spacing: -0.015em;
@@ -227,7 +227,7 @@
   .mobile { display: grid; gap: 8px; }
   .mcard {
     background: var(--card);
-    border-radius: 20px;
+    border-radius: 22px;
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -239,7 +239,7 @@
   .svcMark { height: 38px; width: 38px; }
   .svcMark > * { height: 22px !important; width: 22px !important; }
   .svcTitle { font-size: 15px; }
-  .svcText { font-size: 13.5px; }
+  .svcText { font-size: 13px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

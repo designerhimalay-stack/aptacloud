@@ -85,7 +85,7 @@
   .app { width: auto; }
   .plate { border-radius: 13px; height: 48px; width: 48px; }
   .icon { height: 28px; width: 28px; }
-  .name { font-size: 11.5px; }
+  .name { font-size: 12px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
