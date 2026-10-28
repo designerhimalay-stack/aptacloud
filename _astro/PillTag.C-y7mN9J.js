@@ -1,0 +1,1 @@
+import{t as e}from"./jsx-runtime.DioWr56e.js";import{t}from"./utils.CMPcVp0O.js";var n={tag:`_tag_1b58a_1`,icon:`_icon_1b58a_23`},r=e();function i({children:e,icon:i,className:a}){return(0,r.jsxs)(`p`,{className:t(n.tag,a),children:[i&&(0,r.jsx)(`span`,{className:n.icon,children:i}),(0,r.jsx)(`span`,{children:e})]})}export{i as t};
