@@ -274,8 +274,8 @@ export type Block =
   | { kind: "assessment"; heading: string; lead: string; areas: string[]; deliverables: string[] }
   | (Head & {
       kind: "people";
-      /** Leadership: name and role on a card, with the person's initials (no stock faces). */
-      items: { name: string; role: string; text?: string }[];
+      /** Leadership: name and role on a card, with executive portrait or initials. */
+      items: { name: string; role: string; text?: string; photo?: ServicePhoto; badge?: string }[];
     })
   | (Head & {
       kind: "offices";

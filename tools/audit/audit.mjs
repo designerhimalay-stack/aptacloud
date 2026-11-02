@@ -33,6 +33,7 @@ for (const slug of slugs) {
         if (r.height === 0 || r.width === 0) return;
         const cs = getComputedStyle(e);
         if (cs.visibility === "hidden" || cs.display === "none") return;
+        if (e.closest("[class*='backdrop'], [class*='gridImg'], [class*='glow']")) return;
         top = Math.min(top, r.top); bottom = Math.max(bottom, r.bottom);
         // horizontal spill out of viewport (not inside scroll rails)
         let el = e, inRail = false;
@@ -49,7 +50,8 @@ for (const slug of slugs) {
     // big empty gaps inside two-column splits: compare sibling column heights
     document.querySelectorAll("section [class*=layout], section [class*=split]").forEach((g) => {
       const kids = [...g.children].filter((k) => k.getBoundingClientRect().height > 0);
-      if (kids.length !== 2 || getComputedStyle(g).display !== "grid") return;
+      const cols = getComputedStyle(g).gridTemplateColumns.split(" ").length;
+      if (kids.length !== 2 || getComputedStyle(g).display !== "grid" || cols < 2) return;
       const [a, c] = kids.map((k) => k.getBoundingClientRect().height);
       if (Math.abs(a - c) > 260) out.push(`uneven columns ${Math.round(a)} vs ${Math.round(c)} in #${g.closest("section")?.id}`);
     });

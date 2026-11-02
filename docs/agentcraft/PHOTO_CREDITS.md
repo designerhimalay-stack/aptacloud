@@ -53,6 +53,7 @@ b-ec-hub 8961030 · b-construction 8961065 · b-design 8482865 · b-field 109235
 `public/images/photos/company/` (Company pages, 2026-10-28), Pexels by photo ID:
 about-hero 3184357 · about-story 34987129 · careers-hero 6804068 · careers-team 31775434 ·
 blog-hero 7128952 · papers-hero 7845339 · events-hero 1709003 · events-next 3321793.
+hemant-madaan, naval-madaan, and jignesh-jayaswal are the executive portraits of AptaCloud's leadership team.
 paper-azure-costs is the cover of the client's own white paper, from the live site.
 
 `public/images/blog/posts/` are the feature images of the client's own live blog

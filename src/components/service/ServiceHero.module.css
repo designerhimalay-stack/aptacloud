@@ -408,6 +408,7 @@
    tightens to fit one screen on the smallest phones. */
 @media (max-width: 809.98px) {
   .hero { padding-top: 96px; }
+  .grid { height: 100%; left: 0; max-height: 100%; transform: none; width: 100%; }
   .inner { gap: 0; padding: 0 16px 36px; }
   .crumbs { font-size: 12px; margin-bottom: 14px; }
   .pill { margin-bottom: 14px; }
@@ -418,8 +419,17 @@
   .actions > a:first-child { width: 100%; }
   .textLink { align-self: center; padding: 6px 0; }
   .creds { align-items: flex-start; flex-direction: column; gap: 6px; margin-top: 18px; }
-  .cred + .cred::before { display: none; }
-  .cred + .cred { padding-left: 14px; }
+  .cred + .cred::before {
+    background: var(--accent);
+    border-radius: 50%;
+    content: "";
+    display: inline-block;
+    flex: none;
+    height: 6px;
+    margin-right: 0;
+    width: 6px;
+  }
+  .cred + .cred { gap: 8px; padding-left: 0; }
   .console { display: none; }
 }
 

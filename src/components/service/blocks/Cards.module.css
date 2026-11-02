@@ -608,7 +608,8 @@
   gap: 6px;
   letter-spacing: -0.02em;
   margin-top: auto;
-  padding-top: 8px;
+  min-height: 40px;
+  padding: 8px 0;
   text-decoration: underline;
   text-decoration-color: var(--line-strong);
   text-underline-offset: 5px;

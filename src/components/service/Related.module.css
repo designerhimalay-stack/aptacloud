@@ -143,6 +143,7 @@
 @media (max-width: 809.98px) {
   .section { padding-bottom: 48px; padding-top: 56px; }
   .title { font-size: 26px; }
+  .card { border-radius: 22px; }
   .thumb { height: 120px; }
   .name { font-size: 18px; }
 }

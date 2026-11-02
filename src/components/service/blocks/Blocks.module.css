@@ -150,7 +150,7 @@
   /* Grids that are not swipe rails stack to one column on phones. */
   .grid { grid-template-columns: minmax(0, 1fr); }
   .grid > * { grid-column: auto; }
-  .card { gap: 18px; padding: 20px; }
+  .card { border-radius: 22px; gap: 18px; padding: 20px; }
   .card:hover { transform: none; }
   .title { font-size: 18px; }
   .text { font-size: 15px; }

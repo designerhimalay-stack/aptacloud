@@ -70,10 +70,37 @@ export const COMPANY_LAYOUTS: Record<string, ServiceLayout> = {
         tag: "Leadership",
         icon: "team",
         heading: "Meet our leadership team.",
+        lead: "Executive guidance and technical leadership across our United States, India, and Mexico engineering practices.",
         items: [
-          { name: "Hemant Madaan", role: "Chief Executive Officer" },
-          { name: "Naval Madaan", role: "Chief Operating Officer" },
-          { name: "Jignesh Jayaswal", role: "Financial Controller" },
+          {
+            name: "Hemant Madaan",
+            role: "Chief Executive Officer",
+            badge: "Co-founder",
+            photo: {
+              src: `${C}/hemant-madaan.jpg`,
+              alt: "Hemant Madaan, Chief Executive Officer at AptaCloud",
+              position: "50% 18%",
+            },
+          },
+          {
+            name: "Naval Madaan",
+            role: "Chief Operating Officer",
+            badge: "Co-founder",
+            photo: {
+              src: `${C}/naval-madaan.jpg`,
+              alt: "Naval Madaan, Chief Operating Officer at AptaCloud",
+              position: "50% 20%",
+            },
+          },
+          {
+            name: "Jignesh Jayaswal",
+            role: "Financial Controller",
+            photo: {
+              src: `${C}/jignesh-jayaswal.jpg`,
+              alt: "Jignesh Jayaswal, Financial Controller at AptaCloud",
+              position: "50% 18%",
+            },
+          },
         ],
       },
       {

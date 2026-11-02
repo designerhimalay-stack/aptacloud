@@ -127,7 +127,7 @@
    "300+" never touch on the narrowest phones (32px at 320). */
 @media (max-width: 809.98px) {
   .section { padding: 0 16px; }
-  .ribbon { margin: 0 -16px; padding: 12px 0; }
+  .ribbon { margin: 0 -16px; padding: 14px 0 20px; }
   .row { grid-template-columns: repeat(var(--n, 3), minmax(0, 1fr)); }
   .intro { grid-column: 1 / -1; padding: 24px 0 0; gap: 6px; }
   .introText { max-width: none; font-size: 14px; }
@@ -139,6 +139,37 @@
   /* Four figures (About) stay on one row with a slightly smaller figure. */
   .four .figure { font-size: clamp(26px, 8vw, 34px); }
   .four .stat { padding-left: 8px; }
+}
+
+@media (max-width: 599.98px) {
+  .four.row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .four .stat {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 16px 0 20px 12px;
+  }
+  .four .stat:nth-child(2),
+  .four .stat:nth-child(3) {
+    border-top: 0;
+  }
+  .four .stat:nth-child(2),
+  .four .stat:nth-child(4) {
+    border-left: 0;
+    padding-left: 0;
+  }
+  .four .stat:nth-child(3),
+  .four .stat:nth-child(5) {
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    padding-left: 16px;
+  }
+  .four .figure {
+    font-size: 40px;
+  }
+  .four .statLabel {
+    font-size: 13px;
+    line-height: 1.35;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

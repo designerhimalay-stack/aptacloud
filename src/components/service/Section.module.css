@@ -6,7 +6,7 @@
 .section {
   padding: 128px 60px;
   position: relative;
-  scroll-margin-top: 16px;
+  scroll-margin-top: 88px;
   width: 100%;
 }
 
@@ -209,7 +209,7 @@
 
 /* Phone: 16px gutter, tighter rhythm so long pages scroll less. */
 @media (max-width: 809.98px) {
-  .section { padding: 56px 16px; }
+  .section { padding: 56px 16px; scroll-margin-top: 80px; }
   .container { gap: 28px; }
   .head { display: flex; flex-direction: column; gap: 14px; }
   /* Centred heads align left on phones, like every other section. */

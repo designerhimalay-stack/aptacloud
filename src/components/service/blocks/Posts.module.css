@@ -129,8 +129,10 @@
 }
 
 @media (max-width: 809.98px) {
-  .all { align-self: flex-start; }
+  .all { align-self: flex-start; min-height: 40px; padding: 10px 0; }
   .grid { grid-template-columns: none; }
+  .card { border-radius: 22px; }
+  .thumb { border-radius: 16px; }
   .card:hover { transform: none; }
 }
 
