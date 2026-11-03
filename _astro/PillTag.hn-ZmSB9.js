@@ -1,0 +1,1 @@
+import{n as e,t}from"./utils.AT9gPSA9.js";var n={tag:`_tag_ncaql_1`,icon:`_icon_ncaql_23`},r=e();function i({children:e,icon:i,className:a}){return(0,r.jsxs)(`p`,{className:t(n.tag,a),children:[i&&(0,r.jsx)(`span`,{className:n.icon,children:i}),(0,r.jsx)(`span`,{children:e})]})}export{i as t};
