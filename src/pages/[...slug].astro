@@ -184,7 +184,7 @@ const jsonLd = [
   {
     layout ? (
       <>
-        {stats.length > 0 && <Stats client:visible stats={stats} ribbon={page.stack.map((id) => TECH[id].name)} />}
+        {stats.length > 0 && <Stats client:load stats={stats} ribbon={page.stack.map((id) => TECH[id].name)} />}
         {blocks.map((b, i) => {
           const tone = blockTones[i];
           return b.kind === "cards" ? (

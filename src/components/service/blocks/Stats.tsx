@@ -1,7 +1,7 @@
 // Stats band, straight under the hero (the live hero's counters). It reads as
 // the hero's last line: same dark ground, a hairline on top, then the figures
-// in a row divided by hairlines. Each figure counts up from zero as it enters
-// view and an accent line draws in under it, one after another.
+// in a row divided by hairlines. The figures are in the HTML from the start;
+// if the band is below the fold they count up quickly as it enters view.
 
 import { animate, useInView } from "@/lib/motion";
 import { useEffect, useRef, useState } from "react";
@@ -11,23 +11,25 @@ import type { Stat } from "@/data/services/types";
 import { cn } from "@/lib/utils";
 import s from "./Stats.module.css";
 
-function Figure({ stat, on, delay }: { stat: Stat; on: boolean; delay: number }) {
-  const [n, setN] = useState(0);
+// The real figure is in the HTML, so it shows at once. Only when the band is
+// still off screen at hydration ("armed") does it reset and count up on entry.
+function Figure({ stat, armed, on, delay }: { stat: Stat; armed: boolean; on: boolean; delay: number }) {
+  const [n, setN] = useState(stat.value);
   useEffect(() => {
-    if (!on) return;
-    if (matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setN(stat.value);
+    if (!armed) return;
+    if (!on) {
+      setN(0);
       return;
     }
     let stop = () => {};
     const t = setTimeout(() => {
-      stop = animate(0, stat.value, { duration: 1.8, ease: [0.22, 1, 0.36, 1], onUpdate: (v) => setN(Math.round(v)) }).stop;
+      stop = animate(0, stat.value, { duration: 1, ease: [0.22, 1, 0.36, 1], onUpdate: (v) => setN(Math.round(v)) }).stop;
     }, delay * 1000);
     return () => {
       clearTimeout(t);
       stop();
     };
-  }, [on, stat.value, delay]);
+  }, [armed, on, stat.value, delay]);
   return (
     <p className={s.figure} aria-label={`${stat.value}${stat.suffix ?? "+"} ${stat.label}`}>
       <span aria-hidden="true">{n}</span>
@@ -40,11 +42,17 @@ function Figure({ stat, on, delay }: { stat: Stat; on: boolean; delay: number })
 
 export function Stats({ stats, ribbon }: { stats: Stat[]; ribbon: string[] }) {
   const ref = useRef<HTMLDivElement>(null);
-  const on = useInView(ref, { once: true, amount: 0.5 });
+  const on = useInView(ref, { once: true, amount: 0.25 });
+  const [armed, setArmed] = useState(false);
+  useEffect(() => {
+    const r = ref.current?.getBoundingClientRect();
+    const visible = !r || (r.top < innerHeight && r.bottom > 0);
+    if (!visible && !matchMedia("(prefers-reduced-motion: reduce)").matches) setArmed(true);
+  }, []);
 
   return (
     <section id="numbers" className={s.section}>
-      <div ref={ref} className={cn(s.row, on && s.on, stats.length === 4 && s.four)} style={{ ["--n" as string]: stats.length }}>
+      <div ref={ref} className={cn(s.row, (on || !armed) && s.on, stats.length === 4 && s.four)} style={{ ["--n" as string]: stats.length }}>
         <div className={s.intro}>
           <p className={s.label}>
             <Pulse size={6} color="var(--accent)" />
@@ -54,7 +62,7 @@ export function Stats({ stats, ribbon }: { stats: Stat[]; ribbon: string[] }) {
         </div>
         {stats.map((stat, i) => (
           <div key={stat.label} className={s.stat} style={{ ["--i" as string]: i }}>
-            <Figure stat={stat} on={on} delay={i * 0.15} />
+            <Figure stat={stat} armed={armed} on={on} delay={i * 0.08} />
             <span className={s.line} aria-hidden="true" />
             <p className={s.statLabel}>{stat.label}</p>
           </div>

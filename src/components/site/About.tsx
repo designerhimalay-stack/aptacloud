@@ -30,7 +30,7 @@ const STATS = [
   },
   {
     value: 300,
-    from: 750,
+    from: 0,
     title: "Clients served",
     text: "200+ engineers under one roof, delivering from 4 locations.",
     icon: "chart" as const,
@@ -64,21 +64,27 @@ function FillHeading({ text }: { text: string }) {
 
 function CountIn({ value, from }: { value: number; from: number }) {
   const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, amount: 0.6 });
-  const [n, setN] = useState(from);
+  const inView = useInView(ref, { once: true, amount: 0.3 });
+  // The real value is in the HTML; it only counts in if it was off screen at hydration.
+  const [n, setN] = useState(value);
+  const [armed, setArmed] = useState(false);
   useEffect(() => {
-    if (!inView) return;
-    if (matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setN(value);
-      return;
+    const r = ref.current?.getBoundingClientRect();
+    const visible = !r || (r.top < innerHeight && r.bottom > 0);
+    if (!visible && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setArmed(true);
+      setN(from);
     }
+  }, [from]);
+  useEffect(() => {
+    if (!armed || !inView) return;
     const controls = animate(from, value, {
-      duration: 1.3,
+      duration: 1,
       ease: [0.22, 1, 0.36, 1],
       onUpdate: (v) => setN(Math.round(v)),
     });
     return () => controls.stop();
-  }, [inView, from, value]);
+  }, [armed, inView, from, value]);
   return (
     <span ref={ref} className={s.number} aria-label={`${value}+`}>
       {n}+
