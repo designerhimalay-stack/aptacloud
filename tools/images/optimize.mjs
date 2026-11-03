@@ -33,10 +33,11 @@ async function variants(path) {
   const { dominant } = await sharp(buf).stats();
   const widths = WIDTHS.filter((w) => w < meta.width);
   widths.push(Math.min(meta.width, WIDTHS[WIDTHS.length - 1]));
-  const stem = path.replace(/\.[a-z]+$/i, "");
+  // Short names: long blog slugs break Windows' path limit in git worktrees.
+  const stem = path.split("/").pop().replace(/\.[a-z]+$/i, "").slice(0, 32);
   const out = [];
   for (const w of [...new Set(widths)]) {
-    const name = `${stem.replace(/[\\/]/g, "-")}-${hash}-${w}.webp`;
+    const name = `${stem}-${hash}-${w}.webp`;
     const cached = join(CACHE, name);
     if (!existsSync(cached)) await sharp(buf).resize({ width: w }).webp({ quality: 74 }).toFile(cached);
     const target = join(DIST, "images/_opt", name);
