@@ -77,7 +77,7 @@
 }
 
 .row:hover .rowTitle {
-  color: var(--accent);
+  color: var(--accent-text);
 }
 
 .rowText {

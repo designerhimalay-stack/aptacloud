@@ -42,7 +42,7 @@
 .firstPill {
   background: rgba(var(--accent-rgb), 0.12);
   border-radius: 999px;
-  color: var(--accent);
+  color: var(--accent-text);
   font-family: var(--ff-inter);
   font-size: 12px;
   font-weight: 600;
@@ -215,7 +215,7 @@
   align-items: center;
   background: rgba(var(--accent-rgb), 0.1);
   border-radius: 12px;
-  color: var(--accent);
+  color: var(--accent-text);
   display: inline-flex;
   flex: none;
   height: 40px;

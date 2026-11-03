@@ -18,13 +18,13 @@ const base =
 
 const variants: Record<ButtonVariant, string> = {
   primary:
-    "h-[48px] px-[22px] text-[16px] bg-accent [--roll-from:var(--ink)] [--roll-to:var(--bg)] " +
+    "h-[48px] px-[22px] text-[16px] bg-[var(--accent-solid)] [--roll-from:var(--ink)] [--roll-to:var(--bg)] " +
     "hover:bg-fg hover:outline-fg",
   outline:
     "h-[48px] px-[22px] text-[16px] bg-fg [--roll-from:var(--bg)] [--roll-to:var(--ink)] " +
     "hover:bg-accent hover:outline-accent",
   small:
-    "h-[40px] px-[18px] text-[15px] bg-accent [--roll-from:var(--ink)] [--roll-to:var(--bg)] " +
+    "h-[40px] px-[18px] text-[15px] bg-[var(--accent-solid)] [--roll-from:var(--ink)] [--roll-to:var(--bg)] " +
     "hover:bg-fg hover:outline-fg",
 };
 

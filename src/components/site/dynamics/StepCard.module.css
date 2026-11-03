@@ -44,7 +44,7 @@
 .title {
   color: var(--fg);
   font-family: var(--ff-inter);
-  font-size: 22.08px;
+  font-size: 22px;
   font-weight: 600;
   letter-spacing: -0.04em;
   line-height: 1.4;

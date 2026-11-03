@@ -25,6 +25,9 @@
   --fg-soft: #ffffffd1;
   --fg-muted: #ffffff94;
   --fg-subtle: #ffffff85;
+  /* Red for small text (AA on every surface) and for solid buttons with a white label. */
+  --accent-text: #ff3b47;
+  --accent-solid: #e91423;
   /* --accent, --accent-soft, --ink, --accent-rgb, --accent-08/32/50 come from
      src/brand/brand.ts (injected in <head> by layouts/Base.astro). */
   --ff-mono: "Geist Mono", ui-monospace, monospace;
@@ -79,8 +82,9 @@
   --line-strong: #cdcdc6;
   --fg: var(--brand-ink);
   --fg-soft: color-mix(in srgb, var(--brand-ink) 82%, transparent);
-  --fg-muted: color-mix(in srgb, var(--brand-ink) 60%, transparent);
-  --fg-subtle: color-mix(in srgb, var(--brand-ink) 52%, transparent);
+  --fg-muted: color-mix(in srgb, var(--brand-ink) 64%, transparent);
+  --fg-subtle: color-mix(in srgb, var(--brand-ink) 60%, transparent);
+  --accent-text: #c8101d;
   background: var(--bg);
   color: var(--fg);
   color-scheme: light;
@@ -102,7 +106,8 @@
   --fg-soft: #ffffffd1;
   --fg-muted: #ffffff94;
   --fg-subtle: #ffffff85;
-  --fill-from: rgba(255, 255, 255, 0.2);
+  --accent-text: #ff3b47;
+  --fill-from: rgba(255, 255, 255, 0.34);
   color: var(--fg);
   color-scheme: dark;
 }
@@ -142,23 +147,23 @@ img { display: block; max-width: none; }
    Display + headings (Inter 600, sentence case, tight tracking), body copy
    (Inter, muted) and small mono labels. */
 .t-display { font-family: var(--ff-mono); font-size: 72px; font-weight: 400; letter-spacing: -.02em; line-height: 1.02em; color: var(--fg); text-transform: uppercase; }
-.t-h2 { font-family: var(--ff-mono); font-size: 50.4px; font-weight: 400; letter-spacing: -.02em; line-height: 1.06em; color: var(--fg); text-transform: uppercase; }
-.t-h4 { font-family: var(--ff-mono); font-size: 21.33px; font-weight: 400; letter-spacing: .01em; line-height: 1.62em; color: var(--fg); text-transform: uppercase; }
-.t-lead { font-family: var(--ff-inter); font-size: 18.56px; font-weight: 400; letter-spacing: 0px; line-height: 1.62em; color: var(--fg-muted); text-transform: none; }
-.t-body { font-family: var(--ff-inter); font-size: 16.8px; font-weight: 400; letter-spacing: 0em; line-height: 1.62em; color: var(--fg-muted); text-transform: none; }
-.t-body-sm { font-family: var(--ff-inter); font-size: 15.2px; font-weight: 400; letter-spacing: 0em; line-height: 1.62em; color: var(--fg-muted); text-transform: none; }
-.t-label-lg { font-family: var(--ff-mono); font-size: 12.16px; font-weight: 400; letter-spacing: .08em; line-height: 1.62em; color: var(--fg-muted); text-transform: uppercase; }
-.t-label { font-family: var(--ff-mono); font-size: 11.52px; font-weight: 400; letter-spacing: .22em; line-height: 1.62em; color: var(--fg-muted); text-transform: uppercase; }
-.t-label-accent { font-family: var(--ff-mono); font-size: 11.52px; font-weight: 400; letter-spacing: .16em; line-height: 1.62em; color: var(--accent); text-transform: none; }
-.t-label-sm { font-family: var(--ff-mono); font-size: 11.04px; font-weight: 400; letter-spacing: .22em; line-height: 1.62em; color: var(--fg-muted); text-transform: uppercase; }
+.t-h2 { font-family: var(--ff-mono); font-size: 48px; font-weight: 400; letter-spacing: -.02em; line-height: 1.06em; color: var(--fg); text-transform: uppercase; }
+.t-h4 { font-family: var(--ff-mono); font-size: 22px; font-weight: 400; letter-spacing: .01em; line-height: 1.62em; color: var(--fg); text-transform: uppercase; }
+.t-lead { font-family: var(--ff-inter); font-size: 18px; font-weight: 400; letter-spacing: 0px; line-height: 1.62em; color: var(--fg-muted); text-transform: none; }
+.t-body { font-family: var(--ff-inter); font-size: 16px; font-weight: 400; letter-spacing: 0em; line-height: 1.62em; color: var(--fg-muted); text-transform: none; }
+.t-body-sm { font-family: var(--ff-inter); font-size: 15px; font-weight: 400; letter-spacing: 0em; line-height: 1.62em; color: var(--fg-muted); text-transform: none; }
+.t-label-lg { font-family: var(--ff-mono); font-size: 12px; font-weight: 400; letter-spacing: .08em; line-height: 1.62em; color: var(--fg-muted); text-transform: uppercase; }
+.t-label { font-family: var(--ff-mono); font-size: 12px; font-weight: 400; letter-spacing: .22em; line-height: 1.62em; color: var(--fg-muted); text-transform: uppercase; }
+.t-label-accent { font-family: var(--ff-mono); font-size: 12px; font-weight: 400; letter-spacing: .16em; line-height: 1.62em; color: var(--accent-text); text-transform: none; }
+.t-label-sm { font-family: var(--ff-mono); font-size: 12px; font-weight: 400; letter-spacing: .22em; line-height: 1.62em; color: var(--fg-muted); text-transform: uppercase; }
 .t-micro { font-family: var(--ff-mono); font-size: 9.92px; font-weight: 400; letter-spacing: .14em; line-height: 1.62em; color: var(--fg-muted); text-transform: uppercase; }
 .t-micro-xs { font-family: var(--ff-mono); font-size: 9.28px; font-weight: 400; letter-spacing: .14em; line-height: 1.62em; color: var(--fg-muted); text-transform: uppercase; }
 @media (max-width: 999px) and (min-width: 810px) {
-  .t-h2 { font-size: 42px; letter-spacing: -.02em; line-height: 1.06em; }
+  .t-h2 { font-size: 40px; letter-spacing: -.02em; line-height: 1.06em; }
   .t-display { font-size: 60px; letter-spacing: -.02em; line-height: 1.02em; }
 }
 @media (max-width: 809px) and (min-width: 0) {
-  .t-h2 { font-size: 34px; letter-spacing: -.02em; line-height: 1.06em; }
+  .t-h2 { font-size: 28px; letter-spacing: -.02em; line-height: 1.06em; }
   .t-body { font-size: 16px; letter-spacing: 0px; line-height: 1.62em; }
   .t-display { font-size: 48.6px; letter-spacing: -.02em; line-height: 1.02em; }
 }
@@ -180,5 +185,12 @@ img { display: block; max-width: none; }
 }
 
 /* Scroll-linked word fill: words go from --fill-from to their colour. */
-:root { --fill-from: rgba(255, 255, 255, 0.2); }
-[data-theme="light"] { --fill-from: rgb(208, 208, 202); }
+:root { --fill-from: rgba(255, 255, 255, 0.34); }
+[data-theme="light"] { --fill-from: rgb(168, 168, 162); }
+
+/* Keep headings from ending on a single stranded word. */
+h1, h2, h3, h4 { text-wrap: balance; }
+
+/* Keyboard users can jump past the nav. */
+.skip-link { background: var(--fg); border-radius: 999px; color: var(--bg); font-size: 15px; font-weight: 600; left: 16px; padding: 12px 18px; position: fixed; top: 16px; transform: translateY(-200%); z-index: 1000; }
+.skip-link:focus { transform: none; }

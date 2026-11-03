@@ -76,7 +76,7 @@
   color: var(--fg);
   display: inline-flex;
   font-family: var(--ff-inter);
-  font-size: 14.08px;
+  font-size: 14px;
   font-weight: 500;
   gap: 10px;
   letter-spacing: -0.03em;
@@ -88,7 +88,7 @@
 
 .qMark {
   align-items: center;
-  background: var(--accent);
+  background: var(--accent-solid);
   border-radius: 50%;
   color: #ffffff;
   display: inline-flex;
@@ -186,7 +186,7 @@
   .title, .lead { flex: none; width: 100%; }
   .lead { align-items: flex-start; }
   .question { width: 100%; }
-  .cards { display: flex !important; gap: 8px; margin: 0 -16px; overflow-x: auto; overscroll-behavior-x: contain; padding: 4px 16px 8px; scroll-padding: 0 16px; scroll-snap-type: x mandatory; }
+  .cards { display: flex !important; gap: 8px; margin: 0 -16px; overflow-x: auto; overscroll-behavior-x: contain; padding: 4px 16px 8px; scroll-padding: 0 16px; scroll-snap-type: x mandatory; width: calc(100% + 32px); }
   .cards > * { flex: 0 0 84%; scroll-snap-align: start; }
   .centered { text-align: left; }
   .cta { width: 100%; }

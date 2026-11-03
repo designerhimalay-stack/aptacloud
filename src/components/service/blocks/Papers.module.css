@@ -35,7 +35,7 @@
 }
 
 .topic {
-  color: var(--accent);
+  color: var(--accent-text);
   font-size: 14px;
   font-weight: 600;
   letter-spacing: -0.015em;
@@ -96,7 +96,7 @@
   align-items: center;
   background: rgba(var(--accent-rgb), 0.14);
   border-radius: 50%;
-  color: var(--accent);
+  color: var(--accent-text);
   display: inline-flex;
   flex: none;
   height: 22px;
@@ -131,7 +131,7 @@
 }
 
 .link:hover {
-  color: var(--accent);
+  color: var(--accent-text);
   text-decoration-color: var(--accent);
 }
 
@@ -148,4 +148,9 @@
   .cover { max-width: 200px; }
   .body { padding: 20px 14px 18px; }
   .title { font-size: 26px; }
+}
+
+/* Phone tap target: 44px minimum. */
+@media (max-width: 809.98px) {
+  .link { align-items: center; display: inline-flex; min-height: 44px; }
 }

@@ -20,7 +20,7 @@
   align-self: flex-start;
   background: rgba(var(--accent-rgb), 0.08);
   border-radius: 999px;
-  color: var(--accent);
+  color: var(--accent-text);
   font-size: 13px;
   font-weight: 600;
   letter-spacing: -0.015em;

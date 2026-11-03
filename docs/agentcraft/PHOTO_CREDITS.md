@@ -54,6 +54,8 @@ b-ec-hub 8961030 · b-construction 8961065 · b-design 8482865 · b-field 109235
 about-hero 3184357 · about-story 34987129 · careers-hero 6804068 · careers-team 31775434 ·
 blog-hero 7128952 · papers-hero 7845339 · events-hero 1709003 · events-next 3321793.
 hemant-madaan, naval-madaan, and jignesh-jayaswal are the executive portraits of AptaCloud's leadership team.
+`public/images/photos/industry-cards/` (Industries cards, 2026-11-02), Pexels by photo ID:
+ins-team 7640435 · ins-desk 12899112 · ins-policy 7731318 · ins-review 7731326 · oil-crew 13384293 · oil-plant 29411310 · oil-rig 16169309 · oil-sunset 5506632 · ec-plans 8961064 · ec-worker 28196526 · ec-scaffold 13890649 · ec-tablet 6474459. `services/copilot-review.jpg` is Pexels 8171198.
 paper-azure-costs is the cover of the client's own white paper, from the live site.
 
 `public/images/blog/posts/` are the feature images of the client's own live blog

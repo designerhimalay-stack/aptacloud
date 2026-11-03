@@ -5,7 +5,7 @@
   color: var(--fg);
   display: inline-flex;
   font-family: var(--ff-inter);
-  font-size: 14.08px;
+  font-size: 14px;
   font-weight: 500;
   gap: 8px;
   letter-spacing: -0.04em;

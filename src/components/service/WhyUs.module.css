@@ -75,7 +75,7 @@
   align-items: center;
   background: rgba(var(--accent-rgb), 0.08);
   border-radius: 50%;
-  color: var(--accent);
+  color: var(--accent-text);
   display: inline-flex;
   flex: none;
   font-family: var(--ff-inter);
@@ -142,7 +142,7 @@
   align-items: center;
   background: rgba(var(--accent-rgb), 0.08);
   border-radius: 14px;
-  color: var(--accent);
+  color: var(--accent-text);
   display: inline-flex;
   flex: none;
   height: 48px;
@@ -152,7 +152,7 @@
 }
 
 .reason:hover .reasonIcon {
-  background: var(--accent);
+  background: var(--accent-solid);
   color: #ffffff;
 }
 

@@ -79,7 +79,7 @@
 }
 
 .reached .tnode {
-  background: var(--accent);
+  background: var(--accent-solid);
   border-color: var(--accent);
   box-shadow: 0 0 0 6px rgba(var(--accent-rgb), 0.14);
   color: #ffffff;
@@ -244,7 +244,7 @@
 
 .vdone .vnode,
 .vcurrent .vnode {
-  background: var(--accent);
+  background: var(--accent-solid);
   color: #ffffff;
 }
 
@@ -407,7 +407,7 @@
 }
 
 .arcNo {
-  color: var(--accent);
+  color: var(--accent-text);
   font-size: 13px;
   font-variant-numeric: tabular-nums;
   font-weight: 600;
@@ -587,7 +587,7 @@
 
 .cdone .cno,
 .ccurrent .cno {
-  color: var(--accent);
+  color: var(--accent-text);
 }
 
 .ctitle {

@@ -30,9 +30,9 @@
   background-color: var(--brand-dark);
   border-radius: 32px;
   /* Hairline + lift: reads on the dark hero and on the white sections alike. */
-  box-shadow:
-    inset 0 0 0 1px var(--line),
-    0 12px 40px -12px rgba(0, 0, 0, 0.45);
+  box-shadow: 0 12px 40px -12px rgba(0, 0, 0, 0.45);
+  outline: 1px solid var(--line);
+  outline-offset: -1px;
   color: var(--fg);
   display: flex;
   flex-direction: column;
@@ -293,7 +293,7 @@
 
 .dropLink:hover .dropArrow,
 .dropLink:focus-visible .dropArrow {
-  background-color: var(--accent);
+  background-color: var(--accent-solid);
   color: var(--ink);
   opacity: 1;
   transform: none;
@@ -325,7 +325,7 @@
 
 .dropFooter:hover,
 .dropFooter:focus-visible {
-  background-color: var(--accent);
+  background-color: var(--accent-solid);
   color: var(--ink);
 }
 
@@ -465,7 +465,7 @@
 
 .regionCheck {
   align-items: center;
-  color: var(--accent);
+  color: var(--accent-text);
   display: inline-flex;
   flex: none;
   height: 28px;
@@ -806,7 +806,7 @@
 }
 
 .groupLinkAccent {
-  color: var(--accent);
+  color: var(--accent-text);
 }
 
 .groupLinkAccent:hover {
@@ -957,9 +957,9 @@
   align-items: center;
   background-color: var(--brand-dark);
   border-radius: 32px;
-  box-shadow:
-    inset 0 0 0 1px var(--line),
-    0 12px 40px -12px rgba(0, 0, 0, 0.45);
+  box-shadow: 0 12px 40px -12px rgba(0, 0, 0, 0.45);
+  outline: 1px solid var(--line);
+  outline-offset: -1px;
   color: var(--fg);
   display: flex;
   font-family: var(--ff-inter);
@@ -981,4 +981,21 @@
   .regionDock {
     display: none;
   }
+}
+
+/* Open menu: dim the page so its buttons don't compete with the sheet. */
+.bar:has(> .open)::before {
+  background: rgba(0, 0, 0, 0.72);
+  content: "";
+  inset: 0;
+  position: fixed;
+  z-index: -1;
+}
+
+/* Phone tap targets: 44px minimum. */
+@media (max-width: 809.98px) {
+  .logo { height: 44px; margin: -6px 0; }
+  .groupLink { align-items: center; display: flex; min-height: 44px; }
+  .subHead { min-height: 44px; }
+  .chip { min-height: 44px; }
 }

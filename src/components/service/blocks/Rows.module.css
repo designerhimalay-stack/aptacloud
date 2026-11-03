@@ -41,7 +41,7 @@
 }
 
 .index {
-  color: var(--accent);
+  color: var(--accent-text);
   font-size: 13px;
   font-variant-numeric: tabular-nums;
   font-weight: 600;
@@ -92,7 +92,7 @@
   align-items: center;
   background: rgba(var(--accent-rgb), 0.12);
   border-radius: 50%;
-  color: var(--accent);
+  color: var(--accent-text);
   display: inline-flex;
   flex: none;
   height: 22px;

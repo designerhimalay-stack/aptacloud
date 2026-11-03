@@ -2,7 +2,7 @@
 // --fill-from to --fill-to as the heading scrolls through the viewport.
 
 import { motion, useReducedMotion, useScroll, useTransform, type MotionValue } from "@/lib/motion";
-import { useRef } from "react";
+import { Fragment, useRef } from "react";
 
 function Word({
   word,
@@ -36,19 +36,21 @@ export function FillHeading({
 }) {
   const ref = useRef<HTMLHeadingElement>(null);
   const reduce = useReducedMotion();
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start 0.85", "end 0.45"] });
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start 0.95", "end 0.7"] });
   const words = text.split(" ");
   return (
     <h2 ref={ref} className={className} aria-label={text}>
-      {words.map((w, i) =>
-        reduce ? (
-          <span key={i} className={wordClassName} aria-hidden="true">
-            {w}
-          </span>
-        ) : (
-          <Word key={i} word={w} i={i} n={words.length} progress={scrollYProgress} className={wordClassName} />
-        ),
-      )}
+      {words.map((w, i) => (
+        <Fragment key={i}>
+          {reduce ? (
+            <span className={wordClassName} aria-hidden="true">
+              {w}
+            </span>
+          ) : (
+            <Word word={w} i={i} n={words.length} progress={scrollYProgress} className={wordClassName} />
+          )}{" "}
+        </Fragment>
+      ))}
     </h2>
   );
 }

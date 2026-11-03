@@ -149,7 +149,7 @@
 }
 
 .groupRow th {
-  color: var(--accent);
+  color: var(--accent-text);
   font-size: 13px;
   font-weight: 600;
   letter-spacing: -0.015em;
@@ -254,4 +254,9 @@
 
 @media (max-width: 809.98px) {
   .action, .action > a { width: 100%; }
+}
+
+/* Phone tap target: 44px minimum. */
+@media (max-width: 809.98px) {
+  .switchBtn { min-height: 44px; }
 }

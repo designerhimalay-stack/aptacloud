@@ -72,7 +72,7 @@
 }
 
 .card:hover .arrow {
-  background: var(--accent);
+  background: var(--accent-solid);
   color: #ffffff;
   transform: rotate(45deg);
 }
@@ -86,7 +86,7 @@
 }
 
 .name {
-  color: var(--accent);
+  color: var(--accent-text);
   font-size: 13px;
   font-weight: 600;
   letter-spacing: -0.01em;

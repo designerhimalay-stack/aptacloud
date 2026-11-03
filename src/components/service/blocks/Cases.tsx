@@ -59,7 +59,7 @@ function Wide({ block, tone }: { block: CasesBlock; tone: Tone }) {
             <Reveal key={c.client} y={32} duration={1} className={s.wide}>
               <div className={s.wideStory}>
                 <div className={s.top}>
-                  <span className={s.label}>{block.label ?? "Case study"}</span>
+                  {block.label !== "Typical engagement" && <span className={s.label}>{block.label ?? "Case study"}</span>}
                   {c.place && (
                     <span className={s.place}>
                       <Icon id="target" />
@@ -115,7 +115,7 @@ export function Cases({ block, tone }: { block: CasesBlock; tone: Tone }) {
             <Reveal key={c.client} y={32} duration={1} delay={(i % 2) * 0.08} className={s.cell}>
               <article className={s.card}>
                 <div className={s.top}>
-                  <span className={s.label}>{block.label ?? "Case study"}</span>
+                  {block.label !== "Typical engagement" && <span className={s.label}>{block.label ?? "Case study"}</span>}
                   {c.place && (
                     <span className={s.place}>
                       <Icon id="target" />

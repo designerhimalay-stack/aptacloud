@@ -62,7 +62,6 @@ function Column({
 function Promo({ promo, onLink }: { promo: NavPromo; onLink: OnLink }) {
   return (
     <div className={cn(s.cell, s.promo)}>
-      <span className={s.glow} aria-hidden="true" />
       <div className={s.promoLogo}>
         {promo.logo === "mark" ? (
           <Logo height={26} theme="dark" />

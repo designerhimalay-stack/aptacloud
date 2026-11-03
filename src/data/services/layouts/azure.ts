@@ -195,7 +195,7 @@ export const AZURE_LAYOUTS: Record<string, ServiceLayout> = {
         lead: "Five stages, from understanding your work to acting on your feedback.",
         steps: [
           { title: "Assessment", text: "We learn how you work, your team size, and the resources you need, then design an environment your workloads can adapt to." },
-          { title: "Implementation", text: "We consider every workload, from on-premises data to AWS and Google Cloud, and choose the right services for each." },
+          { title: "Implementation", text: "We consider every workload, from on-premises data to AWS, and choose the right services for each." },
           { title: "Execution", text: "Serverless applications, messaging, and workflows built with you, from the first phase to the last." },
           { title: "Technical support", text: "Engineers on hand around the clock for the technical questions every implementation raises." },
           { title: "Feedback", text: "We act on what you tell us and adapt as Azure changes, so your set-up keeps improving." },
@@ -357,7 +357,7 @@ export const AZURE_LAYOUTS: Record<string, ServiceLayout> = {
         lead: "Infrastructure, application, database, and security management, so your business grows on Azure without the day-to-day load.",
         center: { src: "/images/microsoft/azure.svg", alt: "Microsoft Azure" },
         items: [
-          { title: "Infrastructure management", text: "Azure resources monitored and tuned to demand, which lowers operating costs. We manage networks and security, optimise VMs, and connect your on-premises, AWS, and Google Cloud workloads to Azure.", icon: "cloud", logo: "/images/azure/vm.svg" },
+          { title: "Infrastructure management", text: "Azure resources monitored and tuned to demand, which lowers operating costs. We manage networks and security, optimise VMs, and connect your on-premises and AWS workloads to Azure.", icon: "cloud", logo: "/images/azure/vm.svg" },
           { title: "Application management", text: "Managed applications for your internal teams and your customers, through Azure Marketplace and the service catalogue, with access to each application's resources controlled through managed resource groups.", icon: "code", logo: "/images/azure/managed-apps.svg" },
           { title: "Database management", text: "SQL Server, MySQL, MongoDB, MariaDB, Azure SQL Database, and Azure Cosmos DB managed for you, so your applications scale and resource costs fall.", icon: "db", logo: "/images/azure/sql-database.svg" },
           { title: "Security management", text: "Azure's security services for databases, servers, and storage, configured and watched by specialists who know the Azure security system well.", icon: "shield", logo: "/images/azure/defender-cloud.svg" },
@@ -518,8 +518,8 @@ export const AZURE_LAYOUTS: Record<string, ServiceLayout> = {
             label: "Detect and respond",
             text: "Every layer watched, and threats acted on quickly.",
             items: [
-              { title: "Microsoft Sentinel", text: "Security information and event management (SIEM) that collects and investigates data from devices, on-premises systems, AWS, and Google Cloud. We investigate threats with the MITRE ATT&CK framework and analyse data securely in Sentinel notebooks.", mark: "sentinel" },
-              { title: "Azure Monitor Logs", text: "Logs from on-premises systems and other clouds, including AWS and Google Cloud, collected and managed securely.", mark: "logAnalytics" },
+              { title: "Microsoft Sentinel", text: "Security information and event management (SIEM) that collects and investigates data from devices, on-premises systems, and AWS. We investigate threats with the MITRE ATT&CK framework and analyse data securely in Sentinel notebooks.", mark: "sentinel" },
+              { title: "Azure Monitor Logs", text: "Logs from on-premises systems and other clouds, including AWS, collected and managed securely.", mark: "logAnalytics" },
             ],
           },
           {
@@ -600,7 +600,7 @@ export const AZURE_LAYOUTS: Record<string, ServiceLayout> = {
         lead: "Five stages, from assessing your resources to keeping pace with new threats.",
         steps: [
           { title: "Assessment", text: "We assess your resources and show you how to strengthen their security with Azure's security services." },
-          { title: "Tailored protection", text: "Security across operations, networking, and computing, for your assets on-premises, in AWS, and in Google Cloud." },
+          { title: "Tailored protection", text: "Security across operations, networking, and computing, for your assets on-premises and in AWS." },
           { title: "Monitoring", text: "We stay with you at every level of Azure security, so nothing stalls on a complex step." },
           { title: "Support team", text: "A support team on hand at every phase, so your protection never lapses." },
           { title: "Scale with your needs", text: "Threats change, so we act on your feedback and adapt your protection as your business grows." },
@@ -610,12 +610,12 @@ export const AZURE_LAYOUTS: Record<string, ServiceLayout> = {
       { kind: "faq" },
     ],
     faqs: [
-      { q: "How does Azure security help us fight modern threats?", a: "It covers your resources across networking, storage, and computing, and protects workloads on-premises, in AWS, and in Google Cloud through Microsoft Defender for Cloud, Azure Firewall and DDoS Protection, Microsoft Sentinel, Azure Key Vault, and more." },
+      { q: "How does Azure security help us fight modern threats?", a: "It covers your resources across networking, storage, and computing, and protects workloads on-premises and in AWS through Microsoft Defender for Cloud, Azure Firewall and DDoS Protection, Microsoft Sentinel, Azure Key Vault, and more." },
       { q: "How do we choose the right Azure security services?", a: "It depends on your size and set-up. Smaller businesses often start with a standard set of protections; mid-sized and larger firms usually need security across their IaaS, PaaS, and SaaS workloads. We recommend a set after reviewing your environment." },
       { q: "Which network security tools does Azure include?", a: "Azure Firewall, Azure DDoS Protection, Azure Virtual Network, network security groups, and more." },
       { q: "How do we secure our apps and data on Azure?", a: "Microsoft Entra ID secures access to your applications and lets developers add policy-based identity management. Features such as Microsoft Entra ID Protection and Microsoft Entra application proxy add further protection." },
       { q: "Is Azure security a one-time cost?", a: "No. Azure security services are billed by subscription, so you pay for what you use." },
-      { q: "Does AptaCloud set up Azure security from start to finish?", a: "Yes. We assess your resources on-premises, in Google Cloud, and in AWS, plan the protection, then set it up and monitor it." },
+      { q: "Does AptaCloud set up Azure security from start to finish?", a: "Yes. We assess your resources on-premises and in AWS, plan the protection, then set it up and monitor it." },
     ],
   },
 };

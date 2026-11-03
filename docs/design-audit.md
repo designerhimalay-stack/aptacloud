@@ -1,5 +1,7 @@
 # Design audit: problems and bugs (2026-10-28)
 
+Latest audit: [design-audit-2026-11-02.md](design-audit-2026-11-02.md).
+
 How this was audited:
 - **Automated crawl:** all 52 pages at 1440 px and 390 px, collecting computed styles (type scale per heading level, paragraph sizes, section padding, container edges, card radius and padding, button and pill metrics, and image resolution). The crawl also checked rendered text for em dashes, mojibake (garbled characters), double spaces, and stray spaces.
 - **Visual review:** representative templates at 1440, 1024, and 390 px.
@@ -39,7 +41,6 @@ Severity: **P0** breaks trust or function; **P1** visible inconsistency a profes
 | D | P2 | AI images | `people/ai-brain.jpg` and `people/ai-layers.jpg` are 640 px and shown at about 550 px, so they're soft on retina. | Higher-resolution versions from the supplier. |
 | E | P2 | Hero H1 size | The hero title scales to its longer line by design, so H1 sizes range from 48 to 64 px across pages. | Fine as designed. Keep new titles to similar lengths (about 30 characters per line) to stay near 60 px. |
 | F | P2 | Home | The home hero ticker and workshop indices are 11.5 px mono. This is the approved home design and is decorative. | None. |
-| G | P2 | Leaders | The leadership cards show initials, because there are no portraits. | Portraits from AptaCloud. |
 
 ## Known audit false positives (not bugs)
 - "Uneven columns" on split sections: the photo is sticky on desktop and stacks on tablet and phone.

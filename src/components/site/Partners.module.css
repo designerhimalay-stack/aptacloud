@@ -121,7 +121,7 @@
 
 .row:hover { background: var(--surface-3); }
 .row:hover .arrow {
-  background: var(--accent);
+  background: var(--accent-solid);
   color: var(--ink);
   transform: rotate(45deg);
 }

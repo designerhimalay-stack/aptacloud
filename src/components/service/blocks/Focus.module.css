@@ -37,7 +37,7 @@
   align-items: center;
   background: rgba(var(--accent-rgb), 0.12);
   border-radius: 16px;
-  color: var(--accent);
+  color: var(--accent-text);
   display: inline-flex;
   height: 56px;
   justify-content: center;
@@ -109,7 +109,7 @@
   align-items: center;
   background: rgba(var(--accent-rgb), 0.14);
   border-radius: 50%;
-  color: var(--accent);
+  color: var(--accent-text);
   display: inline-flex;
   flex: none;
   height: 22px;
@@ -146,7 +146,7 @@
 }
 
 .link:hover {
-  color: var(--accent);
+  color: var(--accent-text);
   text-decoration-color: var(--accent);
 }
 
@@ -162,4 +162,9 @@
   .title { font-size: 26px; }
   .text { font-size: 15px; }
   .points li { font-size: 15px; }
+}
+
+/* Phone tap target: 44px minimum. */
+@media (max-width: 809.98px) {
+  .link { align-items: center; display: inline-flex; min-height: 44px; }
 }

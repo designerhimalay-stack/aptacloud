@@ -95,7 +95,7 @@ export function ServiceHero({ page, category, howHref = "#process",
         <Photo
           src={hero.photo.src}
           alt={hero.photo.alt}
-          sizes="100vw"
+          sizes="(max-width: 809px) 180vh, 100vw"
           priority
           position={hero.photo.position}
           className={s.bgPhoto}
@@ -113,10 +113,6 @@ export function ServiceHero({ page, category, howHref = "#process",
                 </li>
                 <li aria-hidden="true">/</li>
                 <li>{category.name}</li>
-                <li aria-hidden="true">/</li>
-                <li aria-current="page" className={s.crumbNow}>
-                  {page.name}
-                </li>
               </ol>
             </nav>
           </Reveal>
@@ -130,7 +126,7 @@ export function ServiceHero({ page, category, howHref = "#process",
           <LineReveal
             as="h1"
             trigger="mount"
-            startDelay={0.15}
+            startDelay={0.05}
             className={cn("t-display", s.title)}
             lineClassName={s.titleLine}
             style={{ ["--chars" as string]: Math.max(hero.title.length, hero.accent.length) }}
@@ -139,11 +135,11 @@ export function ServiceHero({ page, category, howHref = "#process",
             <span style={{ color: "var(--accent)" }}>{hero.accent}</span>
           </LineReveal>
 
-          <Reveal trigger="mount" delay={0.55}>
+          <Reveal trigger="mount" delay={0.15} duration={0.7}>
             <p className={cn("t-lead", s.lead)}>{hero.lead}</p>
           </Reveal>
 
-          <Reveal trigger="mount" delay={0.68} className={s.actions}>
+          <Reveal trigger="mount" delay={0.2} duration={0.6} className={s.actions}>
             <Button label={page.cta.label} shortLabel={page.cta.short} href="#contact" variant="primary" />
             {howHref && (
               <a href={howHref} className={s.textLink}>
@@ -153,7 +149,7 @@ export function ServiceHero({ page, category, howHref = "#process",
             )}
           </Reveal>
 
-          <Reveal trigger="mount" delay={0.8} className={s.creds}>
+          <Reveal trigger="mount" delay={0.3} duration={0.7} className={s.creds}>
             <span className={s.cred}>
               <Pulse size={6} color="var(--accent)" />
               {aws ? "AWS-certified specialists" : "Microsoft-certified specialists"}

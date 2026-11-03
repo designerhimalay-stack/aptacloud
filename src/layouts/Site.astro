@@ -23,7 +23,7 @@ const { title, description, jsonLd, navCta, image, noindex } = Astro.props;
 <Base title={title} description={description} jsonLd={jsonLd} image={image} noindex={noindex}>
   <Nav client:load cta={navCta} />
   <ConstructionLines />
-  <main class="relative">
+  <main id="main" class="relative">
     <slot />
   </main>
   <Footer />

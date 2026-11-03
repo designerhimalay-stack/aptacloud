@@ -250,7 +250,7 @@ const jsonLd = [
           ) : b.kind === "tabs" ? (
             <Tabs client:visible block={b} tone={tone} />
           ) : b.kind === "industries" ? (
-            <Industries client:visible industries={page.industries!} tone={tone} />
+            <Industries client:visible industries={page.industries!} slug={page.slug} tone={tone} />
           ) : (
             <Faq client:visible faqs={faqs} name={page.name} tone={tone} />
           );
@@ -267,7 +267,7 @@ const jsonLd = [
           ) : id === "process" ? (
             <Process client:visible process={page.process!} tone={tones.process} />
           ) : id === "industries" ? (
-            <Industries client:visible industries={page.industries!} tone={tones.industries} />
+            <Industries client:visible industries={page.industries!} slug={page.slug} tone={tones.industries} />
           ) : id === "why" ? (
             <WhyUs client:visible why={page.why!} cta={page.cta} tone={tones.why} />
           ) : id === "benefits" && extras.benefits ? (

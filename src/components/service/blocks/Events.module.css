@@ -30,7 +30,7 @@
 
 .kicker {
   align-items: center;
-  color: var(--accent);
+  color: var(--accent-text);
   display: flex;
   font-size: 14px;
   font-weight: 600;
@@ -78,7 +78,7 @@
 }
 
 .venue svg {
-  color: var(--accent);
+  color: var(--accent-text);
   flex: none;
   height: 16px;
   margin-top: 2px;
@@ -124,7 +124,7 @@
 }
 
 .link:hover {
-  color: var(--accent);
+  color: var(--accent-text);
   text-decoration-color: var(--accent);
 }
 
@@ -190,7 +190,7 @@
 }
 
 .rowLink:hover {
-  color: var(--accent);
+  color: var(--accent-text);
 }
 
 @media (min-width: 810px) and (max-width: 1199.98px) {
@@ -205,14 +205,14 @@
   .media { aspect-ratio: 16 / 10; border-radius: 16px; min-height: 0; }
   .body { padding: 20px 14px 18px; }
   .name { font-size: 26px; }
-  .link { min-height: 40px; padding: 8px 0; }
+  .link { min-height: 44px; padding: 8px 0; }
   .past { border-radius: 22px; padding: 22px 20px 6px; }
   .row { gap: 4px; grid-template-columns: minmax(0, 1fr) 16px; padding: 16px 0; }
   .rowDate { grid-column: 1; }
   .rowName { grid-column: 1; }
   .rowVenue { grid-column: 1; }
   .rowLink svg { grid-column: 2; grid-row: 1 / span 3; }
-  .all { align-self: flex-start; min-height: 40px; padding: 10px 0; }
+  .all { align-self: flex-start; min-height: 44px; padding: 10px 0; }
 }
 
 /* "All events", centred under the section (as the Articles row's "All articles"). */
@@ -237,6 +237,6 @@
 }
 
 .all:hover {
-  color: var(--accent);
+  color: var(--accent-text);
   text-decoration-color: var(--accent);
 }

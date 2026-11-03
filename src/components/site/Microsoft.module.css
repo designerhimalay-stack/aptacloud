@@ -3,7 +3,7 @@
    rows, gap 8. Dark theme = the page default tokens (no data-theme). */
 
 .section {
-  --fill-from: var(--line-strong);
+  --fill-from: rgba(255, 255, 255, 0.34);
   --fill-to: var(--fg);
   background: var(--bg);
   color: var(--fg);
@@ -35,18 +35,15 @@
 /* Dark pill: rgb(23) fill, no border, white label. */
 .tag {
   align-items: center;
-  background: var(--surface-2);
-  border-radius: 32px;
   color: var(--fg);
   display: inline-flex;
   font-family: var(--ff-inter);
-  font-size: 14.08px;
+  font-size: 14px;
   font-weight: 500;
   gap: 8px;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.02em;
   line-height: 18px;
   margin: 0;
-  padding: 8px 12px;
   white-space: nowrap;
 }
 
@@ -78,7 +75,6 @@
 
 .word {
   display: inline-block;
-  margin-right: 0.25em;
 }
 
 .lead {
@@ -150,7 +146,7 @@
   .container { gap: 56px; }
   .content { column-gap: 32px; grid-template-columns: auto minmax(0, 1fr); }
   .copy { grid-column: 2; }
-  .heading { font-size: 44px; }
+  .heading { font-size: 40px; }
   .columns { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
@@ -164,7 +160,7 @@
   .columns > * { flex: 0 0 84%; scroll-snap-align: start; }
   .meta { gap: 12px; }
   .metaLabel,
-  .counter { font-size: 14.08px; line-height: 18.3px; }
+  .counter { font-size: 14px; line-height: 18.3px; }
 }
 
 @media (max-width: 389.98px) {

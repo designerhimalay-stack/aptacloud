@@ -3,7 +3,7 @@
    600 with tight tracking. */
 
 .section {
-  --fill-from: rgb(208, 208, 202);
+  --fill-from: rgb(168, 168, 162);
   --fill-to: var(--fg);
   background: var(--surface-1);
   padding: 150px 60px;
@@ -39,7 +39,7 @@
   color: var(--fg);
   display: inline-flex;
   font-family: var(--ff-inter);
-  font-size: 14.08px;
+  font-size: 14px;
   font-weight: 500;
   gap: 8px;
   letter-spacing: -0.04em;
@@ -75,7 +75,6 @@
 
 .word {
   display: inline-block;
-  margin-right: 0.25em;
 }
 
 .lead {
@@ -124,7 +123,7 @@
 }
 
 .icon {
-  color: var(--accent);
+  color: var(--accent-text);
   flex: none;
   height: 32px;
   width: 32px;
@@ -139,7 +138,7 @@
 .statTitle {
   color: var(--fg);
   font-family: var(--ff-inter);
-  font-size: 22.08px;
+  font-size: 22px;
   font-weight: 600;
   letter-spacing: -0.04em;
   line-height: 1.4;
@@ -280,10 +279,10 @@
   .content { display: flex; flex-direction: column; gap: 20px; }
   .heading { font-size: 28px; letter-spacing: -0.05em; }
   /* The stat and photo cards become a swipe rail, all one compact height. */
-  .cards { display: flex !important; gap: 8px; margin: 0 -16px; overflow-x: auto; overscroll-behavior-x: contain; padding: 4px 16px 8px; scroll-padding: 0 16px; scroll-snap-type: x mandatory; }
+  .cards { display: flex !important; gap: 8px; margin: 0 -16px; overflow-x: auto; overscroll-behavior-x: contain; padding: 4px 16px 8px; scroll-padding: 0 16px; scroll-snap-type: x mandatory; width: calc(100% + 32px); }
   .cards > * { flex: 0 0 84%; scroll-snap-align: start; }
   .stat { height: 240px; }
-  .number { font-size: 52px; }
+  .number { font-size: 48px; }
   .photoCard { height: 240px; }
   .photoText { font-size: 22px; }
 }

@@ -21,9 +21,7 @@ To check again, run `npm run build`, then the audit scripts in [SUMMARY.md](../S
 - ⚠️ **Client approvals** (see `docs/service-pages-review.md`, sections 9d to 9f):
   - Major Operators page (non-ICP)
   - segment-specific oil and gas services
-  - engineer-level "AWS-certified" wording
   - RWLS and Warrikal case studies
-  - leadership titles and photos
   - the Careers page with no open roles
 
 ## 2. On-page SEO
@@ -82,7 +80,7 @@ To check again, run `npm run build`, then the audit scripts in [SUMMARY.md](../S
 - ✅ Images load lazily below the fold. Hero images are `priority`.
 - ✅ Reduced-motion support on every animation.
 - ✅ Visible focus styles on tabs and controls. The FAQ uses buttons.
-- ⚠️ Convert JPEG photos to AVIF or WebP with `srcset` (Astro `<Image>`) for faster mobile loading. This is the biggest Lighthouse gain left.
+- ✅ Every photo is served as WebP with `srcset`, dimensions, and a loading colour (`tools/images/optimize.mjs`). Median image weight on phones fell from 1.9 MB to 0.4 MB per page.
 - ⚠️ Run Lighthouse (mobile) on the home page and one service page after the domain move. Target LCP under 2.5 s and CLS under 0.1.
 - ⚠️ Run a full WCAG 2.1 AA pass (axe DevTools). Check muted-text contrast on the tint background.
 

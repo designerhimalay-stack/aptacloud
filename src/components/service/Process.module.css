@@ -19,7 +19,7 @@
 }
 
 .timeline svg {
-  color: var(--accent);
+  color: var(--accent-text);
   flex: none;
   height: 18px;
   width: 18px;
@@ -132,7 +132,7 @@
 }
 
 .done .node {
-  background: var(--accent);
+  background: var(--accent-solid);
   color: #ffffff;
 }
 
@@ -144,7 +144,7 @@
 }
 
 .current .node {
-  background: var(--accent);
+  background: var(--accent-solid);
   box-shadow: 0 0 0 6px rgba(var(--accent-rgb), 0.22);
   color: #ffffff;
 }

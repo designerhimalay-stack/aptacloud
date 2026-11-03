@@ -41,7 +41,7 @@ import { BRAND, asset } from "../brand/brand";
     max-width: 1176px;
   }
   .kicker {
-    color: var(--accent);
+    color: var(--accent-text);
     font-size: 15px;
     font-weight: 600;
     letter-spacing: -0.02em;
@@ -78,8 +78,12 @@ import { BRAND, asset } from "../brand/brand";
     margin-top: 8px;
   }
   .lead a:hover,
+  @media (max-width: 809.98px) {
+    .back { align-items: center; display: inline-flex; min-height: 44px; }
+  }
+
   .back:hover {
-    color: var(--accent);
+    color: var(--accent-text);
     text-decoration-color: var(--accent);
   }
   @media (max-width: 809.98px) {

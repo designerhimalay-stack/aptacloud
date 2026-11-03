@@ -80,7 +80,7 @@
 }
 
 .tile:hover .quote {
-  color: var(--accent);
+  color: var(--accent-text);
   transform: rotate(-8deg) scale(1.12);
 }
 
@@ -117,7 +117,7 @@
 }
 
 .costLabel {
-  color: var(--accent);
+  color: var(--accent-text);
   font-family: var(--ff-inter);
   font-weight: 600;
   font-size: 12px;
@@ -131,7 +131,7 @@
 }
 
 .bigQuote {
-  color: var(--accent);
+  color: var(--accent-text);
   font-family: Georgia, "Times New Roman", serif;
   font-size: 120px;
   line-height: 0.6;

@@ -96,7 +96,7 @@
 
 .pillIcon {
   background: rgba(var(--accent-rgb), 0.1);
-  color: var(--accent);
+  color: var(--accent-text);
 }
 
 .pillIcon svg {

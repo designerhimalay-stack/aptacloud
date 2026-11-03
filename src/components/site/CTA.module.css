@@ -4,7 +4,7 @@
    white 53px submit pill). Colours come from the dark theme tokens. */
 
 .section {
-  --fill-from: rgba(255, 255, 255, 0.18);
+  --fill-from: rgba(255, 255, 255, 0.34);
   --fill-to: var(--fg);
   background: var(--surface-0);
   padding: 150px 60px;
@@ -40,7 +40,7 @@
   color: var(--fg);
   display: inline-flex;
   font-family: var(--ff-inter);
-  font-size: 14.08px;
+  font-size: 14px;
   font-weight: 500;
   gap: 8px;
   letter-spacing: -0.04em;
@@ -76,7 +76,6 @@
 
 .word {
   display: inline-block;
-  margin-right: 0.25em;
 }
 
 .lead {
@@ -119,7 +118,7 @@
 .infoTitle {
   color: var(--fg);
   font-family: var(--ff-inter);
-  font-size: 17px;
+  font-size: 18px;
   font-weight: 600;
   letter-spacing: -0.035em;
   margin: 0;
@@ -230,7 +229,7 @@ a.row:focus-visible {
 }
 
 a.row:hover .rowIcon {
-  color: var(--accent);
+  color: var(--accent-text);
 }
 
 .rowValue {
@@ -266,7 +265,7 @@ a.row:hover .rowIcon {
 }
 
 a.row:hover .rowArrow {
-  color: var(--accent);
+  color: var(--accent-text);
   opacity: 1;
   transform: none;
 }
@@ -466,7 +465,7 @@ a.row:hover .rowArrow {
   .container { gap: 28px; }
   .content { display: flex; flex-direction: column; gap: 16px; }
   .copy { gap: 12px; }
-  .heading { font-size: 30px; letter-spacing: -0.05em; line-height: 1.15; }
+  .heading { font-size: 28px; letter-spacing: -0.05em; line-height: 1.15; }
   .lead { font-size: 15px; line-height: 1.4; }
   .body { display: flex; flex-direction: column-reverse; gap: 8px; }
   .card { border-radius: 22px; padding: 12px; }
@@ -492,7 +491,7 @@ a.row:hover .rowArrow {
 }
 
 @media (max-width: 389.98px) {
-  .heading { font-size: 27px; }
+  .heading { font-size: 26px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -503,3 +502,7 @@ a.row:hover .rowArrow {
   .rowArrow { transition: none; }
 }
 
+/* Phone tap target: 44px minimum. */
+@media (max-width: 809.98px) {
+  .row { align-items: center; min-height: 44px; }
+}

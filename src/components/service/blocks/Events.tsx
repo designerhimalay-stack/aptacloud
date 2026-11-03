@@ -28,7 +28,11 @@ export function dateRange(start: string, end: string) {
 }
 
 export function Events({ block, tone }: { block: EventsBlock; tone: Tone }) {
-  const { next, past } = block;
+  // A finished event moves to the past list on its own.
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const next = block.next && day(block.next.end) >= today ? block.next : undefined;
+  const past = next || !block.next ? block.past : [block.next, ...block.past];
   return (
     <section id={block.id ?? "events"} {...toneProps(tone)}>
       <div className={sec.container}>

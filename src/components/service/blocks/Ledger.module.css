@@ -57,7 +57,7 @@
 }
 
 .area {
-  color: var(--accent);
+  color: var(--accent-text);
   font-family: var(--ff-inter);
   font-size: 15px;
   font-weight: 600;

@@ -43,7 +43,7 @@ export const BRAND = {
   contact: {
     phones: [
       { number: "+1 (972) 928-2341", flag: "us", country: "United States" },
-      { number: "+1 (972) 779 6347", flag: "us", country: "United States" },
+      { number: "+1 (972) 779-6347", flag: "us", country: "United States" },
     ],
     email: "contact@aptacloud.com",
     address: ["801 E Campbell Rd, Ste 365", "Richardson, TX 75081, USA"],

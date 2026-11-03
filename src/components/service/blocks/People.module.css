@@ -62,7 +62,7 @@
   aspect-ratio: 4 / 4.7;
   background: rgba(var(--accent-rgb), 0.08);
   border-radius: 18px;
-  color: var(--accent);
+  color: var(--accent-text);
   display: flex;
   font-family: var(--ff-inter);
   font-size: clamp(56px, 6vw, 88px);

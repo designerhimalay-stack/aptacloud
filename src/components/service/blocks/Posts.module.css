@@ -21,7 +21,7 @@
 }
 
 .all:hover {
-  color: var(--accent);
+  color: var(--accent-text);
   text-decoration-color: var(--accent);
 }
 
@@ -82,7 +82,7 @@
 }
 
 .cat {
-  color: var(--accent);
+  color: var(--accent-text);
   font-weight: 600;
 }
 
@@ -125,11 +125,11 @@
 }
 
 .card:hover .read {
-  color: var(--accent);
+  color: var(--accent-text);
 }
 
 @media (max-width: 809.98px) {
-  .all { align-self: flex-start; min-height: 40px; padding: 10px 0; }
+  .all { align-self: flex-start; min-height: 44px; padding: 10px 0; }
   .grid { grid-template-columns: none; }
   .card { border-radius: 22px; }
   .thumb { border-radius: 16px; }

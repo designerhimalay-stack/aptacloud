@@ -33,7 +33,7 @@
 }
 
 .ringLabel {
-  color: var(--fg-muted);
+  color: var(--fg-soft);
   font-family: var(--ff-inter);
   font-size: 12px;
   font-weight: 600;
@@ -46,12 +46,12 @@
 }
 
 .ringOn .ringLabel {
-  color: var(--accent);
+  color: var(--fg);
 }
 
 .core {
   align-items: center;
-  background: var(--accent);
+  background: var(--accent-solid);
   border-radius: 50%;
   box-shadow: 0 0 0 8px rgba(var(--accent-rgb), 0.14);
   color: #ffffff;
@@ -86,7 +86,7 @@
 }
 
 .detailNo {
-  color: var(--accent);
+  color: var(--accent-text);
   font-size: 13px;
   font-variant-numeric: tabular-nums;
   font-weight: 600;

@@ -41,7 +41,7 @@
   align-items: center;
   background: #ffffff;
   border-radius: 12px;
-  color: var(--accent);
+  color: var(--accent-text);
   display: inline-flex;
   height: 40px;
   justify-content: center;
@@ -98,7 +98,7 @@
 
 .askJump {
   align-items: center;
-  color: var(--accent);
+  color: var(--accent-text);
   display: inline-flex;
   font-size: 14px;
   font-weight: 600;
@@ -200,7 +200,7 @@
 }
 
 .open .icon {
-  background: var(--accent);
+  background: var(--accent-solid);
   box-shadow: none;
   color: #ffffff;
   transform: rotate(180deg);
@@ -267,4 +267,9 @@
 
 @media (prefers-reduced-motion: reduce) {
   .a, .icon, .icon::after, .item { transition: none; }
+}
+
+/* Phone tap targets: 44px minimum. */
+@media (max-width: 809.98px) {
+  .askLink, .askJump { align-items: center; display: inline-flex; min-height: 44px; }
 }

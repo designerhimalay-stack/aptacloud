@@ -37,7 +37,7 @@
   align-items: center;
   background: rgba(var(--accent-rgb), 0.1);
   border-radius: 14px;
-  color: var(--accent);
+  color: var(--accent-text);
   display: inline-flex;
   flex: none;
   height: 48px;
@@ -52,7 +52,7 @@
 }
 
 .card:hover .iconTile {
-  background: var(--accent);
+  background: var(--accent-solid);
   color: #ffffff;
 }
 
@@ -82,7 +82,7 @@
 }
 
 .kicker {
-  color: var(--accent);
+  color: var(--accent-text);
   font-size: 13px;
   font-weight: 600;
   letter-spacing: -0.015em;

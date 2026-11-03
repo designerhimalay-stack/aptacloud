@@ -5,7 +5,7 @@
    alternates with the tinted sections around it. */
 
 .section {
-  --fill-from: rgb(208, 208, 202);
+  --fill-from: rgb(168, 168, 162);
   --fill-to: var(--fg);
   background: var(--bg);
   padding: 150px 60px;
@@ -41,7 +41,7 @@
   color: var(--fg);
   display: inline-flex;
   font-family: var(--ff-inter);
-  font-size: 14.08px;
+  font-size: 14px;
   font-weight: 500;
   gap: 8px;
   letter-spacing: -0.04em;
@@ -84,7 +84,6 @@
 
 .word {
   display: inline-block;
-  margin-right: 0.25em;
 }
 
 .lead {
@@ -117,7 +116,7 @@
 .subheading {
   color: var(--fg);
   font-family: var(--ff-inter);
-  font-size: 22.08px;
+  font-size: 22px;
   font-weight: 600;
   letter-spacing: -0.04em;
   line-height: 1.4;

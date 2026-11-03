@@ -37,7 +37,7 @@
 .label {
   background: rgba(var(--accent-rgb), 0.1);
   border-radius: 999px;
-  color: var(--accent);
+  color: var(--accent-text);
   font-size: 12px;
   font-weight: 600;
   letter-spacing: -0.01em;
@@ -77,7 +77,7 @@
 }
 
 .metricSuffix {
-  color: var(--accent);
+  color: var(--accent-text);
 }
 
 .metricLabel {
@@ -198,7 +198,7 @@
   align-items: center;
   background: rgba(var(--accent-rgb), 0.12);
   border-radius: 50%;
-  color: var(--accent);
+  color: var(--accent-text);
   display: inline-flex;
   flex: none;
   height: 20px;

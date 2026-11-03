@@ -317,7 +317,7 @@
   align-items: center;
   background: rgba(var(--accent-rgb), 0.16);
   border-radius: 50%;
-  color: var(--accent);
+  color: var(--accent-text);
   display: inline-flex;
   flex: none;
   height: 22px;
@@ -439,4 +439,10 @@
 
 @media (max-width: 339.98px) {
   .title { font-size: 28px; }
+}
+
+/* Phone tap targets: 44px minimum, without changing the layout. */
+@media (max-width: 809.98px) {
+  .crumbs a { display: inline-block; margin: -14px -6px; padding: 14px 6px; }
+  .textLink { min-height: 44px; padding: 0; }
 }

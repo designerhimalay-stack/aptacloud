@@ -77,35 +77,42 @@ export const CATEGORIES: Record<CategoryId, Category> = {
 /** The named phases (Brand Guidelines v2.0 §3.4), Australian spelling in copy. */
 export const PHASES = ["Discover", "Define", "Design", "Build", "Integrate", "Optimise"] as const;
 
-export const INDUSTRIES: Record<IndustryId, { name: string; segments: string; photo: ServicePhoto; href: string }> = {
+const CARDS = "/images/photos/industry-cards";
+
+export const INDUSTRIES: Record<IndustryId, { name: string; segments: string; photos: ServicePhoto[]; href: string }> = {
   insurance: {
     name: "Insurance",
     segments: "MGAs, TPAs, and specialty carriers",
-    photo: {
-      src: "/images/photos/services/office-meeting.jpg",
-      alt: "An insurance operations team talking through a workflow around a laptop",
-      position: "50% 40%",
-    },
+    photos: [
+      { src: `${CARDS}/ins-team.jpg`, alt: "An insurance team reviewing documents together in an office", position: "50% 30%" },
+      { src: `${CARDS}/ins-desk.jpg`, alt: "Colleagues checking paper documents at an office desk", position: "50% 35%" },
+      { src: `${CARDS}/ins-policy.jpg`, alt: "Two people going through policy paperwork at a table", position: "50% 50%" },
+      { src: `${CARDS}/ins-review.jpg`, alt: "A person reviewing a policy document with a pen", position: "50% 25%" },
+    ],
     href: asset("/industry/insurance/"),
   },
   oilgas: {
     name: "Oil & Gas",
     segments: "Pipeline integrity, drilling, and well services",
-    photo: {
-      src: "/images/photos/services/ai-agents-field.jpg",
-      alt: "A field engineer in safety gear on a refinery platform",
-      position: "38% 35%",
-    },
+    photos: [
+      { src: "/images/photos/services/ai-agents-field.jpg", alt: "A field engineer in safety gear on a refinery platform", position: "38% 35%" },
+      { src: `${CARDS}/oil-crew.jpg`, alt: "An offshore crew in hard hats working machinery on a platform", position: "50% 40%" },
+      { src: `${CARDS}/oil-plant.jpg`, alt: "An industrial worker in a hard hat inside a plant", position: "50% 40%" },
+      { src: `${CARDS}/oil-rig.jpg`, alt: "An offshore drilling platform seen from above", position: "50% 65%" },
+      { src: `${CARDS}/oil-sunset.jpg`, alt: "An offshore platform against a sunset", position: "50% 55%" },
+    ],
     href: asset("/industry/oil-gas/"),
   },
   construction: {
     name: "Engineering & Construction",
     segments: "Contractors, engineering firms, and field services",
-    photo: {
-      src: "/images/photos/services/construction-tablet.jpg",
-      alt: "Two site engineers in hard hats reviewing plans on a tablet",
-      position: "50% 45%",
-    },
+    photos: [
+      { src: "/images/photos/services/construction-tablet.jpg", alt: "Two site engineers in hard hats reviewing plans on a tablet", position: "50% 45%" },
+      { src: `${CARDS}/ec-plans.jpg`, alt: "Two site engineers in hard hats going over plans with a clipboard", position: "50% 35%" },
+      { src: `${CARDS}/ec-worker.jpg`, alt: "A construction worker in a yellow vest holding a hard hat", position: "50% 30%" },
+      { src: `${CARDS}/ec-scaffold.jpg`, alt: "Construction workers on scaffolding", position: "50% 40%" },
+      { src: `${CARDS}/ec-tablet.jpg`, alt: "An architect in a hard hat using a tablet on site", position: "60% 40%" },
+    ],
     href: asset("/industry/engineering-and-construction/"),
   },
 };

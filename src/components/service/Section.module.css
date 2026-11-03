@@ -11,25 +11,25 @@
 }
 
 .dark {
-  --fill-from: rgba(255, 255, 255, 0.2);
+  --fill-from: rgba(255, 255, 255, 0.34);
   --fill-to: var(--fg);
   background: var(--bg);
 }
 
 .deep {
-  --fill-from: rgba(255, 255, 255, 0.18);
+  --fill-from: rgba(255, 255, 255, 0.34);
   --fill-to: var(--fg);
   background: var(--surface-0);
 }
 
 .light {
-  --fill-from: rgb(208, 208, 202);
+  --fill-from: rgb(168, 168, 162);
   --fill-to: var(--fg);
   background: var(--bg);
 }
 
 .tint {
-  --fill-from: rgb(208, 208, 202);
+  --fill-from: rgb(168, 168, 162);
   --fill-to: var(--fg);
   background: var(--surface-1);
 }
@@ -87,7 +87,6 @@
 
 .word {
   display: inline-block;
-  margin-right: 0.25em;
 }
 
 .lead {
@@ -173,6 +172,11 @@
     flex: 0 0 84%;
     scroll-snap-align: start;
   }
+
+  /* A single card has nothing to swipe to, so it takes the full width. */
+  .rail > :only-child {
+    flex-basis: 100%;
+  }
 }
 
 /* Swipe hint under a phone rail: one dot per card, the first lit. */
@@ -212,6 +216,7 @@
   .section { padding: 56px 16px; scroll-margin-top: 80px; }
   .container { gap: 28px; }
   .head { display: flex; flex-direction: column; gap: 14px; }
+  .headSplit { align-items: stretch; }
   /* Centred heads align left on phones, like every other section. */
   .headCenter { align-items: flex-start; gap: 14px; text-align: left; }
   .headCenter .tagCol, .headCenter .copy { align-items: flex-start; }

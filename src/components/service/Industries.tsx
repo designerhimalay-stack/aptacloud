@@ -6,7 +6,7 @@
 import { Photo } from "@/components/ui/Photo";
 import { Reveal } from "@/components/ui/Reveal";
 import { INDUSTRIES } from "@/data/services/shared";
-import type { IndustryId, ServicePage } from "@/data/services/types";
+import type { IndustryId, ServicePage, ServicePhoto } from "@/data/services/types";
 import { cn } from "@/lib/utils";
 import { ArrowUpRight, Icon } from "./Icon";
 import { RailHint } from "./RailHint";
@@ -17,7 +17,10 @@ import s from "./Industries.module.css";
 
 const ORDER: IndustryId[] = ["insurance", "oilgas", "construction"];
 
-export function Industries({ industries, tone = "dark" }: { industries: NonNullable<ServicePage["industries"]>; tone?: Tone }) {
+/** Picks a photo from the slug, so sibling pages don't all show the same three. */
+const photoFor = (photos: ServicePhoto[], slug: string) => photos[[...slug].reduce((sum, c) => sum + c.charCodeAt(0), 0) % photos.length];
+
+export function Industries({ industries, slug, tone = "dark" }: { industries: NonNullable<ServicePage["industries"]>; slug: string; tone?: Tone }) {
   return (
     <section id="industries" {...toneProps(tone, "light", "deep")}>
       <div className={sec.container}>
@@ -27,15 +30,16 @@ export function Industries({ industries, tone = "dark" }: { industries: NonNulla
           {ORDER.map((id, i) => {
             const ind = INDUSTRIES[id];
             const item = industries.items[id];
+            const photo = photoFor(ind.photos, slug);
             return (
               <li key={id} className={s.cell}>
                 <Reveal y={30} duration={1} delay={i * 0.08} amount={0} className={s.reveal}>
                   <a href={ind.href} className={cn(s.card, "photo-host")}>
                     <div className={s.thumb}>
                       <Photo
-                        src={ind.photo.src}
-                        alt={ind.photo.alt}
-                        position={ind.photo.position}
+                        src={photo.src}
+                        alt={photo.alt}
+                        position={photo.position}
                         tone="color"
                         sizes="(min-width: 1200px) 380px, (min-width: 810px) 33vw, 84vw"
                         className={s.photo}

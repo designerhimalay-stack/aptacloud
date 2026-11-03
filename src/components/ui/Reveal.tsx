@@ -94,7 +94,7 @@ function FillWord({
 }) {
   const c = useTransform(progress, [i / n, (i + 1) / n], ["var(--fill-from)", color ?? "currentColor"]);
   return (
-    <motion.span style={{ color: c, display: "inline-block", marginRight: "0.25em" }}>{text}</motion.span>
+    <motion.span style={{ color: c, display: "inline-block" }}>{text}</motion.span>
   );
 }
 
@@ -127,7 +127,7 @@ export function LineReveal({
 }) {
   const reduce = useReducedMotion();
   const ref = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start 0.9", "end 0.5"] });
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start 0.95", "end 0.7"] });
   const lines = Children.toArray(children);
 
   if (trigger === "inView") {
@@ -141,12 +141,14 @@ export function LineReveal({
             {tokens.map((t, ti) =>
               t.kind === "node" ? (
                 <Fragment key={ti}>{t.node}</Fragment>
-              ) : reduce ? (
-                <span key={ti} style={{ color: t.color, display: "inline-block", marginRight: "0.25em" }}>
-                  {t.text}
-                </span>
               ) : (
-                <FillWord key={ti} text={t.text} color={t.color} i={w++} n={n} progress={scrollYProgress} />
+                <Fragment key={ti}>
+                  {reduce ? (
+                    <span style={{ color: t.color, display: "inline-block" }}>{t.text}</span>
+                  ) : (
+                    <FillWord text={t.text} color={t.color} i={w++} n={n} progress={scrollYProgress} />
+                  )}{" "}
+                </Fragment>
               ),
             )}
           </span>
@@ -165,7 +167,7 @@ export function LineReveal({
           filter: "blur(0px)",
           transition: reduce
             ? { duration: 0 }
-            : { delay: startDelay + i * stagger, duration: 1.2, ease: EASE_OUT_EXPO },
+            : { delay: startDelay + i * stagger, duration: 0.8, ease: EASE_OUT_EXPO },
         };
         return (
           <motion.span key={i} className={lineClassName} style={{ display: "block" }} initial={hidden} animate={shown}>

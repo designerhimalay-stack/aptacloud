@@ -48,7 +48,7 @@
   align-items: center;
   background: rgba(var(--accent-rgb), 0.1);
   border-radius: 50%;
-  color: var(--accent);
+  color: var(--accent-text);
   display: inline-flex;
   flex: none;
   height: 24px;
@@ -87,7 +87,7 @@
   align-items: center;
   background: var(--card);
   border-radius: 10px;
-  color: var(--accent);
+  color: var(--accent-text);
   display: inline-flex;
   height: 34px;
   justify-content: center;

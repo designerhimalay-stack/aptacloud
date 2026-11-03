@@ -10,7 +10,7 @@
 // body pre-filled from the form.
 
 import { motion, useScroll, useTransform, type MotionValue } from "@/lib/motion";
-import { useRef, useState, type FormEvent } from "react";
+import { Fragment, useRef, useState, type FormEvent } from "react";
 import { BRAND, PRIMARY_CTA } from "@/brand/brand";
 import { NEXT_STEPS } from "@/data/services/shared";
 import { Reveal } from "@/components/ui/Reveal";
@@ -78,12 +78,14 @@ function Word({ word, i, n, progress }: { word: string; i: number; n: number; pr
 /** Words fill from grey to white as the heading scrolls through the viewport. */
 function FillHeading({ text }: { text: string }) {
   const ref = useRef<HTMLHeadingElement>(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start 0.85", "end 0.45"] });
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start 0.95", "end 0.7"] });
   const words = text.split(" ");
   return (
     <h2 ref={ref} className={s.heading} aria-label={text}>
       {words.map((w, i) => (
-        <Word key={i} word={w} i={i} n={words.length} progress={scrollYProgress} />
+        <Fragment key={i}>
+          <Word word={w} i={i} n={words.length} progress={scrollYProgress} />{" "}
+        </Fragment>
       ))}
     </h2>
   );

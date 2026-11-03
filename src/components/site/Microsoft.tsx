@@ -6,7 +6,7 @@
 // Header and column group fade up (y 30 → 0, 1s), columns staggered 0.08s.
 
 import { motion, useScroll, useTransform, type MotionValue } from "@/lib/motion";
-import { useRef } from "react";
+import { Fragment, useRef } from "react";
 import { BRAND } from "@/brand/brand";
 import { Reveal } from "@/components/ui/Reveal";
 import { ToolColumn, type ToolColumnProps } from "./microsoft/ToolColumn";
@@ -58,12 +58,14 @@ function Word({ word, i, n, progress }: { word: string; i: number; n: number; pr
 /** Words fill from grey to white as the heading scrolls through the viewport. */
 function FillHeading({ text }: { text: string }) {
   const ref = useRef<HTMLHeadingElement>(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start 0.85", "end 0.45"] });
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start 0.95", "end 0.7"] });
   const words = text.split(" ");
   return (
     <h2 ref={ref} className={s.heading} aria-label={text}>
       {words.map((w, i) => (
-        <Word key={i} word={w} i={i} n={words.length} progress={scrollYProgress} />
+        <Fragment key={i}>
+          <Word word={w} i={i} n={words.length} progress={scrollYProgress} />{" "}
+        </Fragment>
       ))}
     </h2>
   );

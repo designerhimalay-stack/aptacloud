@@ -42,7 +42,7 @@ export function Hero() {
         <Photo
           src="/images/photos/hero-developer.jpg"
           alt=""
-          sizes="100vw"
+          sizes="(max-width: 809px) 180vh, 100vw"
           priority
           position="68% 50%"
           className={styles.bgPhoto}
@@ -58,7 +58,7 @@ export function Hero() {
 
           <div className={styles.space18} />
 
-          <LineReveal as="h1" trigger="mount" startDelay={0.15} className={cn("t-display", styles.title)}>
+          <LineReveal as="h1" trigger="mount" startDelay={0.05} className={cn("t-display", styles.title)}>
             {"Your path to"}
             {"measurable"}
             <span style={{ color: ACCENT }}>AI ROI.</span>
@@ -66,14 +66,14 @@ export function Hero() {
 
           <div className={styles.space22} />
 
-          <Reveal trigger="mount" delay={0.7} className={styles.lead}>
+          <Reveal trigger="mount" delay={0.15} duration={0.7} className={styles.lead}>
             <p className="t-lead">{BRAND.valueProp}</p>
           </Reveal>
 
           <div className={styles.space28} />
 
           {/* One primary action; the secondary is a quiet text link so it never competes. */}
-          <Reveal trigger="mount" delay={0.83} className={styles.buttons}>
+          <Reveal trigger="mount" delay={0.2} duration={0.6} className={styles.buttons}>
             <div className={styles.btnWrap}>
               <Button label={PRIMARY_CTA.label} href={PRIMARY_CTA.href} variant="primary" />
             </div>

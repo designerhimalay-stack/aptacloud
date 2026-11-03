@@ -65,7 +65,7 @@
 }
 
 .row:hover .no {
-  color: var(--accent);
+  color: var(--accent-text);
 }
 
 .body {
@@ -133,7 +133,7 @@
     padding: 18px;
   }
   .row:hover { transform: none; }
-  .no { color: var(--accent); font-size: 13px; padding-top: 0; }
+  .no { color: var(--accent-text); font-size: 13px; padding-top: 0; }
   .title { font-size: 18px; }
   .text { font-size: 14px; }
   .pills li { background: var(--bg); font-size: 12px; padding: 6px 11px; }

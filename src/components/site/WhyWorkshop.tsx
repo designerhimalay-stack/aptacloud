@@ -8,7 +8,7 @@
 // card answers the pointer.
 
 import { motion, useScroll, useTransform, type MotionValue } from "@/lib/motion";
-import { useRef } from "react";
+import { Fragment, useRef } from "react";
 import { BRAND } from "@/brand/brand";
 import { Reveal } from "@/components/ui/Reveal";
 import { SpreadGrid } from "@/components/ui/SpreadGrid";
@@ -76,12 +76,14 @@ function Word({
 /** Words fill from grey to ink (accent words to the accent) as the heading scrolls through the viewport. */
 function FillHeading() {
   const ref = useRef<HTMLHeadingElement>(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start 0.85", "end 0.45"] });
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start 0.95", "end 0.7"] });
   const label = HEADING.map(([w]) => w).join(" ");
   return (
     <h2 ref={ref} className={s.heading} aria-label={label}>
       {HEADING.map(([w, accent], i) => (
-        <Word key={i} word={w} accent={accent} i={i} n={HEADING.length} progress={scrollYProgress} />
+        <Fragment key={i}>
+          <Word word={w} accent={accent} i={i} n={HEADING.length} progress={scrollYProgress} />{" "}
+        </Fragment>
       ))}
     </h2>
   );
@@ -166,9 +168,6 @@ export function WhyWorkshop() {
           itemClassName={s.cell}
           items={BENEFITS.map((b, i) => (
             <article key={b.title} className={s.card}>
-              <p className={s.number} aria-hidden="true">
-                {String(i + 1).padStart(2, "0")}.
-              </p>
               <div className={s.body}>
                 <BenefitIcon kind={b.icon} />
                 <h3 className={s.title}>{b.title}</h3>

@@ -51,7 +51,7 @@
   align-items: center;
   background: rgba(var(--accent-rgb), 0.1);
   border-radius: 12px;
-  color: var(--accent);
+  color: var(--accent-text);
   display: inline-flex;
   height: 38px;
   justify-content: center;

@@ -61,7 +61,7 @@ export function Partners() {
       <div className={s.container}>
         <div className={s.content}>
           <Reveal y={30} duration={1} amount={0.3} className={s.tagCol}>
-            <PillTag icon={<PartnersIcon />}>Our Partners</PillTag>
+            <PillTag icon={<PartnersIcon />}>Our partners</PillTag>
           </Reveal>
           <div className={s.copy}>
             <LineReveal as="h2" className={s.heading}>

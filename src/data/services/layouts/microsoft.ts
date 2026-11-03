@@ -293,7 +293,7 @@ export const MS_LAYOUTS: Record<string, ServiceLayout> = {
         heading: "Why choose AptaCloud?",
         reverse: true,
         list: "cards",
-        photo: { src: `${P}/chatgpt-screen.jpg`, alt: "An AI assistant interface showing examples and capabilities", position: "50% 50%" },
+        photo: { src: "/images/photos/services/copilot-review.jpg", alt: "Two colleagues reviewing an assistant's answer on a tablet", position: "50% 40%" },
         items: WHY_MS,
       },
       {

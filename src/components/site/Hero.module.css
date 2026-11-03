@@ -435,5 +435,10 @@
   .copy .title { font-size: 32px; }
 }
 @media (max-width: 339.98px) {
-  .copy .title { font-size: 29px; }
+  .copy .title { font-size: 28px; }
+}
+
+/* Phone tap target: 44px minimum. */
+@media (max-width: 809.98px) {
+  .textLink { min-height: 44px; padding: 0; }
 }

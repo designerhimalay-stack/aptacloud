@@ -1,4 +1,4 @@
-// Azure service card — minimalist, image-free: index + accent line icon, title,
+// Azure service card — minimalist, image-free: accent line icon, title,
 // the PDF description, the PDF's key points as a ruled list, and a "Talk to us"
 // link. White 24px card on the tinted section; hover lifts the card, warms the
 // icon tile, plays the icon's own animation and nudges the link arrow.
@@ -60,11 +60,10 @@ const ICONS: Record<AzureIcon, React.ReactNode> = {
   ),
 };
 
-export function ServiceCard({ index, icon, title, body, points, href, className }: AzureService & { className?: string }) {
+export function ServiceCard({ icon, title, body, points, href, className }: AzureService & { className?: string }) {
   return (
     <a href={href} className={cn(styles.card, className)}>
       <div className={styles.top}>
-        <span className={styles.index}>{index}</span>
         <span className={styles.iconTile}>
         <svg
           className={styles.icon}

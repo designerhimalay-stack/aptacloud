@@ -52,8 +52,8 @@ export const MENUS: NavMenu[] = [
           ],
         },
         promo: {
-          logo: "/images/microsoft/copilot.svg",
-          logoAlt: "Microsoft Copilot",
+          logo: "mark",
+          logoAlt: "AptaCloud",
           eyebrow: "Flagship Programme",
           title: "AI Assessment Workshop",
           text: "A tailored workshop that shows where AI can automate your operations and what it should return.",

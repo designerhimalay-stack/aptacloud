@@ -104,7 +104,7 @@
   align-items: center;
   background: rgba(var(--accent-rgb), 0.1);
   border-radius: 12px;
-  color: var(--accent);
+  color: var(--accent-text);
   display: inline-flex;
   flex: none;
   height: 38px;
@@ -174,4 +174,9 @@
 
 @media (prefers-reduced-motion: reduce) {
   .fade, .item { animation: none; }
+}
+
+/* Phone tap target: 44px minimum. */
+@media (max-width: 809.98px) {
+  .tab { min-height: 44px; }
 }

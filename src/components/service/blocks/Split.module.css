@@ -95,7 +95,7 @@
   align-items: center;
   background: rgba(var(--accent-rgb), 0.1);
   border-radius: 12px;
-  color: var(--accent);
+  color: var(--accent-text);
   display: inline-flex;
   flex: none;
   height: 42px;
@@ -110,7 +110,7 @@
 }
 
 .item:hover .icon {
-  background: var(--accent);
+  background: var(--accent-solid);
   color: #ffffff;
 }
 
@@ -192,7 +192,7 @@
 }
 
 .listDivided .item:hover .icon {
-  background: var(--accent);
+  background: var(--accent-solid);
   color: #ffffff;
 }
 

@@ -29,7 +29,7 @@
 }
 
 .leadKicker {
-  color: var(--accent);
+  color: var(--accent-text);
   font-size: 14px;
   font-weight: 600;
   letter-spacing: -0.015em;
@@ -48,7 +48,7 @@
 }
 
 .lead:hover .leadRead {
-  color: var(--accent);
+  color: var(--accent-text);
 }
 
 .bar {
@@ -108,6 +108,7 @@
 }
 
 .search input {
+  min-height: 44px;
   background: none;
   border: 0;
   color: var(--fg);
@@ -171,7 +172,7 @@
 }
 
 .more:hover {
-  background: var(--accent);
+  background: var(--accent-solid);
   color: #ffffff;
 }
 

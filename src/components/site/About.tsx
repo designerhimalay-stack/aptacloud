@@ -6,7 +6,7 @@
 // stays sharp at rest and the photo softens + zooms slightly on hover.
 
 import { animate, motion, useInView, useScroll, useTransform, type MotionValue } from "@/lib/motion";
-import { useEffect, useRef, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import { BRAND, asset } from "@/brand/brand";
 import { Reveal } from "@/components/ui/Reveal";
 import { SpreadGrid } from "@/components/ui/SpreadGrid";
@@ -23,14 +23,14 @@ const STATS = [
   {
     value: 20,
     from: 0,
-    title: "Years of Experience",
+    title: "Years of experience",
     text: "Experience across modern cloud systems, enterprise IT and AI integration.",
     icon: "calendar" as const,
   },
   {
     value: 300,
     from: 750,
-    title: "Clients Served",
+    title: "Clients served",
     text: "200+ engineers under one roof, delivering from 4 locations.",
     icon: "chart" as const,
   },
@@ -48,12 +48,14 @@ function Word({ word, i, n, progress }: { word: string; i: number; n: number; pr
 /** Words fill from grey to ink as the heading scrolls through the viewport. */
 function FillHeading({ text }: { text: string }) {
   const ref = useRef<HTMLHeadingElement>(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start 0.85", "end 0.45"] });
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start 0.95", "end 0.7"] });
   const words = text.split(" ");
   return (
     <h2 ref={ref} className={s.heading} aria-label={text}>
       {words.map((w, i) => (
-        <Word key={i} word={w} i={i} n={words.length} progress={scrollYProgress} />
+        <Fragment key={i}>
+          <Word word={w} i={i} n={words.length} progress={scrollYProgress} />{" "}
+        </Fragment>
       ))}
     </h2>
   );
@@ -122,7 +124,7 @@ export function About() {
           <Reveal y={30} duration={1} amount={0.3} className={s.tagCol}>
             <p className={s.tag}>
               <AboutIcon />
-              <span>About Us</span>
+              <span>About us</span>
             </p>
           </Reveal>
           <div className={s.copy}>

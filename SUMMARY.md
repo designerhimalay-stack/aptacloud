@@ -17,7 +17,7 @@ The marketing site for **AptaCloud**, a Microsoft-first cloud, data, and AI cons
 npm install
 npm run dev -- --port 4321    # http://localhost:4321/aptacloud/
 npx tsc --noEmit              # type-check (must be clean)
-npm run build                 # static build into dist/ (must succeed)
+npm run build                 # static build into dist/, then tools/images/optimize.mjs (must succeed)
 ```
 
 **Deploy** ("push to live"):
@@ -57,6 +57,7 @@ npm run build                 # static build into dist/ (must succeed)
 | `docs/launch-checklist.md` | SEO, content, and technical launch checklist with status |
 | `docs/agentcraft/PHOTO_CREDITS.md` | Credits for every photo and logo set |
 | `tools/audit/` | Audit scripts (see section 7) |
+| `tools/images/optimize.mjs` | Runs after the build: adds WebP `srcset`, width and height, and a loading colour to every `<img>` in `dist/` |
 | `CLAUDE.md` | Short project rules (kept in sync with this file) |
 
 **Add a page:**
@@ -80,7 +81,7 @@ On any conflict, the brand guidelines and `aptacloud-content` win.
 - **Banned:** seamless, end-to-end, robust, cutting-edge, leverage, unlock, revolutionise, "free", "Contact us", "Book now", "Get started", and superlatives (best, leading, industry-leading, world-class).
 - **Verticals only:** insurance, oil and gas, and engineering and construction. Never healthcare, retail, banking, or Canada.
 - **Segment pages** name the buyer exactly as the matrix in `industry-sitemap.md` does, and map only the services the matrix marks for that segment. For example, Refining & Distribution is HSE, turnaround, and NDT inspection firms, not refiners. Field Services is MEP, concrete, and steel trade contractors.
-- **Microsoft leads.** AWS supports. Anthropic is a partner for AI models. Never NetSuite or GCP.
+- **Microsoft leads.** AWS supports. Anthropic is a partner for AI models. Never NetSuite. Google Cloud may be named only when describing a migration (owner decision, 2026-11-02).
 - **Proof.** No figures, client names, testimonials, or client logos unless AptaCloud has approved them. The only approved case studies are RWLS LLC and Warrikal Engineering, and they **cannot be published until AptaCloud confirms**. Until then, case sections are "typical engagements": client-pattern framing ("We often see…"), proof of concept then rollout, and qualitative outcomes (`label: "Typical engagement"` on a `cases` block).
 - **Credentials**, in the approved wording only: 20+ years of experience, 300+ clients served, 200+ engineers under one roof, 4 delivery locations.
 - **Statistics** need a named source. AWS is described as "AWS partner", never "certified AWS partner". Engineer-level "AWS-certified" wording is flagged for confirmation.
@@ -107,12 +108,15 @@ On any conflict, the brand guidelines and `aptacloud-content` win.
   - phone primary card radius 22 px
 - **Section rhythm:** tint → white → dark, repeating (handled in `[...slug].astro`). Banners take the tone of the section before them. Never put two dark sections next to each other.
 - **Hero:** the title is always two lines (the title, then a red accent tail), sized to the longer line. One primary button plus a "How we deliver" text link.
+- **Red:** `--accent` for large text and decoration, `--accent-text` for small text, `--accent-solid` behind white labels. All three pass AA where they are used.
+- **Hover:** a PostCSS plugin in `astro.config.mjs` limits every `:hover` rule to devices that can hover, so don't add the media query by hand.
+- **Tap targets:** 44 px minimum on phones.
 - **Cards** are flat: white on tint, surface on dark, and photos sit above the text. No glows, gradients, dark overlays, or accent-border hover effects.
 - **Numbers** appear only where order matters (process steps).
 - **Phones:** card groups become swipe rails (`sec.rail` + `RailHint`, which hides for a single card). Everything aligns left with the section head. Chips wrap at their natural width.
 - **Photos:**
   - human photos first
-  - never repeat a photo on a page; avoid reuse across pages
+  - never repeat a photo on a page; avoid reuse across pages (Industries cards pick from a pool per vertical, by slug, in `shared.ts`)
   - live-site images only if at least 1200 px
   - Pexels by ID via its CDN (`https://images.pexels.com/photos/<id>/pexels-photo-<id>.jpeg?auto=compress&cs=tinysrgb&w=1600`); Unsplash and Pixabay block bots
   - record every new photo in `PHOTO_CREDITS.md`
@@ -171,6 +175,8 @@ Always check 1440, 1024, and 390 by eye before reporting a page as done.
 - Live URL slugs are kept. The SEO team's matrix slugs differ; adopting them needs 301 redirects.
 - Blog posts and event detail pages stay on the live WordPress site; cards link out to them.
 - Pricing terms on the Azure and AWS managed services pages are client-approved as on the live site.
+- The leadership badges and intro and the "AWS-certified" wording stay (owner decision, 2026-11-02).
+- The region switcher stays because the live site has one. It does not change content yet.
 - Duplicate live sections are dropped without asking.
 - Each sibling page gets a different design for its key sections (map, layers, phases, ledger, hub, and so on), so the template doesn't read as copies.
 - Industry pages with the live template keep every live section in live order.
