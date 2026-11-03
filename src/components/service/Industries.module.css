@@ -141,3 +141,30 @@
 @media (prefers-reduced-motion: reduce) {
   .arrow, .card { transition: none; }
 }
+
+/* Phones: a 2-column grid, so each card keeps the industry and its use case. */
+.more {
+  display: none;
+}
+
+@media (max-width: 809.98px) {
+  .segments,
+  .outcome {
+    display: none;
+  }
+  .useCase {
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    display: -webkit-box;
+    overflow: hidden;
+  }
+  .more {
+    color: var(--accent-text);
+    display: inline-flex;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin-top: auto;
+    padding-top: 8px;
+  }
+}

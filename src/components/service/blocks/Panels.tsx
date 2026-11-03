@@ -14,6 +14,7 @@ import c from "./Cards.module.css";
 import { toneProps, type Tone } from "../tone";
 import sec from "../Section.module.css";
 import s from "./Panels.module.css";
+import { ReadMore } from "@/components/ui/ReadMore";
 
 type PanelsBlock = Extract<Block, { kind: "panels" }>;
 
@@ -33,7 +34,7 @@ export function Panels({ block, tone }: { block: PanelsBlock; tone: Tone }) {
                 {g.items.map((it, i) => (
                   <li key={it.title} className={s.row} style={{ ["--i" as string]: i }}>
                     <h4 className={s.rowTitle}>{it.title}</h4>
-                    <p className={s.rowText}>{it.text}</p>
+                    <ReadMore className={s.rowText}>{it.text}</ReadMore>
                     {it.marks && (
                       <ul className={c.toolChips} aria-label="Products">
                         {it.marks.map((m) => (

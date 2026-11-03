@@ -17,6 +17,7 @@ import { TechMark } from "../TechMark";
 import { toneProps, type Tone } from "../tone";
 import sec from "../Section.module.css";
 import s from "./Phases.module.css";
+import { ReadMore } from "@/components/ui/ReadMore";
 
 type PhasesBlock = Extract<Block, { kind: "phases" }>;
 type Service = PhasesBlock["phases"][number]["items"][number];
@@ -26,7 +27,7 @@ const Svc = ({ it, kicker }: { it: Service; kicker?: string }) => (
     <span className={cn(s.svcMark, !it.mark && s.svcIcon)}>{it.mark ? <TechMark id={it.mark} /> : <Icon id={it.icon ?? "flow"} />}</span>
     {kicker && <p className={s.kicker}>{kicker}</p>}
     <h4 className={s.svcTitle}>{it.title}</h4>
-    <p className={s.svcText}>{it.text}</p>
+    <ReadMore className={s.svcText}>{it.text}</ReadMore>
   </article>
 );
 

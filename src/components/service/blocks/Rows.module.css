@@ -127,7 +127,9 @@
   .rows { flex-direction: row; }
   .row { align-content: start; border-radius: 24px; grid-template-columns: minmax(0, 1fr); }
   .flip .media { order: 0; }
-  .media { min-height: 190px; border-radius: 18px; }
+  .media { min-height: 160px; border-radius: 18px; }
+  /* Stacked on phones: the closing note repeats the bullets, so it goes. */
+  .note { display: none; }
   .copy { padding: 18px 12px 14px; }
   .title { font-size: 22px; }
   .intro { font-size: 15px; margin-bottom: 14px; }

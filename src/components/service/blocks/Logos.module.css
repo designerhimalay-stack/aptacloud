@@ -356,3 +356,9 @@
   .tile, .logo { transition: none; }
   .tile:hover { transform: none; }
 }
+
+/* 320px phones: tool rows shrink and wrap instead of overflowing. */
+@media (max-width: 809.98px) {
+  .tool { min-width: 0; }
+  .tool > * { min-width: 0; overflow-wrap: break-word; }
+}

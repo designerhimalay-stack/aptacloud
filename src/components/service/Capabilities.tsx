@@ -17,6 +17,7 @@ import { TechMark } from "./TechMark";
 import { toneProps, type Tone } from "./tone";
 import sec from "./Section.module.css";
 import s from "./Capabilities.module.css";
+import { ReadMore } from "@/components/ui/ReadMore";
 
 /** Only real logos sit in the card's top-right tiles (no letter monograms). */
 const hasMark = (id: keyof typeof TECH) => {
@@ -66,7 +67,7 @@ export function Capabilities({ services, models = false, tone = "dark" }: { serv
 
               <div className={s.main}>
                 <h3 className={s.title}>{item.title}</h3>
-                <p className={s.text}>{item.text}</p>
+                <ReadMore className={s.text}>{item.text}</ReadMore>
               </div>
 
               <div className={s.outcome}>

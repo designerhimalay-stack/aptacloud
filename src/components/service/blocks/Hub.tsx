@@ -17,6 +17,7 @@ import { SectionHead } from "../SectionHead";
 import { toneProps, type Tone } from "../tone";
 import sec from "../Section.module.css";
 import s from "./Hub.module.css";
+import { ReadMore } from "@/components/ui/ReadMore";
 
 type HubBlock = Extract<Block, { kind: "hub" }>;
 type HubItem = HubBlock["items"][number];
@@ -121,7 +122,7 @@ export function Hub({ block, tone }: { block: HubBlock; tone: Tone }) {
                 <Mark it={it} />
               </span>
               <h3 className={s.mtitle}>{it.title}</h3>
-              <p className={s.mtext}>{it.text}</p>
+              <ReadMore className={s.mtext}>{it.text}</ReadMore>
             </article>
           ))}
         </div>

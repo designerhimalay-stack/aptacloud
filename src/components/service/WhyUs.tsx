@@ -15,6 +15,7 @@ import { SectionHead } from "./SectionHead";
 import { toneProps, type Tone } from "./tone";
 import sec from "./Section.module.css";
 import s from "./WhyUs.module.css";
+import { ReadMore } from "@/components/ui/ReadMore";
 
 export function WhyUs({ why, cta, tone = "tint" }: { why: NonNullable<ServicePage["why"]>; cta: ServicePage["cta"]; tone?: Tone }) {
   const reasons = [...WHY, ...why.extra];
@@ -54,7 +55,7 @@ export function WhyUs({ why, cta, tone = "tint" }: { why: NonNullable<ServicePag
                 </span>
                 <div className={s.reasonBody}>
                   <h3 className={s.reasonTitle}>{r.title}</h3>
-                  <p className={s.reasonText}>{r.text}</p>
+                  <ReadMore className={s.reasonText}>{r.text}</ReadMore>
                 </div>
               </Reveal>
             ))}

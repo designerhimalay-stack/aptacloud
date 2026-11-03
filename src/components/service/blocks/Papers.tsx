@@ -10,6 +10,7 @@ import { SectionHead } from "../SectionHead";
 import { toneProps, type Tone } from "../tone";
 import sec from "../Section.module.css";
 import s from "./Papers.module.css";
+import { ReadMore } from "@/components/ui/ReadMore";
 
 type PapersBlock = Extract<Block, { kind: "papers" }>;
 
@@ -27,7 +28,7 @@ export function Papers({ block, tone }: { block: PapersBlock; tone: Tone }) {
               <div className={s.body}>
                 <p className={s.topic}>{p.topic}</p>
                 <h3 className={s.title}>{p.title}</h3>
-                <p className={s.summary}>{p.summary}</p>
+                <ReadMore className={s.summary}>{p.summary}</ReadMore>
                 <p className={s.listHead}>What it covers</p>
                 <ul className={s.points}>
                   {p.points.map((pt) => (

@@ -14,6 +14,7 @@ import { TechMark } from "../TechMark";
 import { toneProps, type Tone } from "../tone";
 import sec from "../Section.module.css";
 import s from "./Focus.module.css";
+import { ReadMore } from "@/components/ui/ReadMore";
 
 type FocusBlock = Extract<Block, { kind: "focus" }>;
 
@@ -37,7 +38,7 @@ export function Focus({ block, tone }: { block: FocusBlock; tone: Tone }) {
                   <span className={s.kicker}>Core service</span>
                 </div>
                 <h3 className={s.title}>{it.title}</h3>
-                <p className={s.text}>{it.text}</p>
+                <ReadMore className={s.text}>{it.text}</ReadMore>
                 <ul className={s.points}>
                   {it.points.map((p) => (
                     <li key={p}>

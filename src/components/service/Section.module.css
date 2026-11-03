@@ -148,34 +148,38 @@
   padding-bottom: 6px;
 }
 
-/* ── Shared: horizontal snap rail on phones (cards scroll sideways, so the
-   page scrolls less). Only active below 810px. ───────────────────────── */
+/* ── Shared: on phones card groups become a 2-column grid (owner, 2026-11-03:
+   no sideways swiping). Card copy is clamped by ui/ReadMore. ──────────── */
 @media (max-width: 809.98px) {
+  /* !important: each block's own phone column rules come later in the CSS. */
   .rail {
-    -ms-overflow-style: none;
-    display: flex !important;
-    gap: 8px;
-    margin: 0 -16px;
-    overflow-x: auto;
-    overscroll-behavior-x: contain;
-    padding: 4px 16px 8px;
-    scroll-padding: 0 16px;
-    scroll-snap-type: x mandatory;
-    scrollbar-width: none;
+    display: grid !important;
+    gap: 8px !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
   }
 
-  .rail::-webkit-scrollbar {
-    display: none;
+  /* Half-width cards on a 320px phone: let every row inside shrink and wrap. */
+  .rail > *,
+  .rail * {
+    min-width: 0;
   }
 
-  .rail > * {
-    flex: 0 0 84%;
-    scroll-snap-align: start;
+  .rail :is(h3, h4, p, span, li) {
+    overflow-wrap: break-word;
   }
 
-  /* A single card has nothing to swipe to, so it takes the full width. */
-  .rail > :only-child {
-    flex-basis: 100%;
+  .rail img {
+    max-width: 100%;
+  }
+
+  /* An odd last card (or a single one) takes the full row, so no gaps. */
+  .rail > :last-child:nth-child(odd) {
+    grid-column: 1 / -1 !important;
+  }
+
+  /* Heavy cards (case studies, long lists) stack in one column. */
+  .rail.stack {
+    grid-template-columns: minmax(0, 1fr) !important;
   }
 }
 
@@ -188,7 +192,7 @@
   .railHint {
     align-items: center;
     color: var(--fg-subtle);
-    display: flex;
+    display: none;
     font-family: var(--ff-inter);
   font-weight: 600;
     font-size: 12px;

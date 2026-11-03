@@ -18,6 +18,7 @@ import { Card } from "./Cards";
 import sec from "../Section.module.css";
 import b from "./Blocks.module.css";
 import s from "./Spectrum.module.css";
+import { ReadMore } from "@/components/ui/ReadMore";
 
 type SpectrumBlock = Extract<Block, { kind: "spectrum" }>;
 
@@ -68,7 +69,7 @@ export function Spectrum({ block, tone }: { block: SpectrumBlock; tone: Tone }) 
                   </span>
                   <p className={s.names}>{m.marks.map((k) => TECH[k].name).join(" · ")}</p>
                   <h3 className={s.title}>{m.title}</h3>
-                  <p className={s.text}>{m.text}</p>
+                  <ReadMore className={s.text}>{m.text}</ReadMore>
                 </article>
               ))}
             </div>

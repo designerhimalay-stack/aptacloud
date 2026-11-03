@@ -128,7 +128,7 @@
   .content { display: flex; flex-direction: column; gap: 20px; }
   .heading { font-size: 28px; letter-spacing: -0.05em; }
   .buttonWrap { margin-top: 8px; }
-  .cards { display: flex !important; gap: 8px; margin: 0 -16px; overflow-x: auto; overscroll-behavior-x: contain; padding: 4px 16px 8px; scroll-padding: 0 16px; scroll-snap-type: x mandatory; width: calc(100% + 32px); }
+  .cards { display: grid !important; gap: 8px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .cards > * { flex: 0 0 84%; scroll-snap-align: start; }
 }
 

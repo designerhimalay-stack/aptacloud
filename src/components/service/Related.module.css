@@ -144,9 +144,11 @@
 @media (max-width: 809.98px) {
   .section { padding-bottom: 48px; padding-top: 56px; }
   .title { font-size: 26px; }
-  .card { border-radius: 22px; }
-  .thumb { height: 120px; }
-  .name { font-size: 18px; }
+  .card { border-radius: 22px; padding: 6px; }
+  .thumb { border-radius: 16px; height: 104px; }
+  .body { gap: 4px; padding: 10px 8px 8px; }
+  .name { font-size: 16px; }
+  .summary { -webkit-box-orient: vertical; -webkit-line-clamp: 2; display: -webkit-box; font-size: 13px; overflow: hidden; }
 }
 
 @media (prefers-reduced-motion: reduce) {

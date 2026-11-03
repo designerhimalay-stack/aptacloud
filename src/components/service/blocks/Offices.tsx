@@ -36,7 +36,7 @@ export function Offices({ block, tone }: { block: OfficesBlock; tone: Tone }) {
     <section id={id} {...toneProps(tone)}>
       <div className={sec.container}>
         <SectionHead variant={block.head ?? "split"} tag={block.tag} icon={<Icon id={block.icon ?? "target"} />} heading={block.heading} lead={block.lead} />
-        <div id={`${id}-rail`} className={cn(s.grid, sec.rail)} style={{ ["--n" as string]: block.items.length }}>
+        <div id={`${id}-rail`} className={cn(s.grid, sec.rail, sec.stack)} style={{ ["--n" as string]: block.items.length }}>
           {block.items.map((o, i) => (
             <Reveal key={o.city} y={28} duration={0.9} delay={i * 0.07} className={s.cell}>
               <article className={s.card}>

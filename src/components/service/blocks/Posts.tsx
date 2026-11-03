@@ -15,6 +15,7 @@ import { SectionHead } from "../SectionHead";
 import { toneProps, type Tone } from "../tone";
 import sec from "../Section.module.css";
 import s from "./Posts.module.css";
+import { ReadMore } from "@/components/ui/ReadMore";
 
 type PostsBlock = Extract<Block, { kind: "posts" }>;
 
@@ -41,7 +42,7 @@ export function Posts({ block, tone }: { block: PostsBlock; tone: Tone }) {
                       <span>{fmt(p.date)}</span>
                     </p>
                     <h3 className={s.title}>{p.title}</h3>
-                    <p className={s.summary}>{it.summary}</p>
+                    <ReadMore link className={s.summary}>{it.summary}</ReadMore>
                     <span className={s.read}>
                       Read the article
                       <ArrowUpRight />

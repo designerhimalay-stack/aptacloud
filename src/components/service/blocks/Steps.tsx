@@ -19,6 +19,7 @@ import { toneProps, type Tone } from "../tone";
 import sec from "../Section.module.css";
 import p from "../Process.module.css";
 import s from "./Steps.module.css";
+import { ReadMore } from "@/components/ui/ReadMore";
 
 type StepsBlock = Extract<Block, { kind: "steps" }>;
 
@@ -114,7 +115,7 @@ function Vertical({ steps }: { steps: StepsBlock["steps"] }) {
             <span className={s.vnode} data-vnode>{done(i) ? <Tick /> : i + 1}</span>
             <div className={s.vbody}>
               <h3 className={s.vtitle}>{step.title}</h3>
-              <p className={s.vtext}>{step.text}</p>
+              <ReadMore className={s.vtext}>{step.text}</ReadMore>
             </div>
           </li>
         ))}
@@ -159,7 +160,7 @@ function Curve({ steps }: { steps: StepsBlock["steps"] }) {
               <span className={s.tnode} data-vnode>{String(i + 1).padStart(2, "0")}</span>
               <div className={s.tcard}>
                 <h3 className={s.ttitle}>{step.title}</h3>
-                <p className={s.ttext}>{step.text}</p>
+                <ReadMore className={s.ttext}>{step.text}</ReadMore>
               </div>
             </li>
           );
@@ -224,7 +225,7 @@ function Cycle({ steps, centre }: { steps: StepsBlock["steps"]; centre?: string 
             <span className={s.cno}>{String(i + 1).padStart(2, "0")}</span>
             <div>
               <h3 className={s.ctitle}>{step.title}</h3>
-              <p className={s.ctext}>{step.text}</p>
+              <ReadMore className={s.ctext}>{step.text}</ReadMore>
             </div>
           </li>
         ))}
@@ -309,7 +310,7 @@ function Arc({ steps }: { steps: StepsBlock["steps"] }) {
             Step {at + 1} of {n}
           </span>
           <p className={s.arcTitle}>{step.title}</p>
-          <p className={s.arcText}>{step.text}</p>
+          <ReadMore className={s.arcText}>{step.text}</ReadMore>
         </div>
       </div>
       <ol className="sr-only">

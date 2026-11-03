@@ -26,7 +26,7 @@ export function Plans({ block, cta, tone }: { block: PlansBlock; cta?: { label: 
       <div className={sec.container}>
         <SectionHead variant={block.head ?? "center"} tag={block.tag} icon={<Icon id={block.icon ?? "gauge"} />} heading={block.heading} lead={block.lead} />
 
-        <div id={`${id}-rail`} className={cn(s.cards, sec.rail)}>
+        <div id={`${id}-rail`} className={cn(s.cards, sec.rail, sec.stack)}>
           {block.plans.map((p, i) => (
             <Reveal key={p.name} y={28} duration={0.9} delay={i * 0.08} className={s.cell}>
               <article className={s.card}>

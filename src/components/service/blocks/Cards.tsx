@@ -29,6 +29,7 @@ import { spanStyles } from "./grid";
 import sec from "../Section.module.css";
 import b from "./Blocks.module.css";
 import s from "./Cards.module.css";
+import { ReadMore } from "@/components/ui/ReadMore";
 
 type CardsBlock = Extract<Block, { kind: "cards" }>;
 
@@ -46,7 +47,7 @@ export function Card({ item, style, i }: { item: BlockItem; style: NonNullable<C
           {item.mark ? <TechMark id={item.mark} /> : <Icon id={item.icon ?? "spark"} />}
         </span>
         <h3 className={b.title}>{item.title}</h3>
-        {item.text && <p className={b.text}>{item.text}</p>}
+        {item.text && <ReadMore className={b.text}>{item.text}</ReadMore>}
       </article>
     );
 
@@ -55,7 +56,7 @@ export function Card({ item, style, i }: { item: BlockItem; style: NonNullable<C
       <article className={cn(b.card, s.plain)}>
         <span className={s.plainNo}>{String(i + 1).padStart(2, "0")}</span>
         <h3 className={b.title}>{item.title}</h3>
-        {item.text && <p className={b.text}>{item.text}</p>}
+        {item.text && <ReadMore className={b.text}>{item.text}</ReadMore>}
       </article>
     );
 
@@ -82,7 +83,7 @@ export function Card({ item, style, i }: { item: BlockItem; style: NonNullable<C
         <div className={s.photoBody}>
           {item.kicker && <p className={b.kicker}>{item.kicker}</p>}
           <h3 className={b.title}>{item.title}</h3>
-          {item.text && <p className={b.text}>{item.text}</p>}
+          {item.text && <ReadMore className={b.text}>{item.text}</ReadMore>}
           {item.points && (
             <ul className={s.photoPoints}>
               {item.points.map((p) => (
@@ -109,7 +110,7 @@ export function Card({ item, style, i }: { item: BlockItem; style: NonNullable<C
         </span>
         <div className={b.body}>
           <h3 className={cn(b.title, s.checkTitle)}>{item.title}</h3>
-          {item.text && <p className={b.text}>{item.text}</p>}
+          {item.text && <ReadMore className={b.text}>{item.text}</ReadMore>}
         </div>
       </article>
     );
@@ -123,7 +124,7 @@ export function Card({ item, style, i }: { item: BlockItem; style: NonNullable<C
           </svg>
         </div>
         <h3 className={s.statementTitle}>{item.title}</h3>
-        {item.text && <p className={b.text}>{item.text}</p>}
+        {item.text && <ReadMore className={b.text}>{item.text}</ReadMore>}
       </article>
     );
 
@@ -145,7 +146,7 @@ export function Card({ item, style, i }: { item: BlockItem; style: NonNullable<C
       <div className={b.body}>
         {item.kicker && <p className={b.kicker}>{item.kicker}</p>}
         <h3 className={b.title}>{item.title}</h3>
-        {item.text && <p className={b.text}>{item.text}</p>}
+        {item.text && <ReadMore className={b.text}>{item.text}</ReadMore>}
       </div>
       {item.marks && (
         <ul className={s.toolChips} aria-label="Products">
@@ -265,7 +266,7 @@ export function Cards({ block, cta, tone }: { block: CardsBlock; cta?: { label: 
                 <Reveal key={item.title} y={20} duration={0.8} delay={i * 0.05} style={spanStyles(block.more!.items.length, block.more!.items.length)[i]}>
                   <article className={s.mini}>
                     <h3 className={s.miniTitle}>{item.title}</h3>
-                    {item.text && <p className={s.miniText}>{item.text}</p>}
+                    {item.text && <ReadMore className={s.miniText}>{item.text}</ReadMore>}
                   </article>
                 </Reveal>
               ))}

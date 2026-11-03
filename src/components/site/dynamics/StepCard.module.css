@@ -63,14 +63,23 @@
 }
 
 @media (max-width: 809.98px) {
+  /* Half-width card in the phone grid. */
   .card {
-    gap: 56px;
+    gap: 28px;
     min-height: 0;
+    padding: 16px;
   }
   .title {
-    font-size: 20px;
+    font-size: 16px;
+    hyphens: auto;
+    letter-spacing: -0.03em;
+    overflow-wrap: break-word;
+  }
+  .text {
+    font-size: 14px;
   }
 }
+
 
 /* Optional product lockup (first card: Microsoft Dynamics 365, as in the PDF). */
 .top {
@@ -85,4 +94,9 @@
   height: 36px;
   margin: -6px 0;
   width: auto;
+}
+
+/* Phones: the lockup is already on the feature photo above. */
+@media (max-width: 809.98px) {
+  .logo { display: none; }
 }

@@ -8,6 +8,7 @@
 import { asset } from "@/brand/brand";
 import { cn } from "@/lib/utils";
 import s from "./ToolColumn.module.css";
+import { ReadMore } from "@/components/ui/ReadMore";
 
 export type ToolIcon = "sharepoint" | "m365" | "copilot" | "power";
 
@@ -45,7 +46,7 @@ export function ToolColumn({ name, caption, body, tags, icon, className }: ToolC
         </ul>
         <div className={s.about}>
           <p className={s.caption}>{caption}</p>
-          <p className={s.text}>{body}</p>
+          <ReadMore className={s.text}>{body}</ReadMore>
         </div>
       </div>
     </article>

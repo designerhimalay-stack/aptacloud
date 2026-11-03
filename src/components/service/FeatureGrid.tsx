@@ -13,6 +13,7 @@ import { SectionHead } from "./SectionHead";
 import { toneProps, type Tone } from "./tone";
 import sec from "./Section.module.css";
 import s from "./FeatureGrid.module.css";
+import { ReadMore } from "@/components/ui/ReadMore";
 
 export function FeatureGrid({
   id,
@@ -51,7 +52,7 @@ export function FeatureGrid({
                 <div className={s.body}>
                   {variant === "useCases" && <p className={s.label}>Use case</p>}
                   <h3 className={s.title}>{it.title}</h3>
-                  <p className={s.text}>{it.text}</p>
+                  <ReadMore className={s.text}>{it.text}</ReadMore>
                 </div>
               </article>
             </Reveal>

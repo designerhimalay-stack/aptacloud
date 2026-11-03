@@ -218,9 +218,10 @@
   .subheading { font-size: 20px; }
   .frame { grid-template-columns: minmax(0, 1fr); }
   .feature { height: 220px; }
-  /* The service steps become a swipe rail (the closing photo is its last card). */
-  .steps { display: flex !important; gap: 8px; margin: 0 -16px; overflow-x: auto; overscroll-behavior-x: contain; padding: 4px 16px 8px; scroll-padding: 0 16px; scroll-snap-type: x mandatory; }
-  .steps > * { flex: 0 0 84%; scroll-snap-align: start; }
+  /* The service steps sit two to a row (the closing photo is the last card). */
+  .steps { display: grid !important; gap: 8px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .steps > *, .steps * { min-width: 0; }
+  .steps { grid-auto-rows: auto; }
   .steps > :last-child { height: auto; }
 }
 
@@ -249,4 +250,8 @@
   display: block;
   height: 34px;
   width: auto;
+}
+
+@media (max-width: 809.98px) {
+  .steps > :last-child { min-height: 200px; }
 }

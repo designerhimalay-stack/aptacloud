@@ -143,3 +143,9 @@
   .row, .no { transition: none; }
   .row:hover { transform: none; }
 }
+
+@media (max-width: 809.98px) {
+  .row { padding: 14px; }
+  .no, .pills { display: none; }
+  .title { font-size: 16px; }
+}

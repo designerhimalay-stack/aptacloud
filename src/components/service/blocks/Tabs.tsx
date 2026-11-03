@@ -13,6 +13,7 @@ import { SectionHead } from "../SectionHead";
 import { toneProps, type Tone } from "../tone";
 import sec from "../Section.module.css";
 import s from "./Tabs.module.css";
+import { ReadMore } from "@/components/ui/ReadMore";
 
 type TabsBlock = Extract<Block, { kind: "tabs" }>;
 
@@ -77,7 +78,7 @@ export function Tabs({ block, tone }: { block: TabsBlock; tone: Tone }) {
                   </span>
                   <div>
                     <h3 className={s.itemTitle}>{it.title}</h3>
-                    <p className={s.itemText}>{it.text}</p>
+                    <ReadMore className={s.itemText}>{it.text}</ReadMore>
                   </div>
                 </li>
               ))}

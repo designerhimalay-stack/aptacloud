@@ -14,6 +14,7 @@ import { SectionHead } from "../SectionHead";
 import { toneProps, type Tone } from "../tone";
 import sec from "../Section.module.css";
 import s from "./Cases.module.css";
+import { ReadMore } from "@/components/ui/ReadMore";
 
 type CasesBlock = Extract<Block, { kind: "cases" }>;
 
@@ -54,7 +55,7 @@ function Wide({ block, tone }: { block: CasesBlock; tone: Tone }) {
     <section id={block.id ?? "case-studies"} {...toneProps(tone)}>
       <div className={sec.container}>
         <SectionHead variant={block.head ?? "split"} tag={block.tag} icon={<Icon id={block.icon ?? "chart"} />} heading={block.heading} lead={block.lead} />
-        <div id={`${block.id ?? "case-studies"}-rail`} className={cn(s.wideList, sec.rail)}>
+        <div id={`${block.id ?? "case-studies"}-rail`} className={cn(s.wideList, sec.rail, sec.stack)}>
           {block.items.map((c, i) => (
             <Reveal key={c.client} y={32} duration={1} className={s.wide}>
               <div className={s.wideStory}>
@@ -68,7 +69,7 @@ function Wide({ block, tone }: { block: CasesBlock; tone: Tone }) {
                   )}
                 </div>
                 <h3 className={s.wideClient}>{c.client}</h3>
-                {c.text && <p className={s.text}>{c.text}</p>}
+                {c.text && <ReadMore className={s.text}>{c.text}</ReadMore>}
               </div>
               <div className={s.wideResults}>
                 {c.metric ? (
@@ -131,7 +132,7 @@ export function Cases({ block, tone }: { block: CasesBlock; tone: Tone }) {
                 )}
                 <div className={cn(s.story, !c.metric && s.storyPlain)}>
                   <h3 className={s.client}>{c.client}</h3>
-                  {c.text && <p className={s.text}>{c.text}</p>}
+                  {c.text && <ReadMore className={s.text}>{c.text}</ReadMore>}
                   {c.points && (
                     <ul className={s.points}>
                       {c.points.map((p) => (

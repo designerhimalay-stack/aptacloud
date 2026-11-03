@@ -17,6 +17,7 @@ import { TechMark } from "../TechMark";
 import { toneProps, type Tone } from "../tone";
 import sec from "../Section.module.css";
 import s from "./Layers.module.css";
+import { ReadMore } from "@/components/ui/ReadMore";
 
 type LayersBlock = Extract<Block, { kind: "layers" }>;
 type Service = LayersBlock["layers"][number]["items"][number];
@@ -26,7 +27,7 @@ const ServiceRow = ({ it }: { it: Service }) => (
     <span className={s.svcMark}>{it.mark ? <TechMark id={it.mark} /> : <Icon id={it.icon ?? "spark"} />}</span>
     <div>
       <h4 className={s.svcTitle}>{it.title}</h4>
-      <p className={s.svcText}>{it.text}</p>
+      <ReadMore className={s.svcText}>{it.text}</ReadMore>
     </div>
   </li>
 );
@@ -120,14 +121,14 @@ export function Layers({ block, tone }: { block: LayersBlock; tone: Tone }) {
         </Reveal>
 
         {/* Phones: every layer as a card on a swipe rail. */}
-        <div id={`${id}-layers-rail`} className={cn(s.mobile, sec.rail)}>
+        <div id={`${id}-layers-rail`} className={cn(s.mobile, sec.rail, sec.stack)}>
           {block.layers.map((l, i) => (
             <article key={l.label} className={s.mcard}>
               <span className={s.detailNo}>
                 Layer {i + 1} of {n}
               </span>
               <h3 className={s.mtitle}>{l.label}</h3>
-              <p className={s.mtext}>{l.text}</p>
+              <ReadMore className={s.mtext}>{l.text}</ReadMore>
               <ul className={s.svcs}>
                 {l.items.map((it) => (
                   <ServiceRow key={it.title} it={it} />

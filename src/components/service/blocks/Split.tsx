@@ -16,6 +16,7 @@ import { SectionHead } from "../SectionHead";
 import { toneProps, type Tone } from "../tone";
 import sec from "../Section.module.css";
 import s from "./Split.module.css";
+import { ReadMore } from "@/components/ui/ReadMore";
 
 type SplitBlock = Extract<Block, { kind: "split" }>;
 
@@ -32,7 +33,7 @@ function Flank({ block, tone }: { block: SplitBlock; tone: Tone }) {
           </span>
           <div className={s.itemBody}>
             <h3 className={s.itemTitle}>{it.title}</h3>
-            {it.text && <p className={s.itemText}>{it.text}</p>}
+            {it.text && <ReadMore className={s.itemText}>{it.text}</ReadMore>}
           </div>
         </Reveal>
       ))}
@@ -92,7 +93,7 @@ export function Split({ block, cta, tone }: { block: SplitBlock; cta?: { label: 
                   )}
                   <div className={s.itemBody}>
                     <h3 className={s.itemTitle}>{it.title}</h3>
-                    {it.text && <p className={s.itemText}>{it.text}</p>}
+                    {it.text && <ReadMore className={s.itemText}>{it.text}</ReadMore>}
                   </div>
                 </Reveal>
               ))}

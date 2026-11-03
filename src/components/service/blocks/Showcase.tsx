@@ -14,6 +14,7 @@ import { TechMark } from "../TechMark";
 import { toneProps, type Tone } from "../tone";
 import sec from "../Section.module.css";
 import s from "./Showcase.module.css";
+import { ReadMore } from "@/components/ui/ReadMore";
 
 type ShowcaseBlock = Extract<Block, { kind: "showcase" }>;
 
@@ -38,7 +39,7 @@ export function Showcase({ block, tone }: { block: ShowcaseBlock; tone: Tone }) 
                   </div>
                 </div>
                 <p className={s.kicker}>{it.kicker}</p>
-                <p className={s.text}>{it.text}</p>
+                <ReadMore className={s.text}>{it.text}</ReadMore>
                 <ul className={s.chips} aria-label="Best for">
                   {it.bestFor.map((b) => (
                     <li key={b}>{b}</li>
@@ -57,7 +58,7 @@ export function Showcase({ block, tone }: { block: ShowcaseBlock; tone: Tone }) 
               {block.more.items.map((it, i) => (
                 <Reveal key={it.title} y={20} duration={0.8} delay={i * 0.05} className={s.mini}>
                   <p className={s.miniTitle}>{it.title}</p>
-                  {it.text && <p className={s.miniText}>{it.text}</p>}
+                  {it.text && <ReadMore className={s.miniText}>{it.text}</ReadMore>}
                 </Reveal>
               ))}
             </div>

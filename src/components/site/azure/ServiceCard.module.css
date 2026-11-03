@@ -194,3 +194,18 @@
   .card:hover { transform: none; }
   .card:hover .float, .card:hover .data, .card:hover .slide, .card:hover .check { animation: none; }
 }
+
+/* Phones (2-column grid): icon, title, two lines of copy, and the link. */
+@media (max-width: 809.98px) {
+  .card { gap: 12px; padding: 16px; }
+  .points { display: none; }
+  .title { font-size: 18px; }
+  .body {
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    display: -webkit-box;
+    font-size: 14px;
+    overflow: hidden;
+  }
+  .more { font-size: 13px; }
+}

@@ -625,3 +625,7 @@
   color: var(--accent-text);
   text-decoration-color: var(--accent);
 }
+
+@media (max-width: 809.98px) {
+  .logoWide { max-width: 100%; }
+}

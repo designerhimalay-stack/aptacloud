@@ -22,7 +22,7 @@ export function Rows({ block, tone }: { block: RowsBlock; tone: Tone }) {
     <section id={id} {...toneProps(tone)}>
       <div className={sec.container}>
         <SectionHead variant={block.head ?? "split"} tag={block.tag} icon={<Icon id={block.icon ?? "target"} />} heading={block.heading} lead={block.lead} />
-        <div id={`${id}-rail`} className={cn(s.rows, sec.rail)}>
+        <div id={`${id}-rail`} className={cn(s.rows, sec.rail, sec.stack)}>
           {block.items.map((row, i) => (
             <Reveal key={row.title} y={40} duration={1.1} className={cn(s.row, i % 2 === 1 && s.flip, "photo-host")}>
               <div className={s.media}>

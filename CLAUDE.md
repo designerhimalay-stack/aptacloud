@@ -28,5 +28,5 @@ Dev: `npm run dev -- --port 4321` → http://localhost:4321/aptacloud/ · Check:
 - No accent "border line" hover effects (user dislikes them).
 - Cards stay clean and flat like home: white cards on light sections, surface cards on dark, photos above text (no dark overlays, glows or gradient cards). Hero glow/grid only. Numbers only where order matters (process).
 - Sub-page hero title is always two lines (title, then the red accent tail); size scales to the longer line. Phones may wrap.
-- Phones: card groups become swipe rails (`sec.rail` + `RailHint`) to cut vertical scrolling.
+- Phones: no sideways swiping. Card groups (`sec.rail`) become a 2-column grid, an odd last card spans the row, and heavy cards (case studies, plans, offices, layered lists) use `sec.stack` for one column. Card copy goes through `ui/ReadMore` (2 lines + "Read more" on phones, full text on desktop). Owner, 2026-11-03.
 - AI expertise shows GPT, Claude, Gemini, Grok, Llama logos (`public/images/ai/`).

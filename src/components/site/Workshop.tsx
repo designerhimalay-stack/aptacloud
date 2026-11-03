@@ -11,6 +11,7 @@ import { SpreadGrid } from "@/components/ui/SpreadGrid";
 import { LineReveal, Reveal } from "@/components/ui/Reveal";
 import { cn } from "@/lib/utils";
 import s from "./Workshop.module.css";
+import { ReadMore } from "@/components/ui/ReadMore";
 
 const THRESHOLD = 0.1;
 
@@ -121,7 +122,7 @@ export function Workshop() {
                 <div className={s.space18} />
                 <h3 className={cn("t-h4", s.text, s.centered)}>{g.title}</h3>
                 <div className={s.space12} />
-                <p className={cn("t-body-sm", s.text, s.body, s.centered)}>{g.text}</p>
+                <ReadMore className={cn("t-body-sm", s.text, s.body, s.centered)}>{g.text}</ReadMore>
               </div>
           ))}
         />

@@ -19,6 +19,7 @@ import { spanStyles } from "./grid";
 import sec from "../Section.module.css";
 import b from "./Blocks.module.css";
 import s from "./Logos.module.css";
+import { ReadMore } from "@/components/ui/ReadMore";
 
 type LogosBlock = Extract<Block, { kind: "logos" }>;
 
@@ -115,7 +116,7 @@ function Board({ block, tone }: { block: LogosBlock; tone: Tone }) {
               <Reveal key={g.label} y={24} duration={0.9} delay={0.08 + i * 0.07} style={spans[i]}>
                 <article className={s.group}>
                   <h3 className={s.groupTitle}>{g.label}</h3>
-                  {g.text && <p className={s.groupText}>{g.text}</p>}
+                  {g.text && <ReadMore className={s.groupText}>{g.text}</ReadMore>}
                   <ul className={cn(s.list, cols === 2 && s.listTwo)}>
                     {g.ids.map((id) => (
                       <Tool key={id} id={id} />

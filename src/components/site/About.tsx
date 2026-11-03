@@ -13,6 +13,7 @@ import { SpreadGrid } from "@/components/ui/SpreadGrid";
 import { RollingText } from "@/components/ui/RollingText";
 import { cn } from "@/lib/utils";
 import s from "./About.module.css";
+import { ReadMore } from "@/components/ui/ReadMore";
 
 // Short value proposition (Brand Guidelines v2.0, 3.2), Australian spelling.
 const HEADING = "Your team has already started. We take it to production.";
@@ -147,7 +148,7 @@ export function About() {
               </div>
               <div className={s.statBottom}>
                 <h3 className={s.statTitle}>{stat.title}</h3>
-                <p className={s.statText}>{stat.text}</p>
+                <ReadMore className={s.statText}>{stat.text}</ReadMore>
               </div>
             </div>
             )),

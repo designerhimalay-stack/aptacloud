@@ -13,6 +13,7 @@ import { BRAND } from "@/brand/brand";
 import { Reveal } from "@/components/ui/Reveal";
 import { SpreadGrid } from "@/components/ui/SpreadGrid";
 import s from "./WhyWorkshop.module.css";
+import { ReadMore } from "@/components/ui/ReadMore";
 
 // [word, accent?] — "before you commit." keeps the brand accent.
 const HEADING: [string, boolean][] = [
@@ -171,7 +172,7 @@ export function WhyWorkshop() {
               <div className={s.body}>
                 <BenefitIcon kind={b.icon} />
                 <h3 className={s.title}>{b.title}</h3>
-                <p className={s.cardText}>{b.text}</p>
+                <ReadMore className={s.cardText}>{b.text}</ReadMore>
               </div>
             </article>
           ))}

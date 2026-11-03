@@ -1,0 +1,62 @@
+/* ReadMore: desktop shows everything; phones clamp to two lines. */
+
+.toggle,
+.more {
+  display: none;
+}
+
+@media (max-width: 809.98px) {
+  .clamp {
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    display: -webkit-box;
+    overflow: hidden;
+  }
+
+  .toggle {
+    clip-path: inset(50%);
+    display: block;
+    height: 1px;
+    margin: 0;
+    position: absolute;
+    width: 1px;
+  }
+
+  .toggle:checked + .clamp {
+    -webkit-line-clamp: unset;
+    display: block;
+    overflow: visible;
+  }
+
+  .more {
+    align-items: center;
+    align-self: flex-start;
+    color: var(--accent-text);
+    cursor: pointer;
+    display: inline-flex;
+    font-family: var(--ff-inter);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin: -10px 0 -12px;
+    min-height: 44px;
+  }
+
+  .less {
+    display: none;
+  }
+
+  .toggle:checked ~ .more .open {
+    display: none;
+  }
+
+  .toggle:checked ~ .more .less {
+    display: inline;
+  }
+
+  .toggle:focus-visible ~ .more {
+    border-radius: 4px;
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+}

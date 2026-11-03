@@ -12,6 +12,7 @@ import { SectionHead } from "./SectionHead";
 import { toneProps, type Tone } from "./tone";
 import sec from "./Section.module.css";
 import s from "./Frameworks.module.css";
+import { ReadMore } from "@/components/ui/ReadMore";
 
 export function Frameworks({ data, tone }: { data: NonNullable<ServiceExtras["frameworks"]>; tone: Tone }) {
   const n = data.items.length;
@@ -36,7 +37,7 @@ export function Frameworks({ data, tone }: { data: NonNullable<ServiceExtras["fr
                   ))}
                 </span>
                 <h3 className={s.title}>{f.title}</h3>
-                <p className={s.text}>{f.text}</p>
+                <ReadMore className={s.text}>{f.text}</ReadMore>
               </article>
             </Reveal>
           ))}

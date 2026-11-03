@@ -14,6 +14,7 @@ import { RailHint } from "../RailHint";
 import { toneProps, type Tone } from "../tone";
 import sec from "../Section.module.css";
 import s from "./Index.module.css";
+import { ReadMore } from "@/components/ui/ReadMore";
 
 type IndexBlock = Extract<Block, { kind: "index" }>;
 
@@ -41,7 +42,7 @@ export function Index({ block, tone }: { block: IndexBlock; tone: Tone }) {
               <span className={s.no}>{String(i + 1).padStart(2, "0")}</span>
               <div className={s.body}>
                 <h3 className={s.title}>{it.title}</h3>
-                <p className={s.text}>{it.text}</p>
+                <ReadMore className={s.text}>{it.text}</ReadMore>
                 <ul className={s.pills}>
                   {it.points.map((p) => (
                     <li key={p}>{p}</li>

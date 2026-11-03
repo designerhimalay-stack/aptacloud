@@ -3,6 +3,7 @@
 // and muted text pinned to the bottom.
 
 import s from "./StepCard.module.css";
+import { ReadMore } from "@/components/ui/ReadMore";
 
 export function StepCard({
   index,
@@ -29,7 +30,7 @@ export function StepCard({
       </div>
       <div className={s.body}>
         <h4 className={s.title}>{title}</h4>
-        <p className={s.text}>{text}</p>
+        <ReadMore className={s.text}>{text}</ReadMore>
       </div>
     </article>
   );

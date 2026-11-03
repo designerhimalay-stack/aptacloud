@@ -53,6 +53,9 @@ export function Industries({ industries, slug, tone = "dark" }: { industries: No
                       <p className={s.segments}>{ind.segments}</p>
                       <h3 className={s.useCase}>{item.useCase}</h3>
                       <p className={s.outcome}>{item.outcome}</p>
+                      <span className={s.more} aria-hidden="true">
+                        Read more
+                      </span>
                     </div>
                   </a>
                 </Reveal>

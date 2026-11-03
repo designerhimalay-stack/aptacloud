@@ -105,18 +105,15 @@
   .panel { border-radius: 18px; padding: 20px 18px; }
   .panelTitle { font-size: 22px; }
   .panelText { font-size: 14px; }
-  /* Start-aligned: a centred row would overflow both edges, and the left edge cannot be scrolled to. */
+  /* Two cards to a row; an odd last card takes the row. */
   .list {
-    flex-direction: row;
+    display: grid;
     gap: 6px;
-    justify-content: flex-start;
-    overflow-x: auto;
-    overscroll-behavior-x: contain;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     padding: 0;
-    scroll-padding: 0;
-    scroll-snap-type: x mandatory;
   }
-  .row { background: var(--bg); border: 0; border-radius: 16px; flex: 0 0 80%; padding: 14px; scroll-snap-align: start; }
+  .row { background: var(--bg); border: 0; border-radius: 16px; min-width: 0; padding: 14px; }
+  .row:last-child:nth-child(odd) { grid-column: 1 / -1; }
   .rowTitle { font-size: 15px; }
   .rowText { font-size: 13px; }
 }

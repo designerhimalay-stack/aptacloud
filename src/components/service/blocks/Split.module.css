@@ -265,18 +265,15 @@
   .lead, .para { font-size: 15px; line-height: 1.45; }
   .list { margin-top: 4px; padding: 6px; border-radius: 22px; }
   .listCards, .listDivided { padding: 0; }
-  /* One small card per point: a swipe rail, so long "why" lists scroll sideways. */
+  /* One small card per point, two to a row; an odd last card takes the row. */
   .listCards {
-    flex-direction: row;
-    margin: 4px -16px 0;
-    overflow-x: auto;
-    overscroll-behavior-x: contain;
-    padding: 0 16px 6px;
-    scroll-padding: 0 16px;
-    scroll-snap-type: x mandatory;
-    width: calc(100% + 32px);
+    display: grid;
+    gap: 8px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin: 4px 0 0;
   }
-  .listCards .item { flex: 0 0 80%; flex-direction: column; gap: 10px; scroll-snap-align: start; }
+  .listCards .item { flex-direction: column; gap: 10px; min-width: 0; }
+  .listCards .item:last-child:nth-child(odd) { grid-column: 1 / -1; }
   .listCards .item:hover { transform: none; }
   .item { gap: 12px; padding: 12px; }
   .listDivided .item { padding: 12px 2px; }
