@@ -177,3 +177,9 @@
   .card, .logo { transition: none; }
   .card:hover { transform: none; }
 }
+
+/* Phones (half-width card): logo above the name. */
+@media (max-width: 809.98px) {
+  .top { align-items: flex-start; flex-direction: column; gap: 10px; }
+  .name { font-size: 18px; }
+}

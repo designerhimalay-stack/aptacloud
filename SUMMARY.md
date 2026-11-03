@@ -113,7 +113,7 @@ On any conflict, the brand guidelines and `aptacloud-content` win.
 - **Tap targets:** 44 px minimum on phones.
 - **Cards** are flat: white on tint, surface on dark, and photos sit above the text. No glows, gradients, dark overlays, or accent-border hover effects.
 - **Numbers** appear only where order matters (process steps).
-- **Phones:** no sideways swiping (owner, 2026-11-03). Card groups (`sec.rail`) become a 2-column grid; an odd last card spans the row; heavy cards add `sec.stack` for one column. Card copy uses `ui/ReadMore`: two lines and a "Read more" toggle on phones, the full text on desktop. Everything aligns left with the section head. Chips wrap at their natural width.
+- **Phones:** no sideways swiping (owner, 2026-11-03). Card groups (`sec.rail`) become a 2-column grid; an odd last card spans the row; heavy cards add `sec.stack` for one column. Card copy uses `ui/ReadMore`: two lines and a "Read more" toggle on phones, the full text on desktop. Icon cards follow the home "Why AptaCloud" card on phones: a plain red icon (no tile), an 18px title, 16px inner padding; product chip lists are hidden. Under 360px the grids drop to one column. Everything aligns left with the section head. Chips wrap at their natural width.
 - **Photos:**
   - human photos first
   - never repeat a photo on a page; avoid reuse across pages (Industries cards pick from a pool per vertical, by slug, in `shared.ts`)

@@ -232,3 +232,8 @@
 @media (max-width: 359.98px) {
   .heading { font-size: 26px; }
 }
+
+/* Under 360px a half-width card leaves ~100px for text: one column instead. */
+@media (max-width: 359.98px) {
+  .rail { grid-template-columns: minmax(0, 1fr) !important; }
+}

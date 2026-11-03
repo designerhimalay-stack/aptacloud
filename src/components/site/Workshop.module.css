@@ -206,3 +206,7 @@
   font-weight: 500;
   letter-spacing: -0.04em;
 }
+
+@media (max-width: 359.98px) {
+  .cards { grid-template-columns: minmax(0, 1fr) !important; }
+}

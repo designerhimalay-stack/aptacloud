@@ -166,3 +166,7 @@
 @media (max-width: 389.98px) {
   .section { padding: 56px 16px; }
 }
+
+@media (max-width: 359.98px) {
+  .columns { grid-template-columns: minmax(0, 1fr) !important; }
+}

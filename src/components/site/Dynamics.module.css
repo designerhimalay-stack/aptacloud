@@ -255,3 +255,7 @@
 @media (max-width: 809.98px) {
   .steps > :last-child { min-height: 200px; }
 }
+
+@media (max-width: 359.98px) {
+  .steps { grid-template-columns: minmax(0, 1fr) !important; }
+}

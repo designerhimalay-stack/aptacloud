@@ -303,3 +303,7 @@
 .cell > * {
   width: 100%;
 }
+
+@media (max-width: 359.98px) {
+  .cards { grid-template-columns: minmax(0, 1fr) !important; }
+}

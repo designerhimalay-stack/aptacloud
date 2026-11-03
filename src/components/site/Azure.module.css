@@ -169,3 +169,7 @@
   .azureLogo { font-size: 22px; }
   .azureLogo img { height: 30px; width: 30px; }
 }
+
+@media (max-width: 359.98px) {
+  .cards { grid-template-columns: minmax(0, 1fr) !important; }
+}

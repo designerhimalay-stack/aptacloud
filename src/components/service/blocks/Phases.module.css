@@ -238,3 +238,13 @@
   .panel { animation: none; }
   .fill, .node, .label { transition: none; }
 }
+
+/* Phones: the home "Why AptaCloud" card (plain icon, 18px title so long words fit at half width, two lines). */
+@media (max-width: 809.98px) {
+  .svc { gap: 8px; padding: 18px 16px; }
+  .svcIcon { background: none; border-radius: 0; height: 28px; justify-content: flex-start; margin-bottom: 4px; width: 28px; }
+  .svcIcon svg { height: 28px !important; width: 28px !important; }
+  .svcMark:not(.svcIcon) { border-radius: 10px; height: 40px; width: 40px; }
+  .svcMark:not(.svcIcon) > * { height: 24px !important; width: 24px !important; }
+  .svcTitle { font-size: 18px; line-height: 1.25; }
+}

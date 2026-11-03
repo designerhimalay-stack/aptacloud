@@ -117,3 +117,13 @@
   .rowTitle { font-size: 15px; }
   .rowText { font-size: 13px; }
 }
+
+/* Phones: the home "Why AptaCloud" card (plain icon, 18px title so long words fit at half width, two lines). */
+@media (max-width: 809.98px) {
+  .row > ul { display: none; }
+  .rowTitle { font-size: 18px; }
+}
+
+@media (max-width: 359.98px) {
+  .list { grid-template-columns: minmax(0, 1fr); }
+}

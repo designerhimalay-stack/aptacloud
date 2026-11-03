@@ -347,3 +347,15 @@
   .flankSide + .flankSide .flankItem:first-child,
   .flankMedia + .flankSide .flankItem:first-child { border-top: 1px solid var(--line); }
 }
+
+/* Phones: the home "Why AptaCloud" card (plain icon, 18px title so long words fit at half width, two lines). */
+@media (max-width: 809.98px) {
+  .listCards .item { gap: 12px; padding: 18px 16px; }
+  .listCards .icon { background: none; border-radius: 0; height: 28px; justify-content: flex-start; width: 28px; }
+  .listCards .icon svg { height: 28px; width: 28px; }
+  .listCards .itemTitle { font-size: 18px; }
+}
+
+@media (max-width: 359.98px) {
+  .listCards { grid-template-columns: minmax(0, 1fr); }
+}

@@ -209,3 +209,9 @@
   }
   .more { font-size: 13px; }
 }
+
+/* Phones: plain icon, as in the home "Why AptaCloud" cards. */
+@media (max-width: 809.98px) {
+  .iconTile { background: none; border-radius: 0; height: 28px; justify-content: flex-start; width: 28px; }
+  .icon { height: 28px; width: 28px; }
+}

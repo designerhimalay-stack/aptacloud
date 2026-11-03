@@ -629,3 +629,20 @@
 @media (max-width: 809.98px) {
   .logoWide { max-width: 100%; }
 }
+
+/* Phones: the home "Why AptaCloud" card (plain icon, 18px title so long words fit at half width, two lines). */
+@media (max-width: 809.98px) {
+  .centered { align-items: flex-start; gap: 12px; padding: 18px 16px; text-align: left; }
+  .ring { background: none; border-radius: 0; box-shadow: none; height: 28px; justify-content: flex-start; margin-bottom: 4px; width: 28px; }
+  .ring svg { height: 28px; width: 28px; }
+  .ringMark { background: #ffffff; border-radius: 10px; box-shadow: 0 0 0 1px var(--line); height: 40px; justify-content: center; width: 40px; }
+  .ringMark > * { height: 24px !important; width: 24px !important; }
+  .toolChips { display: none; }
+}
+
+/* Phones: every half-width card gets the same 16px inner padding. */
+@media (max-width: 809.98px) {
+  .plain, .statement { padding: 18px 16px; }
+  .photoCard { padding: 6px; }
+  .photoBody { padding: 12px 10px 10px; }
+}
