@@ -6,7 +6,7 @@
     "dev": "astro dev",
     "build": "astro build && node tools/images/optimize.mjs",
     "preview": "astro preview",
-    "lint": "tsc --noEmit"
+    "lint": "astro sync && tsc --noEmit"
   },
   "dependencies": {
     "@astrojs/react": "^7.0.1",
