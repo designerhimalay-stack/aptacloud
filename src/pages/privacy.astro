@@ -1,15 +1,83 @@
 ---
-// Privacy policy: placeholder until AptaCloud supplies the approved policy text
-// (launch blocker in docs/launch-checklist.md). Kept out of search results until then.
+// Privacy policy, taken from the policy on aptacloud.com (OTS Solutions Inc.).
+// Contact details come from the brand file.
 import Site from "../layouts/Site.astro";
 import { CTA } from "../components/site/CTA";
 import { BRAND, asset } from "../brand/brand";
+
+const { email, phones, address } = BRAND.contact;
+
+const sections: { title: string; text?: string; items?: string[]; after?: string }[] = [
+  {
+    title: "Who we are",
+    text: "OTS Solutions is a global digital technology consulting company headquartered in Richardson, Texas, with offices around the world. We believe strongly in innovation and lead by providing technology solutions to real business problems, to increase quality and efficiency in processes. We are committed to giving you a good experience on our website, sharing the materials you may be interested in, answering your questions promptly, and keeping the website running without interruption. Personal data is a sensitive matter and we take your privacy seriously, so this policy sets out how we work with your personal data.",
+  },
+  {
+    title: "How we collect data",
+    text: "Depending on the services you use, we collect data from one or more of these sources:",
+    items: ["Cookies stored in the background", "Forms you fill in", "Data collected by our partner sources"],
+  },
+  {
+    title: "What data we collect",
+    text: "When you request any of our services, we may ask for, store, and process any or all of these data categories:",
+    items: ["Your name", "Your country", "Your email address", "Your phone number", "Any other information you choose to share"],
+  },
+  {
+    title: "Why we collect this data",
+    text: "The data we collect can be personally identifiable or anonymous. We collect it to:",
+    items: [
+      "Offer a personalised service",
+      "Create a secure platform",
+      "Improve performance",
+      "Carry out statistical analysis",
+      "Contact you if you agree to this in any of our forms",
+    ],
+  },
+  {
+    title: "How we secure your data",
+    text: "The security of your data is important to us and we take all appropriate measures to protect it. Technical, administrative, and physical safeguards are in place so your data is accessible only to authorised people or systems. If we discover a data breach, we inform the relevant authorities and affected users within 72 hours.",
+  },
+  {
+    title: "How we use your data",
+    text: "We store and process the data we collect for our legitimate interests and service delivery, fully within the law. We use your data:",
+    items: [
+      "To provide and maintain our services",
+      "To improve our services and website experience",
+      "To communicate with you by email, notification, or any other contact details you have provided",
+      "To provide third parties with the data they need to enable our services",
+      "For internal research and management",
+      "To enforce our terms and conditions",
+    ],
+  },
+  {
+    title: "When we share your data",
+    text: "We do not share your data with any third party, except when:",
+    items: [
+      "You have given your explicit consent",
+      "The law requires it",
+      "The third party is a collaborator or part of OTS Solutions (a subsidiary, parent, or sister company)",
+      "A third party needs the data to enable our services",
+    ],
+  },
+  {
+    title: "How we protect your information",
+    text: "We have strict security procedures covering the storage of your information to prevent unauthorised access. This means we may sometimes ask you for proof of identity or other personal information before we can process your call or enquiry further.",
+  },
+  {
+    title: "What you can do",
+    text: "You have full control over what information we store and how it is used. You can:",
+    items: [
+      "Unsubscribe from the mailing list and change your notification preferences to stop receiving any or all communication from us",
+      "Choose not to share your information by not filling in forms or using chat support",
+      "Change the consent you gave for any specific use of your data at any time",
+    ],
+  },
+];
 ---
 
 <Site
   title={`Privacy Policy and Your Data | ${BRAND.name}`}
   description={`How ${BRAND.name} collects, uses, and protects the personal information you share with us, and how to reach our team about your data.`}
-  noindex
   navCta={{ label: "Let's talk", href: "#contact" }}
 >
   <section id="top" class="legal" data-theme="light">
@@ -17,10 +85,37 @@ import { BRAND, asset } from "../brand/brand";
       <p class="kicker">Legal</p>
       <h1>Privacy policy</h1>
       <p class="lead">
-        {BRAND.name}'s full privacy policy is being finalised and will be published on this page. For any question about
-        your personal information, email <a href={`mailto:${BRAND.contact.email}`}>{BRAND.contact.email}</a> and our team
-        will respond.
+        This privacy policy outlines what data OTS Solutions Inc. ("OTS Solutions", "{BRAND.name}", "we", "our", or "us")
+        collects, stores, and processes about you. It also explains your rights to your data and how to contact us with any
+        questions.
       </p>
+
+      <div class="body">
+        {sections.map((s) => (
+          <div class="block">
+            <h2>{s.title}</h2>
+            {s.text && <p>{s.text}</p>}
+            {s.items && (
+              <ul>
+                {s.items.map((i) => <li>{i}</li>)}
+              </ul>
+            )}
+          </div>
+        ))}
+
+        <div class="block">
+          <h2>Contact us</h2>
+          <p>
+            If you have any questions about this policy or how we handle your data, we would be glad to hear from you.
+          </p>
+          <ul class="contact">
+            <li>Email: <a href={`mailto:${email}`}>{email}</a></li>
+            <li>Phone: <a href={`tel:${phones[0].number.replace(/[^+\d]/g, "")}`}>{phones[0].number}</a></li>
+            <li>Address: {address.join(", ")}</li>
+          </ul>
+        </div>
+      </div>
+
       <a class="back" href={asset("/")}>Back to the home page</a>
     </div>
   </section>
@@ -62,9 +157,47 @@ import { BRAND, asset } from "../brand/brand";
     letter-spacing: -0.03em;
     line-height: 1.55;
     margin: 0;
-    max-width: 620px;
+    max-width: 720px;
   }
-  .lead a,
+  .body {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    margin-top: 28px;
+    max-width: 720px;
+  }
+  .block {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  h2 {
+    font-family: var(--ff-inter);
+    font-size: 26px;
+    font-weight: 600;
+    letter-spacing: -0.04em;
+    line-height: 1.2;
+    margin: 0;
+  }
+  .block p,
+  .block li {
+    color: var(--fg-muted);
+    font-size: 16px;
+    letter-spacing: -0.01em;
+    line-height: 1.6;
+  }
+  .block p { margin: 0; }
+  .block ul {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    list-style: disc;
+    margin: 0;
+    padding-left: 20px;
+  }
+  .block li::marker { color: var(--accent-text); }
+  .block .contact { list-style: none; padding-left: 0; }
+  .block a,
   .back {
     color: var(--fg);
     text-decoration: underline;
@@ -75,13 +208,9 @@ import { BRAND, asset } from "../brand/brand";
     align-self: flex-start;
     font-size: 15px;
     font-weight: 600;
-    margin-top: 8px;
+    margin-top: 28px;
   }
-  .lead a:hover,
-  @media (max-width: 809.98px) {
-    .back { align-items: center; display: inline-flex; min-height: 44px; }
-  }
-
+  .block a:hover,
   .back:hover {
     color: var(--accent-text);
     text-decoration-color: var(--accent);
@@ -90,5 +219,8 @@ import { BRAND, asset } from "../brand/brand";
     .legal { padding: 140px 16px 72px; }
     h1 { font-size: 36px; }
     .lead { font-size: 16px; }
+    h2 { font-size: 22px; }
+    .body { gap: 32px; margin-top: 20px; }
+    .back { align-items: center; display: inline-flex; min-height: 44px; }
   }
 </style>
