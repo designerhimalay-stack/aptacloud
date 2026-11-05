@@ -25,6 +25,9 @@ import {
   type RefObject,
 } from "react";
 
+// Tells the fail-open guard in Base.astro that the animation code loaded.
+if (typeof window !== "undefined") (window as { __acMotion?: boolean }).__acMotion = true;
+
 /** Expo-out easing used by the reveal animations. */
 export const EASE_OUT_EXPO = [0.16, 1, 0.3, 1] as const;
 
